@@ -3,12 +3,32 @@ SPDX-FileCopyrightText: Copyright 2026 SK TELECOM CO., LTD.
 SPDX-License-Identifier: Apache-2.0
 -->
 
-# Baseline 컨테이너
+# 제출 컨테이너
 
-[`Dockerfile`](Dockerfile)은 약한 프롬프트 기반 baseline을 표준
+[`Dockerfile`](Dockerfile)은 이 fork의 제출 정책인 safe-margin 라우터를 표준
 `router-run` 인터페이스로 실행합니다. 라우터 실행 입력 JSON의 컨테이너 내부
 경로는 `/challenge/input/inputs.json`, 선택 결과 JSON의 경로는
 `/challenge/output/submission.json`, 임시 경로는 `/tmp`입니다.
+
+[`entrypoint.py`](entrypoint.py)는 정책을 다시 쓰지 않고
+[`../baselines/safe_margin.py`](../baselines/safe_margin.py)의 `main`을 그대로
+호출합니다. 개발용 실행기와 제출 이미지가 같은 구현 하나를 사용하므로 정책이
+갈라질 수 없습니다. 이미지에 넣는 실행 파일은 다음뿐입니다.
+
+| 이미지 경로 | 용도 |
+| --- | --- |
+| `/opt/router/entrypoint.py` | 진입점, safe-margin `main`으로 위임 |
+| `/opt/router/baselines/safe_margin.py` | 제출 라우팅 정책 |
+| `/opt/router/baselines/hash_regex.py` | 특징 추출과 artifact 파서 |
+| `/opt/router/baselines/hash-regex-public.v1.json` | 공개 hash-regex artifact |
+| `/opt/router/ossp_router/` | 공개 프로토콜·정책 자원 모듈 |
+
+공개 artifact는 라우터 모듈 옆에 함께 들어가며 `--artifact`의 기본값입니다.
+운영자는 기존과 같이 `--input`, `--tier`, `--output`만 전달합니다. 공개
+입력·outcome, 개발 도구, 테스트, 학습 자료와 빌드 산출물은
+[`../.dockerignore`](../.dockerignore)에서 제외하며, 실제 포함 파일 목록은
+[`../tests/test_container_entrypoint.py`](../tests/test_container_entrypoint.py)가
+검사합니다.
 
 구체적인 인자, 파일 권한, 제한 시간 초과와 비정상 종료, 출력 검증,
 CPU, RAM, 프로세스·스레드 수의 최종 한도는

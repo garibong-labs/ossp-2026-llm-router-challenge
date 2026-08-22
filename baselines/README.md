@@ -176,18 +176,44 @@ Fast 비율이 약 `0.06` 움직이는데, 이는 실제 비율과 `1.25` 한도
 for tier in fast balanced premium; do
   PYTHONPATH=src python3 baselines/safe_margin.py \
     --input data/materialized/dev/inputs.json \
-    --artifact baselines/hash-regex-public.v1.json \
     --tier "$tier" \
     --output "build/safe-margin/$tier.json"
 done
 ```
 
+`--artifact`를 생략하면 모듈 옆의
+[`hash-regex-public.v1.json`](hash-regex-public.v1.json)을 사용합니다. 다른
+artifact를 시험할 때만 경로를 지정하십시오.
+
+### 제출 컨테이너
+
+제출 이미지가 실행하는 정책이 바로 이 모듈입니다.
+[`../container/entrypoint.py`](../container/entrypoint.py)는 정책을 복제하지
+않고 `safe_margin.main`을 그대로 호출하며,
+[`../container/Dockerfile`](../container/Dockerfile)은
+`safe_margin.py`, `hash_regex.py`와 공개 artifact를 `/opt/router/baselines/`에
+함께 넣습니다. 따라서 개발용 실행기·스트레스 도구와 제출 컨테이너의 결정이
+같은 구현 하나에서 나옵니다. 운영자 호출 인자는
+[`../docs/RUNTIME.md`](../docs/RUNTIME.md)의 `--input`, `--tier`, `--output`
+그대로이며 `--artifact`는 필요하지 않습니다. 진입점이 safe-margin으로
+연결되는지, 이미지에 들어가는 파일이 정확히 무엇인지, 컨테이너 경로와 직접
+호출의 출력이 바이트 단위로 같은지는
+[`../tests/test_container_entrypoint.py`](../tests/test_container_entrypoint.py)가
+Docker 없이 검사합니다.
+
+공식 실행 경로는 이미지의 `ENTRYPOINT`뿐입니다. `setup.cfg`의 `router-run`
+console script는 상위 저장소 기준 그대로 `ossp_router.heuristic:main`을
+가리키므로, 로컬에서 패키지를 설치해 `router-run`을 직접 부르면 제출 정책이
+아니라 참고용 약한 baseline이 실행됩니다. 제출 이미지에는 이 패키지를 설치하지
+않으며 해당 명령도 존재하지 않습니다.
+
 ### 개발용 한 번 실행
 
 [`../tools/run_mvp.py`](../tools/run_mvp.py)는 세 등급 제출 생성, 공식
 self-check 채점, baseline 비교 출력을 한 명령으로 처리합니다. 이 도구는
-개발 전용이며 제출 컨테이너에 넣지 않습니다. 컨테이너 진입 명령
-`router-run`은 기존 그대로 유지됩니다.
+개발 전용이며 제출 컨테이너에 넣지 않습니다. 제출 컨테이너는 이 도구를 거치지
+않고 `safe_margin.main`을 직접 실행하지만, 두 경로 모두 같은 구현을 부르므로
+등급별 결정은 동일합니다.
 
 ```console
 PYTHONPATH=src python3 tools/run_mvp.py

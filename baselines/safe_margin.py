@@ -86,6 +86,12 @@ from hash_regex import (  # noqa: E402  (sibling baseline module)
 
 STRATEGY_ID = "safe-margin"
 
+#: Public hash-regex artifact bundled next to this module. ``container/Dockerfile``
+#: copies both files into the same runtime directory, so the official container
+#: invocation resolves the artifact locally and never needs an extra
+#: ``--artifact`` argument from the evaluator.
+DEFAULT_ARTIFACT_PATH = Path(_BASELINES_DIRECTORY) / "hash-regex-public.v1.json"
+
 #: Quantization used to build the content-derived allocation groups. Each entry
 #: multiplies the matching :data:`DENSE_FEATURE_NAMES` value before truncation.
 GROUP_QUANTIZATION: Tuple[float, ...] = (
@@ -560,9 +566,11 @@ def _parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--tier", choices=TIERS, required=True)
-    parser.add_argument("--artifact", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--policy", type=Path)
+    # Optional on purpose: the official container run only passes --input,
+    # --tier and --output, so the bundled public artifact has to be the default.
+    parser.add_argument("--artifact", type=Path, default=DEFAULT_ARTIFACT_PATH)
     return parser
 
 
