@@ -131,11 +131,63 @@ PYTHONPATH=src python3 baselines/hash_regex.py \
   --output build/hash-regex/dev-balanced.json
 ```
 
+## safe-margin MVP 라우터
+
+[`safe_margin.py`](safe_margin.py)는 이 저장소의 첫 동작 MVP 정책입니다.
+특징 추출과 예측은 공개 hash-regex 자료를 그대로 재사용하지만, 선택 정책은
+한도에 근접하지 않는 보수적 hybrid로 새로 만들었습니다.
+
+- **비용 추정을 구조적으로 보수화합니다.** 학습된 log-cost head 값을 공개
+  정책의 입력 토큰 단가 비율(`ax31` 2.127배, `axk1-think` 6.565배)로 먼저
+  바닥을 깔고, 모델별 여유 계수를 곱합니다. 학습 head가 새로운 프롬프트
+  분포에서 흔들려도 승격 비용을 단가 비율보다 싸게 볼 수 없습니다.
+- **한계 품질 이득 대비 증분 비용으로 승격을 정렬합니다.** 효율은
+  `예측 이득 / (증분 비용 / 평균 light 비용)`이며 배치 크기와 무관합니다.
+- **내용 기반 묶음 단위로 배분합니다.** 묶음 열쇠는 양자화한 dense 프롬프트
+  특징과 효율 구간(octave)뿐입니다. 묶음은 통째로 승격하거나 통째로
+  남으므로 `episode_id`, `challenge_id`, `split`, 입력 위치나 순서 의존
+  동률 처리가 들어갈 자리가 없습니다.
+- **불확실하거나 이득이 없는 문항은 싼 모델에 남깁니다.** 품질 마진
+  임계값과 문항별 꼬리 비용 상한(`max_step_ratio`)을 모두 통과해야 후보가
+  됩니다.
+- **`axk1-think`는 Premium에서만, `ax31`에서만 승격합니다.** 그마저도 재량
+  예산의 정해진 비율까지만 쓰며, 값싸고 예측이 안정적인 `ax31` 승격을 먼저
+  모두 처리한 뒤에 남는 예산으로만 배분합니다.
+
+등급별 안전 목표는 예측 비용 기준 Fast `1.14`, Balanced `1.70`, Premium
+`3.20`입니다. 비용 추정을 보수적으로 잡았기 때문에 실제 비용 비율은 이보다
+낮게 나옵니다. 목표값은 공개 Train에서 고르고 공개 Dev로 확인했습니다.
+
+```console
+for tier in fast balanced premium; do
+  PYTHONPATH=src python3 baselines/safe_margin.py \
+    --input data/materialized/dev/inputs.json \
+    --artifact baselines/hash-regex-public.v1.json \
+    --tier "$tier" \
+    --output "build/safe-margin/$tier.json"
+done
+```
+
+### 개발용 한 번 실행
+
+[`../tools/run_mvp.py`](../tools/run_mvp.py)는 세 등급 제출 생성, 공식
+self-check 채점, baseline 비교 출력을 한 명령으로 처리합니다. 이 도구는
+개발 전용이며 제출 컨테이너에 넣지 않습니다. 컨테이너 진입 명령
+`router-run`은 기존 그대로 유지됩니다.
+
+```console
+PYTHONPATH=src python3 tools/run_mvp.py
+```
+
+`build/mvp/{fast,balanced,premium}.json`과 `build/mvp/report.json`을 만들고,
+등급별 실제 비용 비율·품질·가중 최종 점수·모델 선택 분포를 출력합니다.
+`--split train`으로 공개 Train에서도 같은 확인을 할 수 있습니다.
+
 ## 공개 Dev 비교
 
 현재 공개 Dev 880문항의 검증 결과입니다. 각 등급 칸은 `점수 / 실제 비용 비율`
-이며, 비용 한도는 Fast `1.25`, Balanced `2.0`, Premium `4.0`입니다. 네
-baseline 모두 세 등급의 예산을 통과합니다.
+이며, 비용 한도는 Fast `1.25`, Balanced `2.0`, Premium `4.0`입니다. 다섯
+구현 모두 세 등급의 예산을 통과합니다.
 
 | Baseline | Fast | Balanced | Premium | 가중 최종 점수 |
 | --- | ---: | ---: | ---: | ---: |
@@ -143,6 +195,23 @@ baseline 모두 세 등급의 예산을 통과합니다.
 | prompt-heuristic | 0.625852 / 1.072334 | 0.658239 / 1.367866 | 0.691761 / 2.102044 | 0.655341 |
 | feature-budget | 0.621023 / 1.038210 | 0.623580 / 1.334059 | 0.691761 / 2.102044 | 0.643011 |
 | hash-regex | 0.663068 / 1.235989 | 0.693750 / 1.961506 | 0.740057 / 3.985205 | 0.695369 |
+| safe-margin | 0.653125 / 1.153642 | 0.684375 / 1.539658 | 0.701136 / 2.600279 | 0.676903 |
+
+safe-margin은 hash-regex보다 가중 최종 점수가 `0.018` 낮지만, 한도 대비
+사용률이 Fast `92%`, Balanced `77%`, Premium `65%`로 훨씬 낮습니다.
+hash-regex는 Premium에서 한도의 `99.6%`를 사용했고 사전 검증에서 실제로
+한도를 넘어 그 등급이 `0`점 처리되었습니다. 같은 일이 일어나면 hash-regex의
+가중 점수는 `0.473`으로 떨어지지만 safe-margin은 `0.677`을 유지합니다.
+이 여유가 safe-margin이 의도적으로 품질을 조금 포기하고 얻은 값입니다.
+
+같은 정책을 공개 Train 1,760문항에 적용하면 Fast `1.103`, Balanced `1.515`,
+Premium `2.591`이고 가중 최종 점수는 `0.681`입니다. 두 분할 사이에서 Fast의
+초과분(`비율 - 1`)이 `0.103`에서 `0.154`로 `48.8%` 흔들리는 반면 Balanced는
+`4.8%`, Premium은 `0.6%`만 움직입니다. Dev 기준으로 한도까지 남은 초과분
+여유는 Fast `62.7%`, Balanced `85.3%`, Premium `87.5%`입니다. 즉 비공개
+자료에서 Train 대비 Dev만큼의 비용 상승이 한 번 더 일어나도 세 등급 모두
+한도 안에 있습니다. Fast가 가장 빡빡한 등급이며 이 정책의 주된 잔여
+위험입니다.
 
 hash-regex의 전체 보고서는
 [`hash-regex-public-dev-report.v1.json`](hash-regex-public-dev-report.v1.json)에
