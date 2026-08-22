@@ -241,6 +241,17 @@ class SafeMarginTierSeparationTest(unittest.TestCase):
                     config.target_ratio + 1e-9,
                 )
 
+    def test_tail_guards_tighten_as_the_tier_headroom_shrinks(self):
+        # Fast has the least absolute headroom above the all-light baseline, so
+        # a single upgraded episode with a large realized output expansion is
+        # worst there. Its per-episode guards must never be looser than the
+        # tiers that can absorb the same episode.
+        configs = [safe_margin.TIER_PLAN_CONFIGS[tier] for tier in TIERS]
+        for field in ("ax31_max_step_ratio", "ax31_max_step_load"):
+            with self.subTest(field=field):
+                values = [getattr(config, field) for config in configs]
+                self.assertEqual(sorted(values), values)
+
 
 class SafeMarginBudgetGuardTest(unittest.TestCase):
     """Cost model, quality margin, tail guard and group allocation."""
@@ -320,6 +331,89 @@ class SafeMarginBudgetGuardTest(unittest.TestCase):
         self.assertEqual(1.0, ratio)
         self.assertEqual(4, stages[0].considered)
         self.assertEqual(0, stages[0].eligible)
+
+    def _load_guard_batch(self, repeats=1):
+        """Three ordinary episodes plus one that dwarfs the batch mean.
+
+        Every episode has the same 2x per-prompt expansion, so
+        ``max_step_ratio`` cannot tell them apart. Only the concentration
+        guard sees that promoting the fourth one alone would spend more than
+        the whole rest of the batch.
+        """
+
+        light = [1.0, 1.0, 1.0, 100.0] * repeats
+        return [
+            _prediction(
+                {LIGHT_ID: 0.10, AX31_ID: 0.90, THINK_ID: 0.95},
+                {
+                    LIGHT_ID: value,
+                    AX31_ID: 2.0 * value,
+                    THINK_ID: 6.0 * value,
+                },
+                signature=(index,),
+            )
+            for index, value in enumerate(light)
+        ]
+
+    def test_a_budget_dominating_upgrade_is_rejected_by_the_load_guard(self):
+        config = dataclasses.replace(
+            safe_margin.TIER_PLAN_CONFIGS["fast"],
+            target_ratio=1.25,
+            ax31_min_gain=0.0,
+            ax31_max_step_ratio=100.0,
+            ax31_max_step_load=1.0,
+        )
+        predictions = self._load_guard_batch()
+        selected, _ratio, stages = safe_margin.plan_selection(
+            predictions, self.policy, "fast", config
+        )
+        # mean light cost is 25.75, so the three ordinary upgrades cost 0.04
+        # mean-lights each and the fourth costs 3.88.
+        self.assertEqual(3, stages[0].eligible)
+        self.assertEqual(LIGHT_ID, selected[3])
+        self.assertEqual([AX31_ID] * 3, list(selected[:3]))
+
+    def test_the_load_guard_is_scale_free_in_the_batch_size(self):
+        # Doubling the batch leaves the mean light cost unchanged, so the same
+        # episodes must survive the guard. A guard denominated in the batch
+        # *total* would silently loosen as the evaluation set grows.
+        config = dataclasses.replace(
+            safe_margin.TIER_PLAN_CONFIGS["fast"],
+            target_ratio=1.25,
+            ax31_min_gain=0.0,
+            ax31_max_step_ratio=100.0,
+            ax31_max_step_load=1.0,
+        )
+        single = safe_margin.plan_selection(
+            self._load_guard_batch(), self.policy, "fast", config
+        )
+        doubled = safe_margin.plan_selection(
+            self._load_guard_batch(repeats=2), self.policy, "fast", config
+        )
+        self.assertEqual(single[2][0].eligible * 2, doubled[2][0].eligible)
+        self.assertEqual(LIGHT_ID, doubled[0][3])
+        self.assertEqual(LIGHT_ID, doubled[0][7])
+
+    def test_the_think_stage_has_its_own_concentration_guard(self):
+        config = dataclasses.replace(
+            safe_margin.TIER_PLAN_CONFIGS["premium"],
+            target_ratio=4.0,
+            ax31_min_gain=0.0,
+            ax31_max_step_ratio=100.0,
+            ax31_max_step_load=1e9,
+            think_min_gain=0.0,
+            think_max_step_ratio=100.0,
+            think_max_step_load=1.0,
+            think_budget_share=1.0,
+        )
+        predictions = self._load_guard_batch()
+        selected, _ratio, stages = safe_margin.plan_selection(
+            predictions, self.policy, "premium", config
+        )
+        # The think increment of the oversized episode is 400 mean-lights.
+        self.assertEqual(3, stages[1].eligible)
+        self.assertEqual(AX31_ID, selected[3])
+        self.assertNotIn(THINK_ID, selected[3:])
 
     def test_an_exhausted_budget_keeps_every_episode_on_the_light_model(self):
         config = dataclasses.replace(

@@ -13,10 +13,32 @@ Lagrangian batch selection with a conservative hybrid:
   upgrade;
 * upgrades are ranked by predicted marginal quality per incremental cost and
   allocated in content-derived groups, never per episode identity or position;
-* every upgrade must clear a quality margin and a per-episode tail cost guard,
-  so uncertain or non-beneficial cases stay on the cheaper model;
+* every upgrade must clear a quality margin, a per-episode *expansion* guard
+  (`max_step_ratio`) and a per-episode *concentration* guard
+  (`max_step_load`), so uncertain, non-beneficial and budget-dominating cases
+  stay on the cheaper model;
 * `axk1-think` is only reachable in Premium, only from `ax31`, and only inside
   a separate bounded sub-budget.
+
+The two per-episode guards answer different failure modes, both found by
+``tools/stress_safe_margin.py``:
+
+``max_step_ratio``
+    bounds how much more the upgraded model is predicted to cost *for the same
+    prompt*. It is denominated in the light model's own predicted cost, a
+    published per-prompt quantity rather than a batch statistic, so a batch of
+    uniformly expansion-heavy prompts fails toward fewer upgrades instead of
+    silently keeping the same promotion rate.
+
+``max_step_load``
+    bounds the predicted increment as a multiple of the batch's *mean* light
+    cost, so one long prompt can never own a large share of a tier budget. It
+    is scale-free in the batch size and therefore behaves the same on an
+    880-episode and a 1,760-episode batch.
+
+Neither guard can see the real driver of the cost tail, which is how many
+output tokens the heavier model happens to emit. ``baselines/README.md``
+records the measured limits of that blind spot.
 """
 
 from __future__ import annotations
@@ -107,6 +129,12 @@ class TierPlanConfig:
     well below it; the public Dev figures in ``baselines/README.md`` record the
     calibration measured on public Train and verified on public Dev.
 
+    ``*_max_step_ratio`` is the largest predicted cost of the upgraded model
+    relative to the light model *on the same prompt*; ``*_max_step_load`` is
+    the largest predicted increment relative to the batch's mean light cost.
+    Both are calibrated from the deterministic resampling evidence in
+    ``tools/stress_safe_margin.py``, not from whole-split averages alone.
+
     ``think_budget_share`` caps the fraction of the discretionary budget that
     the `axk1-think` stage may consume. It is a tail guard rather than a
     reservation: the cheap and reliable `ax31` upgrades always run first.
@@ -115,40 +143,55 @@ class TierPlanConfig:
     target_ratio: float
     ax31_min_gain: float
     ax31_max_step_ratio: float
+    ax31_max_step_load: float
     allow_think: bool
     think_min_gain: float
     think_max_step_ratio: float
+    think_max_step_load: float
     think_budget_share: float
 
 
 #: Safety targets are expressed against the all-light baseline cost and stay
 #: well below the public caps (1.25 / 2.0 / 4.0).
+#:
+#: Fast carries the tightest guards because it has the least absolute headroom:
+#: on an 880-episode batch a single upgraded episode that happens to emit ~55x
+#: its light generation moves the Fast ratio by roughly 0.06, which is most of
+#: the distance between the realized ratio and the 1.25 cap. Balanced and
+#: Premium can absorb the same episode, so they trade a looser guard for
+#: quality. See the resampling table in ``baselines/README.md``.
 TIER_PLAN_CONFIGS: Mapping[str, TierPlanConfig] = {
     "fast": TierPlanConfig(
         target_ratio=1.14,
         ax31_min_gain=0.008,
-        ax31_max_step_ratio=6.0,
+        ax31_max_step_ratio=3.0,
+        ax31_max_step_load=4.0,
         allow_think=False,
         think_min_gain=1.0,
         think_max_step_ratio=0.0,
+        think_max_step_load=0.0,
         think_budget_share=0.0,
     ),
     "balanced": TierPlanConfig(
-        target_ratio=1.70,
+        target_ratio=1.60,
         ax31_min_gain=0.004,
-        ax31_max_step_ratio=10.0,
+        ax31_max_step_ratio=5.0,
+        ax31_max_step_load=6.0,
         allow_think=False,
         think_min_gain=1.0,
         think_max_step_ratio=0.0,
+        think_max_step_load=0.0,
         think_budget_share=0.0,
     ),
     "premium": TierPlanConfig(
         target_ratio=3.20,
         ax31_min_gain=0.002,
         ax31_max_step_ratio=40.0,
+        ax31_max_step_load=12.0,
         allow_think=True,
         think_min_gain=0.020,
         think_max_step_ratio=60.0,
+        think_max_step_load=20.0,
         think_budget_share=0.65,
     ),
 }
@@ -256,10 +299,11 @@ def predict_from_raw(
 ) -> Tuple[Dict[str, float], Dict[str, float]]:
     """Score one already-extracted feature vector.
 
-    This mirrors :func:`hash_regex.predict_episode` exactly but reuses a
-    feature vector that the caller already needed for the content signature,
-    which halves the per-episode feature work inside the runtime budget.
-    ``tests/test_safe_margin_router.py`` pins the numeric equivalence.
+    This mirrors :func:`hash_regex.predict_episode` numerically but takes the
+    vector the caller already built for the content signature instead of
+    extracting it a second time, which halves the per-episode feature work
+    inside the runtime budget. ``tests/test_safe_margin_router.py`` pins the
+    equivalence.
     """
 
     standardized = tuple(
@@ -324,6 +368,7 @@ def _run_stage(
     budget: float,
     min_gain: float,
     max_step_ratio: float,
+    max_step_load: float,
 ) -> Tuple[float, StageReport]:
     """Promote whole content-derived groups while the budget allows it."""
 
@@ -339,11 +384,21 @@ def _run_stage(
         step_ratio = prediction.costs[step_to] / prediction.costs[
             MODEL_IDS[0]
         ]
-        if gain < min_gain or increment <= 0 or step_ratio > max_step_ratio:
+        # How much of an average episode's light cost this single upgrade
+        # would add. This is the concentration guard: it is scale-free in the
+        # batch size, so one long prompt can never own a large share of the
+        # tier budget no matter how the surrounding mix is composed.
+        step_load = increment / mean_light
+        if (
+            gain < min_gain
+            or increment <= 0
+            or step_ratio > max_step_ratio
+            or step_load > max_step_load
+        ):
             # Uncertain, non-beneficial, or tail-cost cases stay cheaper.
             continue
         eligible += 1
-        efficiency = gain / (increment / mean_light)
+        efficiency = gain / step_load
         key = (_efficiency_bucket(efficiency),) + prediction.signature
         groups.setdefault(key, []).append(index)
 
@@ -420,6 +475,7 @@ def plan_selection(
         budget=full_budget,
         min_gain=plan_config.ax31_min_gain,
         max_step_ratio=plan_config.ax31_max_step_ratio,
+        max_step_load=plan_config.ax31_max_step_load,
     )
     stages.append(ax31_stage)
 
@@ -440,6 +496,7 @@ def plan_selection(
             budget=min(full_budget, total + think_allowance),
             min_gain=plan_config.think_min_gain,
             max_step_ratio=plan_config.think_max_step_ratio,
+            max_step_load=plan_config.think_max_step_load,
         )
         stages.append(think_stage)
 

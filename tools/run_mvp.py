@@ -162,6 +162,7 @@ def _print_report(report: Mapping[str, Any], plans: Mapping[str, Any]) -> None:
         counts = ", ".join(
             f"{model_id}={entry['model_counts'][model_id]}" for model_id in MODEL_IDS
         )
+        cap = float(entry["budget_multiplier"])
         print(
             f"  {tier:<9} 비용 비율 {entry['budget_ratio']:<16} "
             f"한도 {entry['budget_multiplier']:<5} "
@@ -170,7 +171,8 @@ def _print_report(report: Mapping[str, Any], plans: Mapping[str, Any]) -> None:
         )
         print(
             f"  {'':<9} 품질 {entry['quality_score']:<16} "
-            f"예측 비용 비율 {plan.predicted_budget_ratio:.6f}"
+            f"예측 비용 비율 {plan.predicted_budget_ratio:.6f} "
+            f"한도 사용률 {float(entry['budget_ratio']) / cap:.1%}"
         )
         print(f"  {'':<9} 선택 분포 {counts}")
         for stage in plan.stages:
@@ -181,6 +183,11 @@ def _print_report(report: Mapping[str, Any], plans: Mapping[str, Any]) -> None:
             )
     print()
     print(f"weighted final score: {report['final_score']}")
+    print(
+        "이 표는 전체 split 평균입니다. 구성 변동에 대한 꼬리 위험은 "
+        f"`PYTHONPATH=src python3 tools/stress_safe_margin.py "
+        f"--split {report['split']}`로 따로 확인하십시오."
+    )
 
 
 def run_mvp(
@@ -227,6 +234,19 @@ def run_mvp(
                     "target_ratio": plans[tier].target_ratio,
                     "predicted_budget_ratio": plans[tier].predicted_budget_ratio,
                     "model_counts": dict(plans[tier].model_counts),
+                    "guards": {
+                        field: getattr(safe_margin.TIER_PLAN_CONFIGS[tier], field)
+                        for field in (
+                            "ax31_min_gain",
+                            "ax31_max_step_ratio",
+                            "ax31_max_step_load",
+                            "allow_think",
+                            "think_min_gain",
+                            "think_max_step_ratio",
+                            "think_max_step_load",
+                            "think_budget_share",
+                        )
+                    },
                     "stages": [
                         {
                             "step": stage.step,
