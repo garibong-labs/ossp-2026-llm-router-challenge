@@ -1,0 +1,236 @@
+{
+  "candidate_provenance": [
+    {
+      "architecture": "12-layer BERT/XLM-R tokenizer, 384-dimensional mean-pooled embedding",
+      "artifacts": [
+        {
+          "path": "onnx/config.json",
+          "sha256": "bbb7c1333fc4b3e27fbc9cd5d2070aabcc1d4dfb99917c3633e772f97545a6b6",
+          "size_bytes": 653
+        },
+        {
+          "path": "onnx/model.onnx",
+          "sha256": "ca456c06b3a9505ddfd9131408916dd79290368331e7d76bb621f1cba6bc8665",
+          "size_bytes": 470268510
+        },
+        {
+          "path": "onnx/sentencepiece.bpe.model",
+          "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+          "size_bytes": 5069051
+        },
+        {
+          "path": "onnx/special_tokens_map.json",
+          "sha256": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+          "size_bytes": 167
+        },
+        {
+          "path": "onnx/tokenizer.json",
+          "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+          "size_bytes": 17082730
+        },
+        {
+          "path": "onnx/tokenizer_config.json",
+          "sha256": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b",
+          "size_bytes": 443
+        }
+      ],
+      "build_time_download": {
+        "network_at_evaluation_runtime": false,
+        "url_template": "https://huggingface.co/intfloat/multilingual-e5-small/resolve/5697a65b0a002a92fe8c4fc9d495303ffff9c7d2/{artifact_path}"
+      },
+      "excluded_artifact": {
+        "path": "onnx/model_qint8_avx512_vnni.onnx",
+        "reason": "The published quantized graph targets AVX512 VNNI and is not an arm64 runtime artifact."
+      },
+      "languages": [
+        "English",
+        "Korean"
+      ],
+      "license": "MIT",
+      "license_evidence": "https://huggingface.co/intfloat/multilingual-e5-small/blob/5697a65b0a002a92fe8c4fc9d495303ffff9c7d2/README.md",
+      "model_card": "https://huggingface.co/intfloat/multilingual-e5-small/tree/5697a65b0a002a92fe8c4fc9d495303ffff9c7d2",
+      "name": "intfloat/multilingual-e5-small",
+      "revision": "5697a65b0a002a92fe8c4fc9d495303ffff9c7d2"
+    }
+  ],
+  "decision": {
+    "candidate_adopted": false,
+    "reason": "The genuine encoder failed reproducible local extraction and official arm64 resource feasibility; the protocol forbids Train/Dev evaluation or proxy substitution.",
+    "runtime_integration": false,
+    "selected_candidates_by_step": null,
+    "selected_encoder": null,
+    "submission_default": "safe-margin"
+  },
+  "feasibility": {
+    "checks": [
+      {
+        "check": "public_immutable_revision",
+        "detail": "5697a65b0a002a92fe8c4fc9d495303ffff9c7d2",
+        "passed": true
+      },
+      {
+        "check": "commercial_redistributable_license",
+        "detail": "MIT model-card declaration permits commercial use and redistribution with notice",
+        "passed": true
+      },
+      {
+        "check": "english_and_korean",
+        "detail": "model card declares 94 languages; registry requires English and Korean",
+        "passed": true
+      },
+      {
+        "check": "static_model_artifact_bound",
+        "detail": "pinned encoder files total 492421554 bytes before runtime dependencies",
+        "passed": true
+      },
+      {
+        "check": "arm64_graph",
+        "detail": "unquantized ONNX graph is architecture-neutral; AVX512-only quantized graph is excluded",
+        "passed": true
+      },
+      {
+        "check": "onnxruntime_available",
+        "detail": "required local extraction dependency",
+        "passed": false
+      },
+      {
+        "check": "tokenizer_runtime_available",
+        "detail": "required local bounded tokenization dependency",
+        "passed": false
+      },
+      {
+        "check": "pinned_artifacts_available",
+        "detail": "no --encoder-dir was supplied",
+        "passed": false
+      },
+      {
+        "check": "deterministic_repeated_extraction",
+        "detail": "not measured because the pinned local extraction path is unavailable",
+        "passed": false
+      },
+      {
+        "check": "official_linux_arm64_resource_limit",
+        "detail": "not measured; adoption cannot rely on an unverified 2 CPU / 2 GiB / 32-thread / 90-second path",
+        "passed": false
+      }
+    ],
+    "encoder": "intfloat/multilingual-e5-small",
+    "failed_checks": [
+      {
+        "check": "onnxruntime_available",
+        "detail": "required local extraction dependency",
+        "passed": false
+      },
+      {
+        "check": "tokenizer_runtime_available",
+        "detail": "required local bounded tokenization dependency",
+        "passed": false
+      },
+      {
+        "check": "pinned_artifacts_available",
+        "detail": "no --encoder-dir was supplied",
+        "passed": false
+      },
+      {
+        "check": "deterministic_repeated_extraction",
+        "detail": "not measured because the pinned local extraction path is unavailable",
+        "passed": false
+      },
+      {
+        "check": "official_linux_arm64_resource_limit",
+        "detail": "not measured; adoption cannot rely on an unverified 2 CPU / 2 GiB / 32-thread / 90-second path",
+        "passed": false
+      }
+    ],
+    "passed": false,
+    "pinned_artifact_bytes": 492421554
+  },
+  "gates": {
+    "calibration_conformal": {
+      "evaluated": false,
+      "passed": false
+    },
+    "dev_champion": {
+      "evaluated": false,
+      "passed": false
+    },
+    "dev_loaded": false,
+    "feasibility": {
+      "evaluated": true,
+      "passed": false
+    },
+    "official_container_benchmark": {
+      "evaluated": false,
+      "passed": false
+    },
+    "safety_5000_resamples": {
+      "evaluated": false,
+      "passed": false
+    },
+    "train_adoption": {
+      "evaluated": false,
+      "passed": false
+    }
+  },
+  "limitations": [
+    "No candidate quality metric was measured because feasibility failed first.",
+    "The existing C-semantic-proxy is a word/character n-gram hash and is not a genuine embedding baseline.",
+    "The architecture-neutral 470 MB graph may be technically usable, but runtime, memory, thread, and deterministic extraction remain unproven under official limits."
+  ],
+  "protocol": {
+    "frozen_before_candidate_dev_evaluation": true,
+    "path": "configs/semantic-upgrade-events-protocol.v1.json",
+    "sha256": "2afa5332889e5dc0349cc6f1d3f987ce8377c54f349a90b074eaf630f52e6d11"
+  },
+  "report_type": "ossp-semantic-upgrade-events-report-v1",
+  "train_evaluation": {
+    "ax31->axk1-think": {
+      "class_distribution": null,
+      "matched_spend": null,
+      "minimum_held_out_family_selected_gain": null,
+      "ood_abstention_rate": null,
+      "ood_coverage": null,
+      "oof_correlation": null,
+      "per_held_out_family": null,
+      "positive_held_out_family_correlations": null,
+      "reason": "encoder feasibility gate failed before Train representation evaluation",
+      "required_positive_held_out_family_correlations": 6,
+      "status": "skipped"
+    },
+    "ax31-light->ax31": {
+      "class_distribution": null,
+      "matched_spend": null,
+      "minimum_held_out_family_selected_gain": null,
+      "ood_abstention_rate": null,
+      "ood_coverage": null,
+      "oof_correlation": null,
+      "per_held_out_family": null,
+      "positive_held_out_family_correlations": null,
+      "reason": "encoder feasibility gate failed before Train representation evaluation",
+      "required_positive_held_out_family_correlations": 6,
+      "status": "skipped"
+    }
+  },
+  "verification": {
+    "compileall_python_files": {
+      "checked": 62,
+      "passed": true
+    },
+    "focused_semantic_suite": {
+      "failed": 0,
+      "passed": 16,
+      "skipped": 0
+    },
+    "full_python_3_11_suite": {
+      "collected": 423,
+      "environment": "numpy==2.0.2; PYTHONPATH=src:baselines:tools; umask 022",
+      "failed": 0,
+      "passed": 401,
+      "skipped": 22
+    },
+    "git_diff_check": {
+      "passed": true
+    },
+    "report_regeneration_byte_identical": true
+  }
+}

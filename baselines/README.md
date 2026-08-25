@@ -591,3 +591,28 @@ Fast `0.027273 / 0.051936`, Balanced `0.050000 / 0.351032`; ax31→think 상관
 [`representation-audit-report.v1.json`](representation-audit-report.v1.json)에
 있습니다. 기존 v2의 안전 결과(78/78 통과)와 Dev `0.658182`, safe-margin Dev
 `0.673182`는 그대로이며 제출 기본값도 safe-margin입니다.
+
+## Semantic upgrade-event experiment v1
+
+[`../configs/semantic-upgrade-events-protocol.v1.json`](../configs/semantic-upgrade-events-protocol.v1.json)은
+새 후보의 Dev outcome을 읽기 전에 genuine multilingual encoder registry, artifact
+hash, 세 갈래 win/tie/loss target, step별 nested family CV, OOD abstention, matched
+spend, 채택 기준과 fail-closed 동작을 고정합니다. 기존 `C-semantic-proxy`는
+word/character n-gram hash이며 genuine pretrained embedding baseline이 아닙니다.
+
+고정 registry의 유일한 후보는 MIT 라이선스
+`intfloat/multilingual-e5-small@5697a65b0a002a92fe8c4fc9d495303ffff9c7d2`입니다.
+필요한 architecture-neutral ONNX와 tokenizer 6개 파일은 총 492,421,554 bytes이고
+모두 immutable URL, 크기, SHA-256으로 고정했습니다. 공개된 더 작은 quantized
+ONNX는 AVX512 VNNI 전용이라 공식 `linux/arm64` 후보에서 제외했습니다.
+
+이 worktree에는 고정 weight, `onnxruntime`, tokenizer runtime이 없으므로 반복
+추출 결정성과 공식 2 CPU/2 GiB/32-thread/90-second 제한을 증명할 수 없습니다.
+따라서 feasibility gate에서 닫혔고 Train representation 결과, Dev, calibration,
+conformal, 5,000-resample safety 및 container benchmark를 실행하지 않았습니다.
+[`semantic-upgrade-events-report.v1.json`](semantic-upgrade-events-report.v1.json)은
+이 negative result를 재현하며 제출 기본값은 계속 safe-margin입니다.
+
+```console
+PYTHONPATH=src:baselines python3 tools/semantic_upgrade_experiment.py
+```
