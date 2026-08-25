@@ -1,5 +1,40 @@
 {
-  "artifact_verification": {
+  "registry_evidence": {
+    "downloaded_model_card_sha256": "ea680357ec21065558db494afe9092e129fe5605a9dca80b3d5b1c144c2d1552",
+    "languages": [
+      "English",
+      "Korean"
+    ],
+    "license": "MIT",
+    "license_evidence": "https://huggingface.co/intfloat/multilingual-e5-small/blob/5697a65b0a002a92fe8c4fc9d495303ffff9c7d2/README.md",
+    "model_card": "https://huggingface.co/intfloat/multilingual-e5-small/tree/5697a65b0a002a92fe8c4fc9d495303ffff9c7d2",
+    "pooling": "attention-mask mean pooling followed by L2 normalization",
+    "query_prefix": "query: ",
+    "revision": "5697a65b0a002a92fe8c4fc9d495303ffff9c7d2"
+  },
+  "verification": {
+    "compileall_python_files": {
+      "checked": 62,
+      "passed": true
+    },
+    "focused_semantic_suite": {
+      "failed": 0,
+      "passed": 22,
+      "skipped": 0
+    },
+    "full_python_3_11_suite": {
+      "collected": 429,
+      "environment": "Python 3.11.15; numpy==2.0.2; PYTHONPATH=src:baselines:tools; umask 022",
+      "failed": 0,
+      "passed": 407,
+      "skipped": 22
+    },
+    "git_diff_check": {
+      "passed": true
+    },
+    "report_regeneration_byte_identical": true
+  },
+  "artifacts": {
     "artifact_bytes": 492421554,
     "files": [
       {
@@ -54,264 +89,7 @@
     "passed": true,
     "revision": "5697a65b0a002a92fe8c4fc9d495303ffff9c7d2"
   },
-  "candidate_provenance": [
-    {
-      "architecture": "12-layer BERT/XLM-R tokenizer, 384-dimensional mean-pooled embedding",
-      "artifacts": [
-        {
-          "path": "onnx/config.json",
-          "sha256": "bbb7c1333fc4b3e27fbc9cd5d2070aabcc1d4dfb99917c3633e772f97545a6b6",
-          "size_bytes": 653
-        },
-        {
-          "path": "onnx/model.onnx",
-          "sha256": "ca456c06b3a9505ddfd9131408916dd79290368331e7d76bb621f1cba6bc8665",
-          "size_bytes": 470268510
-        },
-        {
-          "path": "onnx/sentencepiece.bpe.model",
-          "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
-          "size_bytes": 5069051
-        },
-        {
-          "path": "onnx/special_tokens_map.json",
-          "sha256": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
-          "size_bytes": 167
-        },
-        {
-          "path": "onnx/tokenizer.json",
-          "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
-          "size_bytes": 17082730
-        },
-        {
-          "path": "onnx/tokenizer_config.json",
-          "sha256": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b",
-          "size_bytes": 443
-        }
-      ],
-      "build_time_download": {
-        "network_at_evaluation_runtime": false,
-        "url_template": "https://huggingface.co/intfloat/multilingual-e5-small/resolve/5697a65b0a002a92fe8c4fc9d495303ffff9c7d2/{artifact_path}"
-      },
-      "excluded_artifact": {
-        "path": "onnx/model_qint8_avx512_vnni.onnx",
-        "reason": "The published quantized graph targets AVX512 VNNI and is not an arm64 runtime artifact."
-      },
-      "languages": [
-        "English",
-        "Korean"
-      ],
-      "license": "MIT",
-      "license_evidence": "https://huggingface.co/intfloat/multilingual-e5-small/blob/5697a65b0a002a92fe8c4fc9d495303ffff9c7d2/README.md",
-      "model_card": "https://huggingface.co/intfloat/multilingual-e5-small/tree/5697a65b0a002a92fe8c4fc9d495303ffff9c7d2",
-      "name": "intfloat/multilingual-e5-small",
-      "revision": "5697a65b0a002a92fe8c4fc9d495303ffff9c7d2"
-    }
-  ],
-  "decision": {
-    "candidate_adopted": false,
-    "reason": "Completed nested Train quality gate failed; Dev, safety, and official container gates remained closed.",
-    "runtime_integration": false,
-    "selected_candidates_by_step": {
-      "ax31->axk1-think": "semantic+expanded-structural-b+ood-retrieval-confidence",
-      "ax31-light->ax31": "semantic"
-    },
-    "selected_encoder": "intfloat/multilingual-e5-small",
-    "submission_default": "safe-margin"
-  },
-  "feasibility": {
-    "compressed_oci_layer_bound_bytes": 1073741824,
-    "encoder": "intfloat/multilingual-e5-small",
-    "extraction_benchmark": {
-      "byte_identical": true,
-      "child_pids_after": 0,
-      "child_pids_before": 0,
-      "constraint_passed": true,
-      "container_vm_attempts": {
-        "colima": null,
-        "docker": null,
-        "limactl": null,
-        "podman": null
-      },
-      "control": {
-        "batch_size": 1,
-        "cpu_count": 2,
-        "execution_mode": "sequential",
-        "onnx_inter_op_threads": 1,
-        "onnx_intra_op_threads": 2,
-        "runtime_network": false
-      },
-      "dimensions": 384,
-      "first_seconds": 77.1561042079702,
-      "host": {
-        "machine": "arm64",
-        "release": "25.3.0",
-        "system": "Darwin"
-      },
-      "limits": {
-        "cpu_count": 2,
-        "memory_max_bytes": 2147483648,
-        "pid_thread_limit": 32,
-        "seconds_per_tier": 90
-      },
-      "maximum_norm_error": 1.1920928955078125e-07,
-      "maximum_pid_thread_observation": 2,
-      "official_linux_arm64": false,
-      "official_path_status": "unavailable-after-command-discovery",
-      "peak_rss_bytes": 1697284096,
-      "rows": 1760,
-      "rows_per_second_second_pass": 23.7036522924863,
-      "rss_after_first_bytes": 752959488,
-      "second_seconds": 74.2501610419713,
-      "threads_after_first": 2,
-      "threads_after_second": 2,
-      "threads_before": 1
-    },
-    "model_plus_required_runtime_bytes": 650098433,
-    "official_linux_arm64_infrastructure": "unavailable-after-command-discovery",
-    "passed": true,
-    "static_size_bound_passed": true
-  },
-  "gates": {
-    "calibration_conformal": {
-      "evaluated": false,
-      "passed": false
-    },
-    "dev_champion": {
-      "evaluated": false,
-      "passed": false
-    },
-    "dev_loaded": false,
-    "feasibility": {
-      "evaluated": true,
-      "passed": true
-    },
-    "official_container_benchmark": {
-      "evaluated": false,
-      "passed": false
-    },
-    "safety_5000_resamples": {
-      "evaluated": false,
-      "passed": false
-    },
-    "train_adoption": {
-      "checks": [
-        {
-          "check": "ax31-light->ax31.oof_correlation",
-          "observed": -0.011546499160300306,
-          "passed": false,
-          "required": 0.02
-        },
-        {
-          "check": "ax31-light->ax31.positive_families",
-          "observed": 3,
-          "passed": false,
-          "required": 6
-        },
-        {
-          "check": "ax31-light->ax31.family_gain_floor",
-          "observed": 0.0,
-          "passed": true,
-          "required": -0.005
-        },
-        {
-          "check": "ax31-light->ax31.fast.beats_current_a",
-          "observed": 0.011505681818181818,
-          "passed": true,
-          "required": 0.009102272727272726
-        },
-        {
-          "check": "ax31-light->ax31.balanced.beats_current_a",
-          "observed": 0.021448863636363637,
-          "passed": false,
-          "required": 0.032965909090909094
-        },
-        {
-          "check": "ax31->axk1-think.oof_correlation",
-          "observed": 0.07124947326092367,
-          "passed": true,
-          "required": 0.02
-        },
-        {
-          "check": "ax31->axk1-think.positive_families",
-          "observed": 5,
-          "passed": false,
-          "required": 6
-        },
-        {
-          "check": "ax31->axk1-think.family_gain_floor",
-          "observed": -0.004291845493562232,
-          "passed": true,
-          "required": -0.005
-        },
-        {
-          "check": "ax31->axk1-think.premium.beats_current_a",
-          "observed": -0.0002840909090909091,
-          "passed": false,
-          "required": 0.005977272727272727
-        }
-      ],
-      "evaluated": true,
-      "failed_checks": [
-        {
-          "check": "ax31-light->ax31.oof_correlation",
-          "observed": -0.011546499160300306,
-          "passed": false,
-          "required": 0.02
-        },
-        {
-          "check": "ax31-light->ax31.positive_families",
-          "observed": 3,
-          "passed": false,
-          "required": 6
-        },
-        {
-          "check": "ax31-light->ax31.balanced.beats_current_a",
-          "observed": 0.021448863636363637,
-          "passed": false,
-          "required": 0.032965909090909094
-        },
-        {
-          "check": "ax31->axk1-think.positive_families",
-          "observed": 5,
-          "passed": false,
-          "required": 6
-        },
-        {
-          "check": "ax31->axk1-think.premium.beats_current_a",
-          "observed": -0.0002840909090909091,
-          "passed": false,
-          "required": 0.005977272727272727
-        }
-      ],
-      "passed": false
-    }
-  },
-  "limitations": [
-    "Official linux/arm64 was unavailable after Docker, Podman, Colima, and Lima discovery; resource evidence is native Apple arm64 under frozen ONNX thread controls.",
-    "Nine public families provide limited family-level power.",
-    "The completed Train failure prevents Dev outcome loading and runtime integration."
-  ],
-  "protocol": {
-    "frozen_before_candidate_dev_evaluation": true,
-    "path": "configs/semantic-upgrade-events-protocol.v1.json",
-    "sha256": "2afa5332889e5dc0349cc6f1d3f987ce8377c54f349a90b074eaf630f52e6d11"
-  },
-  "registry_evidence": {
-    "downloaded_model_card_sha256": "ea680357ec21065558db494afe9092e129fe5605a9dca80b3d5b1c144c2d1552",
-    "languages": [
-      "English",
-      "Korean"
-    ],
-    "license": "MIT",
-    "license_evidence": "https://huggingface.co/intfloat/multilingual-e5-small/blob/5697a65b0a002a92fe8c4fc9d495303ffff9c7d2/README.md",
-    "model_card": "https://huggingface.co/intfloat/multilingual-e5-small/tree/5697a65b0a002a92fe8c4fc9d495303ffff9c7d2",
-    "pooling": "attention-mask mean pooling followed by L2 normalization",
-    "query_prefix": "query: ",
-    "revision": "5697a65b0a002a92fe8c4fc9d495303ffff9c7d2"
-  },
-  "report_type": "ossp-semantic-upgrade-events-report-v1",
-  "runtime_dependencies": {
+  "dependencies": {
     "network_required_at_evaluation_runtime": false,
     "packages": [
       {
@@ -338,6 +116,53 @@
     "python": "3.11.15",
     "required_installed_bytes": 157676879
   },
+  "evidence_type": "ossp-semantic-upgrade-events-evidence-v1",
+  "extraction_benchmark": {
+    "byte_identical": true,
+    "child_pids_after": 0,
+    "child_pids_before": 0,
+    "constraint_passed": true,
+    "container_vm_attempts": {
+      "colima": null,
+      "docker": null,
+      "limactl": null,
+      "podman": null
+    },
+    "control": {
+      "batch_size": 1,
+      "cpu_count": 2,
+      "execution_mode": "sequential",
+      "onnx_inter_op_threads": 1,
+      "onnx_intra_op_threads": 2,
+      "runtime_network": false
+    },
+    "dimensions": 384,
+    "first_seconds": 77.1561042079702,
+    "host": {
+      "machine": "arm64",
+      "release": "25.3.0",
+      "system": "Darwin"
+    },
+    "limits": {
+      "cpu_count": 2,
+      "memory_max_bytes": 2147483648,
+      "pid_thread_limit": 32,
+      "seconds_per_tier": 90
+    },
+    "maximum_norm_error": 1.1920928955078125e-07,
+    "maximum_pid_thread_observation": 2,
+    "official_linux_arm64": false,
+    "official_path_status": "unavailable-after-command-discovery",
+    "peak_rss_bytes": 1697284096,
+    "rows": 1760,
+    "rows_per_second_second_pass": 23.7036522924863,
+    "rss_after_first_bytes": 752959488,
+    "second_seconds": 74.2501610419713,
+    "threads_after_first": 2,
+    "threads_after_second": 2,
+    "threads_before": 1
+  },
+  "protocol_sha256": "2afa5332889e5dc0349cc6f1d3f987ce8377c54f349a90b074eaf630f52e6d11",
   "train_evaluation": {
     "ax31->axk1-think": {
       "candidate_selection_counts": {
@@ -5168,48 +4993,98 @@
       "status": "completed"
     }
   },
-  "train_protocol_execution": {
-    "candidate_feature_combinations": [
-      "semantic",
-      "semantic+expanded-structural-b",
-      "semantic+expanded-structural-b+ood-retrieval-confidence"
+  "train_gate": {
+    "checks": [
+      {
+        "check": "ax31-light->ax31.oof_correlation",
+        "observed": -0.011546499160300306,
+        "passed": false,
+        "required": 0.02
+      },
+      {
+        "check": "ax31-light->ax31.positive_families",
+        "observed": 3,
+        "passed": false,
+        "required": 6
+      },
+      {
+        "check": "ax31-light->ax31.family_gain_floor",
+        "observed": 0.0,
+        "passed": true,
+        "required": -0.005
+      },
+      {
+        "check": "ax31-light->ax31.fast.beats_current_a",
+        "observed": 0.011505681818181818,
+        "passed": true,
+        "required": 0.009102272727272726
+      },
+      {
+        "check": "ax31-light->ax31.balanced.beats_current_a",
+        "observed": 0.021448863636363637,
+        "passed": false,
+        "required": 0.032965909090909094
+      },
+      {
+        "check": "ax31->axk1-think.oof_correlation",
+        "observed": 0.07124947326092367,
+        "passed": true,
+        "required": 0.02
+      },
+      {
+        "check": "ax31->axk1-think.positive_families",
+        "observed": 5,
+        "passed": false,
+        "required": 6
+      },
+      {
+        "check": "ax31->axk1-think.family_gain_floor",
+        "observed": -0.004291845493562232,
+        "passed": true,
+        "required": -0.005
+      },
+      {
+        "check": "ax31->axk1-think.premium.beats_current_a",
+        "observed": -0.0002840909090909091,
+        "passed": false,
+        "required": 0.005977272727272727
+      }
     ],
-    "fit_scope": "each inner/outer training portion only",
-    "fold_local_objects": [
-      "inverse-frequency weights",
-      "scaling",
-      "variance projection",
-      "event heads",
-      "conditional magnitude heads",
-      "cost head and conservative residual multiplier",
-      "retrieval/OOD thresholds",
-      "calibration object",
-      "hyperparameters"
+    "evaluated": true,
+    "failed_checks": [
+      {
+        "check": "ax31-light->ax31.oof_correlation",
+        "observed": -0.011546499160300306,
+        "passed": false,
+        "required": 0.02
+      },
+      {
+        "check": "ax31-light->ax31.positive_families",
+        "observed": 3,
+        "passed": false,
+        "required": 6
+      },
+      {
+        "check": "ax31-light->ax31.balanced.beats_current_a",
+        "observed": 0.021448863636363637,
+        "passed": false,
+        "required": 0.032965909090909094
+      },
+      {
+        "check": "ax31->axk1-think.positive_families",
+        "observed": 5,
+        "passed": false,
+        "required": 6
+      },
+      {
+        "check": "ax31->axk1-think.premium.beats_current_a",
+        "observed": -0.0002840909090909091,
+        "passed": false,
+        "required": 0.005977272727272727
+      }
     ],
-    "inner": "leave-one-reconstructed-source/task-family-out within each outer training portion",
-    "outer": "leave-one of the nine reconstructed source/task families out",
-    "selection": "independent per step inside each outer fold"
+    "passed": false
   },
-  "verification": {
-    "compileall_python_files": {
-      "checked": 62,
-      "passed": true
-    },
-    "focused_semantic_suite": {
-      "failed": 0,
-      "passed": 22,
-      "skipped": 0
-    },
-    "full_python_3_11_suite": {
-      "collected": 429,
-      "environment": "Python 3.11.15; numpy==2.0.2; PYTHONPATH=src:baselines:tools; umask 022",
-      "failed": 0,
-      "passed": 407,
-      "skipped": 22
-    },
-    "git_diff_check": {
-      "passed": true
-    },
-    "report_regeneration_byte_identical": true
-  }
+  "train_input_sha256": "029a0fb1f70432a05b837a1291d86d42278bb202d808a6a12911b0dae8628ac4",
+  "train_outcomes_sha256": "97a5a787086b3e1d9fa9c7945518543540e527ea248df4a4760de581b612a4ba"
 }

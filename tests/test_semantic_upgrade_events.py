@@ -5,6 +5,8 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
+import io
 import json
 import pathlib
 import sys
@@ -57,11 +59,15 @@ class FrozenProtocolTest(unittest.TestCase):
         self.assertEqual(0.69, protocol["adoption_thresholds"]["dev_weighted_score_minimum"])
         self.assertEqual("fail closed, do not load Dev, preserve safe-margin", protocol["runtime"]["failure_behavior"])
 
-    def test_failed_feasibility_does_not_load_dev(self):
-        report = experiment.build_report(self.protocol_path, None)
-        self.assertFalse(report["feasibility"]["passed"])
+    def test_genuine_train_failure_does_not_load_dev(self):
+        report = experiment.build_report(
+            self.protocol_path,
+            ROOT / "baselines/semantic-upgrade-events-evidence.v1.json",
+        )
+        self.assertTrue(report["feasibility"]["passed"])
         self.assertFalse(report["gates"]["dev_loaded"])
-        self.assertFalse(report["gates"]["train_adoption"]["evaluated"])
+        self.assertTrue(report["gates"]["train_adoption"]["evaluated"])
+        self.assertFalse(report["gates"]["train_adoption"]["passed"])
         self.assertEqual("safe-margin", report["decision"]["submission_default"])
         self.assertNotIn("data/dev", json.dumps(report))
 
@@ -69,9 +75,32 @@ class FrozenProtocolTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             left = pathlib.Path(directory) / "left.json"
             right = pathlib.Path(directory) / "right.json"
-            experiment.run(self.protocol_path, left, None)
-            experiment.run(self.protocol_path, right, None)
+            evidence = ROOT / "baselines/semantic-upgrade-events-evidence.v1.json"
+            experiment.run(self.protocol_path, left, evidence)
+            experiment.run(self.protocol_path, right, evidence)
             self.assertEqual(left.read_bytes(), right.read_bytes())
+
+    def test_provisioning_downloads_only_registry_files_and_verifies(self):
+        payloads = {"one.bin": b"semantic", "nested/two.bin": b"encoder"}
+        protocol = json.loads(self.protocol_path.read_text())
+        protocol["candidate_encoders"][0]["artifacts"] = [
+            {"path": name, "size_bytes": len(value), "sha256": hashlib.sha256(value).hexdigest()}
+            for name, value in payloads.items()
+        ]
+        protocol["candidate_encoders"][0]["build_time_download"]["url_template"] = "https://invalid.example/{artifact_path}"
+        opened = []
+        class Response(io.BytesIO):
+            def __enter__(self): return self
+            def __exit__(self, *args): self.close()
+        def opener(url, timeout):
+            opened.append((url, timeout))
+            return Response(payloads[url.rsplit("/", 1)[-1]] if "nested/" not in url else payloads["nested/two.bin"])
+        with tempfile.TemporaryDirectory() as directory:
+            result = experiment.provision_artifacts(protocol, pathlib.Path(directory), opener=opener)
+            self.assertTrue(result["passed"])
+            self.assertEqual(2, len(opened))
+            experiment.provision_artifacts(protocol, pathlib.Path(directory), opener=opener)
+            self.assertEqual(2, len(opened), "verified cache must not redownload")
 
 
 class EventTargetTest(unittest.TestCase):
@@ -98,6 +127,15 @@ class EventTargetTest(unittest.TestCase):
         np.testing.assert_allclose(totals, [2.0, 2.0, 2.0])
         self.assertAlmostEqual(1.0, float(weights.mean()))
 
+    def test_fold_local_event_model_returns_probabilities_and_signed_utility(self):
+        matrix = np.asarray([[1, 0], [.8, .2], [0, 1], [.2, .8], [-1, 0], [-.8, -.2]], dtype=float)
+        gains = np.asarray([.4, .2, 0, 0, -.3, -.1])
+        model = events.fit_event_utility_model(matrix, gains, classifier_l2=1.0, magnitude_ridge_l2=10.0)
+        prediction = events.predict_event_utility(model, matrix)
+        np.testing.assert_allclose(prediction["probabilities"].sum(axis=1), 1.0)
+        self.assertGreater(prediction["expected_utility"][0], prediction["expected_utility"][-1])
+        self.assertEqual("softmax", model["calibration"]["method"])
+
 
 class SplitAndSelectionTest(unittest.TestCase):
     def test_outer_and_inner_family_splits_never_leak(self):
@@ -122,6 +160,10 @@ class SplitAndSelectionTest(unittest.TestCase):
 
 
 class BoundedRuntimeFeatureTest(unittest.TestCase):
+    def test_documented_query_prefix_and_roles_are_serialized(self):
+        episode = Episode("ignored", messages=(Message("system", "rules"), Message("user", "question")))
+        self.assertEqual("query: [system]\nrules\n[user]\nquestion", events.semantic_text(episode))
+
     def test_prompt_tail_is_invariant_and_episode_id_is_unused(self):
         prefix = "x" * events.MAX_FIELD_CHARACTERS
         left = Episode("secret-family-train", prompt=prefix + "alpha")
@@ -133,6 +175,21 @@ class BoundedRuntimeFeatureTest(unittest.TestCase):
         left = Episode("one", messages=(Message("system", prefix + "a"), Message("user", prefix + "b")))
         right = Episode("two", messages=(Message("system", prefix + "x"), Message("user", prefix + "y")))
         self.assertEqual(events.bounded_role_content(left), events.bounded_role_content(right))
+
+    def test_semantic_text_tail_is_invariant_before_tokenization(self):
+        prefix = "z" * events.MAX_FIELD_CHARACTERS
+        left = Episode("one", prompt=prefix + "forbidden-tail-a")
+        right = Episode("two", prompt=prefix + "forbidden-tail-b")
+        self.assertEqual(events.semantic_text(left), events.semantic_text(right))
+
+    def test_repeated_extraction_probe_is_behavioral(self):
+        class FakeEncoder:
+            def encode(self, episodes, batch_size=16):
+                return np.asarray([[1.0, 0.0] for _ in episodes], dtype=np.float32)
+        result = events.extraction_probe(FakeEncoder(), [Episode("one", prompt="hello")])
+        self.assertTrue(result["byte_identical"])
+        self.assertTrue(result["finite"])
+        self.assertEqual(0.0, result["maximum_norm_error"])
 
 
 class OodAbstentionTest(unittest.TestCase):
@@ -175,6 +232,14 @@ class FrozenNegativeReportTest(unittest.TestCase):
         self.assertFalse(report["decision"]["runtime_integration"])
         self.assertEqual("safe-margin", report["decision"]["submission_default"])
         self.assertFalse(report["gates"]["dev_loaded"])
+
+    def test_committed_evidence_is_a_completed_quality_failure(self):
+        evidence = json.loads((ROOT / "baselines/semantic-upgrade-events-evidence.v1.json").read_text())
+        self.assertTrue(evidence["artifacts"]["passed"])
+        self.assertTrue(evidence["extraction_benchmark"]["constraint_passed"])
+        self.assertTrue(evidence["extraction_benchmark"]["byte_identical"])
+        self.assertFalse(evidence["train_gate"]["passed"])
+        self.assertTrue(all(row["status"] == "completed" for row in evidence["train_evaluation"].values()))
 
 
 if __name__ == "__main__":

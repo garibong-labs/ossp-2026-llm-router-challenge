@@ -606,13 +606,50 @@ word/character n-gram hash이며 genuine pretrained embedding baseline이 아닙
 모두 immutable URL, 크기, SHA-256으로 고정했습니다. 공개된 더 작은 quantized
 ONNX는 AVX512 VNNI 전용이라 공식 `linux/arm64` 후보에서 제외했습니다.
 
-이 worktree에는 고정 weight, `onnxruntime`, tokenizer runtime이 없으므로 반복
-추출 결정성과 공식 2 CPU/2 GiB/32-thread/90-second 제한을 증명할 수 없습니다.
-따라서 feasibility gate에서 닫혔고 Train representation 결과, Dev, calibration,
-conformal, 5,000-resample safety 및 container benchmark를 실행하지 않았습니다.
-[`semantic-upgrade-events-report.v1.json`](semantic-upgrade-events-report.v1.json)은
-이 negative result를 재현하며 제출 기본값은 계속 safe-margin입니다.
+교정 실험에서는 고정 revision의 registry 파일 6개를 private `/tmp` cache에만
+받아 크기와 SHA-256을 모두 확인했습니다. Python 3.11.15 격리 환경에는
+[`semantic-upgrade-events-requirements.txt`](../configs/semantic-upgrade-events-requirements.txt)의
+`numpy 2.0.2`, `onnxruntime 1.22.1`, `tokenizers 0.21.4`, `psutil 7.0.0`만 extraction
+요구 사항으로 고정했습니다(설치 파일 합계 157,676,879 bytes). weight와 환경은
+commit하거나 제출 이미지에 연결하지 않았고 evaluation runtime network는
+필요하지 않습니다.
+
+모든 prompt/message content field는 tokenization 전에 각각 32,768자로 자르고,
+모델 카드가 feature embedding에 요구한 `query: ` prefix를 붙입니다. 512 token
+상한, attention-mask mean pooling, L2 normalization, ONNX sequential execution,
+intra-op 2/inter-op 1 thread를 사용합니다. 길이가 크게 다른 prompt의 padding
+비용을 피하려고 batch size 1을 동결했습니다. 1,760 Train 전체를 두 번 추출한
+Apple arm64 측정은 각각 77.156104초와 74.250161초였고 출력은 byte-identical,
+최대 norm 오차 `1.192093e-7`, peak RSS 1,697,284,096 bytes, 최대 thread/PID 관측
+2/0이었습니다. Docker, Podman, Colima, Lima executable은 모두 없어 공식 Linux
+경로는 `unavailable-after-command-discovery`로 기록했습니다. 이는 native arm64
+제한 측정 통과와 공식 Linux infrastructure 부재를 구분한 것입니다.
+
+feasibility가 통과해 세 semantic 후보를 Train-only nested family-disjoint CV로
+완주했습니다. fold별로 class imbalance weight, scaling, 64차원 training-variance
+projection, win/tie/loss event head, conditional win/loss magnitude, log-cost head,
+OOD threshold와 hyperparameter를 fit했습니다.
+
+| 승격 | OOF 상관 | 양의 family | Fast 이득 / 비용 | Balanced 이득 / 비용 | Premium 이득 / 비용 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| light→ax31 | -0.011546 | 3/9 | 0.011506 / 0.098058 | 0.021449 / 0.374902 | — |
+| ax31→think | 0.071249 | 5/9 | — | — | -0.000284 / 0.870160 |
+
+첫 승격은 상관, 양의 family, Balanced matched-spend 기준을 실패했고, 둘째는 양의
+family와 Premium matched-spend 기준을 실패했습니다. family gain floor는 각각
+`0.000000`, `-0.004292`로 통과했습니다. 따라서 이는 setup이나 infrastructure
+실패가 아니라 완료된 Train quality-gate 실패입니다. Dev outcome은 읽지 않았고,
+calibration/conformal 후속 경로, 5,000-resample safety와 official container gate도
+열리지 않았습니다. `candidate_adopted=false`, 기본 제출은 safe-margin 그대로입니다.
+전체 outer selection, inner objective, OOD coverage와 관측값은
+[`semantic-upgrade-events-evidence.v1.json`](semantic-upgrade-events-evidence.v1.json),
+결정 보고서는 [`semantic-upgrade-events-report.v1.json`](semantic-upgrade-events-report.v1.json)에
+있습니다.
 
 ```console
-PYTHONPATH=src:baselines python3 tools/semantic_upgrade_experiment.py
+PYTHONPATH=src:baselines:tools python3.11 tools/semantic_upgrade_experiment.py
+
+# 새 private cache에서 재측정할 때만 (network는 provisioning 단계에만 사용)
+PYTHONPATH=src:baselines:tools python3.11 tools/semantic_upgrade_experiment.py \
+  --provision --measure --encoder-dir /private/tmp/ossp-semantic-encoder
 ```
