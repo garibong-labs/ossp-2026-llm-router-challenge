@@ -13,10 +13,10 @@ from __future__ import annotations
 
 import math
 import re
-from typing import Iterable, Sequence, Tuple
+from typing import Iterable, Optional, Sequence, Tuple
 
 from ossp_router.heuristic import episode_text
-from ossp_router.protocol import Episode
+from ossp_router.protocol import Episode, Message
 
 import hash_regex
 
@@ -79,6 +79,24 @@ def _fields(episode: Episode) -> Tuple[Tuple[str, str], ...]:
     return tuple((message.role.casefold(), message.content) for message in episode.messages)
 
 
+def _bounded_episode(episode: Episode) -> Episode:
+    """Return the prompt/message view used by bounded candidate features."""
+
+    if episode.prompt is not None:
+        return Episode(
+            episode.episode_id,
+            prompt=episode.prompt[:MAX_FIELD_CHARACTERS],
+        )
+    assert episode.messages is not None
+    return Episode(
+        episode.episode_id,
+        messages=tuple(
+            Message(message.role, message.content[:MAX_FIELD_CHARACTERS])
+            for message in episode.messages
+        ),
+    )
+
+
 def _ratio(numerator: float, denominator: float) -> float:
     return numerator / max(1.0, denominator)
 
@@ -86,6 +104,7 @@ def _ratio(numerator: float, denominator: float) -> float:
 def expanded_structural_vector(episode: Episode) -> Tuple[float, ...]:
     """Return field/role-aware shape and derivable context/question features."""
 
+    episode = _bounded_episode(episode)
     fields = _fields(episode)
     text = episode_text(episode)
     characters = len(text)
@@ -219,7 +238,11 @@ def representation_vector(
         return structural
     semantic = semantic_proxy_vector(episode, semantic_bins)
     if name == "C-semantic-proxy":
-        return hash_regex.raw_feature_vector(episode, 256)[: len(hash_regex.DENSE_FEATURE_NAMES)] + semantic
+        bounded = _bounded_episode(episode)
+        dense = hash_regex.raw_feature_vector(bounded, 256)[
+            : len(hash_regex.DENSE_FEATURE_NAMES)
+        ]
+        return dense + semantic
     if name == "D-structural-semantic":
         return structural + semantic
     raise ValueError(f"unknown representation: {name}")
@@ -231,3 +254,11 @@ REPRESENTATIONS = (
     "C-semantic-proxy",
     "D-structural-semantic",
 )
+
+
+def field_character_bound(name: str) -> Optional[int]:
+    """Return the enforced per-field bound, or ``None`` for exact reference A."""
+
+    if name not in REPRESENTATIONS:
+        raise ValueError(f"unknown representation: {name}")
+    return None if name == REPRESENTATIONS[0] else MAX_FIELD_CHARACTERS

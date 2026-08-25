@@ -88,9 +88,69 @@ class RepresentationFeatureTest(unittest.TestCase):
         self.assertEqual(1.0, values["has_context_question_boundary"])
         self.assertGreater(values["context_fraction"], 0.0)
 
+    def test_candidate_prompt_tail_beyond_bound_cannot_change_features(self):
+        bound = representation_features.MAX_FIELD_CHARACTERS
+        seed = "Question: bounded?\n"
+        prefix = seed + "x" * (bound - len(seed))
+        left = Episode("left", prompt=prefix + " tail alpha 123 !!!")
+        right = Episode("right", prompt=prefix + " tail beta ``` ???")
+        for name in representation_features.REPRESENTATIONS[1:]:
+            self.assertEqual(
+                representation_features.representation_vector(left, name),
+                representation_features.representation_vector(right, name),
+            )
+        self.assertNotEqual(
+            representation_features.representation_vector(left, "A-current-dense-wordhash"),
+            representation_features.representation_vector(right, "A-current-dense-wordhash"),
+        )
+
+    def test_candidate_message_tails_are_bounded_per_field(self):
+        bound = representation_features.MAX_FIELD_CHARACTERS
+        prefix = "m" * bound
+        left = Episode(
+            "left",
+            messages=(Message("system", prefix + "alpha"), Message("user", prefix + "123")),
+        )
+        right = Episode(
+            "right",
+            messages=(Message("system", prefix + "beta"), Message("user", prefix + "???")),
+        )
+        for name in representation_features.REPRESENTATIONS[1:]:
+            self.assertEqual(
+                representation_features.representation_vector(left, name),
+                representation_features.representation_vector(right, name),
+            )
+
 
 @unittest.skipIf(audit is None, "requires the pinned training-only NumPy")
 class AuditHonestyTest(unittest.TestCase):
+    @staticmethod
+    def _gate_result(runtime, value=0.01):
+        all_labels = ("fast", "balanced", "premium")
+        per_family = {
+            family: {
+                "oof_correlation": 0.1,
+                "selected_set": {
+                    label: {"realized_incremental_gain": value}
+                    for label in all_labels
+                },
+            }
+            for family in audit.risk_validation.FAMILY_LABELS
+        }
+        metrics = {
+            step: {
+                "oof_correlation": 0.1,
+                "positive_family_correlations": 9,
+                "selected_set": {
+                    label: {"realized_incremental_gain": value}
+                    for label in labels
+                },
+                "per_held_out_family": per_family,
+            }
+            for step, labels in audit.SPEND_LABELS.items()
+        }
+        return {"runtime_feasibility": runtime, "metrics": metrics}
+
     def test_leave_one_family_out_is_disjoint_and_complete(self):
         families = tuple(
             family
@@ -157,6 +217,37 @@ class AuditHonestyTest(unittest.TestCase):
         self.assertFalse(gate["passed"])
         self.assertTrue(gate["failed_checks"])
 
+    def test_candidate_gate_rejects_false_or_missing_bound_metadata(self):
+        valid_runtime = {
+            "passed": True,
+            "candidate_input_bound_required": True,
+            "candidate_input_bound_enforced": True,
+            "candidate_input_bound_probe": True,
+            "characters_per_field_bound": representation_features.MAX_FIELD_CHARACTERS,
+        }
+        reference = self._gate_result(valid_runtime, value=0.0)
+        self.assertTrue(
+            audit.representation_gate(
+                "B-expanded-structural",
+                self._gate_result(valid_runtime),
+                reference,
+            )["passed"]
+        )
+        for mutation in (
+            {"candidate_input_bound_enforced": False},
+            {"candidate_input_bound_probe": False},
+            {"candidate_input_bound_required": False},
+            {"characters_per_field_bound": None},
+            {"characters_per_field_bound": representation_features.MAX_FIELD_CHARACTERS + 1},
+        ):
+            runtime = dict(valid_runtime)
+            runtime.update(mutation)
+            gate = audit.representation_gate(
+                "B-expanded-structural", self._gate_result(runtime), reference
+            )
+            self.assertFalse(gate["passed"])
+            self.assertEqual("runtime_feasibility", gate["failed_checks"][0]["check"])
+
 
 class FrozenReportTest(unittest.TestCase):
     REPORT = ROOT / "baselines/representation-audit-report.v1.json"
@@ -184,6 +275,28 @@ class FrozenReportTest(unittest.TestCase):
                     expected,
                     set(representation["metrics"][step]["per_held_out_family"]),
                 )
+
+    def test_report_runtime_bounds_are_representation_specific(self):
+        report = json.loads(self.REPORT.read_text(encoding="utf-8"))
+        records = report["train_representations"]
+        reference = records["A-current-dense-wordhash"]["runtime_feasibility"]
+        self.assertIsNone(reference["characters_per_field_bound"])
+        self.assertFalse(reference["candidate_input_bound_required"])
+        self.assertFalse(reference["candidate_input_bound_enforced"])
+        self.assertFalse(reference["candidate_input_bound_probe"])
+        for name in representation_features.REPRESENTATIONS[1:]:
+            runtime = records[name]["runtime_feasibility"]
+            self.assertEqual(
+                representation_features.MAX_FIELD_CHARACTERS,
+                runtime["characters_per_field_bound"],
+            )
+            self.assertTrue(runtime["candidate_input_bound_required"])
+            self.assertTrue(runtime["candidate_input_bound_enforced"])
+            self.assertTrue(runtime["candidate_input_bound_probe"])
+        self.assertEqual(
+            ["source/task-family label", "episode_id", "outcome", "Dev outcome", "split identity", "row position"],
+            report["protocol"]["forbidden_runtime_features"],
+        )
 
 
 if __name__ == "__main__":

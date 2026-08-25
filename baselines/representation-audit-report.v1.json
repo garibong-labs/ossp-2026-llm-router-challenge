@@ -17,10 +17,10 @@
     "dev_used_for_selection": false,
     "metrics": {
       "ax31->axk1-think": {
-        "oof_correlation": 0.3173051888835652,
+        "oof_correlation": 0.31675332933823486,
         "per_held_out_family": {
           "aime": {
-            "oof_correlation": -0.1647768157942129,
+            "oof_correlation": -0.18143646509347605,
             "rows": 12,
             "selected_set": {
               "premium": {
@@ -34,21 +34,21 @@
             }
           },
           "babilong": {
-            "oof_correlation": -0.1212271189151959,
+            "oof_correlation": -0.2162695602304615,
             "rows": 80,
             "selected_set": {
               "premium": {
-                "conservative_budget_used": 0.830221358,
+                "conservative_budget_used": 0.852419164,
                 "frozen_incremental_budget": 0.8534205991599997,
-                "incremental_cost_over_light": 0.4523819777661776,
-                "realized_incremental_cost": 0.830221358,
-                "realized_incremental_gain": -0.01875,
-                "selected_count": 6
+                "incremental_cost_over_light": 0.4644774114521295,
+                "realized_incremental_cost": 0.852419164,
+                "realized_incremental_gain": -0.025,
+                "selected_count": 8
               }
             }
           },
           "belebele-ko": {
-            "oof_correlation": 0.0589746440673194,
+            "oof_correlation": 0.07369326369376308,
             "rows": 161,
             "selected_set": {
               "premium": {
@@ -62,7 +62,7 @@
             }
           },
           "cruxeval": {
-            "oof_correlation": 0.12735883524239744,
+            "oof_correlation": 0.1411385813316047,
             "rows": 119,
             "selected_set": {
               "premium": {
@@ -76,7 +76,7 @@
             }
           },
           "deepmind-mathematics": {
-            "oof_correlation": 0.27543426465198256,
+            "oof_correlation": 0.28465884700905025,
             "rows": 153,
             "selected_set": {
               "premium": {
@@ -90,21 +90,21 @@
             }
           },
           "gsm8k": {
-            "oof_correlation": 0.05788532569565849,
+            "oof_correlation": 0.07464614345823001,
             "rows": 117,
             "selected_set": {
               "premium": {
-                "conservative_budget_used": 0.33973036599999995,
+                "conservative_budget_used": 0.334430697,
                 "frozen_incremental_budget": 0.34269739052000014,
-                "incremental_cost_over_light": 0.5656666944174336,
-                "realized_incremental_cost": 0.33973036599999995,
+                "incremental_cost_over_light": 0.556842501631745,
+                "realized_incremental_cost": 0.334430697,
                 "realized_incremental_gain": 0.0,
-                "selected_count": 9
+                "selected_count": 8
               }
             }
           },
           "hrmcr": {
-            "oof_correlation": 0.001778268318619327,
+            "oof_correlation": -0.0012369259501775686,
             "rows": 20,
             "selected_set": {
               "premium": {
@@ -118,7 +118,7 @@
             }
           },
           "ruletaker": {
-            "oof_correlation": -0.07450313017507544,
+            "oof_correlation": -0.07758280427519902,
             "rows": 135,
             "selected_set": {
               "premium": {
@@ -132,7 +132,7 @@
             }
           },
           "truthfulqa": {
-            "oof_correlation": 0.006778770033965327,
+            "oof_correlation": 0.002100215877321356,
             "rows": 83,
             "selected_set": {
               "premium": {
@@ -146,7 +146,7 @@
             }
           }
         },
-        "positive_family_correlations": 6,
+        "positive_family_correlations": 5,
         "realized_gain_mean": 0.13465909090909092,
         "realized_incremental_cost_mean": 0.10800728082045453,
         "selected_set": {
@@ -161,63 +161,63 @@
         }
       },
       "ax31-light->ax31": {
-        "oof_correlation": 0.09450034787961975,
+        "oof_correlation": 0.08493125707687138,
         "per_held_out_family": {
           "aime": {
-            "oof_correlation": -0.0853600421577447,
+            "oof_correlation": -0.08416043824132297,
             "rows": 12,
             "selected_set": {
               "balanced": {
                 "conservative_budget_used": 0.20630215699999999,
                 "frozen_incremental_budget": 0.23726557758800002,
-                "incremental_cost_over_light": 0.18332395133862386,
-                "realized_incremental_cost": 0.109313139,
+                "incremental_cost_over_light": 0.18332395133862392,
+                "realized_incremental_cost": 0.10931313900000003,
                 "realized_incremental_gain": 0.020833333333333332,
                 "selected_count": 12
               },
               "fast": {
-                "conservative_budget_used": 0.052085278,
+                "conservative_budget_used": 0.050849582000000004,
                 "frozen_incremental_budget": 0.058875889592,
-                "incremental_cost_over_light": -0.0753059615887731,
-                "realized_incremental_cost": -0.044903739999999984,
+                "incremental_cost_over_light": -0.07737828953988364,
+                "realized_incremental_cost": -0.04613943599999998,
                 "realized_incremental_gain": 0.0,
                 "selected_count": 5
               }
             }
           },
           "babilong": {
-            "oof_correlation": 0.11043731195863878,
+            "oof_correlation": -0.006832232487445373,
             "rows": 80,
             "selected_set": {
               "balanced": {
-                "conservative_budget_used": 0.7233472600000002,
+                "conservative_budget_used": 0.7263930609999999,
                 "frozen_incremental_budget": 0.730247680354,
-                "incremental_cost_over_light": 0.39414700782793594,
-                "realized_incremental_cost": 0.7233472600000002,
-                "realized_incremental_gain": 0.0125,
-                "selected_count": 39
+                "incremental_cost_over_light": 0.39580664410082267,
+                "realized_incremental_cost": 0.7263930609999999,
+                "realized_incremental_gain": -0.00625,
+                "selected_count": 33
               },
               "fast": {
-                "conservative_budget_used": 0.17831776,
+                "conservative_budget_used": 0.174841752,
                 "frozen_incremental_budget": 0.18120614983599997,
-                "incremental_cost_over_light": 0.09716413600098517,
-                "realized_incremental_cost": 0.17831776,
-                "realized_incremental_gain": 0.01875,
+                "incremental_cost_over_light": 0.09527008285646096,
+                "realized_incremental_cost": 0.174841752,
+                "realized_incremental_gain": 0.0,
                 "selected_count": 9
               }
             }
           },
           "belebele-ko": {
-            "oof_correlation": -0.019193668486271513,
+            "oof_correlation": -0.014282073840442073,
             "rows": 161,
             "selected_set": {
               "balanced": {
-                "conservative_budget_used": 0.038548387,
+                "conservative_budget_used": 0.03854323,
                 "frozen_incremental_budget": 0.03858504179,
-                "incremental_cost_over_light": 0.39752899865937924,
-                "realized_incremental_cost": 0.038548387,
-                "realized_incremental_gain": 0.012422360248447204,
-                "selected_count": 44
+                "incremental_cost_over_light": 0.397475817263071,
+                "realized_incremental_cost": 0.03854323,
+                "realized_incremental_gain": 0.006211180124223602,
+                "selected_count": 43
               },
               "fast": {
                 "conservative_budget_used": 0.009544835,
@@ -230,38 +230,38 @@
             }
           },
           "cruxeval": {
-            "oof_correlation": 0.021841750747028536,
+            "oof_correlation": 0.0735630154205059,
             "rows": 119,
             "selected_set": {
               "balanced": {
-                "conservative_budget_used": 0.041872875999999996,
+                "conservative_budget_used": 0.04141432099999999,
                 "frozen_incremental_budget": 0.041968047104,
-                "incremental_cost_over_light": 0.3970046647451456,
-                "realized_incremental_cost": 0.041872875999999996,
-                "realized_incremental_gain": -0.004201680672268907,
-                "selected_count": 33
+                "incremental_cost_over_light": 0.39265701797633484,
+                "realized_incremental_cost": 0.04141432099999999,
+                "realized_incremental_gain": 0.012605042016806723,
+                "selected_count": 27
               },
               "fast": {
-                "conservative_budget_used": 0.010143100000000002,
+                "conservative_budget_used": 0.009901951999999999,
                 "frozen_incremental_budget": 0.010414094336,
-                "incremental_cost_over_light": 0.09616865139563109,
-                "realized_incremental_cost": 0.010143100000000002,
+                "incremental_cost_over_light": 0.09388228155339805,
+                "realized_incremental_cost": 0.009901951999999999,
                 "realized_incremental_gain": 0.004201680672268907,
                 "selected_count": 12
               }
             }
           },
           "deepmind-mathematics": {
-            "oof_correlation": 0.063662521075757,
+            "oof_correlation": 0.0672561544364819,
             "rows": 153,
             "selected_set": {
               "balanced": {
-                "conservative_budget_used": 0.20835241199999996,
+                "conservative_budget_used": 0.20856366999999998,
                 "frozen_incremental_budget": 0.208578074516,
-                "incremental_cost_over_light": 0.19403867505551428,
-                "realized_incremental_cost": 0.10171274499999992,
-                "realized_incremental_gain": 0.0784313725490196,
-                "selected_count": 74
+                "incremental_cost_over_light": 0.19444169458285954,
+                "realized_incremental_cost": 0.10192400299999997,
+                "realized_incremental_gain": 0.08169934640522876,
+                "selected_count": 68
               },
               "fast": {
                 "conservative_budget_used": 0.051728632,
@@ -274,7 +274,7 @@
             }
           },
           "gsm8k": {
-            "oof_correlation": 0.04408739192838808,
+            "oof_correlation": 0.041373136460441315,
             "rows": 117,
             "selected_set": {
               "balanced": {
@@ -286,17 +286,17 @@
                 "selected_count": 53
               },
               "fast": {
-                "conservative_budget_used": 0.05874116800000002,
+                "conservative_budget_used": 0.059015256000000016,
                 "frozen_incremental_budget": 0.05930046299200001,
-                "incremental_cost_over_light": 0.09780674809851746,
-                "realized_incremental_cost": 0.05874116800000002,
-                "realized_incremental_gain": 0.010683760683760684,
+                "incremental_cost_over_light": 0.09826311723256032,
+                "realized_incremental_cost": 0.059015256000000016,
+                "realized_incremental_gain": 0.002136752136752137,
                 "selected_count": 15
               }
             }
           },
           "hrmcr": {
-            "oof_correlation": -0.5626354257541146,
+            "oof_correlation": 0.2876401913742005,
             "rows": 20,
             "selected_set": {
               "balanced": {
@@ -308,56 +308,56 @@
                 "selected_count": 10
               },
               "fast": {
-                "conservative_budget_used": 0.005272911,
+                "conservative_budget_used": 0.004471236,
                 "frozen_incremental_budget": 0.005665783916,
-                "incremental_cost_over_light": 0.07331131713777839,
-                "realized_incremental_cost": 0.00420675,
+                "incremental_cost_over_light": 0.05934047262207661,
+                "realized_incremental_cost": 0.0034050750000000005,
                 "realized_incremental_gain": 0.0,
                 "selected_count": 3
               }
             }
           },
           "ruletaker": {
-            "oof_correlation": -0.09379865131227427,
+            "oof_correlation": -0.07951495136137217,
             "rows": 135,
             "selected_set": {
               "balanced": {
-                "conservative_budget_used": 0.15273235799999998,
+                "conservative_budget_used": 0.15273235799999996,
                 "frozen_incremental_budget": 0.15276445544000003,
-                "incremental_cost_over_light": 0.3978233954990622,
-                "realized_incremental_cost": 0.15273235799999998,
+                "incremental_cost_over_light": 0.39782339549906215,
+                "realized_incremental_cost": 0.15273235799999996,
                 "realized_incremental_gain": 0.007407407407407408,
                 "selected_count": 41
               },
               "fast": {
-                "conservative_budget_used": 0.03775400499999999,
+                "conservative_budget_used": 0.037754005,
                 "frozen_incremental_budget": 0.037907492960000004,
-                "incremental_cost_over_light": 0.0983382084809335,
-                "realized_incremental_cost": 0.03775400499999999,
+                "incremental_cost_over_light": 0.09833820848093351,
+                "realized_incremental_cost": 0.037754005,
                 "realized_incremental_gain": 0.0,
                 "selected_count": 13
               }
             }
           },
           "truthfulqa": {
-            "oof_correlation": -0.16299135591838754,
+            "oof_correlation": -0.15455463189728139,
             "rows": 83,
             "selected_set": {
               "balanced": {
-                "conservative_budget_used": 0.07203393799999999,
+                "conservative_budget_used": 0.07217517,
                 "frozen_incremental_budget": 0.07218271724200001,
-                "incremental_cost_over_light": 0.395197419048984,
-                "realized_incremental_cost": 0.07169118299999999,
-                "realized_incremental_gain": 0.05421686746987952,
-                "selected_count": 43
+                "incremental_cost_over_light": 0.39597596000132296,
+                "realized_incremental_cost": 0.071832415,
+                "realized_incremental_gain": 0.060240963855421686,
+                "selected_count": 42
               },
               "fast": {
-                "conservative_budget_used": 0.017777737,
+                "conservative_budget_used": 0.017812392,
                 "frozen_incremental_budget": 0.017911665628,
-                "incremental_cost_over_light": 0.09611028301158725,
-                "realized_incremental_cost": 0.017434981999999998,
-                "realized_incremental_gain": -0.006024096385542169,
-                "selected_count": 12
+                "incremental_cost_over_light": 0.0963013185892418,
+                "realized_incremental_cost": 0.017469637,
+                "realized_incremental_gain": 0.0,
+                "selected_count": 13
               }
             }
           }
@@ -367,26 +367,29 @@
         "realized_incremental_cost_mean": 0.005486962599999999,
         "selected_set": {
           "balanced": {
-            "conservative_budget_used": 1.743249631999998,
+            "conservative_budget_used": 1.7430606269999982,
             "frozen_incremental_budget": 1.7434008711959998,
-            "incremental_cost_over_light": 0.3510755011836322,
-            "realized_incremental_cost": 1.538212030999999,
-            "realized_incremental_gain": 0.049147727272727273,
-            "selected_count": 553
+            "incremental_cost_over_light": 0.35103236342124056,
+            "realized_incremental_cost": 1.538023025999999,
+            "realized_incremental_gain": 0.05,
+            "selected_count": 554
           },
           "fast": {
-            "conservative_budget_used": 0.4325376350000001,
+            "conservative_budget_used": 0.43259089000000006,
             "frozen_incremental_budget": 0.4326134378639999,
-            "incremental_cost_over_light": 0.0519237184771723,
-            "realized_incremental_cost": 0.22750003400000007,
-            "realized_incremental_gain": 0.026704545454545453,
-            "selected_count": 216
+            "incremental_cost_over_light": 0.051935873190201945,
+            "realized_incremental_cost": 0.2275532890000001,
+            "realized_incremental_gain": 0.02727272727272727,
+            "selected_count": 220
           }
         }
       }
     },
     "representation": "B-expanded-structural",
     "runtime_feasibility": {
+      "candidate_input_bound_enforced": true,
+      "candidate_input_bound_probe": true,
+      "candidate_input_bound_required": true,
       "characters_per_field_bound": 32768,
       "deterministic_probe": true,
       "estimated_five_head_artifact_bytes": 18544,
@@ -474,7 +477,7 @@
         "checks": [
           {
             "check": "runtime_feasibility",
-            "detail": "bounded stdlib extraction and artifact estimate",
+            "detail": "enforced 32768-character candidate field bound, stdlib extraction, and artifact estimate",
             "passed": true
           },
           {
@@ -951,7 +954,10 @@
         }
       },
       "runtime_feasibility": {
-        "characters_per_field_bound": 32768,
+        "candidate_input_bound_enforced": false,
+        "candidate_input_bound_probe": false,
+        "candidate_input_bound_required": false,
+        "characters_per_field_bound": null,
         "deterministic_probe": true,
         "estimated_five_head_artifact_bytes": 32584,
         "feature_count": 270,
@@ -975,23 +981,23 @@
         "checks": [
           {
             "check": "runtime_feasibility",
-            "detail": "bounded stdlib extraction and artifact estimate",
+            "detail": "enforced 32768-character candidate field bound, stdlib extraction, and artifact estimate",
             "passed": true
           },
           {
             "check": "ax31-light->ax31.correlation",
-            "detail": "0.025254 >= 0.020000",
+            "detail": "0.033517 >= 0.020000",
             "passed": true
           },
           {
             "check": "ax31-light->ax31.positive_families",
-            "detail": "4 >= 6",
+            "detail": "5 >= 6",
             "passed": false
           },
           {
             "check": "ax31-light->ax31.family_gain_floor",
-            "detail": "-0.006250 >= -0.005000",
-            "passed": false
+            "detail": "0.000000 >= -0.005000",
+            "passed": true
           },
           {
             "check": "ax31-light->ax31.fast.beats_current",
@@ -1000,12 +1006,12 @@
           },
           {
             "check": "ax31-light->ax31.balanced.beats_current",
-            "detail": "0.043608 >= 0.032966",
+            "detail": "0.045028 >= 0.032966",
             "passed": true
           },
           {
             "check": "ax31->axk1-think.correlation",
-            "detail": "0.129639 >= 0.020000",
+            "detail": "0.135148 >= 0.020000",
             "passed": true
           },
           {
@@ -1015,7 +1021,7 @@
           },
           {
             "check": "ax31->axk1-think.family_gain_floor",
-            "detail": "0.000000 >= -0.005000",
+            "detail": "-0.003125 >= -0.005000",
             "passed": true
           },
           {
@@ -1027,12 +1033,7 @@
         "failed_checks": [
           {
             "check": "ax31-light->ax31.positive_families",
-            "detail": "4 >= 6",
-            "passed": false
-          },
-          {
-            "check": "ax31-light->ax31.family_gain_floor",
-            "detail": "-0.006250 >= -0.005000",
+            "detail": "5 >= 6",
             "passed": false
           },
           {
@@ -1050,51 +1051,51 @@
       },
       "alpha_objectives": {
         "log_incremental_cost_mse": {
-          "100": 2.9264065365818395,
-          "1000": 2.1717127455481533,
-          "3000": 2.062274074540849
+          "100": 2.4517379839294295,
+          "1000": 1.9560686620077528,
+          "3000": 1.922422092533302
         },
         "selected_set_gain_sum": {
-          "100": 0.06363636363636364,
-          "1000": 0.05738636363636364,
-          "3000": 0.047443181818181815
+          "100": 0.06505681818181819,
+          "1000": 0.05823863636363636,
+          "3000": 0.0502840909090909
         }
       },
       "feature_count": 36,
       "metrics": {
         "ax31->axk1-think": {
-          "oof_correlation": 0.1296394078007827,
+          "oof_correlation": 0.13514822425303027,
           "per_held_out_family": {
             "aime": {
-              "oof_correlation": -0.20724784859637357,
+              "oof_correlation": -0.19115796170255267,
               "rows": 24,
               "selected_set": {
                 "premium": {
                   "conservative_budget_used": 0.0,
                   "frozen_incremental_budget": 0.0,
-                  "incremental_cost_over_light": -0.15136297219901396,
-                  "realized_incremental_cost": -0.094930618,
-                  "realized_incremental_gain": 0.020833333333333332,
-                  "selected_count": 1
+                  "incremental_cost_over_light": 0.0,
+                  "realized_incremental_cost": 0.0,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 0
                 }
               }
             },
             "babilong": {
-              "oof_correlation": 0.05750806491707203,
+              "oof_correlation": 0.033292058478481455,
               "rows": 160,
               "selected_set": {
                 "premium": {
-                  "conservative_budget_used": 1.7037206559999998,
+                  "conservative_budget_used": 1.7136098439999998,
                   "frozen_incremental_budget": 1.7264458387600001,
-                  "incremental_cost_over_light": 0.4601178397274273,
-                  "realized_incremental_cost": 1.7037206559999998,
-                  "realized_incremental_gain": 0.003125,
-                  "selected_count": 9
+                  "incremental_cost_over_light": 0.46278857791633987,
+                  "realized_incremental_cost": 1.7136098439999998,
+                  "realized_incremental_gain": -0.003125,
+                  "selected_count": 8
                 }
               }
             },
             "belebele-ko": {
-              "oof_correlation": -0.049116138537976806,
+              "oof_correlation": -0.0387064570362147,
               "rows": 322,
               "selected_set": {
                 "premium": {
@@ -1108,7 +1109,7 @@
               }
             },
             "cruxeval": {
-              "oof_correlation": 0.06011049363639868,
+              "oof_correlation": 0.07039003323759271,
               "rows": 241,
               "selected_set": {
                 "premium": {
@@ -1122,35 +1123,35 @@
               }
             },
             "deepmind-mathematics": {
-              "oof_correlation": -0.23820636212026802,
+              "oof_correlation": -0.2375337760819263,
               "rows": 303,
               "selected_set": {
                 "premium": {
-                  "conservative_budget_used": 1.361900426,
+                  "conservative_budget_used": 1.3623237780000002,
                   "frozen_incremental_budget": 1.3637480442800007,
-                  "incremental_cost_over_light": 0.9577520478545347,
-                  "realized_incremental_cost": 1.361900426,
-                  "realized_incremental_gain": 0.009900990099009901,
-                  "selected_count": 13
+                  "incremental_cost_over_light": 0.9580497687724687,
+                  "realized_incremental_cost": 1.3623237780000002,
+                  "realized_incremental_gain": 0.006600660066006601,
+                  "selected_count": 15
                 }
               }
             },
             "gsm8k": {
-              "oof_correlation": 0.13375342346813165,
+              "oof_correlation": 0.13435945232692756,
               "rows": 233,
               "selected_set": {
                 "premium": {
-                  "conservative_budget_used": 0.768044331,
+                  "conservative_budget_used": 0.765685376,
                   "frozen_incremental_budget": 0.7685013405199999,
-                  "incremental_cost_over_light": 0.6131189757353013,
-                  "realized_incremental_cost": 0.768044331,
-                  "realized_incremental_gain": 0.0,
-                  "selected_count": 12
+                  "incremental_cost_over_light": 0.6112358551717751,
+                  "realized_incremental_cost": 0.765685376,
+                  "realized_incremental_gain": -0.001072961373390558,
+                  "selected_count": 7
                 }
               }
             },
             "hrmcr": {
-              "oof_correlation": -0.16429169119379902,
+              "oof_correlation": -0.1619712576921268,
               "rows": 40,
               "selected_set": {
                 "premium": {
@@ -1164,7 +1165,7 @@
               }
             },
             "ruletaker": {
-              "oof_correlation": -0.07109697274217447,
+              "oof_correlation": -0.07042568243508719,
               "rows": 271,
               "selected_set": {
                 "premium": {
@@ -1178,14 +1179,14 @@
               }
             },
             "truthfulqa": {
-              "oof_correlation": 0.008023956096001589,
+              "oof_correlation": 0.0023550057730225534,
               "rows": 166,
               "selected_set": {
                 "premium": {
-                  "conservative_budget_used": 0.275583665,
+                  "conservative_budget_used": 0.276326901,
                   "frozen_incremental_budget": 0.2778949382,
-                  "incremental_cost_over_light": 0.7506228278041073,
-                  "realized_incremental_cost": 0.275583665,
+                  "incremental_cost_over_light": 0.7526472217682628,
+                  "realized_incremental_cost": 0.276326901,
                   "realized_incremental_gain": 0.0030120481927710845,
                   "selected_count": 10
                 }
@@ -1197,120 +1198,120 @@
           "realized_incremental_cost_mean": 0.10263539080738637,
           "selected_set": {
             "premium": {
-              "conservative_budget_used": 3.666203293,
+              "conservative_budget_used": 3.665436318,
               "frozen_incremental_budget": 3.6672925570799997,
-              "incremental_cost_over_light": 0.41508153213015764,
-              "realized_incremental_cost": 3.5712726750000003,
+              "incremental_cost_over_light": 0.4260259748440977,
+              "realized_incremental_cost": 3.665436318,
               "realized_incremental_gain": 0.0017045454545454545,
-              "selected_count": 27
+              "selected_count": 25
             }
           }
         },
         "ax31-light->ax31": {
-          "oof_correlation": 0.025253708108841977,
+          "oof_correlation": 0.03351721585512939,
           "per_held_out_family": {
             "aime": {
-              "oof_correlation": 0.13893939207298794,
+              "oof_correlation": 0.08315729539168122,
               "rows": 24,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.248984805,
+                  "conservative_budget_used": 0.24898480499999998,
                   "frozen_incremental_budget": 0.24955612900400004,
-                  "incremental_cost_over_light": 0.20459996460301166,
-                  "realized_incremental_cost": 0.12831936900000004,
+                  "incremental_cost_over_light": 0.2045999646030116,
+                  "realized_incremental_cost": 0.12831936900000002,
                   "realized_incremental_gain": 0.08333333333333333,
                   "selected_count": 16
                 },
                 "fast": {
-                  "conservative_budget_used": 0.05760520300000001,
+                  "conservative_budget_used": 0.06035100600000001,
                   "frozen_incremental_budget": 0.061925708936,
-                  "incremental_cost_over_light": -0.10054695203229734,
-                  "realized_incremental_cost": -0.063060233,
-                  "realized_incremental_gain": 0.020833333333333332,
+                  "incremental_cost_over_light": -0.09616888190161547,
+                  "realized_incremental_cost": -0.06031442999999999,
+                  "realized_incremental_gain": 0.03125,
                   "selected_count": 4
                 }
               }
             },
             "babilong": {
-              "oof_correlation": -0.0026122102748274974,
+              "oof_correlation": 0.05593173094954764,
               "rows": 160,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.5098685040000002,
+                  "conservative_budget_used": 0.9396606979999998,
                   "frozen_incremental_budget": 1.4733668563439999,
-                  "incremental_cost_over_light": 0.13769839191615413,
-                  "realized_incremental_cost": 0.5098685040000002,
-                  "realized_incremental_gain": -0.00625,
-                  "selected_count": 34
+                  "incremental_cost_over_light": 0.2537708566940838,
+                  "realized_incremental_cost": 0.9396606979999998,
+                  "realized_incremental_gain": 0.009375,
+                  "selected_count": 46
                 },
                 "fast": {
-                  "conservative_budget_used": 0.36412166900000004,
+                  "conservative_budget_used": 0.36117678,
                   "frozen_incremental_budget": 0.3656062764959999,
-                  "incremental_cost_over_light": 0.09833705728002007,
-                  "realized_incremental_cost": 0.36412166900000004,
-                  "realized_incremental_gain": -0.00625,
-                  "selected_count": 20
+                  "incremental_cost_over_light": 0.0975417414750815,
+                  "realized_incremental_cost": 0.36117678,
+                  "realized_incremental_gain": 0.00625,
+                  "selected_count": 17
                 }
               }
             },
             "belebele-ko": {
-              "oof_correlation": -0.021979106430759402,
+              "oof_correlation": -0.001328311432987323,
               "rows": 322,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.07425564500000002,
+                  "conservative_budget_used": 0.07439105,
                   "frozen_incremental_budget": 0.074429300164,
-                  "incremental_cost_over_light": 0.3969786209182475,
-                  "realized_incremental_cost": 0.07425564500000002,
-                  "realized_incremental_gain": 0.024844720496894408,
-                  "selected_count": 89
+                  "incremental_cost_over_light": 0.39770251053183076,
+                  "realized_incremental_cost": 0.07439105,
+                  "realized_incremental_gain": 0.031055900621118012,
+                  "selected_count": 86
                 },
                 "fast": {
-                  "conservative_budget_used": 0.018352338000000003,
+                  "conservative_budget_used": 0.018348193000000002,
                   "frozen_incremental_budget": 0.018469140375999997,
-                  "incremental_cost_over_light": 0.0981135620041486,
-                  "realized_incremental_cost": 0.018352338000000003,
-                  "realized_incremental_gain": 0.007763975155279503,
-                  "selected_count": 23
+                  "incremental_cost_over_light": 0.09809140239077904,
+                  "realized_incremental_cost": 0.018348193000000002,
+                  "realized_incremental_gain": 0.006211180124223602,
+                  "selected_count": 22
                 }
               }
             },
             "cruxeval": {
-              "oof_correlation": 0.02893735873593241,
+              "oof_correlation": 0.02944465338831256,
               "rows": 241,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.086552789,
+                  "conservative_budget_used": 0.08646473300000003,
                   "frozen_incremental_budget": 0.086574217618,
-                  "incremental_cost_over_light": 0.38826833629018176,
-                  "realized_incremental_cost": 0.084477095,
-                  "realized_incremental_gain": 0.002074688796680498,
-                  "selected_count": 76
+                  "incremental_cost_over_light": 0.38786361881474823,
+                  "realized_incremental_cost": 0.08438903900000003,
+                  "realized_incremental_gain": 0.004149377593360996,
+                  "selected_count": 77
                 },
                 "fast": {
-                  "conservative_budget_used": 0.021353816999999997,
+                  "conservative_budget_used": 0.021463475,
                   "frozen_incremental_budget": 0.021482821612,
-                  "incremental_cost_over_light": 0.08860490224015735,
-                  "realized_incremental_cost": 0.019278122999999994,
-                  "realized_incremental_gain": 0.006224066390041493,
-                  "selected_count": 28
+                  "incremental_cost_over_light": 0.0891089054758381,
+                  "realized_incremental_cost": 0.019387780999999996,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 27
                 }
               }
             },
             "deepmind-mathematics": {
-              "oof_correlation": 0.013581871640942506,
+              "oof_correlation": 0.014083202610044114,
               "rows": 303,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.5658030799999999,
+                  "conservative_budget_used": 0.5657931860000001,
                   "frozen_incremental_budget": 0.565814204232,
-                  "incremental_cost_over_light": 0.13312630452272034,
-                  "realized_incremental_cost": 0.18930240999999978,
-                  "realized_incremental_gain": 0.07260726072607261,
-                  "selected_count": 163
+                  "incremental_cost_over_light": 0.13311934659937988,
+                  "realized_incremental_cost": 0.18929251599999983,
+                  "realized_incremental_gain": 0.056105610561056105,
+                  "selected_count": 157
                 },
                 "fast": {
-                  "conservative_budget_used": 0.140394895,
+                  "conservative_budget_used": 0.14039489500000002,
                   "frozen_incremental_budget": 0.140403066288,
                   "incremental_cost_over_light": -0.16604061882900978,
                   "realized_incremental_cost": -0.23610577500000002,
@@ -1320,38 +1321,38 @@
               }
             },
             "gsm8k": {
-              "oof_correlation": 0.04844893848140372,
+              "oof_correlation": 0.06064365933498002,
               "rows": 233,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.497971303,
+                  "conservative_budget_used": 0.49796017800000003,
                   "frozen_incremental_budget": 0.498451732388,
-                  "incremental_cost_over_light": 0.39752347998377885,
-                  "realized_incremental_cost": 0.497971303,
-                  "realized_incremental_gain": 0.01072961373390558,
-                  "selected_count": 103
+                  "incremental_cost_over_light": 0.39751459905291364,
+                  "realized_incremental_cost": 0.49796017800000003,
+                  "realized_incremental_gain": 0.019313304721030045,
+                  "selected_count": 102
                 },
                 "fast": {
-                  "conservative_budget_used": 0.123469174,
+                  "conservative_budget_used": 0.12342898599999998,
                   "frozen_incremental_budget": 0.12368751279199998,
-                  "incremental_cost_over_light": 0.09856370321645364,
-                  "realized_incremental_cost": 0.123469174,
+                  "incremental_cost_over_light": 0.0985316217018817,
+                  "realized_incremental_cost": 0.12342898599999998,
                   "realized_incremental_gain": 0.009656652360515022,
-                  "selected_count": 29
+                  "selected_count": 27
                 }
               }
             },
             "hrmcr": {
-              "oof_correlation": -0.23839390293728407,
+              "oof_correlation": -0.18111370870881338,
               "rows": 40,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.040106709000000004,
+                  "conservative_budget_used": 0.036706985000000004,
                   "frozen_incremental_budget": 0.04119690333800001,
-                  "incremental_cost_over_light": 0.38737718044313946,
-                  "realized_incremental_cost": 0.040106709000000004,
+                  "incremental_cost_over_light": 0.3545403925280584,
+                  "realized_incremental_cost": 0.036706985000000004,
                   "realized_incremental_gain": 0.0,
-                  "selected_count": 14
+                  "selected_count": 13
                 },
                 "fast": {
                   "conservative_budget_used": 0.009612964,
@@ -1364,37 +1365,37 @@
               }
             },
             "ruletaker": {
-              "oof_correlation": -0.04200664515506981,
+              "oof_correlation": -0.024588073037124354,
               "rows": 271,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.287645097,
+                  "conservative_budget_used": 0.287817756,
                   "frozen_incremental_budget": 0.288029756834,
-                  "incremental_cost_over_light": 0.39737560059790406,
-                  "realized_incremental_cost": 0.287645097,
-                  "realized_incremental_gain": 0.00922509225092251,
-                  "selected_count": 82
+                  "incremental_cost_over_light": 0.39761412534433355,
+                  "realized_incremental_cost": 0.287817756,
+                  "realized_incremental_gain": 0.012915129151291513,
+                  "selected_count": 83
                 },
                 "fast": {
-                  "conservative_budget_used": 0.071293515,
+                  "conservative_budget_used": 0.070884289,
                   "frozen_incremental_budget": 0.071472686156,
-                  "incremental_cost_over_light": 0.09849047884817824,
-                  "realized_incremental_cost": 0.071293515,
+                  "incremental_cost_over_light": 0.09792514180879781,
+                  "realized_incremental_cost": 0.070884289,
                   "realized_incremental_gain": 0.005535055350553505,
-                  "selected_count": 25
+                  "selected_count": 26
                 }
               }
             },
             "truthfulqa": {
-              "oof_correlation": -0.012336596559551759,
+              "oof_correlation": -0.026581273754592037,
               "rows": 166,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.14605589399999994,
+                  "conservative_budget_used": 0.14608530499999997,
                   "frozen_incremental_budget": 0.14608757598000002,
-                  "incremental_cost_over_light": 0.38993457536634496,
-                  "realized_incremental_cost": 0.1431605799999999,
-                  "realized_incremental_gain": 0.060240963855421686,
+                  "incremental_cost_over_light": 0.39001468377185794,
+                  "realized_incremental_cost": 0.14318999099999993,
+                  "realized_incremental_gain": 0.05421686746987952,
                   "selected_count": 81
                 },
                 "fast": {
@@ -1408,30 +1409,33 @@
               }
             }
           },
-          "positive_family_correlations": 4,
+          "positive_family_correlations": 5,
           "realized_gain_mean": 0.08125,
           "realized_incremental_cost_mean": 0.005646421686931819,
           "selected_set": {
             "balanced": {
-              "conservative_budget_used": 3.423377248,
+              "conservative_budget_used": 3.4235006510000012,
               "frozen_incremental_budget": 3.423506675902,
-              "incremental_cost_over_light": 0.33952961335858434,
-              "realized_incremental_cost": 2.921240134000001,
-              "realized_incremental_gain": 0.04360795454545455,
-              "selected_count": 905
+              "incremental_cost_over_light": 0.3395439562304319,
+              "realized_incremental_cost": 2.921363537000002,
+              "realized_incremental_gain": 0.04502840909090909,
+              "selected_count": 919
             },
             "fast": {
-              "conservative_budget_used": 0.8494715729999998,
+              "conservative_budget_used": 0.8494968509999999,
               "frozen_incremental_budget": 0.8495206220679998,
-              "incremental_cost_over_light": 0.04036995562186224,
-              "realized_incremental_cost": 0.34733445899999965,
+              "incremental_cost_over_light": 0.040372893630780726,
+              "realized_incremental_cost": 0.3473597370000004,
               "realized_incremental_gain": 0.018323863636363635,
-              "selected_count": 374
+              "selected_count": 395
             }
           }
         }
       },
       "runtime_feasibility": {
+        "candidate_input_bound_enforced": true,
+        "candidate_input_bound_probe": true,
+        "candidate_input_bound_required": true,
         "characters_per_field_bound": 32768,
         "deterministic_probe": true,
         "estimated_five_head_artifact_bytes": 18544,
@@ -1456,12 +1460,12 @@
         "checks": [
           {
             "check": "runtime_feasibility",
-            "detail": "bounded stdlib extraction and artifact estimate",
+            "detail": "enforced 32768-character candidate field bound, stdlib extraction, and artifact estimate",
             "passed": true
           },
           {
             "check": "ax31-light->ax31.correlation",
-            "detail": "-0.042573 >= 0.020000",
+            "detail": "-0.040637 >= 0.020000",
             "passed": false
           },
           {
@@ -1476,22 +1480,22 @@
           },
           {
             "check": "ax31-light->ax31.fast.beats_current",
-            "detail": "0.010227 >= 0.009102",
+            "detail": "0.012358 >= 0.009102",
             "passed": true
           },
           {
             "check": "ax31-light->ax31.balanced.beats_current",
-            "detail": "0.039915 >= 0.032966",
+            "detail": "0.041051 >= 0.032966",
             "passed": true
           },
           {
             "check": "ax31->axk1-think.correlation",
-            "detail": "0.009303 >= 0.020000",
-            "passed": false
+            "detail": "0.021195 >= 0.020000",
+            "passed": true
           },
           {
             "check": "ax31->axk1-think.positive_families",
-            "detail": "4 >= 6",
+            "detail": "3 >= 6",
             "passed": false
           },
           {
@@ -1508,7 +1512,7 @@
         "failed_checks": [
           {
             "check": "ax31-light->ax31.correlation",
-            "detail": "-0.042573 >= 0.020000",
+            "detail": "-0.040637 >= 0.020000",
             "passed": false
           },
           {
@@ -1517,13 +1521,8 @@
             "passed": false
           },
           {
-            "check": "ax31->axk1-think.correlation",
-            "detail": "0.009303 >= 0.020000",
-            "passed": false
-          },
-          {
             "check": "ax31->axk1-think.positive_families",
-            "detail": "4 >= 6",
+            "detail": "3 >= 6",
             "passed": false
           },
           {
@@ -1536,23 +1535,23 @@
       },
       "alpha_objectives": {
         "log_incremental_cost_mse": {
-          "100": 2.112429636634191,
-          "1000": 1.28690052608119,
-          "3000": 1.1106333921128888
+          "100": 2.028916506158366,
+          "1000": 1.2667296091057572,
+          "3000": 1.1087416554941982
         },
         "selected_set_gain_sum": {
-          "100": 0.04261363636363636,
-          "1000": 0.04545454545454546,
-          "3000": 0.055113636363636365
+          "100": 0.042045454545454546,
+          "1000": 0.04431818181818182,
+          "3000": 0.058380681818181825
         }
       },
       "feature_count": 270,
       "metrics": {
         "ax31->axk1-think": {
-          "oof_correlation": 0.009302621908678544,
+          "oof_correlation": 0.02119475070734021,
           "per_held_out_family": {
             "aime": {
-              "oof_correlation": -0.23356598044715574,
+              "oof_correlation": -0.23329591232858496,
               "rows": 24,
               "selected_set": {
                 "premium": {
@@ -1566,21 +1565,21 @@
               }
             },
             "babilong": {
-              "oof_correlation": -0.021330516399852294,
+              "oof_correlation": -0.029770918433409097,
               "rows": 160,
               "selected_set": {
                 "premium": {
-                  "conservative_budget_used": 1.7123904660000002,
+                  "conservative_budget_used": 1.7247568940000002,
                   "frozen_incremental_budget": 1.7264458387600001,
-                  "incremental_cost_over_light": 0.46245926479262145,
-                  "realized_incremental_cost": 1.7123904660000002,
-                  "realized_incremental_gain": 0.009375,
+                  "incremental_cost_over_light": 0.46579902246737065,
+                  "realized_incremental_cost": 1.7247568940000002,
+                  "realized_incremental_gain": 0.015625,
                   "selected_count": 14
                 }
               }
             },
             "belebele-ko": {
-              "oof_correlation": -0.04715514841852482,
+              "oof_correlation": -0.047800694594794774,
               "rows": 322,
               "selected_set": {
                 "premium": {
@@ -1594,7 +1593,7 @@
               }
             },
             "cruxeval": {
-              "oof_correlation": 0.005418809741872516,
+              "oof_correlation": -0.0023090394452837297,
               "rows": 241,
               "selected_set": {
                 "premium": {
@@ -1608,35 +1607,35 @@
               }
             },
             "deepmind-mathematics": {
-              "oof_correlation": -0.11466084380937257,
+              "oof_correlation": -0.11875394636377164,
               "rows": 303,
               "selected_set": {
                 "premium": {
-                  "conservative_budget_used": 1.363092711,
+                  "conservative_budget_used": 1.36310023,
                   "frozen_incremental_budget": 1.3637480442800007,
-                  "incremental_cost_over_light": 0.9585905184053738,
-                  "realized_incremental_cost": 1.363092711,
+                  "incremental_cost_over_light": 0.958595806117684,
+                  "realized_incremental_cost": 1.36310023,
                   "realized_incremental_gain": 0.009900990099009901,
-                  "selected_count": 15
+                  "selected_count": 16
                 }
               }
             },
             "gsm8k": {
-              "oof_correlation": 0.04762765401486643,
+              "oof_correlation": 0.04785081850942937,
               "rows": 233,
               "selected_set": {
                 "premium": {
-                  "conservative_budget_used": 0.7600029690000001,
+                  "conservative_budget_used": 0.760002969,
                   "frozen_incremental_budget": 0.7685013405199999,
-                  "incremental_cost_over_light": 0.6066996696692862,
-                  "realized_incremental_cost": 0.7600029690000001,
+                  "incremental_cost_over_light": 0.6066996696692861,
+                  "realized_incremental_cost": 0.760002969,
                   "realized_incremental_gain": 0.0075107296137339056,
                   "selected_count": 11
                 }
               }
             },
             "hrmcr": {
-              "oof_correlation": -0.07201004231106342,
+              "oof_correlation": -0.07137678038319269,
               "rows": 40,
               "selected_set": {
                 "premium": {
@@ -1650,7 +1649,7 @@
               }
             },
             "ruletaker": {
-              "oof_correlation": 0.039061730755246424,
+              "oof_correlation": 0.038712890664278125,
               "rows": 271,
               "selected_set": {
                 "premium": {
@@ -1664,46 +1663,46 @@
               }
             },
             "truthfulqa": {
-              "oof_correlation": 0.020618893319069274,
+              "oof_correlation": 0.020168526654704325,
               "rows": 166,
               "selected_set": {
                 "premium": {
-                  "conservative_budget_used": 0.277521737,
+                  "conservative_budget_used": 0.272894883,
                   "frozen_incremental_budget": 0.2778949382,
-                  "incremental_cost_over_light": 0.7559016642152856,
-                  "realized_incremental_cost": 0.277521737,
-                  "realized_incremental_gain": 0.009036144578313253,
-                  "selected_count": 10
+                  "incremental_cost_over_light": 0.7432992400719071,
+                  "realized_incremental_cost": 0.272894883,
+                  "realized_incremental_gain": 0.006024096385542169,
+                  "selected_count": 9
                 }
               }
             }
           },
-          "positive_family_correlations": 4,
+          "positive_family_correlations": 3,
           "realized_gain_mean": 0.1330965909090909,
           "realized_incremental_cost_mean": 0.10263539080738637,
           "selected_set": {
             "premium": {
-              "conservative_budget_used": 3.6644557659999992,
+              "conservative_budget_used": 3.6644816939999987,
               "frozen_incremental_budget": 3.6672925570799997,
-              "incremental_cost_over_light": 0.41487842073245423,
-              "realized_incremental_cost": 3.5695251479999994,
+              "incremental_cost_over_light": 0.4148814342895092,
+              "realized_incremental_cost": 3.569551075999999,
               "realized_incremental_gain": 0.004971590909090909,
-              "selected_count": 61
+              "selected_count": 63
             }
           }
         },
         "ax31-light->ax31": {
-          "oof_correlation": -0.042572793719312864,
+          "oof_correlation": -0.04063721466042546,
           "per_held_out_family": {
             "aime": {
-              "oof_correlation": 0.4261760278721595,
+              "oof_correlation": 0.4455301925359037,
               "rows": 24,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.244939292,
+                  "conservative_budget_used": 0.244318768,
                   "frozen_incremental_budget": 0.24955612900400004,
-                  "incremental_cost_over_light": 0.19814956024822536,
-                  "realized_incremental_cost": 0.124273856,
+                  "incremental_cost_over_light": 0.1971601602112339,
+                  "realized_incremental_cost": 0.12365333199999999,
                   "realized_incremental_gain": 0.07291666666666667,
                   "selected_count": 15
                 },
@@ -1718,37 +1717,37 @@
               }
             },
             "babilong": {
-              "oof_correlation": 0.05668496018162419,
+              "oof_correlation": 0.06784586390154285,
               "rows": 160,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 1.4726971190000002,
+                  "conservative_budget_used": 1.4706126650000002,
                   "frozen_incremental_budget": 1.4733668563439999,
-                  "incremental_cost_over_light": 0.3977261263932731,
-                  "realized_incremental_cost": 1.4726971190000002,
-                  "realized_incremental_gain": 0.04375,
+                  "incremental_cost_over_light": 0.3971631852396787,
+                  "realized_incremental_cost": 1.4706126650000002,
+                  "realized_incremental_gain": 0.040625,
                   "selected_count": 53
                 },
                 "fast": {
-                  "conservative_budget_used": 0.36100146999999994,
+                  "conservative_budget_used": 0.365100966,
                   "frozen_incremental_budget": 0.3656062764959999,
-                  "incremental_cost_over_light": 0.09749439612054903,
-                  "realized_incremental_cost": 0.36100146999999994,
+                  "incremental_cost_over_light": 0.09860153257325825,
+                  "realized_incremental_cost": 0.365100966,
                   "realized_incremental_gain": 0.015625,
-                  "selected_count": 10
+                  "selected_count": 11
                 }
               }
             },
             "belebele-ko": {
-              "oof_correlation": -0.06593177319850846,
+              "oof_correlation": -0.06621399708185585,
               "rows": 322,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.07442806,
+                  "conservative_budget_used": 0.07433346800000001,
                   "frozen_incremental_budget": 0.074429300164,
-                  "incremental_cost_over_light": 0.397900369950602,
-                  "realized_incremental_cost": 0.07442806,
-                  "realized_incremental_gain": 0.009316770186335404,
+                  "incremental_cost_over_light": 0.39739467100057746,
+                  "realized_incremental_cost": 0.07433346800000001,
+                  "realized_incremental_gain": 0.012422360248447204,
                   "selected_count": 81
                 },
                 "fast": {
@@ -1762,15 +1761,15 @@
               }
             },
             "cruxeval": {
-              "oof_correlation": -0.039165361052079274,
+              "oof_correlation": -0.042778329156593235,
               "rows": 241,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.08654684099999997,
+                  "conservative_budget_used": 0.08656590799999998,
                   "frozen_incremental_budget": 0.086574217618,
-                  "incremental_cost_over_light": 0.38824099846488996,
-                  "realized_incremental_cost": 0.08447114699999997,
-                  "realized_incremental_gain": 0.008298755186721992,
+                  "incremental_cost_over_light": 0.3883286330168126,
+                  "realized_incremental_cost": 0.08449021399999998,
+                  "realized_incremental_gain": 0.012448132780082987,
                   "selected_count": 71
                 },
                 "fast": {
@@ -1784,19 +1783,19 @@
               }
             },
             "deepmind-mathematics": {
-              "oof_correlation": -0.04288920950575657,
+              "oof_correlation": -0.04157852311590979,
               "rows": 303,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.5657809509999998,
+                  "conservative_budget_used": 0.565713728,
                   "frozen_incremental_budget": 0.565814204232,
-                  "incremental_cost_over_light": 0.13311074237539866,
-                  "realized_incremental_cost": 0.18928028099999988,
-                  "realized_incremental_gain": 0.052805280528052806,
+                  "incremental_cost_over_light": 0.13306346801915078,
+                  "realized_incremental_cost": 0.189213058,
+                  "realized_incremental_gain": 0.054455445544554455,
                   "selected_count": 130
                 },
                 "fast": {
-                  "conservative_budget_used": 0.140321975,
+                  "conservative_budget_used": 0.14032197500000002,
                   "frozen_incremental_budget": 0.140403066288,
                   "incremental_cost_over_light": -0.16609189958199014,
                   "realized_incremental_cost": -0.23617869500000002,
@@ -1806,16 +1805,16 @@
               }
             },
             "gsm8k": {
-              "oof_correlation": -0.009064848733388668,
+              "oof_correlation": -0.007013828427331531,
               "rows": 233,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.49808561400000007,
+                  "conservative_budget_used": 0.498221956,
                   "frozen_incremental_budget": 0.498451732388,
-                  "incremental_cost_over_light": 0.3976147328456339,
-                  "realized_incremental_cost": 0.49808561400000007,
+                  "incremental_cost_over_light": 0.39772357274460285,
+                  "realized_incremental_cost": 0.498221956,
                   "realized_incremental_gain": 0.015021459227467811,
-                  "selected_count": 98
+                  "selected_count": 100
                 },
                 "fast": {
                   "conservative_budget_used": 0.12337989799999999,
@@ -1828,7 +1827,7 @@
               }
             },
             "hrmcr": {
-              "oof_correlation": 0.2213912488011648,
+              "oof_correlation": 0.22003314661181916,
               "rows": 40,
               "selected_set": {
                 "balanced": {
@@ -1850,7 +1849,7 @@
               }
             },
             "ruletaker": {
-              "oof_correlation": 0.027112386463890737,
+              "oof_correlation": 0.023394106002564738,
               "rows": 271,
               "selected_set": {
                 "balanced": {
@@ -1872,24 +1871,24 @@
               }
             },
             "truthfulqa": {
-              "oof_correlation": 0.0007898197848966621,
+              "oof_correlation": 0.00163757899393508,
               "rows": 166,
               "selected_set": {
                 "balanced": {
                   "conservative_budget_used": 0.14578581499999999,
                   "frozen_incremental_budget": 0.14608757598000002,
-                  "incremental_cost_over_light": 0.38968899602331525,
-                  "realized_incremental_cost": 0.14307041799999998,
+                  "incremental_cost_over_light": 0.38968899602331536,
+                  "realized_incremental_cost": 0.143070418,
                   "realized_incremental_gain": 0.045180722891566265,
                   "selected_count": 83
                 },
                 "fast": {
-                  "conservative_budget_used": 0.03613990100000001,
+                  "conservative_budget_used": 0.036075403000000006,
                   "frozen_incremental_budget": 0.03625066932,
-                  "incremental_cost_over_light": 0.09104021354251786,
-                  "realized_incremental_cost": 0.03342450400000001,
+                  "incremental_cost_over_light": 0.09086453668900148,
+                  "realized_incremental_cost": 0.033360006000000005,
                   "realized_incremental_gain": 0.009036144578313253,
-                  "selected_count": 28
+                  "selected_count": 27
                 }
               }
             }
@@ -1899,25 +1898,28 @@
           "realized_incremental_cost_mean": 0.005646421686931819,
           "selected_set": {
             "balanced": {
-              "conservative_budget_used": 3.4234497389999996,
+              "conservative_budget_used": 3.4234202870000003,
               "frozen_incremental_budget": 3.423506675902,
-              "incremental_cost_over_light": 0.3395589502109885,
-              "realized_incremental_cost": 2.9214925419999993,
-              "realized_incremental_gain": 0.03991477272727273,
-              "selected_count": 950
+              "incremental_cost_over_light": 0.33955552706680525,
+              "realized_incremental_cost": 2.92146309,
+              "realized_incremental_gain": 0.041051136363636366,
+              "selected_count": 972
             },
             "fast": {
-              "conservative_budget_used": 0.8495036060000006,
+              "conservative_budget_used": 0.8494432180000003,
               "frozen_incremental_budget": 0.8495206220679998,
-              "incremental_cost_over_light": 0.040394590125788866,
-              "realized_incremental_cost": 0.34754640900000044,
-              "realized_incremental_gain": 0.010227272727272727,
-              "selected_count": 361
+              "incremental_cost_over_light": 0.04038757135521506,
+              "realized_incremental_cost": 0.34748602100000037,
+              "realized_incremental_gain": 0.012357954545454545,
+              "selected_count": 380
             }
           }
         }
       },
       "runtime_feasibility": {
+        "candidate_input_bound_enforced": true,
+        "candidate_input_bound_probe": true,
+        "candidate_input_bound_required": true,
         "characters_per_field_bound": 32768,
         "deterministic_probe": true,
         "estimated_five_head_artifact_bytes": 32584,
@@ -1942,37 +1944,37 @@
         "checks": [
           {
             "check": "runtime_feasibility",
-            "detail": "bounded stdlib extraction and artifact estimate",
+            "detail": "enforced 32768-character candidate field bound, stdlib extraction, and artifact estimate",
             "passed": true
           },
           {
             "check": "ax31-light->ax31.correlation",
-            "detail": "-0.024908 >= 0.020000",
+            "detail": "-0.026074 >= 0.020000",
             "passed": false
           },
           {
             "check": "ax31-light->ax31.positive_families",
-            "detail": "4 >= 6",
+            "detail": "5 >= 6",
             "passed": false
           },
           {
             "check": "ax31-light->ax31.family_gain_floor",
-            "detail": "-0.006250 >= -0.005000",
-            "passed": false
+            "detail": "-0.003125 >= -0.005000",
+            "passed": true
           },
           {
             "check": "ax31-light->ax31.fast.beats_current",
-            "detail": "0.013494 >= 0.009102",
+            "detail": "0.014347 >= 0.009102",
             "passed": true
           },
           {
             "check": "ax31-light->ax31.balanced.beats_current",
-            "detail": "0.038778 >= 0.032966",
+            "detail": "0.038636 >= 0.032966",
             "passed": true
           },
           {
             "check": "ax31->axk1-think.correlation",
-            "detail": "0.142652 >= 0.020000",
+            "detail": "0.151465 >= 0.020000",
             "passed": true
           },
           {
@@ -1987,24 +1989,19 @@
           },
           {
             "check": "ax31->axk1-think.premium.beats_current",
-            "detail": "0.004830 >= 0.005977",
+            "detail": "0.004261 >= 0.005977",
             "passed": false
           }
         ],
         "failed_checks": [
           {
             "check": "ax31-light->ax31.correlation",
-            "detail": "-0.024908 >= 0.020000",
+            "detail": "-0.026074 >= 0.020000",
             "passed": false
           },
           {
             "check": "ax31-light->ax31.positive_families",
-            "detail": "4 >= 6",
-            "passed": false
-          },
-          {
-            "check": "ax31-light->ax31.family_gain_floor",
-            "detail": "-0.006250 >= -0.005000",
+            "detail": "5 >= 6",
             "passed": false
           },
           {
@@ -2014,7 +2011,7 @@
           },
           {
             "check": "ax31->axk1-think.premium.beats_current",
-            "detail": "0.004830 >= 0.005977",
+            "detail": "0.004261 >= 0.005977",
             "passed": false
           }
         ],
@@ -2022,23 +2019,23 @@
       },
       "alpha_objectives": {
         "log_incremental_cost_mse": {
-          "100": 2.2664723121332497,
-          "1000": 1.3620772588540542,
-          "3000": 1.241012011769393
+          "100": 1.9933141327218133,
+          "1000": 1.2793310354606429,
+          "3000": 1.1937448734927434
         },
         "selected_set_gain_sum": {
-          "100": 0.05369318181818183,
-          "1000": 0.054261363636363635,
-          "3000": 0.05710227272727273
+          "100": 0.05085227272727273,
+          "1000": 0.05454545454545454,
+          "3000": 0.057244318181818174
         }
       },
       "feature_count": 292,
       "metrics": {
         "ax31->axk1-think": {
-          "oof_correlation": 0.14265202985423278,
+          "oof_correlation": 0.15146462757436727,
           "per_held_out_family": {
             "aime": {
-              "oof_correlation": -0.25957884962683503,
+              "oof_correlation": -0.2544406553883884,
               "rows": 24,
               "selected_set": {
                 "premium": {
@@ -2052,21 +2049,21 @@
               }
             },
             "babilong": {
-              "oof_correlation": 0.06116006057943708,
+              "oof_correlation": 0.05711774910244931,
               "rows": 160,
               "selected_set": {
                 "premium": {
-                  "conservative_budget_used": 1.7046340709999996,
+                  "conservative_budget_used": 1.702438615,
                   "frozen_incremental_budget": 1.7264458387600001,
-                  "incremental_cost_over_light": 0.46036452250085874,
-                  "realized_incremental_cost": 1.7046340709999996,
-                  "realized_incremental_gain": 0.003125,
-                  "selected_count": 12
+                  "incremental_cost_over_light": 0.45977160342789986,
+                  "realized_incremental_cost": 1.702438615,
+                  "realized_incremental_gain": 0.00625,
+                  "selected_count": 14
                 }
               }
             },
             "belebele-ko": {
-              "oof_correlation": -0.043025245012378026,
+              "oof_correlation": -0.04395370291105263,
               "rows": 322,
               "selected_set": {
                 "premium": {
@@ -2080,7 +2077,7 @@
               }
             },
             "cruxeval": {
-              "oof_correlation": 0.00955759439371445,
+              "oof_correlation": 0.012296571539126843,
               "rows": 241,
               "selected_set": {
                 "premium": {
@@ -2094,21 +2091,21 @@
               }
             },
             "deepmind-mathematics": {
-              "oof_correlation": -0.1604227807541296,
+              "oof_correlation": -0.16220714150241958,
               "rows": 303,
               "selected_set": {
                 "premium": {
-                  "conservative_budget_used": 1.360941396,
+                  "conservative_budget_used": 1.3593671500000002,
                   "frozen_incremental_budget": 1.3637480442800007,
-                  "incremental_cost_over_light": 0.9570776131242721,
-                  "realized_incremental_cost": 1.360941396,
-                  "realized_incremental_gain": 0.013201320132013201,
-                  "selected_count": 15
+                  "incremental_cost_over_light": 0.9559705297417116,
+                  "realized_incremental_cost": 1.3593671500000002,
+                  "realized_incremental_gain": 0.01485148514851485,
+                  "selected_count": 16
                 }
               }
             },
             "gsm8k": {
-              "oof_correlation": 0.068509299296943,
+              "oof_correlation": 0.0689654032231226,
               "rows": 233,
               "selected_set": {
                 "premium": {
@@ -2122,7 +2119,7 @@
               }
             },
             "hrmcr": {
-              "oof_correlation": -0.03143285719825409,
+              "oof_correlation": -0.013623350237830373,
               "rows": 40,
               "selected_set": {
                 "premium": {
@@ -2136,7 +2133,7 @@
               }
             },
             "ruletaker": {
-              "oof_correlation": 0.031319415066902605,
+              "oof_correlation": 0.03114602366301991,
               "rows": 271,
               "selected_set": {
                 "premium": {
@@ -2150,7 +2147,7 @@
               }
             },
             "truthfulqa": {
-              "oof_correlation": 0.021836080128052767,
+              "oof_correlation": 0.02190663196771477,
               "rows": 166,
               "selected_set": {
                 "premium": {
@@ -2169,20 +2166,20 @@
           "realized_incremental_cost_mean": 0.10263539080738637,
           "selected_set": {
             "premium": {
-              "conservative_budget_used": 3.665872480999999,
+              "conservative_budget_used": 3.667223101999999,
               "frozen_incremental_budget": 3.6672925570799997,
-              "incremental_cost_over_light": 0.4150430825452887,
-              "realized_incremental_cost": 3.5709418629999994,
-              "realized_incremental_gain": 0.004829545454545454,
-              "selected_count": 62
+              "incremental_cost_over_light": 0.415200062391138,
+              "realized_incremental_cost": 3.572292483999999,
+              "realized_incremental_gain": 0.004261363636363636,
+              "selected_count": 70
             }
           }
         },
         "ax31-light->ax31": {
-          "oof_correlation": -0.024908489987520616,
+          "oof_correlation": -0.026074484013714053,
           "per_held_out_family": {
             "aime": {
-              "oof_correlation": 0.4665105702328948,
+              "oof_correlation": 0.4711539369683056,
               "rows": 24,
               "selected_set": {
                 "balanced": {
@@ -2204,36 +2201,36 @@
               }
             },
             "babilong": {
-              "oof_correlation": -0.01696665116251892,
+              "oof_correlation": 0.0011134257329967084,
               "rows": 160,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 1.467416264,
+                  "conservative_budget_used": 1.4700000939999995,
                   "frozen_incremental_budget": 1.4733668563439999,
-                  "incremental_cost_over_light": 0.3962999444743318,
-                  "realized_incremental_cost": 1.467416264,
-                  "realized_incremental_gain": -0.00625,
-                  "selected_count": 79
+                  "incremental_cost_over_light": 0.39699775034622514,
+                  "realized_incremental_cost": 1.4700000939999995,
+                  "realized_incremental_gain": 0.021875,
+                  "selected_count": 73
                 },
                 "fast": {
-                  "conservative_budget_used": 0.36492752900000003,
+                  "conservative_budget_used": 0.358655459,
                   "frozen_incremental_budget": 0.3656062764959999,
-                  "incremental_cost_over_light": 0.098554693053242,
-                  "realized_incremental_cost": 0.36492752900000003,
-                  "realized_incremental_gain": -0.00625,
-                  "selected_count": 36
+                  "incremental_cost_over_light": 0.09686081718875919,
+                  "realized_incremental_cost": 0.358655459,
+                  "realized_incremental_gain": -0.003125,
+                  "selected_count": 26
                 }
               }
             },
             "belebele-ko": {
-              "oof_correlation": -0.06351493091401658,
+              "oof_correlation": -0.06243623576341211,
               "rows": 322,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.07442734,
+                  "conservative_budget_used": 0.074352986,
                   "frozen_incremental_budget": 0.074429300164,
-                  "incremental_cost_over_light": 0.3978965207535872,
-                  "realized_incremental_cost": 0.07442734,
+                  "incremental_cost_over_light": 0.39749901631631845,
+                  "realized_incremental_cost": 0.074352986,
                   "realized_incremental_gain": 0.015527950310559006,
                   "selected_count": 80
                 },
@@ -2248,60 +2245,60 @@
               }
             },
             "cruxeval": {
-              "oof_correlation": -0.04388506324603364,
+              "oof_correlation": -0.04506369305688933,
               "rows": 241,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.086519051,
+                  "conservative_budget_used": 0.08647983299999998,
                   "frozen_incremental_budget": 0.086574217618,
-                  "incremental_cost_over_light": 0.38811327180637395,
-                  "realized_incremental_cost": 0.084443357,
-                  "realized_incremental_gain": 0.012448132780082987,
+                  "incremental_cost_over_light": 0.38793302048958045,
+                  "realized_incremental_cost": 0.08440413899999998,
+                  "realized_incremental_gain": 0.006224066390041493,
                   "selected_count": 67
                 },
                 "fast": {
-                  "conservative_budget_used": 0.021408354000000004,
+                  "conservative_budget_used": 0.021325869000000004,
                   "frozen_incremental_budget": 0.021482821612,
-                  "incremental_cost_over_light": 0.08885556178587518,
-                  "realized_incremental_cost": 0.019332660000000005,
-                  "realized_incremental_gain": 0.0,
+                  "incremental_cost_over_light": 0.08847644939193104,
+                  "realized_incremental_cost": 0.019250175000000005,
+                  "realized_incremental_gain": 0.004149377593360996,
                   "selected_count": 19
                 }
               }
             },
             "deepmind-mathematics": {
-              "oof_correlation": -0.033731133189853754,
+              "oof_correlation": -0.03347538705009144,
               "rows": 303,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.5657455929999996,
+                  "conservative_budget_used": 0.5658090169999994,
                   "frozen_incremental_budget": 0.565814204232,
-                  "incremental_cost_over_light": 0.1330858769768266,
-                  "realized_incremental_cost": 0.189244923,
-                  "realized_incremental_gain": 0.057755775577557754,
-                  "selected_count": 131
+                  "incremental_cost_over_light": 0.13313047969867278,
+                  "realized_incremental_cost": 0.18930834699999993,
+                  "realized_incremental_gain": 0.06930693069306931,
+                  "selected_count": 136
                 },
                 "fast": {
                   "conservative_budget_used": 0.14039592600000003,
                   "frozen_incremental_budget": 0.140403066288,
-                  "incremental_cost_over_light": -0.16603989378161094,
-                  "realized_incremental_cost": -0.23610474400000003,
+                  "incremental_cost_over_light": -0.1660398937816109,
+                  "realized_incremental_cost": -0.23610474399999998,
                   "realized_incremental_gain": 0.0297029702970297,
                   "selected_count": 49
                 }
               }
             },
             "gsm8k": {
-              "oof_correlation": -0.00671493020199484,
+              "oof_correlation": -0.005043231989990723,
               "rows": 233,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.4980514560000002,
+                  "conservative_budget_used": 0.4982963070000002,
                   "frozen_incremental_budget": 0.498451732388,
-                  "incremental_cost_over_light": 0.3975874649951626,
-                  "realized_incremental_cost": 0.4980514560000002,
-                  "realized_incremental_gain": 0.008583690987124463,
-                  "selected_count": 100
+                  "incremental_cost_over_light": 0.39778292610107596,
+                  "realized_incremental_cost": 0.4982963070000002,
+                  "realized_incremental_gain": 0.015021459227467811,
+                  "selected_count": 101
                 },
                 "fast": {
                   "conservative_budget_used": 0.12337989799999999,
@@ -2314,7 +2311,7 @@
               }
             },
             "hrmcr": {
-              "oof_correlation": 0.21802085381436703,
+              "oof_correlation": 0.216497197905569,
               "rows": 40,
               "selected_set": {
                 "balanced": {
@@ -2336,15 +2333,15 @@
               }
             },
             "ruletaker": {
-              "oof_correlation": 0.013287290389661022,
+              "oof_correlation": 0.009031164322491951,
               "rows": 271,
               "selected_set": {
                 "balanced": {
-                  "conservative_budget_used": 0.28802198399999984,
+                  "conservative_budget_used": 0.28789458299999987,
                   "frozen_incremental_budget": 0.288029756834,
-                  "incremental_cost_over_light": 0.39789626199468936,
-                  "realized_incremental_cost": 0.28802198399999984,
-                  "realized_incremental_gain": 0.02214022140221402,
+                  "incremental_cost_over_light": 0.39772026021534473,
+                  "realized_incremental_cost": 0.28789458299999987,
+                  "realized_incremental_gain": 0.01845018450184502,
                   "selected_count": 81
                 },
                 "fast": {
@@ -2358,52 +2355,55 @@
               }
             },
             "truthfulqa": {
-              "oof_correlation": 0.003920274955900946,
+              "oof_correlation": 0.0037380533532480205,
               "rows": 166,
               "selected_set": {
                 "balanced": {
                   "conservative_budget_used": 0.145943482,
                   "frozen_incremental_budget": 0.14608757598000002,
-                  "incremental_cost_over_light": 0.38962839243885167,
-                  "realized_incremental_cost": 0.143048168,
+                  "incremental_cost_over_light": 0.3896283924388517,
+                  "realized_incremental_cost": 0.14304816800000003,
                   "realized_incremental_gain": 0.045180722891566265,
                   "selected_count": 84
                 },
                 "fast": {
-                  "conservative_budget_used": 0.036075403,
+                  "conservative_budget_used": 0.03611437800000001,
                   "frozen_incremental_budget": 0.03625066932,
-                  "incremental_cost_over_light": 0.09037448657187992,
-                  "realized_incremental_cost": 0.033180088999999996,
-                  "realized_incremental_gain": 0.009036144578313253,
-                  "selected_count": 28
+                  "incremental_cost_over_light": 0.0904806449855641,
+                  "realized_incremental_cost": 0.033219064000000006,
+                  "realized_incremental_gain": 0.0030120481927710845,
+                  "selected_count": 27
                 }
               }
             }
           },
-          "positive_family_correlations": 4,
+          "positive_family_correlations": 5,
           "realized_gain_mean": 0.08125,
           "realized_incremental_cost_mean": 0.005646421686931819,
           "selected_set": {
             "balanced": {
-              "conservative_budget_used": 3.423493839999999,
+              "conservative_budget_used": 3.4234019039999994,
               "frozen_incremental_budget": 3.423506675902,
-              "incremental_cost_over_light": 0.33954316460218775,
-              "realized_incremental_cost": 2.921356725999998,
-              "realized_incremental_gain": 0.03877840909090909,
-              "selected_count": 948
+              "incremental_cost_over_light": 0.3395324790737472,
+              "realized_incremental_cost": 2.9212647899999986,
+              "realized_incremental_gain": 0.038636363636363635,
+              "selected_count": 1014
             },
             "fast": {
-              "conservative_budget_used": 0.8494636659999999,
+              "conservative_budget_used": 0.8495042249999997,
               "frozen_incremental_budget": 0.8495206220679998,
-              "incremental_cost_over_light": 0.0403690366078375,
-              "realized_incremental_cost": 0.34732655199999973,
-              "realized_incremental_gain": 0.013494318181818182,
-              "selected_count": 365
+              "incremental_cost_over_light": 0.04037375069533338,
+              "realized_incremental_cost": 0.3473671109999996,
+              "realized_incremental_gain": 0.01434659090909091,
+              "selected_count": 370
             }
           }
         }
       },
       "runtime_feasibility": {
+        "candidate_input_bound_enforced": true,
+        "candidate_input_bound_probe": true,
+        "candidate_input_bound_required": true,
         "characters_per_field_bound": 32768,
         "deterministic_probe": true,
         "estimated_five_head_artifact_bytes": 33904,

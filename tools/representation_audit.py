@@ -34,7 +34,9 @@ import risk_validation  # noqa: E402
 import train_risk_calibrated as trainer  # noqa: E402
 from ossp_router.protocol import (  # noqa: E402
     MODEL_IDS,
+    Episode,
     InputBatch,
+    Message,
     RoutingPolicy,
     load_bundled_policy,
     load_input,
@@ -60,6 +62,39 @@ SPEND_LABELS = {
 }
 
 
+def _candidate_bound_probe(representation: str) -> bool:
+    """Exercise prompt and message tails beyond the declared candidate bound."""
+
+    bound = features.field_character_bound(representation)
+    if bound != features.MAX_FIELD_CHARACTERS:
+        return False
+    seed = "Question: bounded?\n"
+    prompt_prefix = seed + "x" * (bound - len(seed))
+    prompt_left = Episode("bound-probe-left", prompt=prompt_prefix + " alpha 123")
+    prompt_right = Episode("bound-probe-right", prompt=prompt_prefix + " beta ???")
+    message_prefix = "m" * bound
+    messages_left = Episode(
+        "bound-probe-left",
+        messages=(
+            Message("system", message_prefix + " alpha"),
+            Message("user", message_prefix + " 123"),
+        ),
+    )
+    messages_right = Episode(
+        "bound-probe-right",
+        messages=(
+            Message("system", message_prefix + " beta"),
+            Message("user", message_prefix + " ???"),
+        ),
+    )
+    return (
+        features.representation_vector(prompt_left, representation)
+        == features.representation_vector(prompt_right, representation)
+        and features.representation_vector(messages_left, representation)
+        == features.representation_vector(messages_right, representation)
+    )
+
+
 def _sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -83,16 +118,28 @@ def _matrix(inputs: InputBatch, representation: str) -> Tuple[Any, Mapping[str, 
     probes = [features.representation_vector(episode, representation) for episode in inputs.episodes[:8]]
     deterministic = all(tuple(matrix[index]) == tuple(probe) for index, probe in enumerate(probes))
     artifact_bytes = int(matrix.shape[1] * 5 * 12 + 16_384)
+    field_bound = features.field_character_bound(representation)
+    candidate_bound_required = representation != features.REPRESENTATIONS[0]
+    candidate_bound_probe = (
+        _candidate_bound_probe(representation) if candidate_bound_required else False
+    )
+    candidate_bound_enforced = (
+        field_bound == features.MAX_FIELD_CHARACTERS and candidate_bound_probe
+    )
     feasible = (
         deterministic
         and matrix.shape[1] <= MAX_FEATURES
         and artifact_bytes <= MAX_ESTIMATED_ARTIFACT_BYTES
+        and (not candidate_bound_required or candidate_bound_enforced)
     )
     return matrix, {
         "deterministic_probe": deterministic,
         "feature_count": int(matrix.shape[1]),
         "full_split_extraction_completed": True,
-        "characters_per_field_bound": features.MAX_FIELD_CHARACTERS,
+        "characters_per_field_bound": field_bound,
+        "candidate_input_bound_required": candidate_bound_required,
+        "candidate_input_bound_enforced": candidate_bound_enforced,
+        "candidate_input_bound_probe": candidate_bound_probe,
         "estimated_five_head_artifact_bytes": artifact_bytes,
         "limits": {
             "max_features": MAX_FEATURES,
@@ -300,7 +347,23 @@ def representation_gate(name: str, result: Mapping[str, Any], reference: Mapping
     def add(check: str, passed: bool, detail: str) -> None:
         checks.append({"check": check, "passed": bool(passed), "detail": detail})
 
-    add("runtime_feasibility", result["runtime_feasibility"]["passed"], "bounded stdlib extraction and artifact estimate")
+    runtime = result["runtime_feasibility"]
+    candidate = name != features.REPRESENTATIONS[0]
+    bound_requirement_satisfied = (
+        not candidate
+        or (
+            runtime.get("candidate_input_bound_required") is True
+            and runtime.get("candidate_input_bound_enforced") is True
+            and runtime.get("candidate_input_bound_probe") is True
+            and runtime.get("characters_per_field_bound")
+            == features.MAX_FIELD_CHARACTERS
+        )
+    )
+    add(
+        "runtime_feasibility",
+        runtime.get("passed") is True and bound_requirement_satisfied,
+        "enforced 32768-character candidate field bound, stdlib extraction, and artifact estimate",
+    )
     for step in STEP_NAMES:
         metrics = result["metrics"][step]
         add(f"{step}.correlation", metrics["oof_correlation"] >= TRAIN_CORRELATION_FLOOR, f"{metrics['oof_correlation']:.6f} >= {TRAIN_CORRELATION_FLOOR:.6f}")
