@@ -33,6 +33,17 @@ PYTHONPATH=src python3 -m ossp_router.cli self-check \
   --report build/toy-report.json
 ```
 
+라우터 정책 개발에는 개발 전용 진단·검증 도구가 함께 있습니다. 자세한
+게이트 정의와 측정 결과는
+[`baselines/README.md`](baselines/README.md)에 있습니다.
+
+```console
+PYTHONPATH=src python3 tools/run_mvp.py
+PYTHONPATH=src python3 tools/stress_safe_margin.py --split dev
+PYTHONPATH=src python3 tools/oracle_headroom.py --split dev
+PYTHONPATH=src python3 tools/risk_validation.py --split train --split dev
+```
+
 materialization을 마친 공개 Train/Dev 전체의 로컬 선별 측정은 다음 명령으로
 실행할 수 있습니다. 구현·등급 조합마다 5회 미만은 허용하지 않습니다. 동결된
 공식 보고서를 덮어쓰지 않도록 결과는 `build/`에 기록합니다.

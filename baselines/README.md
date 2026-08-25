@@ -328,3 +328,134 @@ hash-regex baseline은 채점용 평가셋을 사용한 사전 검증에서 비�
 뿐 일반화 점수가 아닙니다. 공개 Dev는 회귀계수 학습에 합치지 않고 안전계수와
 예산 통과 여부를 정하는 데만 사용합니다. 학습 파일에는 전역 계수, 공개 파일
 해시와 집계값만 남습니다.
+
+## 위험 보정 v2 후보(채택되지 않음, 부정적 결과 기록)
+
+[`risk_calibrated.py`](risk_calibrated.py)는 safe-margin을 대체하기 위해
+만든 다음 반복 후보입니다. **측정 결과 챔피언 게이트를 통과하지 못했으므로
+제출 컨테이너는 계속 safe-margin을 실행합니다.** 이 절은 그 부정적 결과와
+근거 산출물을 기록합니다.
+
+### 설계
+
+- 모델별 score head의 차분 대신 두 승격 단계
+  (`ax31-light -> ax31`, `ax31 -> axk1-think`)의 **증분 이득을 직접
+  회귀**하고, 양의 이득 확률을 별도 head + OOF Platt 보정으로 예측합니다
+  (parity-split Brier 비교에서 isotonic과 동률이라 더 단순한 Platt 선택).
+- 모델별 log-cost head에 **split-conformal 상한 계수**를 더해 평균이 아닌
+  상한 추정으로 문항별 guard와 예산 배분을 수행합니다. 선언 커버리지
+  `0.85` 대비 측정 커버리지(`ax31-light 0.878`, `ax31 0.835`,
+  `axk1-think 0.861`)가 artifact에 기록되며, 미달 artifact는 검증 단계에서
+  거부되어 safe-margin으로 대체 실행됩니다.
+- 특징·내용 서명·상한 guard(`max_step_ratio`, `max_step_load`)·think
+  하위 예산 구조는 safe-margin과 동일하게 유지합니다. 후보 비교(A: 선형
+  hash head, B: dense 구조 특징 boosted tree, C: 혼합)는 OOF 선택 집합
+  이득 기준으로 A를 선택했습니다(전체 지표는 학습 보고서 참고).
+- 학습·튜닝은 공개 Train만 사용하고, 공개 Dev는 마지막 채점과 고정
+  게이트 측정에만 사용했습니다.
+
+```console
+PYTHONPATH=src python3 baselines/train_risk_calibrated.py \
+  --input data/materialized/train/inputs.json \
+  --outcomes data/train/outcomes.json \
+  --artifact build/risk-calibrated/artifact.json \
+  --report build/risk-calibrated/train-report.json
+```
+
+동결된 학습 산출물은 [`risk-calibrated-public.v2.json`](risk-calibrated-public.v2.json),
+학습 보고서는 [`risk-calibrated-train-report.v2.json`](risk-calibrated-train-report.v2.json)에
+있습니다.
+
+### 개발 전용 진단·검증 도구
+
+- [`../tools/oracle_headroom.py`](../tools/oracle_headroom.py)는 공개
+  outcome을 사용하는 **개발 전용** oracle 분해로, 어떤 예측(품질/비용)이
+  병목인지와 안전 범위 안에서 도달 가능한 상한을 측정합니다. 제출 런타임
+  경로에서는 절대 실행되지 않으며, 격리는
+  [`../tests/test_oracle_headroom.py`](../tests/test_oracle_headroom.py)가
+  검사합니다.
+- [`../tools/risk_validation.py`](../tools/risk_validation.py)는 동일 재표본
+  아래에서 기준(safe-margin)과 후보를 비교하는 고정 안전 게이트입니다.
+  seed `20260825`, 5,000회 재표본, nearest-rank 분위수, 그리고 공개
+  materialization 입력에서만 재구성한 출처·과제군 holdout을 사용합니다.
+  게이트: 모든 등급 한도 초과 `0`, 후보 p99·최댓값이 같은 실행의 기준보다
+  `0.005`(문서화된 허용 오차) 이상 나쁘지 않을 것, 모든 과제군 holdout이
+  한도를 지키고 기준 대비 같은 오차 안일 것.
+
+```console
+PYTHONPATH=src python3 tools/oracle_headroom.py --split dev
+PYTHONPATH=src python3 tools/risk_validation.py --split train --split dev \
+  --candidate-artifact baselines/risk-calibrated-public.v2.json
+```
+
+### 측정 결과: oracle 분해 (seed 20260825, 5,000회 재표본)
+
+공개 Dev 가중 점수 기준입니다. 전체 보고서는
+[`oracle-headroom-dev.v1.json`](oracle-headroom-dev.v1.json)과
+[`oracle-headroom-train.v1.json`](oracle-headroom-train.v1.json)에 있습니다.
+
+| 변형 | Dev 가중 점수 |
+| --- | ---: |
+| 현재 예측 + 현재 라우터 (기준) | 0.673182 |
+| oracle 품질 이득 + 현재 비용 예측 | 0.719517 |
+| 현재 품질 예측 + oracle 실제 비용 | 0.674687 |
+| oracle 품질 + oracle 비용 | 0.718750 |
+| 안전 범위 oracle 상한 (달성 가능/LP 상한) | 0.772898 / 0.773781 |
+
+정지 게이트(`LP 상한 >= 0.690000`)는 통과했으므로 학습 후보를 진행했습니다.
+분해가 보여 주는 병목은 **품질 이득 예측**입니다: 비용만 oracle로 바꾸면
+`+0.0015`뿐이지만 품질 이득만 oracle로 바꾸면 지출을 줄이면서도 `+0.0463`이
+됩니다. 반면 실제 학습 가능한 이득 예측의 순위 상관은 약 `0.08~0.10`에
+머물렀습니다(학습 보고서의 후보 비교 절).
+
+### 측정 결과: v2 후보 대 safe-margin
+
+각 칸은 `점수 / 실제 비용 비율`입니다.
+
+| Split | 라우터 | Fast | Balanced | Premium | 가중 점수 |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Dev | safe-margin | 0.644886 / 1.092453 | 0.684375 / 1.471480 | 0.699716 / 2.517187 | 0.673182 |
+| Dev | risk-calibrated v2 | 0.658523 / 1.153246 | 0.680114 / 1.427576 | 0.705398 / 2.347463 | 0.679063 |
+| Train | safe-margin | 0.637358 / 1.098738 | 0.681818 / 1.397907 | 0.711648 / 2.581280 | 0.672983 |
+| Train | risk-calibrated v2 | 0.650710 / 1.093221 | 0.679688 / 1.349419 | 0.700426 / 2.172743 | 0.674318 |
+
+### 측정 결과: 5,000회 재표본 안전 게이트 — **실패**
+
+전체 보고서는 [`risk-validation-report.v2.json`](risk-validation-report.v2.json)에
+있습니다. 요약(실제 비용 비율):
+
+| Split | 등급 | 기준 p99 | 후보 p99 | 기준 max | 후보 max | 후보 한도 초과 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Dev | Fast | 1.1474 | **1.3632** | 1.1673 | **1.5009** | **614 / 5000** |
+| Dev | Balanced | 1.6919 | 1.6515 | 1.8706 | 1.8040 | 0 / 5000 |
+| Dev | Premium | 3.0118 | 2.7204 | 3.4176 | 3.0356 | 0 / 5000 |
+| Train | Fast | 1.1090 | 1.1048 | 1.1151 | 1.1128 | 0 / 5000 |
+| Train | Balanced | 1.5237 | 1.4044 | 1.6214 | 1.4356 | 0 / 5000 |
+| Train | Premium | 2.8966 | 2.4724 | 3.1491 | 2.6291 | 0 / 5000 |
+
+Train 쪽 실패 항목은 Fast의 과제군 holdout 세 건(기준 대비 `+0.009~0.014`,
+허용 오차 `0.005` 초과)이고, Dev 쪽은 위 Fast 재표본 실패와 Balanced의
+ruletaker holdout 한 건(`1.4074` 대 기준 `1.3945`)입니다. 등급별 holdout
+전체 수치는 보고서 원본을 참고하십시오.
+
+Dev Fast 실패의 원인은 새 정보가 아니라 위 safe-margin 절이 이미 기록한
+바로 그 폭증 문항입니다: 후보의 Fast 선택에 실제 증분이 light 생성의
+`55.8배`인 문항 하나가 포함되어 단독으로 Dev 비율을 약 `0.063` 밀어 올리고
+재량 지출의 `41.4%`를 차지합니다. 이 문항의 예측 증분은 평범해서 프롬프트만
+보는 어떤 guard도 사전에 걸러낼 수 없고, Train에는 대응 문항이 없어
+Train 게이트는 전부 통과합니다. 즉 **후보와 기준의 Fast 꼬리 차이는 예측력
+차이가 아니라 폭증 문항 포함 여부의 운**이며, 고정 게이트는 그런 운에
+의존하는 정책을 정확히 거부합니다.
+
+### 결론(부정적 결과)
+
+- 챔피언 게이트(가중 Dev `>= 0.690000` + 전체 안전 게이트 통과)는 달성하지
+  못했습니다: 측정된 후보는 `0.679063`이고 Fast 게이트가 실패했습니다.
+- oracle 분해가 보여 주듯 남은 격차의 병목은 안전 범위가 아니라 품질 이득
+  예측이며, 현재 특징·자료 규모에서 측정된 순위 상관(약 `0.1`)으로는
+  hash-regex 수준(`0.695369`)을 같은 위험 예산 안에서 재현할 수 없습니다.
+- 따라서 제출 기본값은 safe-margin을 유지하고, 이 후보는 검증 도구·진단
+  보고서와 함께 비채택 기록으로 남깁니다. `risk_calibrated.py`를 직접
+  실행하면 artifact 검증 실패 시 safe-margin으로 결정적으로 대체 실행되며,
+  이는 [`../tests/test_risk_calibrated_router.py`](../tests/test_risk_calibrated_router.py)가
+  검사합니다.

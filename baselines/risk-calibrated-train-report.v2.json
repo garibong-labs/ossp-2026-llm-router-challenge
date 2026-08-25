@@ -1,0 +1,1974 @@
+{
+  "alpha_objectives": {
+    "gain": {
+      "100": -0.08139204545454545,
+      "1000": -0.09914772727272728,
+      "30": -0.08025568181818182,
+      "300": -0.0856534090909091,
+      "3000": -0.09900568181818183
+    },
+    "log_cost": {
+      "100": 0.47082678971783415,
+      "1000": 0.47771978236321155,
+      "30": 0.4683318249705308,
+      "300": 0.46861478187497235,
+      "3000": 0.5369083324708391
+    },
+    "probability": {
+      "100": 0.16543452816741355,
+      "1000": 0.15544908985477504,
+      "30": 0.16864214453890208,
+      "300": 0.1605951635701086,
+      "3000": 0.15380979556782548
+    }
+  },
+  "candidate_comparison": {
+    "A-linear-hash": {
+      "oof_correlation": -0.0017018409762204682,
+      "oof_mse": 0.13315170983587854,
+      "selected_set_gain": {
+        "balanced": 0.05909090909090909,
+        "fast": 0.04005681818181818
+      }
+    },
+    "B-dense-trees": {
+      "oof_correlation": 0.05762709820951293,
+      "oof_mse": 0.12775796007273332,
+      "selected_set_gain": {
+        "balanced": 0.0659090909090909,
+        "fast": 0.030965909090909093
+      }
+    },
+    "C-blend": {
+      "oof_correlation": 0.028758020587141237,
+      "oof_mse": 0.12875452775847632,
+      "selected_set_gain": {
+        "balanced": 0.06065340909090909,
+        "fast": 0.03664772727272727
+      }
+    }
+  },
+  "cost_upper": {
+    "declared_coverage": 0.85,
+    "factors": {
+      "ax31": 1.6033272797301175,
+      "ax31-light": 1.8492947665300616,
+      "axk1-think": 2.2138181135971555
+    },
+    "measured_coverage": {
+      "ax31": 0.8352272727272727,
+      "ax31-light": 0.8784090909090909,
+      "axk1-think": 0.8613636363636363
+    }
+  },
+  "fitted_train_self_check": {
+    "balanced": {
+      "model_counts": {
+        "ax31": 1122,
+        "ax31-light": 638,
+        "axk1-think": 0
+      },
+      "planned_ratio": 1.8998910119306496,
+      "realized_quality": 0.6796875,
+      "realized_ratio": 1.3494191851122286
+    },
+    "fast": {
+      "model_counts": {
+        "ax31": 536,
+        "ax31-light": 1224,
+        "axk1-think": 0
+      },
+      "planned_ratio": 1.2199722133227768,
+      "realized_quality": 0.6507102272727273,
+      "realized_ratio": 1.0932213154766983
+    },
+    "premium": {
+      "model_counts": {
+        "ax31": 1277,
+        "ax31-light": 307,
+        "axk1-think": 176
+      },
+      "planned_ratio": 3.9970539878279583,
+      "realized_quality": 0.7004261363636364,
+      "realized_ratio": 2.1727429931427866
+    }
+  },
+  "policy_id": "ossp-2026-prompt-router-v1",
+  "policy_sha256": "7c892c423da5fa762e7e1a93b9fa071be51e259b65d2b63a5ba434c4342d7a8e",
+  "probability_calibration": {
+    "ax31": {
+      "isotonic": 0.15391714980570587,
+      "method": "platt",
+      "platt": 0.15316584608000108
+    },
+    "axk1-think": {
+      "isotonic": 0.15443631661257756,
+      "method": "platt",
+      "platt": 0.15307746396683738
+    }
+  },
+  "report_type": "ossp-risk-calibrated-training-v2",
+  "target_recalibration": {
+    "balanced": {
+      "fitted_target_ratio": 1.8999991416931152,
+      "oof_target_ratio": 1.8999991416931152
+    },
+    "fast": {
+      "fitted_target_ratio": 1.2199997901916504,
+      "oof_target_ratio": 1.2199997901916504
+    },
+    "premium": {
+      "fitted_target_ratio": 3.999997138977051,
+      "oof_target_ratio": 3.672501564025879
+    }
+  },
+  "tier_plan_tuning": {
+    "balanced": [
+      {
+        "max_step_load": 6.0,
+        "min_gain": 0.004,
+        "min_probability": 0.0,
+        "oof_quality": 0.6498579545454546,
+        "oof_realized_ratio": 1.3373917297571094,
+        "target_ratio": 1.8999991416931152,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 9.0,
+        "min_gain": 0.004,
+        "min_probability": 0.0,
+        "oof_quality": 0.6498579545454546,
+        "oof_realized_ratio": 1.3373917297571094,
+        "target_ratio": 1.8999991416931152,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.004,
+        "min_probability": 0.0,
+        "oof_quality": 0.6498579545454546,
+        "oof_realized_ratio": 1.3373917297571094,
+        "target_ratio": 1.8999991416931152,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 6.0,
+        "min_gain": 0.004,
+        "min_probability": 0.15,
+        "oof_quality": 0.6498579545454546,
+        "oof_realized_ratio": 1.3373917297571094,
+        "target_ratio": 1.8999991416931152,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 9.0,
+        "min_gain": 0.004,
+        "min_probability": 0.15,
+        "oof_quality": 0.6498579545454546,
+        "oof_realized_ratio": 1.3373917297571094,
+        "target_ratio": 1.8999991416931152,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.004,
+        "min_probability": 0.15,
+        "oof_quality": 0.6498579545454546,
+        "oof_realized_ratio": 1.3373917297571094,
+        "target_ratio": 1.8999991416931152,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 6.0,
+        "min_gain": 0.004,
+        "min_probability": 0.3,
+        "oof_quality": 0.5973011363636364,
+        "oof_realized_ratio": 1.0,
+        "target_ratio": 1.8999991416931152,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 9.0,
+        "min_gain": 0.004,
+        "min_probability": 0.3,
+        "oof_quality": 0.5973011363636364,
+        "oof_realized_ratio": 1.0,
+        "target_ratio": 1.8999991416931152,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.004,
+        "min_probability": 0.3,
+        "oof_quality": 0.5973011363636364,
+        "oof_realized_ratio": 1.0,
+        "target_ratio": 1.8999991416931152,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      }
+    ],
+    "fast": [
+      {
+        "max_step_load": 3.0,
+        "min_gain": 0.008,
+        "min_probability": 0.0,
+        "oof_quality": 0.6265625,
+        "oof_realized_ratio": 1.0958911981306834,
+        "target_ratio": 1.2199997901916504,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 4.0,
+        "min_gain": 0.008,
+        "min_probability": 0.0,
+        "oof_quality": 0.6259943181818182,
+        "oof_realized_ratio": 1.096354029028616,
+        "target_ratio": 1.2199997901916504,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 6.0,
+        "min_gain": 0.008,
+        "min_probability": 0.0,
+        "oof_quality": 0.6259943181818182,
+        "oof_realized_ratio": 1.096354029028616,
+        "target_ratio": 1.2199997901916504,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 3.0,
+        "min_gain": 0.008,
+        "min_probability": 0.15,
+        "oof_quality": 0.6265625,
+        "oof_realized_ratio": 1.0958911981306834,
+        "target_ratio": 1.2199997901916504,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 4.0,
+        "min_gain": 0.008,
+        "min_probability": 0.15,
+        "oof_quality": 0.6259943181818182,
+        "oof_realized_ratio": 1.096354029028616,
+        "target_ratio": 1.2199997901916504,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 6.0,
+        "min_gain": 0.008,
+        "min_probability": 0.15,
+        "oof_quality": 0.6259943181818182,
+        "oof_realized_ratio": 1.096354029028616,
+        "target_ratio": 1.2199997901916504,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 3.0,
+        "min_gain": 0.008,
+        "min_probability": 0.3,
+        "oof_quality": 0.5973011363636364,
+        "oof_realized_ratio": 1.0,
+        "target_ratio": 1.2199997901916504,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 4.0,
+        "min_gain": 0.008,
+        "min_probability": 0.3,
+        "oof_quality": 0.5973011363636364,
+        "oof_realized_ratio": 1.0,
+        "target_ratio": 1.2199997901916504,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 6.0,
+        "min_gain": 0.008,
+        "min_probability": 0.3,
+        "oof_quality": 0.5973011363636364,
+        "oof_realized_ratio": 1.0,
+        "target_ratio": 1.2199997901916504,
+        "think_max_step_load": 0.0,
+        "think_min_gain": 1.0,
+        "think_min_probability": 0.0
+      }
+    ],
+    "premium": [
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6626420454545454,
+        "oof_realized_ratio": 1.8886760421516757,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6623579545454545,
+        "oof_realized_ratio": 1.8301698637088368,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6688920454545455,
+        "oof_realized_ratio": 2.5808507766232216,
+        "target_ratio": 3.756838798522949,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6691761363636364,
+        "oof_realized_ratio": 2.5158006184719146,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6754261363636364,
+        "oof_realized_ratio": 2.567729154932491,
+        "target_ratio": 3.666081428527832,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6759943181818182,
+        "oof_realized_ratio": 2.580943329134407,
+        "target_ratio": 3.652462959289551,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6623579545454545,
+        "oof_realized_ratio": 1.840218199987773,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6623579545454545,
+        "oof_realized_ratio": 1.810101752995716,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6677556818181818,
+        "oof_realized_ratio": 2.497425743968992,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6677556818181818,
+        "oof_realized_ratio": 2.4561142952648987,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6754261363636364,
+        "oof_realized_ratio": 2.558229188638583,
+        "target_ratio": 3.6615896224975586,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6759943181818182,
+        "oof_realized_ratio": 2.5804987075457246,
+        "target_ratio": 3.672501564025879,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6617897727272727,
+        "oof_realized_ratio": 1.666688061976437,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6617897727272727,
+        "oof_realized_ratio": 1.6517037186884937,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6666193181818182,
+        "oof_realized_ratio": 2.224991560227091,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6666193181818182,
+        "oof_realized_ratio": 2.203028921686337,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6754261363636364,
+        "oof_realized_ratio": 2.575936755865383,
+        "target_ratio": 3.835848808288574,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6754261363636364,
+        "oof_realized_ratio": 2.5789608206201318,
+        "target_ratio": 3.8609771728515625,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6623579545454545,
+        "oof_realized_ratio": 2.0204252424455933,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6620738636363637,
+        "oof_realized_ratio": 1.9619190640027542,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6671875,
+        "oof_realized_ratio": 2.5779683500961093,
+        "target_ratio": 3.7421646118164062,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6683238636363636,
+        "oof_realized_ratio": 2.579716124622346,
+        "target_ratio": 3.773432731628418,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6725852272727273,
+        "oof_realized_ratio": 2.580956215554408,
+        "target_ratio": 3.656142234802246,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6728693181818182,
+        "oof_realized_ratio": 2.5802475211494107,
+        "target_ratio": 3.6681442260742188,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6620738636363637,
+        "oof_realized_ratio": 1.9719674002816898,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6620738636363637,
+        "oof_realized_ratio": 1.941850953289633,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6677556818181818,
+        "oof_realized_ratio": 2.580488555968268,
+        "target_ratio": 3.7842273712158203,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6674715909090909,
+        "oof_realized_ratio": 2.5730588758251316,
+        "target_ratio": 3.7769317626953125,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6725852272727273,
+        "oof_realized_ratio": 2.579479347696468,
+        "target_ratio": 3.656142234802246,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6728693181818182,
+        "oof_realized_ratio": 2.5802475211494107,
+        "target_ratio": 3.669025421142578,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6615056818181818,
+        "oof_realized_ratio": 1.798437262270354,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6615056818181818,
+        "oof_realized_ratio": 1.7834529189824107,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6663352272727273,
+        "oof_realized_ratio": 2.3567407605210082,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6663352272727273,
+        "oof_realized_ratio": 2.3347781219802544,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6745738636363636,
+        "oof_realized_ratio": 2.581067005966908,
+        "target_ratio": 3.8684072494506836,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.0,
+        "oof_quality": 0.6748579545454545,
+        "oof_realized_ratio": 2.579810606168029,
+        "target_ratio": 3.8537673950195312,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6626420454545454,
+        "oof_realized_ratio": 1.8886760421516757,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6623579545454545,
+        "oof_realized_ratio": 1.8301698637088368,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6688920454545455,
+        "oof_realized_ratio": 2.5808507766232216,
+        "target_ratio": 3.756838798522949,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6691761363636364,
+        "oof_realized_ratio": 2.5158006184719146,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6754261363636364,
+        "oof_realized_ratio": 2.567729154932491,
+        "target_ratio": 3.666081428527832,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6759943181818182,
+        "oof_realized_ratio": 2.580943329134407,
+        "target_ratio": 3.652462959289551,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6623579545454545,
+        "oof_realized_ratio": 1.840218199987773,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6623579545454545,
+        "oof_realized_ratio": 1.810101752995716,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6677556818181818,
+        "oof_realized_ratio": 2.497425743968992,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6677556818181818,
+        "oof_realized_ratio": 2.4561142952648987,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6754261363636364,
+        "oof_realized_ratio": 2.558229188638583,
+        "target_ratio": 3.6615896224975586,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6759943181818182,
+        "oof_realized_ratio": 2.5804987075457246,
+        "target_ratio": 3.672501564025879,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6617897727272727,
+        "oof_realized_ratio": 1.666688061976437,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6617897727272727,
+        "oof_realized_ratio": 1.6517037186884937,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6666193181818182,
+        "oof_realized_ratio": 2.224991560227091,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6666193181818182,
+        "oof_realized_ratio": 2.203028921686337,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6754261363636364,
+        "oof_realized_ratio": 2.575936755865383,
+        "target_ratio": 3.835848808288574,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6754261363636364,
+        "oof_realized_ratio": 2.5789608206201318,
+        "target_ratio": 3.8609771728515625,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6623579545454545,
+        "oof_realized_ratio": 2.0204252424455933,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6620738636363637,
+        "oof_realized_ratio": 1.9619190640027542,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6671875,
+        "oof_realized_ratio": 2.5779683500961093,
+        "target_ratio": 3.7421646118164062,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6683238636363636,
+        "oof_realized_ratio": 2.579716124622346,
+        "target_ratio": 3.773432731628418,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6725852272727273,
+        "oof_realized_ratio": 2.580956215554408,
+        "target_ratio": 3.656142234802246,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6728693181818182,
+        "oof_realized_ratio": 2.5802475211494107,
+        "target_ratio": 3.6681442260742188,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6620738636363637,
+        "oof_realized_ratio": 1.9719674002816898,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6620738636363637,
+        "oof_realized_ratio": 1.941850953289633,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6677556818181818,
+        "oof_realized_ratio": 2.580488555968268,
+        "target_ratio": 3.7842273712158203,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6674715909090909,
+        "oof_realized_ratio": 2.5730588758251316,
+        "target_ratio": 3.7769317626953125,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6725852272727273,
+        "oof_realized_ratio": 2.579479347696468,
+        "target_ratio": 3.656142234802246,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6728693181818182,
+        "oof_realized_ratio": 2.5802475211494107,
+        "target_ratio": 3.669025421142578,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6615056818181818,
+        "oof_realized_ratio": 1.798437262270354,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6615056818181818,
+        "oof_realized_ratio": 1.7834529189824107,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6663352272727273,
+        "oof_realized_ratio": 2.3567407605210082,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6663352272727273,
+        "oof_realized_ratio": 2.3347781219802544,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6745738636363636,
+        "oof_realized_ratio": 2.581067005966908,
+        "target_ratio": 3.8684072494506836,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.0,
+        "min_probability": 0.1,
+        "oof_quality": 0.6748579545454545,
+        "oof_realized_ratio": 2.579810606168029,
+        "target_ratio": 3.8537673950195312,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6617897727272727,
+        "oof_realized_ratio": 1.8853269008550426,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6615056818181818,
+        "oof_realized_ratio": 1.826820722412203,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6680397727272728,
+        "oof_realized_ratio": 2.5798798610286218,
+        "target_ratio": 3.7561235427856445,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6683238636363636,
+        "oof_realized_ratio": 2.512451477175281,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6745738636363636,
+        "oof_realized_ratio": 2.556422267824886,
+        "target_ratio": 3.654110908508301,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6751420454545455,
+        "oof_realized_ratio": 2.5806143409424642,
+        "target_ratio": 3.674412727355957,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6615056818181818,
+        "oof_realized_ratio": 1.8368690586911391,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6615056818181818,
+        "oof_realized_ratio": 1.8067526116990824,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6669034090909091,
+        "oof_realized_ratio": 2.494076602672359,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6669034090909091,
+        "oof_realized_ratio": 2.452765153968265,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6745738636363636,
+        "oof_realized_ratio": 2.5548800473419493,
+        "target_ratio": 3.652894973754883,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6751420454545455,
+        "oof_realized_ratio": 2.5806143409424642,
+        "target_ratio": 3.6756744384765625,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6609375,
+        "oof_realized_ratio": 1.663338920679803,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6609375,
+        "oof_realized_ratio": 1.64835457739186,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6657670454545455,
+        "oof_realized_ratio": 2.2216424189304576,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6657670454545455,
+        "oof_realized_ratio": 2.1996797803897032,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6745738636363636,
+        "oof_realized_ratio": 2.580906794869143,
+        "target_ratio": 3.8468637466430664,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6745738636363636,
+        "oof_realized_ratio": 2.575611679323498,
+        "target_ratio": 3.8522825241088867,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6615056818181818,
+        "oof_realized_ratio": 2.0170761011489593,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6612215909090909,
+        "oof_realized_ratio": 1.9585699227061202,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6669034090909091,
+        "oof_realized_ratio": 2.5811503545067254,
+        "target_ratio": 3.753602981567383,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6674715909090909,
+        "oof_realized_ratio": 2.5809369698409514,
+        "target_ratio": 3.7711181640625,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6717329545454546,
+        "oof_realized_ratio": 2.5795844230667755,
+        "target_ratio": 3.650517463684082,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6720170454545454,
+        "oof_realized_ratio": 2.5804025861405666,
+        "target_ratio": 3.6717262268066406,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6612215909090909,
+        "oof_realized_ratio": 1.9686182589850563,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6612215909090909,
+        "oof_realized_ratio": 1.9385018119929995,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6669034090909091,
+        "oof_realized_ratio": 2.5803123748080212,
+        "target_ratio": 3.787491798400879,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6666193181818182,
+        "oof_realized_ratio": 2.5697097345284976,
+        "target_ratio": 3.7682371139526367,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6717329545454546,
+        "oof_realized_ratio": 2.580711499914108,
+        "target_ratio": 3.655670166015625,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6720170454545454,
+        "oof_realized_ratio": 2.5774614528999207,
+        "target_ratio": 3.6717262268066406,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6606534090909091,
+        "oof_realized_ratio": 1.7950881209737204,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6606534090909091,
+        "oof_realized_ratio": 1.7801037776857767,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6654829545454546,
+        "oof_realized_ratio": 2.3533916192243742,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6654829545454546,
+        "oof_realized_ratio": 2.3314289806836204,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6737215909090909,
+        "oof_realized_ratio": 2.578772576514572,
+        "target_ratio": 3.860319137573242,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.0,
+        "oof_quality": 0.6740056818181818,
+        "oof_realized_ratio": 2.579421315685909,
+        "target_ratio": 3.852757453918457,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6617897727272727,
+        "oof_realized_ratio": 1.8853269008550426,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6615056818181818,
+        "oof_realized_ratio": 1.826820722412203,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6680397727272728,
+        "oof_realized_ratio": 2.5798798610286218,
+        "target_ratio": 3.7561235427856445,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6683238636363636,
+        "oof_realized_ratio": 2.512451477175281,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6745738636363636,
+        "oof_realized_ratio": 2.556422267824886,
+        "target_ratio": 3.654110908508301,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6751420454545455,
+        "oof_realized_ratio": 2.5806143409424642,
+        "target_ratio": 3.674412727355957,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6615056818181818,
+        "oof_realized_ratio": 1.8368690586911391,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6615056818181818,
+        "oof_realized_ratio": 1.8067526116990824,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6669034090909091,
+        "oof_realized_ratio": 2.494076602672359,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6669034090909091,
+        "oof_realized_ratio": 2.452765153968265,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6745738636363636,
+        "oof_realized_ratio": 2.5548800473419493,
+        "target_ratio": 3.652894973754883,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6751420454545455,
+        "oof_realized_ratio": 2.5806143409424642,
+        "target_ratio": 3.6756744384765625,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6609375,
+        "oof_realized_ratio": 1.663338920679803,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6609375,
+        "oof_realized_ratio": 1.64835457739186,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6657670454545455,
+        "oof_realized_ratio": 2.2216424189304576,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6657670454545455,
+        "oof_realized_ratio": 2.1996797803897032,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6745738636363636,
+        "oof_realized_ratio": 2.580906794869143,
+        "target_ratio": 3.8468637466430664,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 12.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6745738636363636,
+        "oof_realized_ratio": 2.575611679323498,
+        "target_ratio": 3.8522825241088867,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6615056818181818,
+        "oof_realized_ratio": 2.0170761011489593,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6612215909090909,
+        "oof_realized_ratio": 1.9585699227061202,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6669034090909091,
+        "oof_realized_ratio": 2.5811503545067254,
+        "target_ratio": 3.753602981567383,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6674715909090909,
+        "oof_realized_ratio": 2.5809369698409514,
+        "target_ratio": 3.7711181640625,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6717329545454546,
+        "oof_realized_ratio": 2.5795844230667755,
+        "target_ratio": 3.650517463684082,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6720170454545454,
+        "oof_realized_ratio": 2.5804025861405666,
+        "target_ratio": 3.6717262268066406,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.02,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6612215909090909,
+        "oof_realized_ratio": 1.9686182589850563,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6612215909090909,
+        "oof_realized_ratio": 1.9385018119929995,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6669034090909091,
+        "oof_realized_ratio": 2.5803123748080212,
+        "target_ratio": 3.787491798400879,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6666193181818182,
+        "oof_realized_ratio": 2.5697097345284976,
+        "target_ratio": 3.7682371139526367,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6717329545454546,
+        "oof_realized_ratio": 2.580711499914108,
+        "target_ratio": 3.655670166015625,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6720170454545454,
+        "oof_realized_ratio": 2.5774614528999207,
+        "target_ratio": 3.6717262268066406,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.05,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6606534090909091,
+        "oof_realized_ratio": 1.7950881209737204,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6606534090909091,
+        "oof_realized_ratio": 1.7801037776857767,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 10.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6654829545454546,
+        "oof_realized_ratio": 2.3533916192243742,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6654829545454546,
+        "oof_realized_ratio": 2.3314289806836204,
+        "target_ratio": 3.999997138977051,
+        "think_max_step_load": 16.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6737215909090909,
+        "oof_realized_ratio": 2.578772576514572,
+        "target_ratio": 3.860319137573242,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.0
+      },
+      {
+        "max_step_load": 18.0,
+        "min_gain": 0.002,
+        "min_probability": 0.1,
+        "oof_quality": 0.6740056818181818,
+        "oof_realized_ratio": 2.579421315685909,
+        "target_ratio": 3.852757453918457,
+        "think_max_step_load": 22.0,
+        "think_min_gain": 0.1,
+        "think_min_probability": 0.1
+      }
+    ]
+  },
+  "tier_plans": {
+    "balanced": {
+      "allow_think": false,
+      "max_step_load": 6.0,
+      "max_step_ratio": 12.0,
+      "min_gain": 0.004,
+      "min_probability": 0.0,
+      "target_ratio": 1.8999991416931152,
+      "think_budget_share": 0.65,
+      "think_max_step_load": 0.0,
+      "think_max_step_ratio": 200.0,
+      "think_min_gain": 1.0,
+      "think_min_probability": 0.0
+    },
+    "fast": {
+      "allow_think": false,
+      "max_step_load": 3.0,
+      "max_step_ratio": 8.0,
+      "min_gain": 0.008,
+      "min_probability": 0.0,
+      "target_ratio": 1.2199997901916504,
+      "think_budget_share": 0.65,
+      "think_max_step_load": 0.0,
+      "think_max_step_ratio": 200.0,
+      "think_min_gain": 1.0,
+      "think_min_probability": 0.0
+    },
+    "premium": {
+      "allow_think": true,
+      "max_step_load": 12.0,
+      "max_step_ratio": 60.0,
+      "min_gain": 0.0,
+      "min_probability": 0.0,
+      "target_ratio": 3.999997138977051,
+      "think_budget_share": 0.65,
+      "think_max_step_load": 22.0,
+      "think_max_step_ratio": 200.0,
+      "think_min_gain": 0.05,
+      "think_min_probability": 0.1
+    }
+  },
+  "training_summary": {
+    "alpha_cost": 30.0,
+    "alpha_gain": 1000.0,
+    "alpha_probability": 3000.0,
+    "chosen_candidate": "A-linear-hash",
+    "declared_coverage": 0.85,
+    "folds": 5,
+    "hash_bins": 256,
+    "input_sha256": "029a0fb1f70432a05b837a1291d86d42278bb202d808a6a12911b0dae8628ac4",
+    "num_episodes": 1760,
+    "optimizer": "numpy-ridge-oof-riskcal-v2",
+    "outcomes_sha256": "97a5a787086b3e1d9fa9c7945518543540e527ea248df4a4760de581b612a4ba",
+    "spend_goals": {
+      "balanced": 1.397907,
+      "fast": 1.098738,
+      "premium": 2.58128
+    }
+  }
+}
