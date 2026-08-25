@@ -16,6 +16,12 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     TMPDIR=/tmp
 
 COPY --chown=65532:65532 src container/entrypoint.py /opt/router/
+# 제출 라우터(safe-margin)와 그 실행에 필요한 공개 artifact만 함께 넣습니다.
+COPY --chown=65532:65532 \
+    baselines/hash_regex.py \
+    baselines/safe_margin.py \
+    baselines/hash-regex-public.v1.json \
+    /opt/router/baselines/
 
 WORKDIR /opt/router
 

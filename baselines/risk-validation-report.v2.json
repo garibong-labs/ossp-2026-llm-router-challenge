@@ -1,0 +1,1877 @@
+{
+  "gate_passed": true,
+  "report_type": "router-risk-validation-report",
+  "resamples": 5000,
+  "seed": 20260825,
+  "splits": {
+    "dev": {
+      "candidate": {
+        "artifact_path": "baselines/risk-calibrated-public.v2.json",
+        "artifact_sha256": "f99edabb01d5743c0a164366004eec2f8a6538a09137a45b46eab2197f92e9d8",
+        "policy": "risk-calibrated-v2",
+        "tiers": {
+          "balanced": {
+            "bootstrap": {
+              "budget_multiplier": 2.0,
+              "cap_breach_rate": 0.0,
+              "cap_breaches": 0,
+              "cost_ratio": {
+                "max": 1.627169,
+                "mean": 1.258497,
+                "min": 1.054631,
+                "p50": 1.249024,
+                "p95": 1.390816,
+                "p99": 1.463554
+              },
+              "quality_score": {
+                "max": 0.715341,
+                "mean": 0.665361,
+                "min": 0.602273,
+                "p50": 0.665625,
+                "p95": 0.689773,
+                "p99": 0.700568
+              },
+              "resamples": 5000,
+              "worst_resample": {
+                "cost_ratio": 1.627169,
+                "quality_score": 0.67642,
+                "resample": 1760
+              }
+            },
+            "family_holdouts": {
+              "aime": {
+                "budget_passed": true,
+                "cost_ratio": 1.286151,
+                "evaluated": true,
+                "held_out": 12,
+                "quality_score": 0.673675,
+                "single_episode_concentration": 0.256645
+              },
+              "babilong": {
+                "budget_passed": true,
+                "cost_ratio": 1.171236,
+                "evaluated": true,
+                "held_out": 80,
+                "quality_score": 0.666562,
+                "single_episode_concentration": 0.051913
+              },
+              "belebele-ko": {
+                "budget_passed": true,
+                "cost_ratio": 1.268674,
+                "evaluated": true,
+                "held_out": 161,
+                "quality_score": 0.620654,
+                "single_episode_concentration": 0.241485
+              },
+              "cruxeval": {
+                "budget_passed": true,
+                "cost_ratio": 1.249755,
+                "evaluated": true,
+                "held_out": 119,
+                "quality_score": 0.684625,
+                "single_episode_concentration": 0.260294
+              },
+              "deepmind-mathematics": {
+                "budget_passed": true,
+                "cost_ratio": 1.202027,
+                "evaluated": true,
+                "held_out": 153,
+                "quality_score": 0.701857,
+                "single_episode_concentration": 0.047419
+              },
+              "gsm8k": {
+                "budget_passed": true,
+                "cost_ratio": 1.260043,
+                "evaluated": true,
+                "held_out": 117,
+                "quality_score": 0.629423,
+                "single_episode_concentration": 0.282734
+              },
+              "hrmcr": {
+                "budget_passed": true,
+                "cost_ratio": 1.258526,
+                "evaluated": true,
+                "held_out": 20,
+                "quality_score": 0.680233,
+                "single_episode_concentration": 0.248666
+              },
+              "ruletaker": {
+                "budget_passed": true,
+                "cost_ratio": 1.259762,
+                "evaluated": true,
+                "held_out": 135,
+                "quality_score": 0.65906,
+                "single_episode_concentration": 0.267699
+              },
+              "truthfulqa": {
+                "budget_passed": true,
+                "cost_ratio": 1.261807,
+                "evaluated": true,
+                "held_out": 83,
+                "quality_score": 0.653701,
+                "single_episode_concentration": 0.252801
+              }
+            },
+            "whole_split": {
+              "budget_multiplier": 2.0,
+              "budget_passed": true,
+              "cost_ratio": 1.257724,
+              "model_counts": {
+                "ax31": 387,
+                "ax31-light": 493,
+                "axk1-think": 0
+              },
+              "quality_score": 0.663636,
+              "single_episode_concentration": 0.246173
+            }
+          },
+          "fast": {
+            "bootstrap": {
+              "budget_multiplier": 1.25,
+              "cap_breach_rate": 0.0,
+              "cap_breaches": 0,
+              "cost_ratio": {
+                "max": 1.056668,
+                "mean": 1.036845,
+                "min": 1.023863,
+                "p50": 1.036761,
+                "p95": 1.044009,
+                "p99": 1.047722
+              },
+              "quality_score": {
+                "max": 0.686364,
+                "mean": 0.632067,
+                "min": 0.575852,
+                "p50": 0.632102,
+                "p95": 0.657386,
+                "p99": 0.667614
+              },
+              "resamples": 5000,
+              "worst_resample": {
+                "cost_ratio": 1.056668,
+                "quality_score": 0.625,
+                "resample": 2579
+              }
+            },
+            "family_holdouts": {
+              "aime": {
+                "budget_passed": true,
+                "cost_ratio": 1.040878,
+                "evaluated": true,
+                "held_out": 12,
+                "quality_score": 0.639689,
+                "single_episode_concentration": 0.060013
+              },
+              "babilong": {
+                "budget_passed": true,
+                "cost_ratio": 1.027382,
+                "evaluated": true,
+                "held_out": 80,
+                "quality_score": 0.636875,
+                "single_episode_concentration": 0.055435
+              },
+              "belebele-ko": {
+                "budget_passed": true,
+                "cost_ratio": 1.047802,
+                "evaluated": true,
+                "held_out": 161,
+                "quality_score": 0.595271,
+                "single_episode_concentration": 0.055611
+              },
+              "cruxeval": {
+                "budget_passed": true,
+                "cost_ratio": 1.034522,
+                "evaluated": true,
+                "held_out": 119,
+                "quality_score": 0.655716,
+                "single_episode_concentration": 0.062906
+              },
+              "deepmind-mathematics": {
+                "budget_passed": true,
+                "cost_ratio": 1.039791,
+                "evaluated": true,
+                "held_out": 153,
+                "quality_score": 0.685007,
+                "single_episode_concentration": 0.044679
+              },
+              "gsm8k": {
+                "budget_passed": true,
+                "cost_ratio": 1.034771,
+                "evaluated": true,
+                "held_out": 117,
+                "quality_score": 0.587484,
+                "single_episode_concentration": 0.070634
+              },
+              "hrmcr": {
+                "budget_passed": true,
+                "cost_ratio": 1.036301,
+                "evaluated": true,
+                "held_out": 20,
+                "quality_score": 0.64593,
+                "single_episode_concentration": 0.059157
+              },
+              "ruletaker": {
+                "budget_passed": true,
+                "cost_ratio": 1.035736,
+                "evaluated": true,
+                "held_out": 135,
+                "quality_score": 0.615436,
+                "single_episode_concentration": 0.065001
+              },
+              "truthfulqa": {
+                "budget_passed": true,
+                "cost_ratio": 1.035273,
+                "evaluated": true,
+                "held_out": 83,
+                "quality_score": 0.622334,
+                "single_episode_concentration": 0.062679
+              }
+            },
+            "whole_split": {
+              "budget_multiplier": 1.25,
+              "budget_passed": true,
+              "cost_ratio": 1.037057,
+              "model_counts": {
+                "ax31": 133,
+                "ax31-light": 747,
+                "axk1-think": 0
+              },
+              "quality_score": 0.63125,
+              "single_episode_concentration": 0.057191
+            }
+          },
+          "premium": {
+            "bootstrap": {
+              "budget_multiplier": 4.0,
+              "cap_breach_rate": 0.0,
+              "cap_breaches": 0,
+              "cost_ratio": {
+                "max": 2.137265,
+                "mean": 1.682638,
+                "min": 1.351341,
+                "p50": 1.677192,
+                "p95": 1.850393,
+                "p99": 1.94081
+              },
+              "quality_score": {
+                "max": 0.738636,
+                "mean": 0.689675,
+                "min": 0.633523,
+                "p50": 0.689773,
+                "p95": 0.713068,
+                "p99": 0.723295
+              },
+              "resamples": 5000,
+              "worst_resample": {
+                "cost_ratio": 2.137265,
+                "quality_score": 0.70767,
+                "resample": 1760
+              }
+            },
+            "family_holdouts": {
+              "aime": {
+                "budget_passed": true,
+                "cost_ratio": 1.777814,
+                "evaluated": true,
+                "held_out": 12,
+                "quality_score": 0.698733,
+                "single_episode_concentration": 0.094418
+              },
+              "babilong": {
+                "budget_passed": true,
+                "cost_ratio": 1.714138,
+                "evaluated": true,
+                "held_out": 80,
+                "quality_score": 0.695312,
+                "single_episode_concentration": 0.152875
+              },
+              "belebele-ko": {
+                "budget_passed": true,
+                "cost_ratio": 1.671278,
+                "evaluated": true,
+                "held_out": 161,
+                "quality_score": 0.655076,
+                "single_episode_concentration": 0.096652
+              },
+              "cruxeval": {
+                "budget_passed": true,
+                "cost_ratio": 1.652263,
+                "evaluated": true,
+                "held_out": 119,
+                "quality_score": 0.71682,
+                "single_episode_concentration": 0.099668
+              },
+              "deepmind-mathematics": {
+                "budget_passed": true,
+                "cost_ratio": 1.598938,
+                "evaluated": true,
+                "held_out": 153,
+                "quality_score": 0.729023,
+                "single_episode_concentration": 0.018868
+              },
+              "gsm8k": {
+                "budget_passed": true,
+                "cost_ratio": 1.676073,
+                "evaluated": true,
+                "held_out": 117,
+                "quality_score": 0.653997,
+                "single_episode_concentration": 0.10875
+              },
+              "hrmcr": {
+                "budget_passed": true,
+                "cost_ratio": 1.67192,
+                "evaluated": true,
+                "held_out": 20,
+                "quality_score": 0.702907,
+                "single_episode_concentration": 0.095676
+              },
+              "ruletaker": {
+                "budget_passed": true,
+                "cost_ratio": 1.639811,
+                "evaluated": true,
+                "held_out": 135,
+                "quality_score": 0.680537,
+                "single_episode_concentration": 0.108685
+              },
+              "truthfulqa": {
+                "budget_passed": true,
+                "cost_ratio": 1.689683,
+                "evaluated": true,
+                "held_out": 83,
+                "quality_score": 0.674404,
+                "single_episode_concentration": 0.095964
+              }
+            },
+            "whole_split": {
+              "budget_multiplier": 4.0,
+              "budget_passed": true,
+              "cost_ratio": 1.675448,
+              "model_counts": {
+                "ax31": 758,
+                "ax31-light": 104,
+                "axk1-think": 18
+              },
+              "quality_score": 0.688636,
+              "single_episode_concentration": 0.09393
+            }
+          }
+        }
+      },
+      "evidence_scope": "공개 split 프롬프트 구성을 재표본한 근거이며, 비공개 평가셋의 예산 통과를 보장하지 않습니다.",
+      "family_counts": {
+        "aime": 12,
+        "babilong": 80,
+        "belebele-ko": 161,
+        "cruxeval": 119,
+        "deepmind-mathematics": 153,
+        "gsm8k": 117,
+        "hrmcr": 20,
+        "ruletaker": 135,
+        "truthfulqa": 83
+      },
+      "gate": {
+        "checks": [
+          {
+            "check": "fast.bootstrap.breaches",
+            "detail": "candidate breaches=0",
+            "passed": true
+          },
+          {
+            "check": "fast.bootstrap.p99",
+            "detail": "candidate 1.047722 vs reference 1.147408 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.bootstrap.max",
+            "detail": "candidate 1.056668 vs reference 1.167295 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.whole_split.budget",
+            "detail": "ratio 1.037057",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.aime",
+            "detail": "candidate 1.040878 vs reference 1.094966 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.babilong",
+            "detail": "candidate 1.027382 vs reference 1.064077 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.belebele-ko",
+            "detail": "candidate 1.047802 vs reference 1.087165 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.cruxeval",
+            "detail": "candidate 1.034522 vs reference 1.088690 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.deepmind-mathematics",
+            "detail": "candidate 1.039791 vs reference 1.101015 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.gsm8k",
+            "detail": "candidate 1.034771 vs reference 1.088469 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.hrmcr",
+            "detail": "candidate 1.036301 vs reference 1.092352 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.ruletaker",
+            "detail": "candidate 1.035736 vs reference 1.090969 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.truthfulqa",
+            "detail": "candidate 1.035273 vs reference 1.096392 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.bootstrap.breaches",
+            "detail": "candidate breaches=0",
+            "passed": true
+          },
+          {
+            "check": "balanced.bootstrap.p99",
+            "detail": "candidate 1.463554 vs reference 1.691907 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.bootstrap.max",
+            "detail": "candidate 1.627169 vs reference 1.870630 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.whole_split.budget",
+            "detail": "ratio 1.257724",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.aime",
+            "detail": "candidate 1.286151 vs reference 1.517880 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.babilong",
+            "detail": "candidate 1.171236 vs reference 1.486000 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.belebele-ko",
+            "detail": "candidate 1.268674 vs reference 1.473147 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.cruxeval",
+            "detail": "candidate 1.249755 vs reference 1.458534 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.deepmind-mathematics",
+            "detail": "candidate 1.202027 vs reference 1.382477 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.gsm8k",
+            "detail": "candidate 1.260043 vs reference 1.467548 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.hrmcr",
+            "detail": "candidate 1.258526 vs reference 1.467717 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.ruletaker",
+            "detail": "candidate 1.259762 vs reference 1.394506 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.truthfulqa",
+            "detail": "candidate 1.261807 vs reference 1.479740 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.bootstrap.breaches",
+            "detail": "candidate breaches=0",
+            "passed": true
+          },
+          {
+            "check": "premium.bootstrap.p99",
+            "detail": "candidate 1.940810 vs reference 3.011842 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.bootstrap.max",
+            "detail": "candidate 2.137265 vs reference 3.417578 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.whole_split.budget",
+            "detail": "ratio 1.675448",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.aime",
+            "detail": "candidate 1.777814 vs reference 2.702180 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.babilong",
+            "detail": "candidate 1.714138 vs reference 2.330298 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.belebele-ko",
+            "detail": "candidate 1.671278 vs reference 2.548842 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.cruxeval",
+            "detail": "candidate 1.652263 vs reference 2.548297 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.deepmind-mathematics",
+            "detail": "candidate 1.598938 vs reference 2.330883 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.gsm8k",
+            "detail": "candidate 1.676073 vs reference 2.456528 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.hrmcr",
+            "detail": "candidate 1.671920 vs reference 2.559533 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.ruletaker",
+            "detail": "candidate 1.639811 vs reference 2.537024 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.truthfulqa",
+            "detail": "candidate 1.689683 vs reference 2.557390 (+0.005)",
+            "passed": true
+          }
+        ],
+        "failed_checks": [],
+        "passed": true,
+        "tolerance": 0.005
+      },
+      "input_path": "data/materialized/dev/inputs.json",
+      "input_sha256": "5920f9ea9e3da147aa546659054feb08afb7e11a0e4db6967b293ff79b759abc",
+      "num_episodes": 880,
+      "outcomes_path": "data/dev/outcomes.json",
+      "outcomes_sha256": "acb7c5ed522c4e1b65e9ab14b3fe9458fcba32eb3d9de8d3f53e24b8904d2e66",
+      "policy_id": "ossp-2026-prompt-router-v1",
+      "quantile_method": "nearest-rank",
+      "reference": {
+        "artifact_path": "baselines/hash-regex-public.v1.json",
+        "artifact_sha256": "c5f0545f20b902143ccb78ad174ccd5408f4c28d0898943e82e7951b6a8b9871",
+        "policy": "safe-margin",
+        "tiers": {
+          "balanced": {
+            "bootstrap": {
+              "budget_multiplier": 2.0,
+              "cap_breach_rate": 0.0,
+              "cap_breaches": 0,
+              "cost_ratio": {
+                "max": 1.87063,
+                "mean": 1.470109,
+                "min": 1.252589,
+                "p50": 1.461579,
+                "p95": 1.612717,
+                "p99": 1.691907
+              },
+              "quality_score": {
+                "max": 0.73125,
+                "mean": 0.683185,
+                "min": 0.62358,
+                "p50": 0.683239,
+                "p95": 0.707386,
+                "p99": 0.716477
+              },
+              "resamples": 5000,
+              "worst_resample": {
+                "cost_ratio": 1.87063,
+                "quality_score": 0.697443,
+                "resample": 1760
+              }
+            },
+            "family_holdouts": {
+              "aime": {
+                "budget_passed": true,
+                "cost_ratio": 1.51788,
+                "evaluated": true,
+                "held_out": 12,
+                "quality_score": 0.692396,
+                "single_episode_concentration": 0.141808
+              },
+              "babilong": {
+                "budget_passed": true,
+                "cost_ratio": 1.486,
+                "evaluated": true,
+                "held_out": 80,
+                "quality_score": 0.683438,
+                "single_episode_concentration": 0.224637
+              },
+              "belebele-ko": {
+                "budget_passed": true,
+                "cost_ratio": 1.473147,
+                "evaluated": true,
+                "held_out": 161,
+                "quality_score": 0.642211,
+                "single_episode_concentration": 0.137126
+              },
+              "cruxeval": {
+                "budget_passed": true,
+                "cost_ratio": 1.458534,
+                "evaluated": true,
+                "held_out": 119,
+                "quality_score": 0.707293,
+                "single_episode_concentration": 0.141777
+              },
+              "deepmind-mathematics": {
+                "budget_passed": true,
+                "cost_ratio": 1.382477,
+                "evaluated": true,
+                "held_out": 153,
+                "quality_score": 0.725241,
+                "single_episode_concentration": 0.025047
+              },
+              "gsm8k": {
+                "budget_passed": true,
+                "cost_ratio": 1.467548,
+                "evaluated": true,
+                "held_out": 117,
+                "quality_score": 0.647772,
+                "single_episode_concentration": 0.157252
+              },
+              "hrmcr": {
+                "budget_passed": true,
+                "cost_ratio": 1.467717,
+                "evaluated": true,
+                "held_out": 20,
+                "quality_score": 0.698547,
+                "single_episode_concentration": 0.137448
+              },
+              "ruletaker": {
+                "budget_passed": true,
+                "cost_ratio": 1.394506,
+                "evaluated": true,
+                "held_out": 135,
+                "quality_score": 0.668121,
+                "single_episode_concentration": 0.176266
+              },
+              "truthfulqa": {
+                "budget_passed": true,
+                "cost_ratio": 1.47974,
+                "evaluated": true,
+                "held_out": 83,
+                "quality_score": 0.673463,
+                "single_episode_concentration": 0.13796
+              }
+            },
+            "whole_split": {
+              "budget_multiplier": 2.0,
+              "budget_passed": true,
+              "cost_ratio": 1.47148,
+              "model_counts": {
+                "ax31": 547,
+                "ax31-light": 333,
+                "axk1-think": 0
+              },
+              "quality_score": 0.684375,
+              "single_episode_concentration": 0.134565
+            }
+          },
+          "fast": {
+            "bootstrap": {
+              "budget_multiplier": 1.25,
+              "cap_breach_rate": 0.0,
+              "cap_breaches": 0,
+              "cost_ratio": {
+                "max": 1.167295,
+                "mean": 1.09304,
+                "min": 0.951873,
+                "p50": 1.094824,
+                "p95": 1.134683,
+                "p99": 1.147408
+              },
+              "quality_score": {
+                "max": 0.697727,
+                "mean": 0.644777,
+                "min": 0.589205,
+                "p50": 0.644602,
+                "p95": 0.669602,
+                "p99": 0.680114
+              },
+              "resamples": 5000,
+              "worst_resample": {
+                "cost_ratio": 1.167295,
+                "quality_score": 0.659091,
+                "resample": 3973
+              }
+            },
+            "family_holdouts": {
+              "aime": {
+                "budget_passed": true,
+                "cost_ratio": 1.094966,
+                "evaluated": true,
+                "held_out": 12,
+                "quality_score": 0.652362,
+                "single_episode_concentration": 0.03212
+              },
+              "babilong": {
+                "budget_passed": true,
+                "cost_ratio": 1.064077,
+                "evaluated": true,
+                "held_out": 80,
+                "quality_score": 0.652813,
+                "single_episode_concentration": 0.069809
+              },
+              "belebele-ko": {
+                "budget_passed": true,
+                "cost_ratio": 1.087165,
+                "evaluated": true,
+                "held_out": 161,
+                "quality_score": 0.600834,
+                "single_episode_concentration": 0.030916
+              },
+              "cruxeval": {
+                "budget_passed": true,
+                "cost_ratio": 1.08869,
+                "evaluated": true,
+                "held_out": 119,
+                "quality_score": 0.662943,
+                "single_episode_concentration": 0.104533
+              },
+              "deepmind-mathematics": {
+                "budget_passed": true,
+                "cost_ratio": 1.101015,
+                "evaluated": true,
+                "held_out": 153,
+                "quality_score": 0.689477,
+                "single_episode_concentration": 0.029632
+              },
+              "gsm8k": {
+                "budget_passed": true,
+                "cost_ratio": 1.088469,
+                "evaluated": true,
+                "held_out": 117,
+                "quality_score": 0.605177,
+                "single_episode_concentration": 0.118517
+              },
+              "hrmcr": {
+                "budget_passed": true,
+                "cost_ratio": 1.092352,
+                "evaluated": true,
+                "held_out": 20,
+                "quality_score": 0.659884,
+                "single_episode_concentration": 0.099272
+              },
+              "ruletaker": {
+                "budget_passed": true,
+                "cost_ratio": 1.090969,
+                "evaluated": true,
+                "held_out": 135,
+                "quality_score": 0.634899,
+                "single_episode_concentration": 0.109013
+              },
+              "truthfulqa": {
+                "budget_passed": true,
+                "cost_ratio": 1.096392,
+                "evaluated": true,
+                "held_out": 83,
+                "quality_score": 0.634253,
+                "single_episode_concentration": 0.097919
+              }
+            },
+            "whole_split": {
+              "budget_multiplier": 1.25,
+              "budget_passed": true,
+              "cost_ratio": 1.092453,
+              "model_counts": {
+                "ax31": 190,
+                "ax31-light": 690,
+                "axk1-think": 0
+              },
+              "quality_score": 0.644886,
+              "single_episode_concentration": 0.097865
+            }
+          },
+          "premium": {
+            "bootstrap": {
+              "budget_multiplier": 4.0,
+              "cap_breach_rate": 0.0,
+              "cap_breaches": 0,
+              "cost_ratio": {
+                "max": 3.417578,
+                "mean": 2.531962,
+                "min": 1.942009,
+                "p50": 2.5233,
+                "p95": 2.86356,
+                "p99": 3.011842
+              },
+              "quality_score": {
+                "max": 0.746591,
+                "mean": 0.699662,
+                "min": 0.642898,
+                "p50": 0.699716,
+                "p95": 0.722727,
+                "p99": 0.732955
+              },
+              "resamples": 5000,
+              "worst_resample": {
+                "cost_ratio": 3.417578,
+                "quality_score": 0.665341,
+                "resample": 4922
+              }
+            },
+            "family_holdouts": {
+              "aime": {
+                "budget_passed": true,
+                "cost_ratio": 2.70218,
+                "evaluated": true,
+                "held_out": 12,
+                "quality_score": 0.709101,
+                "single_episode_concentration": 0.066783
+              },
+              "babilong": {
+                "budget_passed": true,
+                "cost_ratio": 2.330298,
+                "evaluated": true,
+                "held_out": 80,
+                "quality_score": 0.708438,
+                "single_episode_concentration": 0.082067
+              },
+              "belebele-ko": {
+                "budget_passed": true,
+                "cost_ratio": 2.548842,
+                "evaluated": true,
+                "held_out": 161,
+                "quality_score": 0.661335,
+                "single_episode_concentration": 0.064841
+              },
+              "cruxeval": {
+                "budget_passed": true,
+                "cost_ratio": 2.548297,
+                "evaluated": true,
+                "held_out": 119,
+                "quality_score": 0.72339,
+                "single_episode_concentration": 0.064993
+              },
+              "deepmind-mathematics": {
+                "budget_passed": true,
+                "cost_ratio": 2.330883,
+                "evaluated": true,
+                "held_out": 153,
+                "quality_score": 0.729711,
+                "single_episode_concentration": 0.073615
+              },
+              "gsm8k": {
+                "budget_passed": true,
+                "cost_ratio": 2.456528,
+                "evaluated": true,
+                "held_out": 117,
+                "quality_score": 0.666121,
+                "single_episode_concentration": 0.078135
+              },
+              "hrmcr": {
+                "budget_passed": true,
+                "cost_ratio": 2.559533,
+                "evaluated": true,
+                "held_out": 20,
+                "quality_score": 0.714826,
+                "single_episode_concentration": 0.063807
+              },
+              "ruletaker": {
+                "budget_passed": true,
+                "cost_ratio": 2.537024,
+                "evaluated": true,
+                "held_out": 135,
+                "quality_score": 0.686577,
+                "single_episode_concentration": 0.07003
+              },
+              "truthfulqa": {
+                "budget_passed": true,
+                "cost_ratio": 2.55739,
+                "evaluated": true,
+                "held_out": 83,
+                "quality_score": 0.687892,
+                "single_episode_concentration": 0.065782
+              }
+            },
+            "whole_split": {
+              "budget_multiplier": 4.0,
+              "budget_passed": true,
+              "cost_ratio": 2.517187,
+              "model_counts": {
+                "ax31": 494,
+                "ax31-light": 279,
+                "axk1-think": 107
+              },
+              "quality_score": 0.699716,
+              "single_episode_concentration": 0.064729
+            }
+          }
+        }
+      },
+      "report_type": "router-risk-validation-report",
+      "resamples": 5000,
+      "sample_size": 880,
+      "schema_version": 1,
+      "seed": 20260825,
+      "split": "dev",
+      "with_replacement": true
+    },
+    "train": {
+      "candidate": {
+        "artifact_path": "baselines/risk-calibrated-public.v2.json",
+        "artifact_sha256": "f99edabb01d5743c0a164366004eec2f8a6538a09137a45b46eab2197f92e9d8",
+        "policy": "risk-calibrated-v2",
+        "tiers": {
+          "balanced": {
+            "bootstrap": {
+              "budget_multiplier": 2.0,
+              "cap_breach_rate": 0.0,
+              "cap_breaches": 0,
+              "cost_ratio": {
+                "max": 1.247302,
+                "mean": 1.189299,
+                "min": 1.149374,
+                "p50": 1.18835,
+                "p95": 1.212054,
+                "p99": 1.222001
+              },
+              "quality_score": {
+                "max": 0.699858,
+                "mean": 0.663909,
+                "min": 0.625142,
+                "p50": 0.66392,
+                "p95": 0.681108,
+                "p99": 0.688636
+              },
+              "resamples": 5000,
+              "worst_resample": {
+                "cost_ratio": 1.247302,
+                "quality_score": 0.666903,
+                "resample": 4395
+              }
+            },
+            "family_holdouts": {
+              "aime": {
+                "budget_passed": true,
+                "cost_ratio": 1.199211,
+                "evaluated": true,
+                "held_out": 24,
+                "quality_score": 0.671371,
+                "single_episode_concentration": 0.050471
+              },
+              "babilong": {
+                "budget_passed": true,
+                "cost_ratio": 1.143363,
+                "evaluated": true,
+                "held_out": 160,
+                "quality_score": 0.663594,
+                "single_episode_concentration": 0.01591
+              },
+              "belebele-ko": {
+                "budget_passed": true,
+                "cost_ratio": 1.201081,
+                "evaluated": true,
+                "held_out": 322,
+                "quality_score": 0.6137,
+                "single_episode_concentration": 0.047387
+              },
+              "cruxeval": {
+                "budget_passed": true,
+                "cost_ratio": 1.196662,
+                "evaluated": true,
+                "held_out": 241,
+                "quality_score": 0.694207,
+                "single_episode_concentration": 0.048628
+              },
+              "deepmind-mathematics": {
+                "budget_passed": true,
+                "cost_ratio": 1.182439,
+                "evaluated": true,
+                "held_out": 303,
+                "quality_score": 0.711736,
+                "single_episode_concentration": 0.013642
+              },
+              "gsm8k": {
+                "budget_passed": true,
+                "cost_ratio": 1.170482,
+                "evaluated": true,
+                "held_out": 233,
+                "quality_score": 0.6259,
+                "single_episode_concentration": 0.009429
+              },
+              "hrmcr": {
+                "budget_passed": true,
+                "cost_ratio": 1.188719,
+                "evaluated": true,
+                "held_out": 40,
+                "quality_score": 0.679215,
+                "single_episode_concentration": 0.049995
+              },
+              "ruletaker": {
+                "budget_passed": true,
+                "cost_ratio": 1.184323,
+                "evaluated": true,
+                "held_out": 271,
+                "quality_score": 0.647582,
+                "single_episode_concentration": 0.055217
+              },
+              "truthfulqa": {
+                "budget_passed": true,
+                "cost_ratio": 1.196719,
+                "evaluated": true,
+                "held_out": 166,
+                "quality_score": 0.648996,
+                "single_episode_concentration": 0.049497
+              }
+            },
+            "whole_split": {
+              "budget_multiplier": 2.0,
+              "budget_passed": true,
+              "cost_ratio": 1.189805,
+              "model_counts": {
+                "ax31": 791,
+                "ax31-light": 969,
+                "axk1-think": 0
+              },
+              "quality_score": 0.664062,
+              "single_episode_concentration": 0.049111
+            }
+          },
+          "fast": {
+            "bootstrap": {
+              "budget_multiplier": 1.25,
+              "cap_breach_rate": 0.0,
+              "cap_breaches": 0,
+              "cost_ratio": {
+                "max": 1.045526,
+                "mean": 1.036196,
+                "min": 1.02794,
+                "p50": 1.036122,
+                "p95": 1.040563,
+                "p99": 1.042452
+              },
+              "quality_score": {
+                "max": 0.667188,
+                "mean": 0.628851,
+                "min": 0.587358,
+                "p50": 0.628693,
+                "p95": 0.647017,
+                "p99": 0.653693
+              },
+              "resamples": 5000,
+              "worst_resample": {
+                "cost_ratio": 1.045526,
+                "quality_score": 0.629972,
+                "resample": 2008
+              }
+            },
+            "family_holdouts": {
+              "aime": {
+                "budget_passed": true,
+                "cost_ratio": 1.037385,
+                "evaluated": true,
+                "held_out": 24,
+                "quality_score": 0.635369,
+                "single_episode_concentration": 0.037487
+              },
+              "babilong": {
+                "budget_passed": true,
+                "cost_ratio": 1.031806,
+                "evaluated": true,
+                "held_out": 160,
+                "quality_score": 0.630781,
+                "single_episode_concentration": 0.071716
+              },
+              "belebele-ko": {
+                "budget_passed": true,
+                "cost_ratio": 1.036632,
+                "evaluated": true,
+                "held_out": 322,
+                "quality_score": 0.582928,
+                "single_episode_concentration": 0.036258
+              },
+              "cruxeval": {
+                "budget_passed": true,
+                "cost_ratio": 1.036357,
+                "evaluated": true,
+                "held_out": 241,
+                "quality_score": 0.661126,
+                "single_episode_concentration": 0.036665
+              },
+              "deepmind-mathematics": {
+                "budget_passed": true,
+                "cost_ratio": 1.040807,
+                "evaluated": true,
+                "held_out": 303,
+                "quality_score": 0.685827,
+                "single_episode_concentration": 0.031303
+              },
+              "gsm8k": {
+                "budget_passed": true,
+                "cost_ratio": 1.034992,
+                "evaluated": true,
+                "held_out": 233,
+                "quality_score": 0.589555,
+                "single_episode_concentration": 0.04346
+              },
+              "hrmcr": {
+                "budget_passed": true,
+                "cost_ratio": 1.036099,
+                "evaluated": true,
+                "held_out": 40,
+                "quality_score": 0.642297,
+                "single_episode_concentration": 0.036432
+              },
+              "ruletaker": {
+                "budget_passed": true,
+                "cost_ratio": 1.034708,
+                "evaluated": true,
+                "held_out": 271,
+                "quality_score": 0.609302,
+                "single_episode_concentration": 0.040874
+              },
+              "truthfulqa": {
+                "budget_passed": true,
+                "cost_ratio": 1.035215,
+                "evaluated": true,
+                "held_out": 166,
+                "quality_score": 0.618099,
+                "single_episode_concentration": 0.038541
+              }
+            },
+            "whole_split": {
+              "budget_multiplier": 1.25,
+              "budget_passed": true,
+              "cost_ratio": 1.036313,
+              "model_counts": {
+                "ax31": 265,
+                "ax31-light": 1495,
+                "axk1-think": 0
+              },
+              "quality_score": 0.628267,
+              "single_episode_concentration": 0.035781
+            }
+          },
+          "premium": {
+            "bootstrap": {
+              "budget_multiplier": 4.0,
+              "cap_breach_rate": 0.0,
+              "cap_breaches": 0,
+              "cost_ratio": {
+                "max": 2.162283,
+                "mean": 1.726556,
+                "min": 1.477966,
+                "p50": 1.718228,
+                "p95": 1.9054,
+                "p99": 1.987685
+              },
+              "quality_score": {
+                "max": 0.718892,
+                "mean": 0.682361,
+                "min": 0.648864,
+                "p50": 0.682528,
+                "p95": 0.699574,
+                "p99": 0.706392
+              },
+              "resamples": 5000,
+              "worst_resample": {
+                "cost_ratio": 2.162283,
+                "quality_score": 0.682813,
+                "resample": 2743
+              }
+            },
+            "family_holdouts": {
+              "aime": {
+                "budget_passed": true,
+                "cost_ratio": 1.656586,
+                "evaluated": true,
+                "held_out": 24,
+                "quality_score": 0.689804,
+                "single_episode_concentration": 0.025014
+              },
+              "babilong": {
+                "budget_passed": true,
+                "cost_ratio": 1.594072,
+                "evaluated": true,
+                "held_out": 160,
+                "quality_score": 0.694531,
+                "single_episode_concentration": 0.027546
+              },
+              "belebele-ko": {
+                "budget_passed": true,
+                "cost_ratio": 1.786418,
+                "evaluated": true,
+                "held_out": 322,
+                "quality_score": 0.636996,
+                "single_episode_concentration": 0.084206
+              },
+              "cruxeval": {
+                "budget_passed": true,
+                "cost_ratio": 1.795545,
+                "evaluated": true,
+                "held_out": 241,
+                "quality_score": 0.716261,
+                "single_episode_concentration": 0.083543
+              },
+              "deepmind-mathematics": {
+                "budget_passed": true,
+                "cost_ratio": 1.9045,
+                "evaluated": true,
+                "held_out": 303,
+                "quality_score": 0.73164,
+                "single_episode_concentration": 0.085802
+              },
+              "gsm8k": {
+                "budget_passed": true,
+                "cost_ratio": 1.686184,
+                "evaluated": true,
+                "held_out": 233,
+                "quality_score": 0.647348,
+                "single_episode_concentration": 0.057918
+              },
+              "hrmcr": {
+                "budget_passed": true,
+                "cost_ratio": 1.7523,
+                "evaluated": true,
+                "held_out": 40,
+                "quality_score": 0.697093,
+                "single_episode_concentration": 0.08716
+              },
+              "ruletaker": {
+                "budget_passed": true,
+                "cost_ratio": 1.788436,
+                "evaluated": true,
+                "held_out": 271,
+                "quality_score": 0.664204,
+                "single_episode_concentration": 0.089713
+              },
+              "truthfulqa": {
+                "budget_passed": true,
+                "cost_ratio": 1.754627,
+                "evaluated": true,
+                "held_out": 166,
+                "quality_score": 0.667503,
+                "single_episode_concentration": 0.047003
+              }
+            },
+            "whole_split": {
+              "budget_multiplier": 4.0,
+              "budget_passed": true,
+              "cost_ratio": 1.753677,
+              "model_counts": {
+                "ax31": 1525,
+                "ax31-light": 205,
+                "axk1-think": 30
+              },
+              "quality_score": 0.682386,
+              "single_episode_concentration": 0.085954
+            }
+          }
+        }
+      },
+      "evidence_scope": "공개 split 프롬프트 구성을 재표본한 근거이며, 비공개 평가셋의 예산 통과를 보장하지 않습니다.",
+      "family_counts": {
+        "aime": 24,
+        "babilong": 160,
+        "belebele-ko": 322,
+        "cruxeval": 241,
+        "deepmind-mathematics": 303,
+        "gsm8k": 233,
+        "hrmcr": 40,
+        "ruletaker": 271,
+        "truthfulqa": 166
+      },
+      "gate": {
+        "checks": [
+          {
+            "check": "fast.bootstrap.breaches",
+            "detail": "candidate breaches=0",
+            "passed": true
+          },
+          {
+            "check": "fast.bootstrap.p99",
+            "detail": "candidate 1.042452 vs reference 1.108992 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.bootstrap.max",
+            "detail": "candidate 1.045526 vs reference 1.115054 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.whole_split.budget",
+            "detail": "ratio 1.036313",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.aime",
+            "detail": "candidate 1.037385 vs reference 1.100363 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.babilong",
+            "detail": "candidate 1.031806 vs reference 1.091795 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.belebele-ko",
+            "detail": "candidate 1.036632 vs reference 1.096346 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.cruxeval",
+            "detail": "candidate 1.036357 vs reference 1.083806 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.deepmind-mathematics",
+            "detail": "candidate 1.040807 vs reference 1.083400 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.gsm8k",
+            "detail": "candidate 1.034992 vs reference 1.092573 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.hrmcr",
+            "detail": "candidate 1.036099 vs reference 1.096766 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.ruletaker",
+            "detail": "candidate 1.034708 vs reference 1.096338 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "fast.holdout.truthfulqa",
+            "detail": "candidate 1.035215 vs reference 1.085772 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.bootstrap.breaches",
+            "detail": "candidate breaches=0",
+            "passed": true
+          },
+          {
+            "check": "balanced.bootstrap.p99",
+            "detail": "candidate 1.222001 vs reference 1.523730 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.bootstrap.max",
+            "detail": "candidate 1.247302 vs reference 1.621433 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.whole_split.budget",
+            "detail": "ratio 1.189805",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.aime",
+            "detail": "candidate 1.199211 vs reference 1.386995 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.babilong",
+            "detail": "candidate 1.143363 vs reference 1.370651 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.belebele-ko",
+            "detail": "candidate 1.201081 vs reference 1.397098 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.cruxeval",
+            "detail": "candidate 1.196662 vs reference 1.380701 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.deepmind-mathematics",
+            "detail": "candidate 1.182439 vs reference 1.429392 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.gsm8k",
+            "detail": "candidate 1.170482 vs reference 1.377888 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.hrmcr",
+            "detail": "candidate 1.188719 vs reference 1.378880 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.ruletaker",
+            "detail": "candidate 1.184323 vs reference 1.352338 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "balanced.holdout.truthfulqa",
+            "detail": "candidate 1.196719 vs reference 1.385235 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.bootstrap.breaches",
+            "detail": "candidate breaches=0",
+            "passed": true
+          },
+          {
+            "check": "premium.bootstrap.p99",
+            "detail": "candidate 1.987685 vs reference 2.896606 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.bootstrap.max",
+            "detail": "candidate 2.162283 vs reference 3.149052 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.whole_split.budget",
+            "detail": "ratio 1.753677",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.aime",
+            "detail": "candidate 1.656586 vs reference 2.591467 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.babilong",
+            "detail": "candidate 1.594072 vs reference 2.408674 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.belebele-ko",
+            "detail": "candidate 1.786418 vs reference 2.604152 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.cruxeval",
+            "detail": "candidate 1.795545 vs reference 2.544254 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.deepmind-mathematics",
+            "detail": "candidate 1.904500 vs reference 2.665129 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.gsm8k",
+            "detail": "candidate 1.686184 vs reference 2.606966 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.hrmcr",
+            "detail": "candidate 1.752300 vs reference 2.596215 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.ruletaker",
+            "detail": "candidate 1.788436 vs reference 2.543927 (+0.005)",
+            "passed": true
+          },
+          {
+            "check": "premium.holdout.truthfulqa",
+            "detail": "candidate 1.754627 vs reference 2.498046 (+0.005)",
+            "passed": true
+          }
+        ],
+        "failed_checks": [],
+        "passed": true,
+        "tolerance": 0.005
+      },
+      "input_path": "data/materialized/train/inputs.json",
+      "input_sha256": "029a0fb1f70432a05b837a1291d86d42278bb202d808a6a12911b0dae8628ac4",
+      "num_episodes": 1760,
+      "outcomes_path": "data/train/outcomes.json",
+      "outcomes_sha256": "97a5a787086b3e1d9fa9c7945518543540e527ea248df4a4760de581b612a4ba",
+      "policy_id": "ossp-2026-prompt-router-v1",
+      "quantile_method": "nearest-rank",
+      "reference": {
+        "artifact_path": "baselines/hash-regex-public.v1.json",
+        "artifact_sha256": "c5f0545f20b902143ccb78ad174ccd5408f4c28d0898943e82e7951b6a8b9871",
+        "policy": "safe-margin",
+        "tiers": {
+          "balanced": {
+            "bootstrap": {
+              "budget_multiplier": 2.0,
+              "cap_breach_rate": 0.0,
+              "cap_breaches": 0,
+              "cost_ratio": {
+                "max": 1.621433,
+                "mean": 1.391948,
+                "min": 1.221227,
+                "p50": 1.390358,
+                "p95": 1.481529,
+                "p99": 1.52373
+              },
+              "quality_score": {
+                "max": 0.720881,
+                "mean": 0.681329,
+                "min": 0.648722,
+                "p50": 0.681392,
+                "p95": 0.698438,
+                "p99": 0.705256
+              },
+              "resamples": 5000,
+              "worst_resample": {
+                "cost_ratio": 1.621433,
+                "quality_score": 0.699148,
+                "resample": 262
+              }
+            },
+            "family_holdouts": {
+              "aime": {
+                "budget_passed": true,
+                "cost_ratio": 1.386995,
+                "evaluated": true,
+                "held_out": 24,
+                "quality_score": 0.68822,
+                "single_episode_concentration": 0.025981
+              },
+              "babilong": {
+                "budget_passed": true,
+                "cost_ratio": 1.370651,
+                "evaluated": true,
+                "held_out": 160,
+                "quality_score": 0.68625,
+                "single_episode_concentration": 0.04415
+              },
+              "belebele-ko": {
+                "budget_passed": true,
+                "cost_ratio": 1.397098,
+                "evaluated": true,
+                "held_out": 322,
+                "quality_score": 0.6363,
+                "single_episode_concentration": 0.087412
+              },
+              "cruxeval": {
+                "budget_passed": true,
+                "cost_ratio": 1.380701,
+                "evaluated": true,
+                "held_out": 241,
+                "quality_score": 0.711652,
+                "single_episode_concentration": 0.091508
+              },
+              "deepmind-mathematics": {
+                "budget_passed": true,
+                "cost_ratio": 1.429392,
+                "evaluated": true,
+                "held_out": 303,
+                "quality_score": 0.729238,
+                "single_episode_concentration": 0.094738
+              },
+              "gsm8k": {
+                "budget_passed": true,
+                "cost_ratio": 1.377888,
+                "evaluated": true,
+                "held_out": 233,
+                "quality_score": 0.645874,
+                "single_episode_concentration": 0.105171
+              },
+              "hrmcr": {
+                "budget_passed": true,
+                "cost_ratio": 1.37888,
+                "evaluated": true,
+                "held_out": 40,
+                "quality_score": 0.696076,
+                "single_episode_concentration": 0.090715
+              },
+              "ruletaker": {
+                "budget_passed": true,
+                "cost_ratio": 1.352338,
+                "evaluated": true,
+                "held_out": 271,
+                "quality_score": 0.66051,
+                "single_episode_concentration": 0.105227
+              },
+              "truthfulqa": {
+                "budget_passed": true,
+                "cost_ratio": 1.385235,
+                "evaluated": true,
+                "held_out": 166,
+                "quality_score": 0.665464,
+                "single_episode_concentration": 0.092073
+              }
+            },
+            "whole_split": {
+              "budget_multiplier": 2.0,
+              "budget_passed": true,
+              "cost_ratio": 1.397907,
+              "model_counts": {
+                "ax31": 1112,
+                "ax31-light": 648,
+                "axk1-think": 0
+              },
+              "quality_score": 0.681818,
+              "single_episode_concentration": 0.085337
+            }
+          },
+          "fast": {
+            "bootstrap": {
+              "budget_multiplier": 1.25,
+              "cap_breach_rate": 0.0,
+              "cap_breaches": 0,
+              "cost_ratio": {
+                "max": 1.115054,
+                "mean": 1.095612,
+                "min": 1.024189,
+                "p50": 1.097096,
+                "p95": 1.105686,
+                "p99": 1.108992
+              },
+              "quality_score": {
+                "max": 0.674006,
+                "mean": 0.637548,
+                "min": 0.599858,
+                "p50": 0.6375,
+                "p95": 0.655256,
+                "p99": 0.6625
+              },
+              "resamples": 5000,
+              "worst_resample": {
+                "cost_ratio": 1.115054,
+                "quality_score": 0.647727,
+                "resample": 427
+              }
+            },
+            "family_holdouts": {
+              "aime": {
+                "budget_passed": true,
+                "cost_ratio": 1.100363,
+                "evaluated": true,
+                "held_out": 24,
+                "quality_score": 0.645161,
+                "single_episode_concentration": 0.011642
+              },
+              "babilong": {
+                "budget_passed": true,
+                "cost_ratio": 1.091795,
+                "evaluated": true,
+                "held_out": 160,
+                "quality_score": 0.642656,
+                "single_episode_concentration": 0.020392
+              },
+              "belebele-ko": {
+                "budget_passed": true,
+                "cost_ratio": 1.096346,
+                "evaluated": true,
+                "held_out": 322,
+                "quality_score": 0.595619,
+                "single_episode_concentration": 0.013968
+              },
+              "cruxeval": {
+                "budget_passed": true,
+                "cost_ratio": 1.083806,
+                "evaluated": true,
+                "held_out": 241,
+                "quality_score": 0.666228,
+                "single_episode_concentration": 0.016037
+              },
+              "deepmind-mathematics": {
+                "budget_passed": true,
+                "cost_ratio": 1.0834,
+                "evaluated": true,
+                "held_out": 303,
+                "quality_score": 0.694063,
+                "single_episode_concentration": 0.018911
+              },
+              "gsm8k": {
+                "budget_passed": true,
+                "cost_ratio": 1.092573,
+                "evaluated": true,
+                "held_out": 233,
+                "quality_score": 0.598723,
+                "single_episode_concentration": 0.013684
+              },
+              "hrmcr": {
+                "budget_passed": true,
+                "cost_ratio": 1.096766,
+                "evaluated": true,
+                "held_out": 40,
+                "quality_score": 0.65218,
+                "single_episode_concentration": 0.013703
+              },
+              "ruletaker": {
+                "budget_passed": true,
+                "cost_ratio": 1.096338,
+                "evaluated": true,
+                "held_out": 271,
+                "quality_score": 0.617529,
+                "single_episode_concentration": 0.014848
+              },
+              "truthfulqa": {
+                "budget_passed": true,
+                "cost_ratio": 1.085772,
+                "evaluated": true,
+                "held_out": 166,
+                "quality_score": 0.621706,
+                "single_episode_concentration": 0.015954
+              }
+            },
+            "whole_split": {
+              "budget_multiplier": 1.25,
+              "budget_passed": true,
+              "cost_ratio": 1.098738,
+              "model_counts": {
+                "ax31": 404,
+                "ax31-light": 1356,
+                "axk1-think": 0
+              },
+              "quality_score": 0.637358,
+              "single_episode_concentration": 0.013268
+            }
+          },
+          "premium": {
+            "bootstrap": {
+              "budget_multiplier": 4.0,
+              "cap_breach_rate": 0.0,
+              "cap_breaches": 0,
+              "cost_ratio": {
+                "max": 3.149052,
+                "mean": 2.582115,
+                "min": 2.213134,
+                "p50": 2.576442,
+                "p95": 2.798982,
+                "p99": 2.896606
+              },
+              "quality_score": {
+                "max": 0.747159,
+                "mean": 0.711955,
+                "min": 0.675568,
+                "p50": 0.712074,
+                "p95": 0.728835,
+                "p99": 0.735511
+              },
+              "resamples": 5000,
+              "worst_resample": {
+                "cost_ratio": 3.149052,
+                "quality_score": 0.717187,
+                "resample": 4371
+              }
+            },
+            "family_holdouts": {
+              "aime": {
+                "budget_passed": true,
+                "cost_ratio": 2.591467,
+                "evaluated": true,
+                "held_out": 24,
+                "quality_score": 0.717886,
+                "single_episode_concentration": 0.043906
+              },
+              "babilong": {
+                "budget_passed": true,
+                "cost_ratio": 2.408674,
+                "evaluated": true,
+                "held_out": 160,
+                "quality_score": 0.710625,
+                "single_episode_concentration": 0.080732
+              },
+              "belebele-ko": {
+                "budget_passed": true,
+                "cost_ratio": 2.604152,
+                "evaluated": true,
+                "held_out": 322,
+                "quality_score": 0.676982,
+                "single_episode_concentration": 0.041281
+              },
+              "cruxeval": {
+                "budget_passed": true,
+                "cost_ratio": 2.544254,
+                "evaluated": true,
+                "held_out": 241,
+                "quality_score": 0.749835,
+                "single_episode_concentration": 0.043038
+              },
+              "deepmind-mathematics": {
+                "budget_passed": true,
+                "cost_ratio": 2.665129,
+                "evaluated": true,
+                "held_out": 303,
+                "quality_score": 0.753775,
+                "single_episode_concentration": 0.046608
+              },
+              "gsm8k": {
+                "budget_passed": true,
+                "cost_ratio": 2.606966,
+                "evaluated": true,
+                "held_out": 233,
+                "quality_score": 0.676981,
+                "single_episode_concentration": 0.047183
+              },
+              "hrmcr": {
+                "budget_passed": true,
+                "cost_ratio": 2.596215,
+                "evaluated": true,
+                "held_out": 40,
+                "quality_score": 0.727907,
+                "single_episode_concentration": 0.041079
+              },
+              "ruletaker": {
+                "budget_passed": true,
+                "cost_ratio": 2.543927,
+                "evaluated": true,
+                "held_out": 271,
+                "quality_score": 0.695433,
+                "single_episode_concentration": 0.045813
+              },
+              "truthfulqa": {
+                "budget_passed": true,
+                "cost_ratio": 2.498046,
+                "evaluated": true,
+                "held_out": 166,
+                "quality_score": 0.694793,
+                "single_episode_concentration": 0.023677
+              }
+            },
+            "whole_split": {
+              "budget_multiplier": 4.0,
+              "budget_passed": true,
+              "cost_ratio": 2.58128,
+              "model_counts": {
+                "ax31": 1098,
+                "ax31-light": 470,
+                "axk1-think": 192
+              },
+              "quality_score": 0.711648,
+              "single_episode_concentration": 0.040968
+            }
+          }
+        }
+      },
+      "report_type": "router-risk-validation-report",
+      "resamples": 5000,
+      "sample_size": 1760,
+      "schema_version": 1,
+      "seed": 20260825,
+      "split": "train",
+      "with_replacement": true
+    }
+  },
+  "tolerance": 0.005
+}

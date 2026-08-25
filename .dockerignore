@@ -24,6 +24,7 @@ baselines/**
 !baselines/feature_budget.py
 !baselines/hash_regex.py
 !baselines/hash-regex-public.v1.json
+!baselines/safe_margin.py
 !container/
 container/**
 !container/Dockerfile

@@ -57,6 +57,8 @@ REQUIRED_FILES = {
     "baselines/hash_regex.py",
     "baselines/prompt_heuristic.py",
     "baselines/requirements-train.txt",
+    # Added by this fork: the policy the submitted container actually runs.
+    "baselines/safe_margin.py",
     "baselines/train_hash_regex.py",
     "schemas/input.v1.schema.json",
     "schemas/outcome.v1.schema.json",
@@ -657,6 +659,9 @@ class RepositoryPolicyTest(unittest.TestCase):
             "!baselines/feature_budget.py",
             "!baselines/hash_regex.py",
             "!baselines/hash-regex-public.v1.json",
+            # Added by this fork: the submitted image runs the safe-margin
+            # router, so its module has to reach the build context.
+            "!baselines/safe_margin.py",
             "!container/",
             "container/**",
             "!container/Dockerfile",

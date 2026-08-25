@@ -1,0 +1,262 @@
+{
+  "artifact_path": "baselines/hash-regex-public.v1.json",
+  "artifact_sha256": "c5f0545f20b902143ccb78ad174ccd5408f4c28d0898943e82e7951b6a8b9871",
+  "envelope_precision": 0.0005,
+  "evidence_scope": "공개 outcome을 사용하는 개발 전용 진단이며, 제출 런타임 경로에서는 절대 실행되지 않습니다.",
+  "input_path": "data/materialized/dev/inputs.json",
+  "input_sha256": "5920f9ea9e3da147aa546659054feb08afb7e11a0e4db6967b293ff79b759abc",
+  "num_episodes": 880,
+  "outcomes_path": "data/dev/outcomes.json",
+  "outcomes_sha256": "acb7c5ed522c4e1b65e9ab14b3fe9458fcba32eb3d9de8d3f53e24b8904d2e66",
+  "quantile_method": "nearest-rank",
+  "reference_bootstrap": {
+    "balanced": {
+      "cap_breaches": 0,
+      "cost_ratio": {
+        "max": 1.87063,
+        "mean": 1.470109,
+        "min": 1.252589,
+        "p50": 1.461579,
+        "p95": 1.612717,
+        "p99": 1.691907
+      }
+    },
+    "fast": {
+      "cap_breaches": 0,
+      "cost_ratio": {
+        "max": 1.167295,
+        "mean": 1.09304,
+        "min": 0.951873,
+        "p50": 1.094824,
+        "p95": 1.134683,
+        "p99": 1.147408
+      }
+    },
+    "premium": {
+      "cap_breaches": 0,
+      "cost_ratio": {
+        "max": 3.417578,
+        "mean": 2.531962,
+        "min": 1.942009,
+        "p50": 2.5233,
+        "p95": 2.86356,
+        "p99": 3.011842
+      }
+    }
+  },
+  "report_type": "oracle-headroom-report",
+  "resamples": 5000,
+  "safe_envelope_bound": {
+    "achievable_weighted": 0.772898,
+    "balanced": {
+      "achievable_quality": 0.775568,
+      "budget_multiplier": 2.0,
+      "envelope_target_ratio": 1.443848,
+      "lp_upper_bound_quality": 0.776681,
+      "model_counts": {
+        "ax31": 153,
+        "ax31-light": 691,
+        "axk1-think": 36
+      },
+      "reference_max": 1.87063,
+      "reference_p99": 1.691907,
+      "resample_cost_ratio": {
+        "max": 1.8088,
+        "mean": 1.439769,
+        "min": 1.184391,
+        "p50": 1.436061,
+        "p95": 1.584931,
+        "p99": 1.65179
+      },
+      "whole_split_cost_ratio": 1.436509
+    },
+    "fast": {
+      "achievable_quality": 0.730966,
+      "budget_multiplier": 1.25,
+      "envelope_target_ratio": 1.060547,
+      "lp_upper_bound_quality": 0.731492,
+      "model_counts": {
+        "ax31": 141,
+        "ax31-light": 738,
+        "axk1-think": 1
+      },
+      "reference_max": 1.167295,
+      "reference_p99": 1.147408,
+      "resample_cost_ratio": {
+        "max": 1.166323,
+        "mean": 1.0614,
+        "min": 0.894629,
+        "p50": 1.063486,
+        "p95": 1.119758,
+        "p99": 1.137884
+      },
+      "whole_split_cost_ratio": 1.059813
+    },
+    "lp_upper_bound_weighted": 0.773781,
+    "premium": {
+      "achievable_quality": 0.826136,
+      "budget_multiplier": 4.0,
+      "envelope_target_ratio": 2.460449,
+      "lp_upper_bound_quality": 0.827266,
+      "model_counts": {
+        "ax31": 146,
+        "ax31-light": 648,
+        "axk1-think": 86
+      },
+      "reference_max": 3.417578,
+      "reference_p99": 3.011842,
+      "resample_cost_ratio": {
+        "max": 3.404764,
+        "mean": 2.453241,
+        "min": 1.846566,
+        "p50": 2.443172,
+        "p95": 2.827751,
+        "p99": 2.992774
+      },
+      "whole_split_cost_ratio": 2.445299
+    }
+  },
+  "seed": 20260825,
+  "split": "dev",
+  "stop_gate_passed": true,
+  "stop_gate_target": 0.69,
+  "tier_weights": {
+    "balanced": 0.3,
+    "fast": 0.4,
+    "premium": 0.3
+  },
+  "variants": {
+    "baseline": {
+      "balanced": {
+        "budget_passed": true,
+        "cost_ratio": 1.47148,
+        "model_counts": {
+          "ax31": 547,
+          "ax31-light": 333,
+          "axk1-think": 0
+        },
+        "quality_score": 0.684375
+      },
+      "fast": {
+        "budget_passed": true,
+        "cost_ratio": 1.092453,
+        "model_counts": {
+          "ax31": 190,
+          "ax31-light": 690,
+          "axk1-think": 0
+        },
+        "quality_score": 0.644886
+      },
+      "premium": {
+        "budget_passed": true,
+        "cost_ratio": 2.517187,
+        "model_counts": {
+          "ax31": 494,
+          "ax31-light": 279,
+          "axk1-think": 107
+        },
+        "quality_score": 0.699716
+      },
+      "weighted": 0.673182
+    },
+    "oracle_both": {
+      "balanced": {
+        "budget_passed": true,
+        "cost_ratio": 1.101759,
+        "model_counts": {
+          "ax31": 129,
+          "ax31-light": 751,
+          "axk1-think": 0
+        },
+        "quality_score": 0.717045
+      },
+      "fast": {
+        "budget_passed": true,
+        "cost_ratio": 1.077273,
+        "model_counts": {
+          "ax31": 103,
+          "ax31-light": 777,
+          "axk1-think": 0
+        },
+        "quality_score": 0.697443
+      },
+      "premium": {
+        "budget_passed": true,
+        "cost_ratio": 1.371428,
+        "model_counts": {
+          "ax31": 141,
+          "ax31-light": 724,
+          "axk1-think": 15
+        },
+        "quality_score": 0.748864
+      },
+      "weighted": 0.71875
+    },
+    "oracle_cost": {
+      "balanced": {
+        "budget_passed": true,
+        "cost_ratio": 1.355355,
+        "model_counts": {
+          "ax31": 507,
+          "ax31-light": 373,
+          "axk1-think": 0
+        },
+        "quality_score": 0.673011
+      },
+      "fast": {
+        "budget_passed": true,
+        "cost_ratio": 1.139948,
+        "model_counts": {
+          "ax31": 300,
+          "ax31-light": 580,
+          "axk1-think": 0
+        },
+        "quality_score": 0.649716
+      },
+      "premium": {
+        "budget_passed": true,
+        "cost_ratio": 3.110666,
+        "model_counts": {
+          "ax31": 402,
+          "ax31-light": 278,
+          "axk1-think": 200
+        },
+        "quality_score": 0.709659
+      },
+      "weighted": 0.674687
+    },
+    "oracle_gain": {
+      "balanced": {
+        "budget_passed": true,
+        "cost_ratio": 1.137109,
+        "model_counts": {
+          "ax31": 146,
+          "ax31-light": 734,
+          "axk1-think": 0
+        },
+        "quality_score": 0.733523
+      },
+      "fast": {
+        "budget_passed": true,
+        "cost_ratio": 1.085182,
+        "model_counts": {
+          "ax31": 92,
+          "ax31-light": 788,
+          "axk1-think": 0
+        },
+        "quality_score": 0.689773
+      },
+      "premium": {
+        "budget_passed": true,
+        "cost_ratio": 1.313101,
+        "model_counts": {
+          "ax31": 145,
+          "ax31-light": 725,
+          "axk1-think": 10
+        },
+        "quality_score": 0.74517
+      },
+      "weighted": 0.719517
+    }
+  }
+}
