@@ -525,3 +525,66 @@ PYTHONPATH=src python3 tools/risk_validation.py --split train --split dev \
   실행하면 artifact 검증 실패 시 safe-margin으로 결정적으로 대체 실행되며,
   이는 [`../tests/test_risk_calibrated_router.py`](../tests/test_risk_calibrated_router.py)가
   검사합니다.
+
+## 표현 감사 v1: 과제군 밖 증분 이득
+
+후속 실험은 [`../tools/representation_audit.py`](../tools/representation_audit.py)와
+[`representation_features.py`](representation_features.py)에 고정했습니다. 공개
+Train의 재구성 가능한 9개 출처·과제군을 하나씩 통째로 제외하는 LOFO 예측만으로
+표현과 ridge 강도(`100`, `1000`, `3000`)를 선택합니다. 런타임 특징에는 prompt
+또는 messages의 role/content만 들어가며, source/family, episode ID, 행 위치,
+split, outcome과 Dev outcome은 들어가지 않습니다. 증분 비용도 같은 LOFO에서
+모델별 log-cost로 예측하고, 고정 safe-margin Train 지출에서 실제 선택 이득과
+실제 증분 비용을 측정합니다.
+
+비교 표현은 다음과 같습니다.
+
+- A: 기존 14개 dense + 256개 signed word unigram/bigram hash
+- B: 36개 확장 구조 특징. field/role별 길이·비율, role 전환, 문단/선택지/코드·수식
+  모양, 그리고 protocol 입력에서 유도 가능한 context/question 경계를 포함
+- C: 기존 dense 14개 + field/role-aware word 1/2-gram 및 character 3/4/5-gram
+  signed hash 256개
+- D: B와 semantic proxy hash의 결합(292개)
+
+semantic proxy는 field마다 최대 32,768문자로 제한되고 FNV-1a signed hashing만
+사용합니다. 네트워크, 외부 API, 다운로드한 weight와 런타임 패키지가 없으며,
+전체 공개 split 추출 완료, 특징 1,024개, 5-head artifact 추정 1,000,000 byte를
+fail-closed runtime gate로 사용합니다. 채택될 경우에만 공식 90초 격리 benchmark를
+추가로 통과해야 합니다.
+
+### 사전 선언 채택 게이트
+
+새 표현은 두 승격(`ax31-light -> ax31`, `ax31 -> axk1-think`) 각각에서 Train
+LOFO 상관 `>= 0.02`, 양의 family 상관 `>= 6/9`, family별 선택 이득 최솟값
+`>= -0.005`를 모두 만족해야 합니다. 또한 Fast/Balanced/Premium의 모든 해당
+고정 지출점에서 기존 A보다 문항당 실제 선택 이득이 `>= 0.002` 높고 runtime
+gate를 통과해야 합니다. 그 다음에만 기존 그룹 분리 calibration/conformal,
+5,000회 안전 검사, `0.005` 허용 오차와 Dev 가중 점수 `>= 0.690000` champion
+gate를 엽니다. 어느 단계든 불확정 또는 실패면 제출 기본값은 safe-margin입니다.
+
+### Train LOFO 결과와 결정
+
+각 이득은 전체 Train 문항 수로 나눈 실제 선택 증분 점수이며, 비용은 all-light
+실제 비용 대비 선택 집합의 signed 증분 비용입니다.
+
+| 표현 | light→ax31 상관 | 양의 family | Fast 이득 / 비용 | Balanced 이득 / 비용 | ax31→think 상관 | 양의 family | Premium 이득 / 비용 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| A 기존 | -0.060370 | 2/9 | 0.007102 / 0.040548 | 0.030966 / 0.339717 | 0.036664 | 4/9 | 0.003977 / 0.414624 |
+| B 확장 구조 | 0.025254 | 4/9 | 0.018324 / 0.040370 | 0.043608 / 0.339530 | 0.129639 | 4/9 | 0.001705 / 0.415082 |
+| C semantic proxy | -0.042573 | 5/9 | 0.010227 / 0.040395 | 0.039915 / 0.339559 | 0.009303 | 4/9 | 0.004972 / 0.414878 |
+| D 구조+semantic | -0.024908 | 4/9 | 0.013494 / 0.040369 | 0.038778 / 0.339543 | 0.142652 | 5/9 | 0.004830 / 0.415043 |
+
+Train 합산 선택 이득으로 동결한 진단 선두는 B입니다. 그러나 두 승격 모두
+양의 family가 `4/9`뿐이고, light→ax31의 최악 family 선택 이득은 `-0.006250`,
+Premium 이득 `0.001705`는 기존 표현에 요구한 `0.005977`보다 낮아 채택 gate가
+실패했습니다. 따라서 calibration/conformal 재학습, runtime artifact 통합과
+새 후보의 안전/champion gate는 열지 않았습니다.
+
+동결 뒤 단 한 번 수행한 공개 Dev 진단에서 B는 light→ax31 상관 `0.094500`,
+Fast `0.026705 / 0.051924`, Balanced `0.049148 / 0.351076`; ax31→think 상관
+`0.317305`, Premium `0.017045 / 0.478395`였습니다. 이 사후 수치는 Train 선택을
+바꾸지 않으며, 전체 라우터 가중 점수도 아니고 private-set 일반화 근거도
+아닙니다. 재현 가능한 전체 family별 수치, hash와 gate 실패는
+[`representation-audit-report.v1.json`](representation-audit-report.v1.json)에
+있습니다. 기존 v2의 안전 결과(78/78 통과)와 Dev `0.658182`, safe-margin Dev
+`0.673182`는 그대로이며 제출 기본값도 safe-margin입니다.

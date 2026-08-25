@@ -1,0 +1,2427 @@
+{
+  "decision": {
+    "candidate_adopted": false,
+    "diagnostic_winner": "B-expanded-structural",
+    "downstream_gates": {
+      "dev_weighted_champion_threshold": 0.69,
+      "evaluated": false,
+      "headroom_tolerance": 0.005,
+      "passed": false,
+      "risk_validation_resamples": 5000
+    },
+    "reason": "Train representation gate failed; downstream safety and champion gates were not opened.",
+    "submission_default": "safe-margin",
+    "train_representation_gate_passed": false
+  },
+  "frozen_dev_evaluation": {
+    "dev_used_for_selection": false,
+    "metrics": {
+      "ax31->axk1-think": {
+        "oof_correlation": 0.3173051888835652,
+        "per_held_out_family": {
+          "aime": {
+            "oof_correlation": -0.1647768157942129,
+            "rows": 12,
+            "selected_set": {
+              "premium": {
+                "conservative_budget_used": 0.8216360089999999,
+                "frozen_incremental_budget": 0.8335788245200003,
+                "incremental_cost_over_light": 1.3779273114824477,
+                "realized_incremental_cost": 0.8216360089999999,
+                "realized_incremental_gain": 0.20833333333333334,
+                "selected_count": 3
+              }
+            }
+          },
+          "babilong": {
+            "oof_correlation": -0.1212271189151959,
+            "rows": 80,
+            "selected_set": {
+              "premium": {
+                "conservative_budget_used": 0.830221358,
+                "frozen_incremental_budget": 0.8534205991599997,
+                "incremental_cost_over_light": 0.4523819777661776,
+                "realized_incremental_cost": 0.830221358,
+                "realized_incremental_gain": -0.01875,
+                "selected_count": 6
+              }
+            }
+          },
+          "belebele-ko": {
+            "oof_correlation": 0.0589746440673194,
+            "rows": 161,
+            "selected_set": {
+              "premium": {
+                "conservative_budget_used": 0.0,
+                "frozen_incremental_budget": 0.0,
+                "incremental_cost_over_light": 0.0,
+                "realized_incremental_cost": 0.0,
+                "realized_incremental_gain": 0.0,
+                "selected_count": 0
+              }
+            }
+          },
+          "cruxeval": {
+            "oof_correlation": 0.12735883524239744,
+            "rows": 119,
+            "selected_set": {
+              "premium": {
+                "conservative_budget_used": 0.0,
+                "frozen_incremental_budget": 0.0,
+                "incremental_cost_over_light": 0.0,
+                "realized_incremental_cost": 0.0,
+                "realized_incremental_gain": 0.0,
+                "selected_count": 0
+              }
+            }
+          },
+          "deepmind-mathematics": {
+            "oof_correlation": 0.27543426465198256,
+            "rows": 153,
+            "selected_set": {
+              "premium": {
+                "conservative_budget_used": 0.030177767999999997,
+                "frozen_incremental_budget": 0.030532085639999984,
+                "incremental_cost_over_light": 0.05757050523857852,
+                "realized_incremental_cost": 0.030177767999999997,
+                "realized_incremental_gain": -0.006535947712418301,
+                "selected_count": 2
+              }
+            }
+          },
+          "gsm8k": {
+            "oof_correlation": 0.05788532569565849,
+            "rows": 117,
+            "selected_set": {
+              "premium": {
+                "conservative_budget_used": 0.33973036599999995,
+                "frozen_incremental_budget": 0.34269739052000014,
+                "incremental_cost_over_light": 0.5656666944174336,
+                "realized_incremental_cost": 0.33973036599999995,
+                "realized_incremental_gain": 0.0,
+                "selected_count": 9
+              }
+            }
+          },
+          "hrmcr": {
+            "oof_correlation": 0.001778268318619327,
+            "rows": 20,
+            "selected_set": {
+              "premium": {
+                "conservative_budget_used": 0.0,
+                "frozen_incremental_budget": 0.021638381960000036,
+                "incremental_cost_over_light": 0.0,
+                "realized_incremental_cost": 0.0,
+                "realized_incremental_gain": 0.0,
+                "selected_count": 0
+              }
+            }
+          },
+          "ruletaker": {
+            "oof_correlation": -0.07450313017507544,
+            "rows": 135,
+            "selected_set": {
+              "premium": {
+                "conservative_budget_used": 0.0,
+                "frozen_incremental_budget": 0.0,
+                "incremental_cost_over_light": 0.0,
+                "realized_incremental_cost": 0.0,
+                "realized_incremental_gain": 0.0,
+                "selected_count": 0
+              }
+            }
+          },
+          "truthfulqa": {
+            "oof_correlation": 0.006778770033965327,
+            "rows": 83,
+            "selected_set": {
+              "premium": {
+                "conservative_budget_used": 0.140701892,
+                "frozen_incremental_budget": 0.14138552667999998,
+                "incremental_cost_over_light": 0.7756187336692281,
+                "realized_incremental_cost": 0.140701892,
+                "realized_incremental_gain": 0.0,
+                "selected_count": 6
+              }
+            }
+          }
+        },
+        "positive_family_correlations": 6,
+        "realized_gain_mean": 0.13465909090909092,
+        "realized_incremental_cost_mean": 0.10800728082045453,
+        "selected_set": {
+          "premium": {
+            "conservative_budget_used": 2.0960514949999998,
+            "frozen_incremental_budget": 2.0997373798399988,
+            "incremental_cost_over_light": 0.4783945998884382,
+            "realized_incremental_cost": 2.0960514949999998,
+            "realized_incremental_gain": 0.017045454545454544,
+            "selected_count": 30
+          }
+        }
+      },
+      "ax31-light->ax31": {
+        "oof_correlation": 0.09450034787961975,
+        "per_held_out_family": {
+          "aime": {
+            "oof_correlation": -0.0853600421577447,
+            "rows": 12,
+            "selected_set": {
+              "balanced": {
+                "conservative_budget_used": 0.20630215699999999,
+                "frozen_incremental_budget": 0.23726557758800002,
+                "incremental_cost_over_light": 0.18332395133862386,
+                "realized_incremental_cost": 0.109313139,
+                "realized_incremental_gain": 0.020833333333333332,
+                "selected_count": 12
+              },
+              "fast": {
+                "conservative_budget_used": 0.052085278,
+                "frozen_incremental_budget": 0.058875889592,
+                "incremental_cost_over_light": -0.0753059615887731,
+                "realized_incremental_cost": -0.044903739999999984,
+                "realized_incremental_gain": 0.0,
+                "selected_count": 5
+              }
+            }
+          },
+          "babilong": {
+            "oof_correlation": 0.11043731195863878,
+            "rows": 80,
+            "selected_set": {
+              "balanced": {
+                "conservative_budget_used": 0.7233472600000002,
+                "frozen_incremental_budget": 0.730247680354,
+                "incremental_cost_over_light": 0.39414700782793594,
+                "realized_incremental_cost": 0.7233472600000002,
+                "realized_incremental_gain": 0.0125,
+                "selected_count": 39
+              },
+              "fast": {
+                "conservative_budget_used": 0.17831776,
+                "frozen_incremental_budget": 0.18120614983599997,
+                "incremental_cost_over_light": 0.09716413600098517,
+                "realized_incremental_cost": 0.17831776,
+                "realized_incremental_gain": 0.01875,
+                "selected_count": 9
+              }
+            }
+          },
+          "belebele-ko": {
+            "oof_correlation": -0.019193668486271513,
+            "rows": 161,
+            "selected_set": {
+              "balanced": {
+                "conservative_budget_used": 0.038548387,
+                "frozen_incremental_budget": 0.03858504179,
+                "incremental_cost_over_light": 0.39752899865937924,
+                "realized_incremental_cost": 0.038548387,
+                "realized_incremental_gain": 0.012422360248447204,
+                "selected_count": 44
+              },
+              "fast": {
+                "conservative_budget_used": 0.009544835,
+                "frozen_incremental_budget": 0.00957462386,
+                "incremental_cost_over_light": 0.09843080334123956,
+                "realized_incremental_cost": 0.009544835,
+                "realized_incremental_gain": 0.006211180124223602,
+                "selected_count": 11
+              }
+            }
+          },
+          "cruxeval": {
+            "oof_correlation": 0.021841750747028536,
+            "rows": 119,
+            "selected_set": {
+              "balanced": {
+                "conservative_budget_used": 0.041872875999999996,
+                "frozen_incremental_budget": 0.041968047104,
+                "incremental_cost_over_light": 0.3970046647451456,
+                "realized_incremental_cost": 0.041872875999999996,
+                "realized_incremental_gain": -0.004201680672268907,
+                "selected_count": 33
+              },
+              "fast": {
+                "conservative_budget_used": 0.010143100000000002,
+                "frozen_incremental_budget": 0.010414094336,
+                "incremental_cost_over_light": 0.09616865139563109,
+                "realized_incremental_cost": 0.010143100000000002,
+                "realized_incremental_gain": 0.004201680672268907,
+                "selected_count": 12
+              }
+            }
+          },
+          "deepmind-mathematics": {
+            "oof_correlation": 0.063662521075757,
+            "rows": 153,
+            "selected_set": {
+              "balanced": {
+                "conservative_budget_used": 0.20835241199999996,
+                "frozen_incremental_budget": 0.208578074516,
+                "incremental_cost_over_light": 0.19403867505551428,
+                "realized_incremental_cost": 0.10171274499999992,
+                "realized_incremental_gain": 0.0784313725490196,
+                "selected_count": 74
+              },
+              "fast": {
+                "conservative_budget_used": 0.051728632,
+                "frozen_incremental_budget": 0.05175727474399999,
+                "incremental_cost_over_light": -0.10475446786267524,
+                "realized_incremental_cost": -0.05491103500000001,
+                "realized_incremental_gain": 0.0392156862745098,
+                "selected_count": 26
+              }
+            }
+          },
+          "gsm8k": {
+            "oof_correlation": 0.04408739192838808,
+            "rows": 117,
+            "selected_set": {
+              "balanced": {
+                "conservative_budget_used": 0.23851647599999998,
+                "frozen_incremental_budget": 0.23897657768800004,
+                "incremental_cost_over_light": 0.39714090951473885,
+                "realized_incremental_cost": 0.23851647599999998,
+                "realized_incremental_gain": 0.019230769230769232,
+                "selected_count": 53
+              },
+              "fast": {
+                "conservative_budget_used": 0.05874116800000002,
+                "frozen_incremental_budget": 0.05930046299200001,
+                "incremental_cost_over_light": 0.09780674809851746,
+                "realized_incremental_cost": 0.05874116800000002,
+                "realized_incremental_gain": 0.010683760683760684,
+                "selected_count": 15
+              }
+            }
+          },
+          "hrmcr": {
+            "oof_correlation": -0.5626354257541146,
+            "rows": 20,
+            "selected_set": {
+              "balanced": {
+                "conservative_budget_used": 0.022442985999999998,
+                "frozen_incremental_budget": 0.022832699474000004,
+                "incremental_cost_over_light": 0.3725353769474748,
+                "realized_incremental_cost": 0.021376825000000002,
+                "realized_incremental_gain": 0.0,
+                "selected_count": 10
+              },
+              "fast": {
+                "conservative_budget_used": 0.005272911,
+                "frozen_incremental_budget": 0.005665783916,
+                "incremental_cost_over_light": 0.07331131713777839,
+                "realized_incremental_cost": 0.00420675,
+                "realized_incremental_gain": 0.0,
+                "selected_count": 3
+              }
+            }
+          },
+          "ruletaker": {
+            "oof_correlation": -0.09379865131227427,
+            "rows": 135,
+            "selected_set": {
+              "balanced": {
+                "conservative_budget_used": 0.15273235799999998,
+                "frozen_incremental_budget": 0.15276445544000003,
+                "incremental_cost_over_light": 0.3978233954990622,
+                "realized_incremental_cost": 0.15273235799999998,
+                "realized_incremental_gain": 0.007407407407407408,
+                "selected_count": 41
+              },
+              "fast": {
+                "conservative_budget_used": 0.03775400499999999,
+                "frozen_incremental_budget": 0.037907492960000004,
+                "incremental_cost_over_light": 0.0983382084809335,
+                "realized_incremental_cost": 0.03775400499999999,
+                "realized_incremental_gain": 0.0,
+                "selected_count": 13
+              }
+            }
+          },
+          "truthfulqa": {
+            "oof_correlation": -0.16299135591838754,
+            "rows": 83,
+            "selected_set": {
+              "balanced": {
+                "conservative_budget_used": 0.07203393799999999,
+                "frozen_incremental_budget": 0.07218271724200001,
+                "incremental_cost_over_light": 0.395197419048984,
+                "realized_incremental_cost": 0.07169118299999999,
+                "realized_incremental_gain": 0.05421686746987952,
+                "selected_count": 43
+              },
+              "fast": {
+                "conservative_budget_used": 0.017777737,
+                "frozen_incremental_budget": 0.017911665628,
+                "incremental_cost_over_light": 0.09611028301158725,
+                "realized_incremental_cost": 0.017434981999999998,
+                "realized_incremental_gain": -0.006024096385542169,
+                "selected_count": 12
+              }
+            }
+          }
+        },
+        "positive_family_correlations": 4,
+        "realized_gain_mean": 0.07244318181818182,
+        "realized_incremental_cost_mean": 0.005486962599999999,
+        "selected_set": {
+          "balanced": {
+            "conservative_budget_used": 1.743249631999998,
+            "frozen_incremental_budget": 1.7434008711959998,
+            "incremental_cost_over_light": 0.3510755011836322,
+            "realized_incremental_cost": 1.538212030999999,
+            "realized_incremental_gain": 0.049147727272727273,
+            "selected_count": 553
+          },
+          "fast": {
+            "conservative_budget_used": 0.4325376350000001,
+            "frozen_incremental_budget": 0.4326134378639999,
+            "incremental_cost_over_light": 0.0519237184771723,
+            "realized_incremental_cost": 0.22750003400000007,
+            "realized_incremental_gain": 0.026704545454545453,
+            "selected_count": 216
+          }
+        }
+      }
+    },
+    "representation": "B-expanded-structural",
+    "runtime_feasibility": {
+      "characters_per_field_bound": 32768,
+      "deterministic_probe": true,
+      "estimated_five_head_artifact_bytes": 18544,
+      "feature_count": 36,
+      "full_split_extraction_completed": true,
+      "limits": {
+        "max_estimated_artifact_bytes": 1000000,
+        "max_features": 1024,
+        "official_runtime_seconds_if_integrated": 90
+      },
+      "network_or_external_weights": false,
+      "passed": true,
+      "runtime_dependencies": [
+        "python-stdlib"
+      ]
+    },
+    "selection_frozen_before_dev_load": true
+  },
+  "inputs": {
+    "dev_input_sha256": "5920f9ea9e3da147aa546659054feb08afb7e11a0e4db6967b293ff79b759abc",
+    "dev_outcomes_sha256": "acb7c5ed522c4e1b65e9ab14b3fe9458fcba32eb3d9de8d3f53e24b8904d2e66",
+    "train_input_sha256": "029a0fb1f70432a05b837a1291d86d42278bb202d808a6a12911b0dae8628ac4",
+    "train_outcomes_sha256": "97a5a787086b3e1d9fa9c7945518543540e527ea248df4a4760de581b612a4ba"
+  },
+  "limitations": [
+    "Nine public families are a small and heterogeneous group sample.",
+    "Hash collisions and lexical overlap are only semantic proxies, not pretrained semantic understanding.",
+    "Public Dev is one final diagnostic evaluation and is not evidence about the private evaluation set."
+  ],
+  "protocol": {
+    "alpha_candidates": [
+      100.0,
+      1000.0,
+      3000.0
+    ],
+    "calibration_and_conformal_requirement": "group-disjoint; unchanged v2 path required only after Train adoption gate",
+    "cv": "leave-one-reconstructed-source/task-family-out",
+    "family_to_fold": {
+      "aime": 0,
+      "babilong": 1,
+      "belebele-ko": 2,
+      "cruxeval": 3,
+      "deepmind-mathematics": 4,
+      "gsm8k": 5,
+      "hrmcr": 6,
+      "ruletaker": 7,
+      "truthfulqa": 8
+    },
+    "forbidden_runtime_features": [
+      "source/task-family label",
+      "episode_id",
+      "outcome",
+      "Dev outcome",
+      "split identity",
+      "row position"
+    ],
+    "gate_thresholds": {
+      "correlation_floor_each_upgrade": 0.02,
+      "per_family_selected_gain_floor": -0.005,
+      "positive_families_each_upgrade": 6,
+      "selected_gain_margin_over_current": 0.002
+    },
+    "groups": [
+      "aime",
+      "babilong",
+      "belebele-ko",
+      "cruxeval",
+      "deepmind-mathematics",
+      "gsm8k",
+      "hrmcr",
+      "ruletaker",
+      "truthfulqa"
+    ],
+    "selection_data": "public Train only",
+    "spend_goals": {
+      "balanced": 1.397907,
+      "fast": 1.098738,
+      "premium": 2.58128
+    }
+  },
+  "report_type": "ossp-representation-family-audit-v1",
+  "train_representations": {
+    "A-current-dense-wordhash": {
+      "adoption_gate": {
+        "checks": [
+          {
+            "check": "runtime_feasibility",
+            "detail": "bounded stdlib extraction and artifact estimate",
+            "passed": true
+          },
+          {
+            "check": "ax31-light->ax31.correlation",
+            "detail": "-0.060370 >= 0.020000",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.positive_families",
+            "detail": "2 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.family_gain_floor",
+            "detail": "-0.004149 >= -0.005000",
+            "passed": true
+          },
+          {
+            "check": "ax31-light->ax31.fast.beats_current",
+            "detail": "0.007102 >= 0.009102",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.balanced.beats_current",
+            "detail": "0.030966 >= 0.032966",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.correlation",
+            "detail": "0.036664 >= 0.020000",
+            "passed": true
+          },
+          {
+            "check": "ax31->axk1-think.positive_families",
+            "detail": "4 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.family_gain_floor",
+            "detail": "-0.001073 >= -0.005000",
+            "passed": true
+          },
+          {
+            "check": "ax31->axk1-think.premium.beats_current",
+            "detail": "0.003977 >= 0.005977",
+            "passed": false
+          },
+          {
+            "check": "new_representation",
+            "detail": "the current representation is the audit reference, not a new candidate",
+            "passed": false
+          }
+        ],
+        "failed_checks": [
+          {
+            "check": "ax31-light->ax31.correlation",
+            "detail": "-0.060370 >= 0.020000",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.positive_families",
+            "detail": "2 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.fast.beats_current",
+            "detail": "0.007102 >= 0.009102",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.balanced.beats_current",
+            "detail": "0.030966 >= 0.032966",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.positive_families",
+            "detail": "4 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.premium.beats_current",
+            "detail": "0.003977 >= 0.005977",
+            "passed": false
+          },
+          {
+            "check": "new_representation",
+            "detail": "the current representation is the audit reference, not a new candidate",
+            "passed": false
+          }
+        ],
+        "passed": false
+      },
+      "alpha_objectives": {
+        "log_incremental_cost_mse": {
+          "100": 2.0867948570599815,
+          "1000": 1.381060033913281,
+          "3000": 1.3110501422451286
+        },
+        "selected_set_gain_sum": {
+          "100": 0.03224431818181818,
+          "1000": 0.03792613636363636,
+          "3000": 0.042045454545454546
+        }
+      },
+      "feature_count": 270,
+      "metrics": {
+        "ax31->axk1-think": {
+          "oof_correlation": 0.03666448203675475,
+          "per_held_out_family": {
+            "aime": {
+              "oof_correlation": -0.34400509537007706,
+              "rows": 24,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.0,
+                  "incremental_cost_over_light": -0.15136297219901396,
+                  "realized_incremental_cost": -0.094930618,
+                  "realized_incremental_gain": 0.020833333333333332,
+                  "selected_count": 1
+                }
+              }
+            },
+            "babilong": {
+              "oof_correlation": 0.013132420397722246,
+              "rows": 160,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 1.7076434230000002,
+                  "frozen_incremental_budget": 1.7264458387600001,
+                  "incremental_cost_over_light": 0.4611772476012696,
+                  "realized_incremental_cost": 1.7076434230000002,
+                  "realized_incremental_gain": 0.021875,
+                  "selected_count": 12
+                }
+              }
+            },
+            "belebele-ko": {
+              "oof_correlation": -0.009250730398516158,
+              "rows": 322,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.0,
+                  "incremental_cost_over_light": 0.0,
+                  "realized_incremental_cost": 0.0,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 0
+                }
+              }
+            },
+            "cruxeval": {
+              "oof_correlation": 0.026165841748857697,
+              "rows": 241,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.00820232,
+                  "frozen_incremental_budget": 0.00838758072000001,
+                  "incremental_cost_over_light": 0.03769898976899814,
+                  "realized_incremental_cost": 0.00820232,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 1
+                }
+              }
+            },
+            "deepmind-mathematics": {
+              "oof_correlation": -0.1651605231371052,
+              "rows": 303,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 1.3590453789999999,
+                  "frozen_incremental_budget": 1.3637480442800007,
+                  "incremental_cost_over_light": 0.9557442453318479,
+                  "realized_incremental_cost": 1.3590453789999999,
+                  "realized_incremental_gain": 0.019801980198019802,
+                  "selected_count": 25
+                }
+              }
+            },
+            "gsm8k": {
+              "oof_correlation": 0.07510516039853768,
+              "rows": 233,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.7595525300000001,
+                  "frozen_incremental_budget": 0.7685013405199999,
+                  "incremental_cost_over_light": 0.606340090557555,
+                  "realized_incremental_cost": 0.7595525300000001,
+                  "realized_incremental_gain": -0.001072961373390558,
+                  "selected_count": 20
+                }
+              }
+            },
+            "hrmcr": {
+              "oof_correlation": -0.026003791697908316,
+              "rows": 40,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.02805267852000004,
+                  "incremental_cost_over_light": 0.0,
+                  "realized_incremental_cost": 0.0,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 0
+                }
+              }
+            },
+            "ruletaker": {
+              "oof_correlation": -0.06266879053019198,
+              "rows": 271,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.0,
+                  "incremental_cost_over_light": 0.0,
+                  "realized_incremental_cost": 0.0,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 0
+                }
+              }
+            },
+            "truthfulqa": {
+              "oof_correlation": 0.030948770499645735,
+              "rows": 166,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.27257445,
+                  "frozen_incremental_budget": 0.2778949382,
+                  "incremental_cost_over_light": 0.742426458571662,
+                  "realized_incremental_cost": 0.27257445,
+                  "realized_incremental_gain": 0.012048192771084338,
+                  "selected_count": 12
+                }
+              }
+            }
+          },
+          "positive_family_correlations": 4,
+          "realized_gain_mean": 0.1330965909090909,
+          "realized_incremental_cost_mean": 0.10263539080738637,
+          "selected_set": {
+            "premium": {
+              "conservative_budget_used": 3.662269085,
+              "frozen_incremental_budget": 3.6672925570799997,
+              "incremental_cost_over_light": 0.4146242673864739,
+              "realized_incremental_cost": 3.5673384670000003,
+              "realized_incremental_gain": 0.003977272727272727,
+              "selected_count": 34
+            }
+          }
+        },
+        "ax31-light->ax31": {
+          "oof_correlation": -0.06036974872998743,
+          "per_held_out_family": {
+            "aime": {
+              "oof_correlation": -0.010797349022065106,
+              "rows": 24,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.245551256,
+                  "frozen_incremental_budget": 0.24955612900400004,
+                  "incremental_cost_over_light": 0.1991253117167221,
+                  "realized_incremental_cost": 0.12488582000000004,
+                  "realized_incremental_gain": 0.052083333333333336,
+                  "selected_count": 16
+                },
+                "fast": {
+                  "conservative_budget_used": 0.055810489000000005,
+                  "frozen_incremental_budget": 0.061925708936,
+                  "incremental_cost_over_light": -0.10340854980770824,
+                  "realized_incremental_cost": -0.064854947,
+                  "realized_incremental_gain": 0.03125,
+                  "selected_count": 5
+                }
+              }
+            },
+            "babilong": {
+              "oof_correlation": 0.06352048820110077,
+              "rows": 160,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 1.4701228830000002,
+                  "frozen_incremental_budget": 1.4733668563439999,
+                  "incremental_cost_over_light": 0.39703091153918457,
+                  "realized_incremental_cost": 1.4701228830000002,
+                  "realized_incremental_gain": 0.059375,
+                  "selected_count": 46
+                },
+                "fast": {
+                  "conservative_budget_used": 0.36317009400000005,
+                  "frozen_incremental_budget": 0.3656062764959999,
+                  "incremental_cost_over_light": 0.09808006876972838,
+                  "realized_incremental_cost": 0.36317009400000005,
+                  "realized_incremental_gain": 0.01875,
+                  "selected_count": 10
+                }
+              }
+            },
+            "belebele-ko": {
+              "oof_correlation": -0.08446482199366308,
+              "rows": 322,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.074272779,
+                  "frozen_incremental_budget": 0.074429300164,
+                  "incremental_cost_over_light": 0.3970702211149841,
+                  "realized_incremental_cost": 0.074272779,
+                  "realized_incremental_gain": 0.004658385093167702,
+                  "selected_count": 78
+                },
+                "fast": {
+                  "conservative_budget_used": 0.018367227,
+                  "frozen_incremental_budget": 0.018469140375999997,
+                  "incremental_cost_over_light": 0.0981931601907491,
+                  "realized_incremental_cost": 0.018367227,
+                  "realized_incremental_gain": 0.006211180124223602,
+                  "selected_count": 25
+                }
+              }
+            },
+            "cruxeval": {
+              "oof_correlation": -0.0006983766370663076,
+              "rows": 241,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.086548235,
+                  "frozen_incremental_budget": 0.086574217618,
+                  "incremental_cost_over_light": 0.38824740548043424,
+                  "realized_incremental_cost": 0.084472541,
+                  "realized_incremental_gain": 0.014522821576763486,
+                  "selected_count": 74
+                },
+                "fast": {
+                  "conservative_budget_used": 0.021427493000000002,
+                  "frozen_incremental_budget": 0.021482821612,
+                  "incremental_cost_over_light": 0.08894352725969096,
+                  "realized_incremental_cost": 0.019351799,
+                  "realized_incremental_gain": -0.004149377593360996,
+                  "selected_count": 21
+                }
+              }
+            },
+            "deepmind-mathematics": {
+              "oof_correlation": 0.07445758291082095,
+              "rows": 303,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.5657729159999999,
+                  "frozen_incremental_budget": 0.565814204232,
+                  "incremental_cost_over_light": 0.13310509178776578,
+                  "realized_incremental_cost": 0.18927224600000006,
+                  "realized_incremental_gain": 0.06930693069306931,
+                  "selected_count": 152
+                },
+                "fast": {
+                  "conservative_budget_used": 0.14038120800000004,
+                  "frozen_incremental_budget": 0.140403066288,
+                  "incremental_cost_over_light": -0.16605024416727143,
+                  "realized_incremental_cost": -0.236119462,
+                  "realized_incremental_gain": 0.03135313531353135,
+                  "selected_count": 55
+                }
+              }
+            },
+            "gsm8k": {
+              "oof_correlation": -0.05934720260982081,
+              "rows": 233,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.498129815,
+                  "frozen_incremental_budget": 0.498451732388,
+                  "incremental_cost_over_light": 0.39765001788160464,
+                  "realized_incremental_cost": 0.498129815,
+                  "realized_incremental_gain": 0.013948497854077254,
+                  "selected_count": 101
+                },
+                "fast": {
+                  "conservative_budget_used": 0.123517684,
+                  "frozen_incremental_budget": 0.12368751279199998,
+                  "incremental_cost_over_light": 0.09860242806645572,
+                  "realized_incremental_cost": 0.123517684,
+                  "realized_incremental_gain": 0.003218884120171674,
+                  "selected_count": 25
+                }
+              }
+            },
+            "hrmcr": {
+              "oof_correlation": -0.24596264467620493,
+              "rows": 40,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.039745676,
+                  "frozen_incremental_budget": 0.04119690333800001,
+                  "incremental_cost_over_light": 0.3838900844167133,
+                  "realized_incremental_cost": 0.039745676,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 15
+                },
+                "fast": {
+                  "conservative_budget_used": 0.009387645,
+                  "frozen_incremental_budget": 0.010222740092,
+                  "incremental_cost_over_light": 0.09067209805474528,
+                  "realized_incremental_cost": 0.009387645,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 4
+                }
+              }
+            },
+            "ruletaker": {
+              "oof_correlation": -0.09838243538696446,
+              "rows": 271,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.2871696420000001,
+                  "frozen_incremental_budget": 0.288029756834,
+                  "incremental_cost_over_light": 0.3967187695997305,
+                  "realized_incremental_cost": 0.2871696420000001,
+                  "realized_incremental_gain": 0.016605166051660517,
+                  "selected_count": 60
+                },
+                "fast": {
+                  "conservative_budget_used": 0.07097291900000001,
+                  "frozen_incremental_budget": 0.071472686156,
+                  "incremental_cost_over_light": 0.09804758227396936,
+                  "realized_incremental_cost": 0.07097291900000001,
+                  "realized_incremental_gain": 0.0018450184501845018,
+                  "selected_count": 18
+                }
+              }
+            },
+            "truthfulqa": {
+              "oof_correlation": -0.07031782060819997,
+              "rows": 166,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.145987648,
+                  "frozen_incremental_budget": 0.14608757598000002,
+                  "incremental_cost_over_light": 0.39383841313940177,
+                  "realized_incremental_cost": 0.14459383499999998,
+                  "realized_incremental_gain": 0.02710843373493976,
+                  "selected_count": 82
+                },
+                "fast": {
+                  "conservative_budget_used": 0.036138364000000006,
+                  "frozen_incremental_budget": 0.03625066932,
+                  "incremental_cost_over_light": 0.09463570027782318,
+                  "realized_incremental_cost": 0.034744551000000005,
+                  "realized_incremental_gain": 0.009036144578313253,
+                  "selected_count": 25
+                }
+              }
+            }
+          },
+          "positive_family_correlations": 2,
+          "realized_gain_mean": 0.08125,
+          "realized_incremental_cost_mean": 0.005646421686931819,
+          "selected_set": {
+            "balanced": {
+              "conservative_budget_used": 3.4234850549999964,
+              "frozen_incremental_budget": 3.423506675902,
+              "incremental_cost_over_light": 0.3397166598518369,
+              "realized_incremental_cost": 2.9228494419999964,
+              "realized_incremental_gain": 0.030965909090909093,
+              "selected_count": 782
+            },
+            "fast": {
+              "conservative_budget_used": 0.8494986969999997,
+              "frozen_incremental_budget": 0.8495206220679998,
+              "incremental_cost_over_light": 0.0405476244992611,
+              "realized_incremental_cost": 0.34886308399999966,
+              "realized_incremental_gain": 0.007102272727272727,
+              "selected_count": 219
+            }
+          }
+        }
+      },
+      "runtime_feasibility": {
+        "characters_per_field_bound": 32768,
+        "deterministic_probe": true,
+        "estimated_five_head_artifact_bytes": 32584,
+        "feature_count": 270,
+        "full_split_extraction_completed": true,
+        "limits": {
+          "max_estimated_artifact_bytes": 1000000,
+          "max_features": 1024,
+          "official_runtime_seconds_if_integrated": 90
+        },
+        "network_or_external_weights": false,
+        "passed": true,
+        "runtime_dependencies": [
+          "python-stdlib"
+        ]
+      },
+      "selected_alpha_gain": 3000.0,
+      "selected_alpha_incremental_cost": 3000.0
+    },
+    "B-expanded-structural": {
+      "adoption_gate": {
+        "checks": [
+          {
+            "check": "runtime_feasibility",
+            "detail": "bounded stdlib extraction and artifact estimate",
+            "passed": true
+          },
+          {
+            "check": "ax31-light->ax31.correlation",
+            "detail": "0.025254 >= 0.020000",
+            "passed": true
+          },
+          {
+            "check": "ax31-light->ax31.positive_families",
+            "detail": "4 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.family_gain_floor",
+            "detail": "-0.006250 >= -0.005000",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.fast.beats_current",
+            "detail": "0.018324 >= 0.009102",
+            "passed": true
+          },
+          {
+            "check": "ax31-light->ax31.balanced.beats_current",
+            "detail": "0.043608 >= 0.032966",
+            "passed": true
+          },
+          {
+            "check": "ax31->axk1-think.correlation",
+            "detail": "0.129639 >= 0.020000",
+            "passed": true
+          },
+          {
+            "check": "ax31->axk1-think.positive_families",
+            "detail": "4 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.family_gain_floor",
+            "detail": "0.000000 >= -0.005000",
+            "passed": true
+          },
+          {
+            "check": "ax31->axk1-think.premium.beats_current",
+            "detail": "0.001705 >= 0.005977",
+            "passed": false
+          }
+        ],
+        "failed_checks": [
+          {
+            "check": "ax31-light->ax31.positive_families",
+            "detail": "4 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.family_gain_floor",
+            "detail": "-0.006250 >= -0.005000",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.positive_families",
+            "detail": "4 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.premium.beats_current",
+            "detail": "0.001705 >= 0.005977",
+            "passed": false
+          }
+        ],
+        "passed": false
+      },
+      "alpha_objectives": {
+        "log_incremental_cost_mse": {
+          "100": 2.9264065365818395,
+          "1000": 2.1717127455481533,
+          "3000": 2.062274074540849
+        },
+        "selected_set_gain_sum": {
+          "100": 0.06363636363636364,
+          "1000": 0.05738636363636364,
+          "3000": 0.047443181818181815
+        }
+      },
+      "feature_count": 36,
+      "metrics": {
+        "ax31->axk1-think": {
+          "oof_correlation": 0.1296394078007827,
+          "per_held_out_family": {
+            "aime": {
+              "oof_correlation": -0.20724784859637357,
+              "rows": 24,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.0,
+                  "incremental_cost_over_light": -0.15136297219901396,
+                  "realized_incremental_cost": -0.094930618,
+                  "realized_incremental_gain": 0.020833333333333332,
+                  "selected_count": 1
+                }
+              }
+            },
+            "babilong": {
+              "oof_correlation": 0.05750806491707203,
+              "rows": 160,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 1.7037206559999998,
+                  "frozen_incremental_budget": 1.7264458387600001,
+                  "incremental_cost_over_light": 0.4601178397274273,
+                  "realized_incremental_cost": 1.7037206559999998,
+                  "realized_incremental_gain": 0.003125,
+                  "selected_count": 9
+                }
+              }
+            },
+            "belebele-ko": {
+              "oof_correlation": -0.049116138537976806,
+              "rows": 322,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.0,
+                  "incremental_cost_over_light": 0.0,
+                  "realized_incremental_cost": 0.0,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 0
+                }
+              }
+            },
+            "cruxeval": {
+              "oof_correlation": 0.06011049363639868,
+              "rows": 241,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.00820232,
+                  "frozen_incremental_budget": 0.00838758072000001,
+                  "incremental_cost_over_light": 0.03769898976899814,
+                  "realized_incremental_cost": 0.00820232,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 1
+                }
+              }
+            },
+            "deepmind-mathematics": {
+              "oof_correlation": -0.23820636212026802,
+              "rows": 303,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 1.361900426,
+                  "frozen_incremental_budget": 1.3637480442800007,
+                  "incremental_cost_over_light": 0.9577520478545347,
+                  "realized_incremental_cost": 1.361900426,
+                  "realized_incremental_gain": 0.009900990099009901,
+                  "selected_count": 13
+                }
+              }
+            },
+            "gsm8k": {
+              "oof_correlation": 0.13375342346813165,
+              "rows": 233,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.768044331,
+                  "frozen_incremental_budget": 0.7685013405199999,
+                  "incremental_cost_over_light": 0.6131189757353013,
+                  "realized_incremental_cost": 0.768044331,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 12
+                }
+              }
+            },
+            "hrmcr": {
+              "oof_correlation": -0.16429169119379902,
+              "rows": 40,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.02805267852000004,
+                  "incremental_cost_over_light": 0.0,
+                  "realized_incremental_cost": 0.0,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 0
+                }
+              }
+            },
+            "ruletaker": {
+              "oof_correlation": -0.07109697274217447,
+              "rows": 271,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.0,
+                  "incremental_cost_over_light": 0.0,
+                  "realized_incremental_cost": 0.0,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 0
+                }
+              }
+            },
+            "truthfulqa": {
+              "oof_correlation": 0.008023956096001589,
+              "rows": 166,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.275583665,
+                  "frozen_incremental_budget": 0.2778949382,
+                  "incremental_cost_over_light": 0.7506228278041073,
+                  "realized_incremental_cost": 0.275583665,
+                  "realized_incremental_gain": 0.0030120481927710845,
+                  "selected_count": 10
+                }
+              }
+            }
+          },
+          "positive_family_correlations": 4,
+          "realized_gain_mean": 0.1330965909090909,
+          "realized_incremental_cost_mean": 0.10263539080738637,
+          "selected_set": {
+            "premium": {
+              "conservative_budget_used": 3.666203293,
+              "frozen_incremental_budget": 3.6672925570799997,
+              "incremental_cost_over_light": 0.41508153213015764,
+              "realized_incremental_cost": 3.5712726750000003,
+              "realized_incremental_gain": 0.0017045454545454545,
+              "selected_count": 27
+            }
+          }
+        },
+        "ax31-light->ax31": {
+          "oof_correlation": 0.025253708108841977,
+          "per_held_out_family": {
+            "aime": {
+              "oof_correlation": 0.13893939207298794,
+              "rows": 24,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.248984805,
+                  "frozen_incremental_budget": 0.24955612900400004,
+                  "incremental_cost_over_light": 0.20459996460301166,
+                  "realized_incremental_cost": 0.12831936900000004,
+                  "realized_incremental_gain": 0.08333333333333333,
+                  "selected_count": 16
+                },
+                "fast": {
+                  "conservative_budget_used": 0.05760520300000001,
+                  "frozen_incremental_budget": 0.061925708936,
+                  "incremental_cost_over_light": -0.10054695203229734,
+                  "realized_incremental_cost": -0.063060233,
+                  "realized_incremental_gain": 0.020833333333333332,
+                  "selected_count": 4
+                }
+              }
+            },
+            "babilong": {
+              "oof_correlation": -0.0026122102748274974,
+              "rows": 160,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.5098685040000002,
+                  "frozen_incremental_budget": 1.4733668563439999,
+                  "incremental_cost_over_light": 0.13769839191615413,
+                  "realized_incremental_cost": 0.5098685040000002,
+                  "realized_incremental_gain": -0.00625,
+                  "selected_count": 34
+                },
+                "fast": {
+                  "conservative_budget_used": 0.36412166900000004,
+                  "frozen_incremental_budget": 0.3656062764959999,
+                  "incremental_cost_over_light": 0.09833705728002007,
+                  "realized_incremental_cost": 0.36412166900000004,
+                  "realized_incremental_gain": -0.00625,
+                  "selected_count": 20
+                }
+              }
+            },
+            "belebele-ko": {
+              "oof_correlation": -0.021979106430759402,
+              "rows": 322,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.07425564500000002,
+                  "frozen_incremental_budget": 0.074429300164,
+                  "incremental_cost_over_light": 0.3969786209182475,
+                  "realized_incremental_cost": 0.07425564500000002,
+                  "realized_incremental_gain": 0.024844720496894408,
+                  "selected_count": 89
+                },
+                "fast": {
+                  "conservative_budget_used": 0.018352338000000003,
+                  "frozen_incremental_budget": 0.018469140375999997,
+                  "incremental_cost_over_light": 0.0981135620041486,
+                  "realized_incremental_cost": 0.018352338000000003,
+                  "realized_incremental_gain": 0.007763975155279503,
+                  "selected_count": 23
+                }
+              }
+            },
+            "cruxeval": {
+              "oof_correlation": 0.02893735873593241,
+              "rows": 241,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.086552789,
+                  "frozen_incremental_budget": 0.086574217618,
+                  "incremental_cost_over_light": 0.38826833629018176,
+                  "realized_incremental_cost": 0.084477095,
+                  "realized_incremental_gain": 0.002074688796680498,
+                  "selected_count": 76
+                },
+                "fast": {
+                  "conservative_budget_used": 0.021353816999999997,
+                  "frozen_incremental_budget": 0.021482821612,
+                  "incremental_cost_over_light": 0.08860490224015735,
+                  "realized_incremental_cost": 0.019278122999999994,
+                  "realized_incremental_gain": 0.006224066390041493,
+                  "selected_count": 28
+                }
+              }
+            },
+            "deepmind-mathematics": {
+              "oof_correlation": 0.013581871640942506,
+              "rows": 303,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.5658030799999999,
+                  "frozen_incremental_budget": 0.565814204232,
+                  "incremental_cost_over_light": 0.13312630452272034,
+                  "realized_incremental_cost": 0.18930240999999978,
+                  "realized_incremental_gain": 0.07260726072607261,
+                  "selected_count": 163
+                },
+                "fast": {
+                  "conservative_budget_used": 0.140394895,
+                  "frozen_incremental_budget": 0.140403066288,
+                  "incremental_cost_over_light": -0.16604061882900978,
+                  "realized_incremental_cost": -0.23610577500000002,
+                  "realized_incremental_gain": 0.03135313531353135,
+                  "selected_count": 49
+                }
+              }
+            },
+            "gsm8k": {
+              "oof_correlation": 0.04844893848140372,
+              "rows": 233,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.497971303,
+                  "frozen_incremental_budget": 0.498451732388,
+                  "incremental_cost_over_light": 0.39752347998377885,
+                  "realized_incremental_cost": 0.497971303,
+                  "realized_incremental_gain": 0.01072961373390558,
+                  "selected_count": 103
+                },
+                "fast": {
+                  "conservative_budget_used": 0.123469174,
+                  "frozen_incremental_budget": 0.12368751279199998,
+                  "incremental_cost_over_light": 0.09856370321645364,
+                  "realized_incremental_cost": 0.123469174,
+                  "realized_incremental_gain": 0.009656652360515022,
+                  "selected_count": 29
+                }
+              }
+            },
+            "hrmcr": {
+              "oof_correlation": -0.23839390293728407,
+              "rows": 40,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.040106709000000004,
+                  "frozen_incremental_budget": 0.04119690333800001,
+                  "incremental_cost_over_light": 0.38737718044313946,
+                  "realized_incremental_cost": 0.040106709000000004,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 14
+                },
+                "fast": {
+                  "conservative_budget_used": 0.009612964,
+                  "frozen_incremental_budget": 0.010222740092,
+                  "incremental_cost_over_light": 0.09284837831050669,
+                  "realized_incremental_cost": 0.009612964,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 4
+                }
+              }
+            },
+            "ruletaker": {
+              "oof_correlation": -0.04200664515506981,
+              "rows": 271,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.287645097,
+                  "frozen_incremental_budget": 0.288029756834,
+                  "incremental_cost_over_light": 0.39737560059790406,
+                  "realized_incremental_cost": 0.287645097,
+                  "realized_incremental_gain": 0.00922509225092251,
+                  "selected_count": 82
+                },
+                "fast": {
+                  "conservative_budget_used": 0.071293515,
+                  "frozen_incremental_budget": 0.071472686156,
+                  "incremental_cost_over_light": 0.09849047884817824,
+                  "realized_incremental_cost": 0.071293515,
+                  "realized_incremental_gain": 0.005535055350553505,
+                  "selected_count": 25
+                }
+              }
+            },
+            "truthfulqa": {
+              "oof_correlation": -0.012336596559551759,
+              "rows": 166,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.14605589399999994,
+                  "frozen_incremental_budget": 0.14608757598000002,
+                  "incremental_cost_over_light": 0.38993457536634496,
+                  "realized_incremental_cost": 0.1431605799999999,
+                  "realized_incremental_gain": 0.060240963855421686,
+                  "selected_count": 81
+                },
+                "fast": {
+                  "conservative_budget_used": 0.036159779,
+                  "frozen_incremental_budget": 0.03625066932,
+                  "incremental_cost_over_light": 0.09060430625919268,
+                  "realized_incremental_cost": 0.033264465,
+                  "realized_incremental_gain": 0.0030120481927710845,
+                  "selected_count": 29
+                }
+              }
+            }
+          },
+          "positive_family_correlations": 4,
+          "realized_gain_mean": 0.08125,
+          "realized_incremental_cost_mean": 0.005646421686931819,
+          "selected_set": {
+            "balanced": {
+              "conservative_budget_used": 3.423377248,
+              "frozen_incremental_budget": 3.423506675902,
+              "incremental_cost_over_light": 0.33952961335858434,
+              "realized_incremental_cost": 2.921240134000001,
+              "realized_incremental_gain": 0.04360795454545455,
+              "selected_count": 905
+            },
+            "fast": {
+              "conservative_budget_used": 0.8494715729999998,
+              "frozen_incremental_budget": 0.8495206220679998,
+              "incremental_cost_over_light": 0.04036995562186224,
+              "realized_incremental_cost": 0.34733445899999965,
+              "realized_incremental_gain": 0.018323863636363635,
+              "selected_count": 374
+            }
+          }
+        }
+      },
+      "runtime_feasibility": {
+        "characters_per_field_bound": 32768,
+        "deterministic_probe": true,
+        "estimated_five_head_artifact_bytes": 18544,
+        "feature_count": 36,
+        "full_split_extraction_completed": true,
+        "limits": {
+          "max_estimated_artifact_bytes": 1000000,
+          "max_features": 1024,
+          "official_runtime_seconds_if_integrated": 90
+        },
+        "network_or_external_weights": false,
+        "passed": true,
+        "runtime_dependencies": [
+          "python-stdlib"
+        ]
+      },
+      "selected_alpha_gain": 100.0,
+      "selected_alpha_incremental_cost": 3000.0
+    },
+    "C-semantic-proxy": {
+      "adoption_gate": {
+        "checks": [
+          {
+            "check": "runtime_feasibility",
+            "detail": "bounded stdlib extraction and artifact estimate",
+            "passed": true
+          },
+          {
+            "check": "ax31-light->ax31.correlation",
+            "detail": "-0.042573 >= 0.020000",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.positive_families",
+            "detail": "5 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.family_gain_floor",
+            "detail": "0.001073 >= -0.005000",
+            "passed": true
+          },
+          {
+            "check": "ax31-light->ax31.fast.beats_current",
+            "detail": "0.010227 >= 0.009102",
+            "passed": true
+          },
+          {
+            "check": "ax31-light->ax31.balanced.beats_current",
+            "detail": "0.039915 >= 0.032966",
+            "passed": true
+          },
+          {
+            "check": "ax31->axk1-think.correlation",
+            "detail": "0.009303 >= 0.020000",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.positive_families",
+            "detail": "4 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.family_gain_floor",
+            "detail": "0.000000 >= -0.005000",
+            "passed": true
+          },
+          {
+            "check": "ax31->axk1-think.premium.beats_current",
+            "detail": "0.004972 >= 0.005977",
+            "passed": false
+          }
+        ],
+        "failed_checks": [
+          {
+            "check": "ax31-light->ax31.correlation",
+            "detail": "-0.042573 >= 0.020000",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.positive_families",
+            "detail": "5 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.correlation",
+            "detail": "0.009303 >= 0.020000",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.positive_families",
+            "detail": "4 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.premium.beats_current",
+            "detail": "0.004972 >= 0.005977",
+            "passed": false
+          }
+        ],
+        "passed": false
+      },
+      "alpha_objectives": {
+        "log_incremental_cost_mse": {
+          "100": 2.112429636634191,
+          "1000": 1.28690052608119,
+          "3000": 1.1106333921128888
+        },
+        "selected_set_gain_sum": {
+          "100": 0.04261363636363636,
+          "1000": 0.04545454545454546,
+          "3000": 0.055113636363636365
+        }
+      },
+      "feature_count": 270,
+      "metrics": {
+        "ax31->axk1-think": {
+          "oof_correlation": 0.009302621908678544,
+          "per_held_out_family": {
+            "aime": {
+              "oof_correlation": -0.23356598044715574,
+              "rows": 24,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.0,
+                  "incremental_cost_over_light": -0.15136297219901396,
+                  "realized_incremental_cost": -0.094930618,
+                  "realized_incremental_gain": 0.020833333333333332,
+                  "selected_count": 1
+                }
+              }
+            },
+            "babilong": {
+              "oof_correlation": -0.021330516399852294,
+              "rows": 160,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 1.7123904660000002,
+                  "frozen_incremental_budget": 1.7264458387600001,
+                  "incremental_cost_over_light": 0.46245926479262145,
+                  "realized_incremental_cost": 1.7123904660000002,
+                  "realized_incremental_gain": 0.009375,
+                  "selected_count": 14
+                }
+              }
+            },
+            "belebele-ko": {
+              "oof_correlation": -0.04715514841852482,
+              "rows": 322,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.0,
+                  "incremental_cost_over_light": 0.0,
+                  "realized_incremental_cost": 0.0,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 0
+                }
+              }
+            },
+            "cruxeval": {
+              "oof_correlation": 0.005418809741872516,
+              "rows": 241,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.00820232,
+                  "frozen_incremental_budget": 0.00838758072000001,
+                  "incremental_cost_over_light": 0.03769898976899814,
+                  "realized_incremental_cost": 0.00820232,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 1
+                }
+              }
+            },
+            "deepmind-mathematics": {
+              "oof_correlation": -0.11466084380937257,
+              "rows": 303,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 1.363092711,
+                  "frozen_incremental_budget": 1.3637480442800007,
+                  "incremental_cost_over_light": 0.9585905184053738,
+                  "realized_incremental_cost": 1.363092711,
+                  "realized_incremental_gain": 0.009900990099009901,
+                  "selected_count": 15
+                }
+              }
+            },
+            "gsm8k": {
+              "oof_correlation": 0.04762765401486643,
+              "rows": 233,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.7600029690000001,
+                  "frozen_incremental_budget": 0.7685013405199999,
+                  "incremental_cost_over_light": 0.6066996696692862,
+                  "realized_incremental_cost": 0.7600029690000001,
+                  "realized_incremental_gain": 0.0075107296137339056,
+                  "selected_count": 11
+                }
+              }
+            },
+            "hrmcr": {
+              "oof_correlation": -0.07201004231106342,
+              "rows": 40,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.02805267852000004,
+                  "incremental_cost_over_light": 0.0,
+                  "realized_incremental_cost": 0.0,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 0
+                }
+              }
+            },
+            "ruletaker": {
+              "oof_correlation": 0.039061730755246424,
+              "rows": 271,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.0,
+                  "incremental_cost_over_light": 0.0,
+                  "realized_incremental_cost": 0.0,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 0
+                }
+              }
+            },
+            "truthfulqa": {
+              "oof_correlation": 0.020618893319069274,
+              "rows": 166,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.277521737,
+                  "frozen_incremental_budget": 0.2778949382,
+                  "incremental_cost_over_light": 0.7559016642152856,
+                  "realized_incremental_cost": 0.277521737,
+                  "realized_incremental_gain": 0.009036144578313253,
+                  "selected_count": 10
+                }
+              }
+            }
+          },
+          "positive_family_correlations": 4,
+          "realized_gain_mean": 0.1330965909090909,
+          "realized_incremental_cost_mean": 0.10263539080738637,
+          "selected_set": {
+            "premium": {
+              "conservative_budget_used": 3.6644557659999992,
+              "frozen_incremental_budget": 3.6672925570799997,
+              "incremental_cost_over_light": 0.41487842073245423,
+              "realized_incremental_cost": 3.5695251479999994,
+              "realized_incremental_gain": 0.004971590909090909,
+              "selected_count": 61
+            }
+          }
+        },
+        "ax31-light->ax31": {
+          "oof_correlation": -0.042572793719312864,
+          "per_held_out_family": {
+            "aime": {
+              "oof_correlation": 0.4261760278721595,
+              "rows": 24,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.244939292,
+                  "frozen_incremental_budget": 0.24955612900400004,
+                  "incremental_cost_over_light": 0.19814956024822536,
+                  "realized_incremental_cost": 0.124273856,
+                  "realized_incremental_gain": 0.07291666666666667,
+                  "selected_count": 15
+                },
+                "fast": {
+                  "conservative_budget_used": 0.061667558,
+                  "frozen_incremental_budget": 0.061925708936,
+                  "incremental_cost_over_light": -0.09406969380010587,
+                  "realized_incremental_cost": -0.058997878000000004,
+                  "realized_incremental_gain": 0.041666666666666664,
+                  "selected_count": 5
+                }
+              }
+            },
+            "babilong": {
+              "oof_correlation": 0.05668496018162419,
+              "rows": 160,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 1.4726971190000002,
+                  "frozen_incremental_budget": 1.4733668563439999,
+                  "incremental_cost_over_light": 0.3977261263932731,
+                  "realized_incremental_cost": 1.4726971190000002,
+                  "realized_incremental_gain": 0.04375,
+                  "selected_count": 53
+                },
+                "fast": {
+                  "conservative_budget_used": 0.36100146999999994,
+                  "frozen_incremental_budget": 0.3656062764959999,
+                  "incremental_cost_over_light": 0.09749439612054903,
+                  "realized_incremental_cost": 0.36100146999999994,
+                  "realized_incremental_gain": 0.015625,
+                  "selected_count": 10
+                }
+              }
+            },
+            "belebele-ko": {
+              "oof_correlation": -0.06593177319850846,
+              "rows": 322,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.07442806,
+                  "frozen_incremental_budget": 0.074429300164,
+                  "incremental_cost_over_light": 0.397900369950602,
+                  "realized_incremental_cost": 0.07442806,
+                  "realized_incremental_gain": 0.009316770186335404,
+                  "selected_count": 81
+                },
+                "fast": {
+                  "conservative_budget_used": 0.018415132999999997,
+                  "frozen_incremental_budget": 0.018469140375999997,
+                  "incremental_cost_over_light": 0.09844927079100997,
+                  "realized_incremental_cost": 0.018415132999999997,
+                  "realized_incremental_gain": 0.010869565217391304,
+                  "selected_count": 23
+                }
+              }
+            },
+            "cruxeval": {
+              "oof_correlation": -0.039165361052079274,
+              "rows": 241,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.08654684099999997,
+                  "frozen_incremental_budget": 0.086574217618,
+                  "incremental_cost_over_light": 0.38824099846488996,
+                  "realized_incremental_cost": 0.08447114699999997,
+                  "realized_incremental_gain": 0.008298755186721992,
+                  "selected_count": 71
+                },
+                "fast": {
+                  "conservative_budget_used": 0.021439332999999998,
+                  "frozen_incremental_budget": 0.021482821612,
+                  "incremental_cost_over_light": 0.08899794552657946,
+                  "realized_incremental_cost": 0.019363639,
+                  "realized_incremental_gain": 0.002074688796680498,
+                  "selected_count": 19
+                }
+              }
+            },
+            "deepmind-mathematics": {
+              "oof_correlation": -0.04288920950575657,
+              "rows": 303,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.5657809509999998,
+                  "frozen_incremental_budget": 0.565814204232,
+                  "incremental_cost_over_light": 0.13311074237539866,
+                  "realized_incremental_cost": 0.18928028099999988,
+                  "realized_incremental_gain": 0.052805280528052806,
+                  "selected_count": 130
+                },
+                "fast": {
+                  "conservative_budget_used": 0.140321975,
+                  "frozen_incremental_budget": 0.140403066288,
+                  "incremental_cost_over_light": -0.16609189958199014,
+                  "realized_incremental_cost": -0.23617869500000002,
+                  "realized_incremental_gain": 0.024752475247524754,
+                  "selected_count": 51
+                }
+              }
+            },
+            "gsm8k": {
+              "oof_correlation": -0.009064848733388668,
+              "rows": 233,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.49808561400000007,
+                  "frozen_incremental_budget": 0.498451732388,
+                  "incremental_cost_over_light": 0.3976147328456339,
+                  "realized_incremental_cost": 0.49808561400000007,
+                  "realized_incremental_gain": 0.015021459227467811,
+                  "selected_count": 98
+                },
+                "fast": {
+                  "conservative_budget_used": 0.12337989799999999,
+                  "frozen_incremental_budget": 0.12368751279199998,
+                  "incremental_cost_over_light": 0.09849243544261761,
+                  "realized_incremental_cost": 0.12337989799999999,
+                  "realized_incremental_gain": 0.001072961373390558,
+                  "selected_count": 27
+                }
+              }
+            },
+            "hrmcr": {
+              "oof_correlation": 0.2213912488011648,
+              "rows": 40,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.039631709999999994,
+                  "frozen_incremental_budget": 0.04119690333800001,
+                  "incremental_cost_over_light": 0.38278932524581283,
+                  "realized_incremental_cost": 0.039631709999999994,
+                  "realized_incremental_gain": 0.0375,
+                  "selected_count": 11
+                },
+                "fast": {
+                  "conservative_budget_used": 0.009043385999999999,
+                  "frozen_incremental_budget": 0.010222740092,
+                  "incremental_cost_over_light": 0.08734701643904415,
+                  "realized_incremental_cost": 0.009043385999999999,
+                  "realized_incremental_gain": 0.0125,
+                  "selected_count": 3
+                }
+              }
+            },
+            "ruletaker": {
+              "oof_correlation": 0.027112386463890737,
+              "rows": 271,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.2878290909999998,
+                  "frozen_incremental_budget": 0.288029756834,
+                  "incremental_cost_over_light": 0.3976297844064198,
+                  "realized_incremental_cost": 0.2878290909999998,
+                  "realized_incremental_gain": 0.02029520295202952,
+                  "selected_count": 79
+                },
+                "fast": {
+                  "conservative_budget_used": 0.070729581,
+                  "frozen_incremental_budget": 0.071472686156,
+                  "incremental_cost_over_light": 0.09771141598813034,
+                  "realized_incremental_cost": 0.070729581,
+                  "realized_incremental_gain": 0.005535055350553505,
+                  "selected_count": 21
+                }
+              }
+            },
+            "truthfulqa": {
+              "oof_correlation": 0.0007898197848966621,
+              "rows": 166,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.14578581499999999,
+                  "frozen_incremental_budget": 0.14608757598000002,
+                  "incremental_cost_over_light": 0.38968899602331525,
+                  "realized_incremental_cost": 0.14307041799999998,
+                  "realized_incremental_gain": 0.045180722891566265,
+                  "selected_count": 83
+                },
+                "fast": {
+                  "conservative_budget_used": 0.03613990100000001,
+                  "frozen_incremental_budget": 0.03625066932,
+                  "incremental_cost_over_light": 0.09104021354251786,
+                  "realized_incremental_cost": 0.03342450400000001,
+                  "realized_incremental_gain": 0.009036144578313253,
+                  "selected_count": 28
+                }
+              }
+            }
+          },
+          "positive_family_correlations": 5,
+          "realized_gain_mean": 0.08125,
+          "realized_incremental_cost_mean": 0.005646421686931819,
+          "selected_set": {
+            "balanced": {
+              "conservative_budget_used": 3.4234497389999996,
+              "frozen_incremental_budget": 3.423506675902,
+              "incremental_cost_over_light": 0.3395589502109885,
+              "realized_incremental_cost": 2.9214925419999993,
+              "realized_incremental_gain": 0.03991477272727273,
+              "selected_count": 950
+            },
+            "fast": {
+              "conservative_budget_used": 0.8495036060000006,
+              "frozen_incremental_budget": 0.8495206220679998,
+              "incremental_cost_over_light": 0.040394590125788866,
+              "realized_incremental_cost": 0.34754640900000044,
+              "realized_incremental_gain": 0.010227272727272727,
+              "selected_count": 361
+            }
+          }
+        }
+      },
+      "runtime_feasibility": {
+        "characters_per_field_bound": 32768,
+        "deterministic_probe": true,
+        "estimated_five_head_artifact_bytes": 32584,
+        "feature_count": 270,
+        "full_split_extraction_completed": true,
+        "limits": {
+          "max_estimated_artifact_bytes": 1000000,
+          "max_features": 1024,
+          "official_runtime_seconds_if_integrated": 90
+        },
+        "network_or_external_weights": false,
+        "passed": true,
+        "runtime_dependencies": [
+          "python-stdlib"
+        ]
+      },
+      "selected_alpha_gain": 3000.0,
+      "selected_alpha_incremental_cost": 3000.0
+    },
+    "D-structural-semantic": {
+      "adoption_gate": {
+        "checks": [
+          {
+            "check": "runtime_feasibility",
+            "detail": "bounded stdlib extraction and artifact estimate",
+            "passed": true
+          },
+          {
+            "check": "ax31-light->ax31.correlation",
+            "detail": "-0.024908 >= 0.020000",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.positive_families",
+            "detail": "4 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.family_gain_floor",
+            "detail": "-0.006250 >= -0.005000",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.fast.beats_current",
+            "detail": "0.013494 >= 0.009102",
+            "passed": true
+          },
+          {
+            "check": "ax31-light->ax31.balanced.beats_current",
+            "detail": "0.038778 >= 0.032966",
+            "passed": true
+          },
+          {
+            "check": "ax31->axk1-think.correlation",
+            "detail": "0.142652 >= 0.020000",
+            "passed": true
+          },
+          {
+            "check": "ax31->axk1-think.positive_families",
+            "detail": "5 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.family_gain_floor",
+            "detail": "0.000000 >= -0.005000",
+            "passed": true
+          },
+          {
+            "check": "ax31->axk1-think.premium.beats_current",
+            "detail": "0.004830 >= 0.005977",
+            "passed": false
+          }
+        ],
+        "failed_checks": [
+          {
+            "check": "ax31-light->ax31.correlation",
+            "detail": "-0.024908 >= 0.020000",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.positive_families",
+            "detail": "4 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31-light->ax31.family_gain_floor",
+            "detail": "-0.006250 >= -0.005000",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.positive_families",
+            "detail": "5 >= 6",
+            "passed": false
+          },
+          {
+            "check": "ax31->axk1-think.premium.beats_current",
+            "detail": "0.004830 >= 0.005977",
+            "passed": false
+          }
+        ],
+        "passed": false
+      },
+      "alpha_objectives": {
+        "log_incremental_cost_mse": {
+          "100": 2.2664723121332497,
+          "1000": 1.3620772588540542,
+          "3000": 1.241012011769393
+        },
+        "selected_set_gain_sum": {
+          "100": 0.05369318181818183,
+          "1000": 0.054261363636363635,
+          "3000": 0.05710227272727273
+        }
+      },
+      "feature_count": 292,
+      "metrics": {
+        "ax31->axk1-think": {
+          "oof_correlation": 0.14265202985423278,
+          "per_held_out_family": {
+            "aime": {
+              "oof_correlation": -0.25957884962683503,
+              "rows": 24,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.0,
+                  "incremental_cost_over_light": -0.15136297219901396,
+                  "realized_incremental_cost": -0.094930618,
+                  "realized_incremental_gain": 0.020833333333333332,
+                  "selected_count": 1
+                }
+              }
+            },
+            "babilong": {
+              "oof_correlation": 0.06116006057943708,
+              "rows": 160,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 1.7046340709999996,
+                  "frozen_incremental_budget": 1.7264458387600001,
+                  "incremental_cost_over_light": 0.46036452250085874,
+                  "realized_incremental_cost": 1.7046340709999996,
+                  "realized_incremental_gain": 0.003125,
+                  "selected_count": 12
+                }
+              }
+            },
+            "belebele-ko": {
+              "oof_correlation": -0.043025245012378026,
+              "rows": 322,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.0,
+                  "incremental_cost_over_light": 0.0,
+                  "realized_incremental_cost": 0.0,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 0
+                }
+              }
+            },
+            "cruxeval": {
+              "oof_correlation": 0.00955759439371445,
+              "rows": 241,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.00820232,
+                  "frozen_incremental_budget": 0.00838758072000001,
+                  "incremental_cost_over_light": 0.03769898976899814,
+                  "realized_incremental_cost": 0.00820232,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 1
+                }
+              }
+            },
+            "deepmind-mathematics": {
+              "oof_correlation": -0.1604227807541296,
+              "rows": 303,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 1.360941396,
+                  "frozen_incremental_budget": 1.3637480442800007,
+                  "incremental_cost_over_light": 0.9570776131242721,
+                  "realized_incremental_cost": 1.360941396,
+                  "realized_incremental_gain": 0.013201320132013201,
+                  "selected_count": 15
+                }
+              }
+            },
+            "gsm8k": {
+              "oof_correlation": 0.068509299296943,
+              "rows": 233,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.7587017140000001,
+                  "frozen_incremental_budget": 0.7685013405199999,
+                  "incremental_cost_over_light": 0.605660896123843,
+                  "realized_incremental_cost": 0.7587017140000001,
+                  "realized_incremental_gain": 0.0075107296137339056,
+                  "selected_count": 18
+                }
+              }
+            },
+            "hrmcr": {
+              "oof_correlation": -0.03143285719825409,
+              "rows": 40,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.02805267852000004,
+                  "incremental_cost_over_light": 0.0,
+                  "realized_incremental_cost": 0.0,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 0
+                }
+              }
+            },
+            "ruletaker": {
+              "oof_correlation": 0.031319415066902605,
+              "rows": 271,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.0,
+                  "frozen_incremental_budget": 0.0,
+                  "incremental_cost_over_light": 0.0,
+                  "realized_incremental_cost": 0.0,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 0
+                }
+              }
+            },
+            "truthfulqa": {
+              "oof_correlation": 0.021836080128052767,
+              "rows": 166,
+              "selected_set": {
+                "premium": {
+                  "conservative_budget_used": 0.272894883,
+                  "frozen_incremental_budget": 0.2778949382,
+                  "incremental_cost_over_light": 0.7432992400719071,
+                  "realized_incremental_cost": 0.272894883,
+                  "realized_incremental_gain": 0.006024096385542169,
+                  "selected_count": 9
+                }
+              }
+            }
+          },
+          "positive_family_correlations": 5,
+          "realized_gain_mean": 0.1330965909090909,
+          "realized_incremental_cost_mean": 0.10263539080738637,
+          "selected_set": {
+            "premium": {
+              "conservative_budget_used": 3.665872480999999,
+              "frozen_incremental_budget": 3.6672925570799997,
+              "incremental_cost_over_light": 0.4150430825452887,
+              "realized_incremental_cost": 3.5709418629999994,
+              "realized_incremental_gain": 0.004829545454545454,
+              "selected_count": 62
+            }
+          }
+        },
+        "ax31-light->ax31": {
+          "oof_correlation": -0.024908489987520616,
+          "per_held_out_family": {
+            "aime": {
+              "oof_correlation": 0.4665105702328948,
+              "rows": 24,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.23830850600000003,
+                  "frozen_incremental_budget": 0.24955612900400004,
+                  "incremental_cost_over_light": 0.18757704425580227,
+                  "realized_incremental_cost": 0.11764307000000003,
+                  "realized_incremental_gain": 0.08333333333333333,
+                  "selected_count": 14
+                },
+                "fast": {
+                  "conservative_budget_used": 0.061667558,
+                  "frozen_incremental_budget": 0.061925708936,
+                  "incremental_cost_over_light": -0.09406969380010587,
+                  "realized_incremental_cost": -0.058997878000000004,
+                  "realized_incremental_gain": 0.041666666666666664,
+                  "selected_count": 5
+                }
+              }
+            },
+            "babilong": {
+              "oof_correlation": -0.01696665116251892,
+              "rows": 160,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 1.467416264,
+                  "frozen_incremental_budget": 1.4733668563439999,
+                  "incremental_cost_over_light": 0.3962999444743318,
+                  "realized_incremental_cost": 1.467416264,
+                  "realized_incremental_gain": -0.00625,
+                  "selected_count": 79
+                },
+                "fast": {
+                  "conservative_budget_used": 0.36492752900000003,
+                  "frozen_incremental_budget": 0.3656062764959999,
+                  "incremental_cost_over_light": 0.098554693053242,
+                  "realized_incremental_cost": 0.36492752900000003,
+                  "realized_incremental_gain": -0.00625,
+                  "selected_count": 36
+                }
+              }
+            },
+            "belebele-ko": {
+              "oof_correlation": -0.06351493091401658,
+              "rows": 322,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.07442734,
+                  "frozen_incremental_budget": 0.074429300164,
+                  "incremental_cost_over_light": 0.3978965207535872,
+                  "realized_incremental_cost": 0.07442734,
+                  "realized_incremental_gain": 0.015527950310559006,
+                  "selected_count": 80
+                },
+                "fast": {
+                  "conservative_budget_used": 0.018337059999999995,
+                  "frozen_incremental_budget": 0.018469140375999997,
+                  "incremental_cost_over_light": 0.09803188418193869,
+                  "realized_incremental_cost": 0.018337059999999995,
+                  "realized_incremental_gain": 0.007763975155279503,
+                  "selected_count": 23
+                }
+              }
+            },
+            "cruxeval": {
+              "oof_correlation": -0.04388506324603364,
+              "rows": 241,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.086519051,
+                  "frozen_incremental_budget": 0.086574217618,
+                  "incremental_cost_over_light": 0.38811327180637395,
+                  "realized_incremental_cost": 0.084443357,
+                  "realized_incremental_gain": 0.012448132780082987,
+                  "selected_count": 67
+                },
+                "fast": {
+                  "conservative_budget_used": 0.021408354000000004,
+                  "frozen_incremental_budget": 0.021482821612,
+                  "incremental_cost_over_light": 0.08885556178587518,
+                  "realized_incremental_cost": 0.019332660000000005,
+                  "realized_incremental_gain": 0.0,
+                  "selected_count": 19
+                }
+              }
+            },
+            "deepmind-mathematics": {
+              "oof_correlation": -0.033731133189853754,
+              "rows": 303,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.5657455929999996,
+                  "frozen_incremental_budget": 0.565814204232,
+                  "incremental_cost_over_light": 0.1330858769768266,
+                  "realized_incremental_cost": 0.189244923,
+                  "realized_incremental_gain": 0.057755775577557754,
+                  "selected_count": 131
+                },
+                "fast": {
+                  "conservative_budget_used": 0.14039592600000003,
+                  "frozen_incremental_budget": 0.140403066288,
+                  "incremental_cost_over_light": -0.16603989378161094,
+                  "realized_incremental_cost": -0.23610474400000003,
+                  "realized_incremental_gain": 0.0297029702970297,
+                  "selected_count": 49
+                }
+              }
+            },
+            "gsm8k": {
+              "oof_correlation": -0.00671493020199484,
+              "rows": 233,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.4980514560000002,
+                  "frozen_incremental_budget": 0.498451732388,
+                  "incremental_cost_over_light": 0.3975874649951626,
+                  "realized_incremental_cost": 0.4980514560000002,
+                  "realized_incremental_gain": 0.008583690987124463,
+                  "selected_count": 100
+                },
+                "fast": {
+                  "conservative_budget_used": 0.12337989799999999,
+                  "frozen_incremental_budget": 0.12368751279199998,
+                  "incremental_cost_over_light": 0.09849243544261761,
+                  "realized_incremental_cost": 0.12337989799999999,
+                  "realized_incremental_gain": 0.001072961373390558,
+                  "selected_count": 27
+                }
+              }
+            },
+            "hrmcr": {
+              "oof_correlation": 0.21802085381436703,
+              "rows": 40,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.03963171,
+                  "frozen_incremental_budget": 0.04119690333800001,
+                  "incremental_cost_over_light": 0.38278932524581294,
+                  "realized_incremental_cost": 0.03963171,
+                  "realized_incremental_gain": 0.0375,
+                  "selected_count": 11
+                },
+                "fast": {
+                  "conservative_budget_used": 0.009043385999999999,
+                  "frozen_incremental_budget": 0.010222740092,
+                  "incremental_cost_over_light": 0.08734701643904415,
+                  "realized_incremental_cost": 0.009043385999999999,
+                  "realized_incremental_gain": 0.0125,
+                  "selected_count": 3
+                }
+              }
+            },
+            "ruletaker": {
+              "oof_correlation": 0.013287290389661022,
+              "rows": 271,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.28802198399999984,
+                  "frozen_incremental_budget": 0.288029756834,
+                  "incremental_cost_over_light": 0.39789626199468936,
+                  "realized_incremental_cost": 0.28802198399999984,
+                  "realized_incremental_gain": 0.02214022140221402,
+                  "selected_count": 81
+                },
+                "fast": {
+                  "conservative_budget_used": 0.07137410699999998,
+                  "frozen_incremental_budget": 0.071472686156,
+                  "incremental_cost_over_light": 0.09860181498683447,
+                  "realized_incremental_cost": 0.07137410699999998,
+                  "realized_incremental_gain": 0.005535055350553505,
+                  "selected_count": 21
+                }
+              }
+            },
+            "truthfulqa": {
+              "oof_correlation": 0.003920274955900946,
+              "rows": 166,
+              "selected_set": {
+                "balanced": {
+                  "conservative_budget_used": 0.145943482,
+                  "frozen_incremental_budget": 0.14608757598000002,
+                  "incremental_cost_over_light": 0.38962839243885167,
+                  "realized_incremental_cost": 0.143048168,
+                  "realized_incremental_gain": 0.045180722891566265,
+                  "selected_count": 84
+                },
+                "fast": {
+                  "conservative_budget_used": 0.036075403,
+                  "frozen_incremental_budget": 0.03625066932,
+                  "incremental_cost_over_light": 0.09037448657187992,
+                  "realized_incremental_cost": 0.033180088999999996,
+                  "realized_incremental_gain": 0.009036144578313253,
+                  "selected_count": 28
+                }
+              }
+            }
+          },
+          "positive_family_correlations": 4,
+          "realized_gain_mean": 0.08125,
+          "realized_incremental_cost_mean": 0.005646421686931819,
+          "selected_set": {
+            "balanced": {
+              "conservative_budget_used": 3.423493839999999,
+              "frozen_incremental_budget": 3.423506675902,
+              "incremental_cost_over_light": 0.33954316460218775,
+              "realized_incremental_cost": 2.921356725999998,
+              "realized_incremental_gain": 0.03877840909090909,
+              "selected_count": 948
+            },
+            "fast": {
+              "conservative_budget_used": 0.8494636659999999,
+              "frozen_incremental_budget": 0.8495206220679998,
+              "incremental_cost_over_light": 0.0403690366078375,
+              "realized_incremental_cost": 0.34732655199999973,
+              "realized_incremental_gain": 0.013494318181818182,
+              "selected_count": 365
+            }
+          }
+        }
+      },
+      "runtime_feasibility": {
+        "characters_per_field_bound": 32768,
+        "deterministic_probe": true,
+        "estimated_five_head_artifact_bytes": 33904,
+        "feature_count": 292,
+        "full_split_extraction_completed": true,
+        "limits": {
+          "max_estimated_artifact_bytes": 1000000,
+          "max_features": 1024,
+          "official_runtime_seconds_if_integrated": 90
+        },
+        "network_or_external_weights": false,
+        "passed": true,
+        "runtime_dependencies": [
+          "python-stdlib"
+        ]
+      },
+      "selected_alpha_gain": 3000.0,
+      "selected_alpha_incremental_cost": 3000.0
+    }
+  }
+}

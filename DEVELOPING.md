@@ -44,6 +44,18 @@ PYTHONPATH=src python3 tools/oracle_headroom.py --split dev
 PYTHONPATH=src python3 tools/risk_validation.py --split train --split dev
 ```
 
+새 표현이 처음 보는 출처·과제군의 실제 승격 이득을 예측하는지 재현하려면
+다음 개발 전용 감사를 실행합니다. 표현과 ridge 강도는 Train의 9개 과제군
+leave-one-family-out 예측으로만 고정되고, 그 뒤 Dev를 한 번 진단합니다.
+
+```console
+PYTHONPATH=src python3 tools/representation_audit.py
+```
+
+결과는 `baselines/representation-audit-report.v1.json`에 기록됩니다. 이 도구는
+학습용으로 고정한 NumPy만 사용하며, 표현 추출 모듈 자체는 제출 환경과 같은
+Python 표준 라이브러리만 사용합니다.
+
 materialization을 마친 공개 Train/Dev 전체의 로컬 선별 측정은 다음 명령으로
 실행할 수 있습니다. 구현·등급 조합마다 5회 미만은 허용하지 않습니다. 동결된
 공식 보고서를 덮어쓰지 않도록 결과는 `build/`에 기록합니다.
