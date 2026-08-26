@@ -612,9 +612,20 @@ weight는 commit하지 않고 제출 이미지에도 넣지 않습니다. Python
 환경에는
 [`semantic-upgrade-events-requirements.txt`](../configs/semantic-upgrade-events-requirements.txt)의
 `numpy 2.0.2`, `onnxruntime 1.22.1`, `tokenizers 0.21.4`, `psutil 7.0.0`만 extraction
-요구 사항으로 고정했습니다(설치 파일 합계 157,676,879 bytes). 네트워크는
+요구 사항으로 고정했습니다. 네트워크는
 artifact provisioning과 이미지 빌드 단계에서만 쓰고 evaluation runtime에는
 필요하지 않습니다.
+
+설치 파일 합계는 wheel이 플랫폼별로 다르므로 환경마다 달라집니다. 근거 파일에
+기록된 값은 공식 `linux/arm64` 측정 환경이 `98,073,668 bytes`
+(`dependencies.required_installed_bytes`), 별도로 기록한 native Apple arm64
+preflight 환경이 `176,724,066 bytes`
+(`native_apple_arm64_preflight.dependencies.required_installed_bytes`)입니다. 두
+값은 서로 다른 환경의 관측이므로 합치거나 대체해 쓰지 않습니다. 위 4개 직접
+요구 사항은 version-pinned이지만, 실제로 해결된 transitive 환경 전체는 근거
+파일의 `dependencies.resolved_environment`에 이름과 version으로 기록만 되어
+있을 뿐 hash-lock되어 있지는 않습니다. 따라서 향후 재빌드에서 transitive
+의존성까지 동일하게 재현된다고 주장하지 않습니다.
 
 모든 prompt/message content field는 tokenization 전에 각각 32,768자로 자르고,
 모델 카드가 feature embedding에 요구한 `query: ` prefix를 붙입니다. 512 token
