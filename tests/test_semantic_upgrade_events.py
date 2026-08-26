@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+import copy
 import importlib.util
 import hashlib
 import io
@@ -17,6 +18,10 @@ import numpy as np
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+EVIDENCE_PATH = ROOT / "baselines/semantic-upgrade-events-evidence.v1.json"
+REPORT_PATH = ROOT / "baselines/semantic-upgrade-events-report.v1.json"
+TRAIN_INPUT = ROOT / "data/materialized/train/inputs.json"
+TRAIN_OUTCOMES = ROOT / "data/train/outcomes.json"
 for entry in (ROOT / "src", ROOT / "baselines", ROOT / "tools"):
     if str(entry) not in sys.path:
         sys.path.insert(0, str(entry))
@@ -36,6 +41,21 @@ def _load_tool():
 
 
 experiment = _load_tool()
+
+
+def _measurement_record(evidence, key="official_linux_arm64_feasibility"):
+    """Rebuild the extraction measurement record embedded in the evidence."""
+
+    block = evidence[key]
+    return {
+        "record_type": experiment.RECORD_TYPE,
+        "protocol_sha256": evidence["protocol_sha256"],
+        "train_input_sha256": evidence["train_input_sha256"],
+        "train_outcomes_sha256": evidence["train_outcomes_sha256"],
+        "artifacts": block["artifacts"],
+        "dependencies": block["dependencies"],
+        "benchmark": block["extraction_benchmark"],
+    }
 
 
 class FrozenProtocolTest(unittest.TestCase):
@@ -59,32 +79,117 @@ class FrozenProtocolTest(unittest.TestCase):
         self.assertEqual(0.69, protocol["adoption_thresholds"]["dev_weighted_score_minimum"])
         self.assertEqual("fail closed, do not load Dev, preserve safe-margin", protocol["runtime"]["failure_behavior"])
 
-    def test_native_preflight_does_not_pass_official_feasibility(self):
-        report = experiment.build_report(
-            self.protocol_path,
-            ROOT / "baselines/semantic-upgrade-events-evidence.v1.json",
+    def test_native_preflight_is_separate_and_never_opens_the_official_gate(self):
+        report = experiment.build_report(self.protocol_path, EVIDENCE_PATH)
+        preflight = report["feasibility"]["native_apple_arm64_preflight"]
+        self.assertEqual("darwin/arm64", preflight["required_environment"])
+        self.assertTrue(preflight["evaluated"])
+        self.assertTrue(preflight["passed"])
+        self.assertFalse(preflight["qualifies_official_feasibility"])
+        environment = preflight["extraction_benchmark"]["environment"]
+        self.assertTrue(environment["native_apple_arm64"])
+        self.assertFalse(environment["official_architecture_match"])
+        self.assertFalse(preflight["extraction_benchmark"]["enforced_limits"]["all_enforced"])
+        official = report["feasibility"]["official_linux_arm64"]
+        self.assertIsNot(preflight["extraction_benchmark"], official["extraction_benchmark"])
+        self.assertNotEqual(
+            environment["label"], official["extraction_benchmark"]["environment"]["label"]
         )
-        self.assertTrue(report["feasibility"]["native_apple_arm64_preflight"]["evaluated"])
-        self.assertTrue(report["feasibility"]["native_apple_arm64_preflight"]["passed"])
-        self.assertFalse(report["feasibility"]["official_linux_arm64"]["evaluated"])
-        self.assertFalse(report["feasibility"]["official_linux_arm64"]["passed"])
-        self.assertFalse(report["feasibility"]["passed"])
-        self.assertFalse(report["gates"]["feasibility"]["evaluated"])
-        self.assertFalse(report["gates"]["feasibility"]["passed"])
-        self.assertEqual("linux/arm64", report["gates"]["feasibility"]["required_environment"])
-        self.assertFalse(report["gates"]["dev_loaded"])
-        self.assertTrue(report["gates"]["train_adoption"]["evaluated"])
-        self.assertFalse(report["gates"]["train_adoption"]["passed"])
-        self.assertEqual("safe-margin", report["decision"]["submission_default"])
-        self.assertNotIn("data/dev", json.dumps(report))
+
+    def test_official_gate_needs_official_architecture_and_enforced_limits(self):
+        protocol = experiment.load_protocol(self.protocol_path)
+        evidence = json.loads(EVIDENCE_PATH.read_text())
+        record = _measurement_record(evidence)
+        self.assertTrue(experiment.official_feasibility_evidence(protocol, record)["passed"])
+        for mutate, status in (
+            (lambda row: row["benchmark"]["environment"].update(machine="x86_64", official_architecture_match=False), "not-official-architecture"),
+            (lambda row: row["benchmark"]["environment"].update(containerized=False), "official-architecture-without-container-isolation"),
+            (lambda row: row["benchmark"]["enforced_limits"].update(all_enforced=False), "official-architecture-without-enforced-frozen-limits"),
+        ):
+            with self.subTest(status=status):
+                broken = copy.deepcopy(record)
+                mutate(broken)
+                result = experiment.official_feasibility_evidence(protocol, broken)
+                self.assertFalse(result["evaluated"])
+                self.assertFalse(result["passed"])
+                self.assertEqual(status, result["status"])
+        exceeded = copy.deepcopy(record)
+        exceeded["benchmark"]["constraint_passed"] = False
+        result = experiment.official_feasibility_evidence(protocol, exceeded)
+        self.assertTrue(result["evaluated"])
+        self.assertFalse(result["passed"])
+
+    def test_enforced_limits_are_compared_against_the_frozen_protocol(self):
+        limits = experiment.frozen_limits(experiment.load_protocol(self.protocol_path))
+        environment = {
+            "network_isolated": True,
+            "cgroup": {"values": {
+                "cpu.max": "200000 100000", "memory.max": "2147483648",
+                "memory.swap.max": "0", "pids.max": "32",
+            }},
+        }
+        self.assertTrue(experiment.enforced_limit_evidence(environment, limits)["all_enforced"])
+        for key, value, check in (
+            ("cpu.max", "400000 100000", "cpu_quota"),
+            ("memory.max", "4294967296", "memory_max"),
+            ("memory.swap.max", "max", "no_additional_swap"),
+            ("pids.max", "64", "pids_max"),
+        ):
+            with self.subTest(check=check):
+                loosened = copy.deepcopy(environment)
+                loosened["cgroup"]["values"][key] = value
+                result = experiment.enforced_limit_evidence(loosened, limits)
+                self.assertFalse(result["checks"][check])
+                self.assertFalse(result["all_enforced"])
+        offline = copy.deepcopy(environment)
+        offline["network_isolated"] = False
+        self.assertFalse(experiment.enforced_limit_evidence(offline, limits)["all_enforced"])
+
+    def test_measurement_image_stays_out_of_the_submission_path(self):
+        measurement = (ROOT / "container/semantic-measurement.Dockerfile").read_text()
+        self.assertIn('io.sktelecom.ossp.submission-image="false"', measurement)
+        self.assertIn("--verify-only --encoder-dir /opt/encoder", measurement)
+        self.assertNotIn("safe_margin", measurement)
+        submission = (ROOT / "container/Dockerfile").read_text()
+        self.assertIn("baselines/safe_margin.py", submission)
+        for forbidden in ("encoder", "onnx", "semantic"):
+            with self.subTest(token=forbidden):
+                self.assertNotIn(forbidden, submission)
+                self.assertNotIn(forbidden, (ROOT / ".dockerignore").read_text())
+
+    @unittest.skipUnless(TRAIN_INPUT.is_file(), "public Train materialization is required")
+    def test_evidence_rebuild_refuses_unverified_measurement_inputs(self):
+        evidence = json.loads(EVIDENCE_PATH.read_text())
+        record = _measurement_record(evidence)
+        benchmark = record["benchmark"]
+        foreign = np.zeros((benchmark["rows"], benchmark["dimensions"]), dtype=np.float32)
+        with self.subTest(reason="foreign embedding matrix"):
+            with self.assertRaises(ValueError):
+                experiment.build_evidence(
+                    self.protocol_path, record, foreign, TRAIN_INPUT, TRAIN_OUTCOMES
+                )
+        for field, value in (("byte_identical", False), ("maximum_norm_error", 1.0)):
+            with self.subTest(reason=field):
+                broken = copy.deepcopy(record)
+                broken["benchmark"][field] = value
+                with self.assertRaises(ValueError):
+                    experiment.build_evidence(
+                        self.protocol_path, broken, foreign, TRAIN_INPUT, TRAIN_OUTCOMES
+                    )
+        with self.subTest(reason="protocol drift"):
+            drifted = copy.deepcopy(record)
+            drifted["protocol_sha256"] = "0" * 64
+            with self.assertRaises(ValueError):
+                experiment.build_evidence(
+                    self.protocol_path, drifted, foreign, TRAIN_INPUT, TRAIN_OUTCOMES
+                )
 
     def test_report_regeneration_is_byte_identical(self):
         with tempfile.TemporaryDirectory() as directory:
             left = pathlib.Path(directory) / "left.json"
             right = pathlib.Path(directory) / "right.json"
-            evidence = ROOT / "baselines/semantic-upgrade-events-evidence.v1.json"
-            experiment.run(self.protocol_path, left, evidence)
-            experiment.run(self.protocol_path, right, evidence)
+            experiment.run(self.protocol_path, left, EVIDENCE_PATH)
+            experiment.run(self.protocol_path, right, EVIDENCE_PATH)
             self.assertEqual(left.read_bytes(), right.read_bytes())
 
     def test_provisioning_downloads_only_registry_files_and_verifies(self):
@@ -232,28 +337,81 @@ class OodAbstentionTest(unittest.TestCase):
 
 class FrozenNegativeReportTest(unittest.TestCase):
     def test_committed_report_matches_frozen_protocol_and_preserves_default(self):
-        report = json.loads((ROOT / "baselines/semantic-upgrade-events-report.v1.json").read_text())
+        report = json.loads(REPORT_PATH.read_text())
         protocol = ROOT / "configs/semantic-upgrade-events-protocol.v1.json"
         self.assertEqual(experiment.file_sha256(protocol), report["protocol"]["sha256"])
         self.assertFalse(report["decision"]["candidate_adopted"])
         self.assertFalse(report["decision"]["runtime_integration"])
         self.assertEqual("safe-margin", report["decision"]["submission_default"])
-        self.assertFalse(report["feasibility"]["passed"])
-        self.assertFalse(report["gates"]["feasibility"]["evaluated"])
-        self.assertFalse(report["gates"]["feasibility"]["passed"])
+        self.assertTrue(report["feasibility"]["passed"])
+        self.assertEqual("linux/arm64", report["gates"]["feasibility"]["required_environment"])
+        self.assertTrue(report["gates"]["feasibility"]["evaluated"])
+        self.assertTrue(report["gates"]["feasibility"]["passed"])
+        self.assertFalse(report["gates"]["feasibility"]["final_contest_hardware"])
         self.assertFalse(report["gates"]["dev_loaded"])
+        self.assertTrue(report["gates"]["train_adoption"]["evaluated"])
+        self.assertFalse(report["gates"]["train_adoption"]["passed"])
+        for closed in ("dev_champion", "calibration_conformal", "safety_5000_resamples", "official_container_benchmark"):
+            with self.subTest(gate=closed):
+                self.assertFalse(report["gates"][closed]["evaluated"])
+                self.assertFalse(report["gates"][closed]["passed"])
+        self.assertNotIn("data/dev", json.dumps(report))
+
+    def test_committed_report_never_claims_the_final_contest_device(self):
+        report = json.loads(REPORT_PATH.read_text())
+        limitations = " ".join(report["limitations"])
+        self.assertIn("not the operator's final contest device", limitations)
+        self.assertIn("Native Apple arm64 preflight validates extraction only", limitations)
+        self.assertFalse(report["feasibility"]["official_linux_arm64"]["final_contest_hardware"])
+
+    def test_committed_evidence_measured_the_official_architecture_under_frozen_limits(self):
+        evidence = json.loads(EVIDENCE_PATH.read_text())
+        official = evidence["official_linux_arm64_feasibility"]
+        self.assertTrue(official["evaluated"])
+        self.assertTrue(official["passed"])
+        self.assertEqual("measured-on-local-linux-arm64-container", official["status"])
+        self.assertFalse(official["final_contest_hardware"])
+        benchmark = official["extraction_benchmark"]
+        environment = benchmark["environment"]
+        self.assertEqual("Linux", environment["system"])
+        self.assertIn(environment["machine"], ("aarch64", "arm64"))
+        self.assertTrue(environment["containerized"])
+        self.assertTrue(environment["network_isolated"])
+        self.assertTrue(environment["root_filesystem_read_only"])
+        self.assertTrue(environment["cgroup"]["unified_v2"])
+        self.assertTrue(benchmark["enforced_limits"]["all_enforced"])
+        limits = benchmark["limits"]
+        self.assertEqual(1760, benchmark["rows"])
+        self.assertLessEqual(benchmark["first_seconds"], limits["seconds_per_tier"])
+        self.assertLessEqual(benchmark["second_seconds"], limits["seconds_per_tier"])
+        self.assertLessEqual(benchmark["observed_peak_memory_bytes"], limits["memory_max_bytes"])
+        self.assertLessEqual(benchmark["maximum_pid_thread_observation"], limits["pid_thread_limit"])
+        self.assertIsNotNone(benchmark["cgroup_memory_peak_bytes"])
+        self.assertIsNotNone(benchmark["cgroup_pids_peak"])
+        self.assertTrue(benchmark["byte_identical"])
+        self.assertEqual(benchmark["first_sha256"], benchmark["second_sha256"])
+
+    def test_committed_train_evaluation_came_from_the_linux_arm64_embeddings(self):
+        evidence = json.loads(EVIDENCE_PATH.read_text())
+        source = evidence["train_embedding_source"]
+        benchmark = evidence["official_linux_arm64_feasibility"]["extraction_benchmark"]
+        self.assertTrue(source["official_architecture_match"])
+        self.assertEqual(benchmark["environment"]["label"], source["environment_label"])
+        self.assertEqual(benchmark["first_sha256"], source["first_pass_sha256"])
+        self.assertEqual(benchmark["second_sha256"], source["second_pass_sha256"])
+        self.assertTrue(source["byte_identical"])
 
     def test_committed_evidence_is_a_completed_quality_failure(self):
-        evidence = json.loads((ROOT / "baselines/semantic-upgrade-events-evidence.v1.json").read_text())
+        evidence = json.loads(EVIDENCE_PATH.read_text())
         self.assertTrue(evidence["artifacts"]["passed"])
         preflight = evidence["native_apple_arm64_preflight"]
         self.assertTrue(preflight["evaluated"])
         self.assertTrue(preflight["passed"])
+        self.assertFalse(preflight["qualifies_official_feasibility"])
         self.assertTrue(preflight["extraction_benchmark"]["constraint_passed"])
         self.assertTrue(preflight["extraction_benchmark"]["byte_identical"])
-        self.assertFalse(evidence["official_linux_arm64_feasibility"]["evaluated"])
-        self.assertFalse(evidence["official_linux_arm64_feasibility"]["passed"])
         self.assertFalse(evidence["train_gate"]["passed"])
+        self.assertTrue(evidence["train_gate"]["evaluated"])
         self.assertTrue(all(row["status"] == "completed" for row in evidence["train_evaluation"].values()))
 
 

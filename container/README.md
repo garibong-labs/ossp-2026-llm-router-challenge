@@ -46,6 +46,25 @@ CPU, RAM, 프로세스·스레드 수의 최종 한도는
 출력 회수, Docker 자원 정리와 장애 복구 방식은
 [`../docs/OPERATIONS.md`](../docs/OPERATIONS.md)에 정의합니다.
 
+## 제출과 무관한 실험 전용 이미지
+
+이 디렉터리에는 제출 이미지 외에 두 개의 측정 전용 Dockerfile이 있습니다.
+둘 다 제출·평가 경로에 들어가지 않으며 위의 `/opt/router` 파일 목록을 바꾸지
+않습니다.
+
+| 파일 | 용도 |
+| --- | --- |
+| [`measurement.Dockerfile`](measurement.Dockerfile) | baseline 런타임 벤치마크와 자원 한도 동결 |
+| [`semantic-measurement.Dockerfile`](semantic-measurement.Dockerfile) | semantic upgrade-event 실험의 `linux/arm64` 추출 실행 가능성 측정 |
+
+`semantic-measurement.Dockerfile`은 동결한 multilingual-e5-small artifact 6개와
+고정 extraction 의존성만 담고, 빌드 마지막 단계에서 크기와 SHA-256을 다시
+확인합니다. 이 이미지는 제출 라우터를 담지 않으며 상위
+[`../.dockerignore`](../.dockerignore) 대신 자신의
+[`semantic-measurement.Dockerfile.dockerignore`](semantic-measurement.Dockerfile.dockerignore)만
+사용하므로 제출 이미지의 build context는 그대로입니다. 측정 절차와 관측값은
+[`../baselines/README.md`](../baselines/README.md)에 있습니다.
+
 Colima의 Docker 호환 실행기에서 실제 이미지 빌드와 네트워크 없음, GPU 없음,
 비특권 사용자, 읽기 전용 루트 파일 시스템 조건을 검증했습니다. 통합 테스트는
 `OSSP_RUN_CONTAINER_TESTS=1`로 켤 수 있습니다. 공개 Train/Dev 호스트·격리

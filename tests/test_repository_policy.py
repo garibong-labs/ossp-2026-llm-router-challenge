@@ -39,6 +39,9 @@ REQUIRED_FILES = {
     "container/BASE_IMAGE.md",
     "container/Dockerfile",
     "container/measurement.Dockerfile",
+    # Added by this fork: the experiment-only semantic extraction measurement image.
+    "container/semantic-measurement.Dockerfile",
+    "container/semantic-measurement.Dockerfile.dockerignore",
     "container/entrypoint.py",
     "docs/CHALLENGE_RULES.md",
     "docs/APPLE_SILICON_MEASUREMENT.md",
@@ -107,6 +110,8 @@ DATA_CONFIGURATIONS = {
 
 LOCAL_GENERATED_PREFIXES = (
     (".git",),
+    # Ignored working cache for the experiment-only pinned encoder artifacts.
+    (".local-data",),
     (".ruff_cache",),
     (".venv",),
     (".venv-data",),

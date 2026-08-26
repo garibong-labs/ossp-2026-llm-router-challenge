@@ -14,7 +14,6 @@ import math
 import os
 import platform
 import resource
-import shutil
 import sys
 import time
 import urllib.request
@@ -41,7 +40,15 @@ DEFAULT_TRAIN_INPUT = ROOT / "data/materialized/train/inputs.json"
 DEFAULT_TRAIN_OUTCOMES = ROOT / "data/train/outcomes.json"
 REPORT_TYPE = "ossp-semantic-upgrade-events-report-v1"
 EVIDENCE_TYPE = "ossp-semantic-upgrade-events-evidence-v1"
+RECORD_TYPE = "ossp-semantic-upgrade-events-extraction-measurement-v1"
+RECORD_FILE = "extraction-measurement.json"
+EMBEDDING_FILE = "train-embeddings.npy"
 PINNED_MODEL_CARD_SHA256 = "ea680357ec21065558db494afe9092e129fe5605a9dca80b3d5b1c144c2d1552"
+CGROUP_ROOT = Path("/sys/fs/cgroup")
+CGROUP_FILES = (
+    "cpu.max", "memory.max", "memory.swap.max", "memory.peak", "memory.current",
+    "pids.max", "pids.peak",
+)
 REPRESENTATIONS = (
     "semantic",
     "semantic+expanded-structural-b",
@@ -76,6 +83,17 @@ def load_protocol(path: Path) -> Mapping[str, Any]:
             if int(artifact.get("size_bytes", 0)) <= 0:
                 raise ValueError("every artifact needs a positive size")
     return value
+
+
+def frozen_limits(protocol: Mapping[str, Any]) -> Mapping[str, Any]:
+    runtime = protocol["runtime"]
+    return {
+        "cpu_count": int(runtime["cpu_count"]),
+        "memory_max_bytes": int(runtime["memory_max_bytes"]),
+        "pid_thread_limit": int(runtime["pid_thread_limit"]),
+        "seconds_per_tier": int(runtime["seconds_per_tier"]),
+        "evaluation_network": bool(runtime["evaluation_network"]),
+    }
 
 
 def verify_artifacts(protocol: Mapping[str, Any], encoder_dir: Path) -> Mapping[str, Any]:
@@ -136,14 +154,123 @@ def dependency_evidence() -> Mapping[str, Any]:
             if (path := Path(distribution.locate_file(item))).is_file()
         )
         packages.append({"name": name, "version": distribution.version, "installed_bytes": installed})
+    resolved = sorted(
+        {(item.metadata["Name"], item.version)
+         for item in importlib.metadata.distributions() if item.metadata["Name"]}
+    )
     return {
         "python": platform.python_version(), "packages": packages,
         "required_installed_bytes": sum(row["installed_bytes"] for row in packages),
+        "resolved_environment": [{"name": name, "version": version} for name, version in resolved],
         "network_required_at_evaluation_runtime": False,
     }
 
 
-def measure_extraction(encoder_dir: Path, episodes: Sequence[Any]) -> Tuple[Any, Mapping[str, Any]]:
+def _read_text(path: Path) -> Optional[str]:
+    try:
+        return path.read_text().strip()
+    except OSError:
+        return None
+
+
+def cgroup_evidence() -> Mapping[str, Any]:
+    values = {name: _read_text(CGROUP_ROOT / name) for name in CGROUP_FILES}
+    return {
+        "unified_v2": (CGROUP_ROOT / "cgroup.controllers").is_file(),
+        "available": any(value is not None for value in values.values()),
+        "values": values,
+    }
+
+
+def _cgroup_int(cgroup: Mapping[str, Any], name: str) -> Optional[int]:
+    raw = cgroup["values"].get(name)
+    return int(raw) if raw is not None and raw.isdigit() else None
+
+
+def _cgroup_cpu_quota(cgroup: Mapping[str, Any]) -> Optional[float]:
+    raw = cgroup["values"].get("cpu.max")
+    if raw is None:
+        return None
+    parts = raw.split()
+    if len(parts) != 2 or not parts[0].isdigit() or not parts[1].isdigit():
+        return None
+    return int(parts[0]) / int(parts[1])
+
+
+def _network_interfaces() -> Optional[Sequence[str]]:
+    try:
+        return sorted(item.name for item in Path("/sys/class/net").iterdir())
+    except OSError:
+        return None
+
+
+def _root_is_read_only() -> Optional[bool]:
+    mounts = _read_text(Path("/proc/mounts"))
+    if mounts is None:
+        return None
+    for line in mounts.splitlines():
+        fields = line.split()
+        if len(fields) >= 4 and fields[1] == "/":
+            return "ro" in fields[3].split(",")
+    return None
+
+
+def measurement_environment() -> Mapping[str, Any]:
+    """Describe the measuring machine without claiming contest hardware."""
+
+    system, machine = platform.system(), platform.machine()
+    interfaces = _network_interfaces()
+    return {
+        "system": system, "machine": machine, "release": platform.release(),
+        "official_architecture_match": system == "Linux" and machine in ("aarch64", "arm64"),
+        "native_apple_arm64": system == "Darwin" and machine == "arm64",
+        "containerized": Path("/.dockerenv").is_file(),
+        "label": os.environ.get("OSSP_SEMANTIC_ENVIRONMENT_LABEL", "unlabelled"),
+        "description": os.environ.get("OSSP_SEMANTIC_ENVIRONMENT_DESCRIPTION", ""),
+        "image_reference": os.environ.get("OSSP_SEMANTIC_IMAGE_REFERENCE", ""),
+        "image_id": os.environ.get("OSSP_SEMANTIC_IMAGE_ID", ""),
+        "base_image_digest": os.environ.get("OSSP_SEMANTIC_BASE_IMAGE_DIGEST", ""),
+        "dockerfile_sha256": os.environ.get("OSSP_SEMANTIC_DOCKERFILE_SHA256", ""),
+        "visible_cpu_count": os.cpu_count(),
+        "network_interfaces": interfaces,
+        "network_isolated": interfaces == ["lo"] if interfaces is not None else None,
+        "root_filesystem_read_only": _root_is_read_only(),
+        "cgroup": cgroup_evidence(),
+        "final_contest_hardware": False,
+        "final_contest_hardware_note": (
+            "Local measurement environment only. The operator's final contest device and its"
+            " tie-break latency measurement are not reproduced or claimed here."
+        ),
+    }
+
+
+def enforced_limit_evidence(
+    environment: Mapping[str, Any], limits: Mapping[str, Any]
+) -> Mapping[str, Any]:
+    """Compare kernel-enforced container limits against the frozen protocol."""
+
+    cgroup = environment["cgroup"]
+    observed = {
+        "cpu_quota_cores": _cgroup_cpu_quota(cgroup),
+        "memory_max_bytes": _cgroup_int(cgroup, "memory.max"),
+        "memory_swap_max_bytes": _cgroup_int(cgroup, "memory.swap.max"),
+        "pids_max": _cgroup_int(cgroup, "pids.max"),
+    }
+    checks = {
+        "cpu_quota": observed["cpu_quota_cores"] == float(limits["cpu_count"]),
+        "memory_max": observed["memory_max_bytes"] == limits["memory_max_bytes"],
+        "no_additional_swap": observed["memory_swap_max_bytes"] == 0,
+        "pids_max": observed["pids_max"] == limits["pid_thread_limit"],
+        "network_disabled": environment["network_isolated"] is True,
+    }
+    return {"observed": observed, "checks": checks, "all_enforced": all(checks.values())}
+
+
+def measure_extraction(
+    encoder_dir: Path, episodes: Sequence[Any], limits: Mapping[str, Any]
+) -> Tuple[Any, Mapping[str, Any]]:
+    """Run the two mandatory full-split extraction passes under frozen limits."""
+
     import psutil
     process = psutil.Process()
     def child_count() -> int:
@@ -151,43 +278,84 @@ def measure_extraction(encoder_dir: Path, episodes: Sequence[Any]) -> Tuple[Any,
             return len(process.children(recursive=True))
         except (OSError, psutil.Error):
             return 0
+    environment = measurement_environment()
+    enforced = enforced_limit_evidence(environment, limits)
     before_threads = process.num_threads()
     before_children = child_count()
-    encoder = events.SemanticEncoder(encoder_dir, threads=2)
+    encoder = events.SemanticEncoder(encoder_dir, threads=limits["cpu_count"])
     started = time.perf_counter(); first = encoder.encode(episodes, batch_size=1); first_seconds = time.perf_counter() - started
     first_rss = process.memory_info().rss
     middle_threads = process.num_threads()
     started = time.perf_counter(); second = encoder.encode(episodes, batch_size=1); second_seconds = time.perf_counter() - started
     after_threads = process.num_threads()
     after_children = child_count()
+    final_cgroup = cgroup_evidence()
     peak = int(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
     if sys.platform != "darwin":
         peak *= 1024
     peak = max(peak, first_rss)
+    cgroup_peak = _cgroup_int(final_cgroup, "memory.peak")
+    cgroup_pids_peak = _cgroup_int(final_cgroup, "pids.peak")
+    observed_peak = max(peak, cgroup_peak or 0)
+    first_bytes, second_bytes = first.tobytes(), second.tobytes()
+    byte_identical = first_bytes == second_bytes
     norm_error = float(np.max(np.abs(np.linalg.norm(first, axis=1) - 1.0)))
-    maximum_processes = max(before_threads, middle_threads, after_threads) + after_children
+    process_observation = max(before_threads, middle_threads, after_threads) + after_children
+    pid_observation = max(process_observation, cgroup_pids_peak or 0)
     passed = (
-        first_seconds <= 90 and second_seconds <= 90 and peak <= 2_147_483_648
-        and maximum_processes <= 32 and first.tobytes() == second.tobytes()
-        and np.isfinite(first).all() and norm_error <= 1e-5
+        first_seconds <= limits["seconds_per_tier"] and second_seconds <= limits["seconds_per_tier"]
+        and observed_peak <= limits["memory_max_bytes"] and pid_observation <= limits["pid_thread_limit"]
+        and byte_identical and bool(np.isfinite(first).all()) and norm_error <= 1e-5
     )
     return first, {
-        "host": {"system": platform.system(), "machine": platform.machine(), "release": platform.release()},
-        "official_linux_arm64": platform.system() == "Linux" and platform.machine() in ("arm64", "aarch64"),
-        "official_path_status": "measured" if platform.system() == "Linux" and platform.machine() in ("arm64", "aarch64") else "unavailable-after-command-discovery",
-        "container_vm_attempts": {name: shutil.which(name) for name in ("docker", "podman", "colima", "limactl")},
-        "control": {"cpu_count": 2, "onnx_intra_op_threads": 2, "onnx_inter_op_threads": 1, "execution_mode": "sequential", "batch_size": 1, "runtime_network": False},
+        "environment": environment,
+        "enforced_limits": enforced,
+        "cgroup_after_extraction": final_cgroup,
+        "control": {"cpu_count": limits["cpu_count"], "onnx_intra_op_threads": limits["cpu_count"], "onnx_inter_op_threads": 1, "execution_mode": "sequential", "batch_size": 1, "runtime_network": False},
         "rows": len(episodes), "dimensions": int(first.shape[1]),
         "first_seconds": first_seconds, "second_seconds": second_seconds,
         "rows_per_second_second_pass": len(episodes) / second_seconds,
-        "byte_identical": first.tobytes() == second.tobytes(), "maximum_norm_error": norm_error,
+        "first_sha256": hashlib.sha256(first_bytes).hexdigest(),
+        "second_sha256": hashlib.sha256(second_bytes).hexdigest(),
+        "embedding_dtype": str(first.dtype), "embedding_bytes": len(first_bytes),
+        "byte_identical": byte_identical, "maximum_norm_error": norm_error,
         "rss_after_first_bytes": first_rss, "peak_rss_bytes": peak,
+        "cgroup_memory_peak_bytes": cgroup_peak, "observed_peak_memory_bytes": observed_peak,
         "threads_before": before_threads, "threads_after_first": middle_threads,
         "threads_after_second": after_threads, "child_pids_before": before_children,
-        "child_pids_after": after_children, "maximum_pid_thread_observation": maximum_processes,
-        "limits": {"cpu_count": 2, "memory_max_bytes": 2_147_483_648, "pid_thread_limit": 32, "seconds_per_tier": 90},
-        "constraint_passed": passed,
+        "child_pids_after": after_children, "process_thread_observation": process_observation,
+        "cgroup_pids_peak": cgroup_pids_peak, "maximum_pid_thread_observation": pid_observation,
+        "limits": dict(limits), "constraint_passed": passed,
     }
+
+
+def extraction_record(
+    protocol_path: Path, encoder_dir: Path, train_input: Path, train_outcomes: Path
+) -> Tuple[Any, Mapping[str, Any]]:
+    """Verify the pinned artifacts, then measure both extraction passes."""
+
+    protocol = load_protocol(protocol_path)
+    artifacts = verify_artifacts(protocol, encoder_dir)
+    if not artifacts["passed"]:
+        raise ValueError("pinned artifact verification failed")
+    inputs = load_input(train_input)
+    embedding, benchmark = measure_extraction(encoder_dir, inputs.episodes, frozen_limits(protocol))
+    return embedding, {
+        "record_type": RECORD_TYPE,
+        "protocol_sha256": file_sha256(protocol_path),
+        "train_input_sha256": file_sha256(train_input),
+        "train_outcomes_sha256": file_sha256(train_outcomes),
+        "artifacts": artifacts,
+        "dependencies": dependency_evidence(),
+        "benchmark": benchmark,
+    }
+
+
+def load_record(path: Path) -> Mapping[str, Any]:
+    record = json.loads(path.read_text())
+    if record.get("record_type") != RECORD_TYPE:
+        raise ValueError(f"unexpected extraction measurement record: {path}")
+    return record
 
 
 def _matrices(inputs: Any, embeddings: Any) -> Mapping[str, Any]:
@@ -370,25 +538,142 @@ def train_gate(protocol: Mapping[str, Any], evaluation: Mapping[str, Any]) -> Ma
     return {"evaluated": True, "passed": all(row["passed"] for row in checks), "checks": checks, "failed_checks": [row for row in checks if not row["passed"]]}
 
 
-def run_measurement(protocol_path: Path, encoder_dir: Path, train_input: Path, train_outcomes: Path) -> Mapping[str, Any]:
-    protocol = load_protocol(protocol_path); artifacts = verify_artifacts(protocol, encoder_dir)
-    if not artifacts["passed"]: raise ValueError("pinned artifact verification failed")
+def official_feasibility_evidence(
+    protocol: Mapping[str, Any], record: Mapping[str, Any]
+) -> Mapping[str, Any]:
+    """Evaluate the official-architecture gate only from an enforced measurement."""
+
+    benchmark = record["benchmark"]
+    environment = benchmark["environment"]
+    enforced = benchmark["enforced_limits"]["all_enforced"]
+    evaluated = bool(environment["official_architecture_match"] and environment["containerized"] and enforced)
+    if not environment["official_architecture_match"]:
+        status = "not-official-architecture"
+    elif not environment["containerized"]:
+        status = "official-architecture-without-container-isolation"
+    elif not enforced:
+        status = "official-architecture-without-enforced-frozen-limits"
+    else:
+        status = "measured-on-local-linux-arm64-container"
+    return {
+        "required_environment": protocol["runtime"]["official_architecture"],
+        "evaluated": evaluated,
+        "passed": bool(evaluated and benchmark["constraint_passed"] and record["artifacts"]["passed"]),
+        "status": status,
+        "final_contest_hardware": False,
+        "extraction_benchmark": benchmark,
+        "artifacts": record["artifacts"],
+        "dependencies": record["dependencies"],
+    }
+
+
+def native_preflight_evidence(record: Optional[Mapping[str, Any]]) -> Mapping[str, Any]:
+    """Record the native Apple arm64 probe, which never opens the official gate."""
+
+    base = {
+        "required_environment": "darwin/arm64",
+        "qualifies_official_feasibility": False,
+        "scope": protocol_preflight_scope(),
+    }
+    if record is None:
+        return {**base, "evaluated": False, "passed": False, "status": "not-measured"}
+    benchmark = record["benchmark"]
+    native = bool(benchmark["environment"]["native_apple_arm64"])
+    return {
+        **base, "evaluated": native,
+        "passed": bool(native and benchmark["constraint_passed"] and record["artifacts"]["passed"]),
+        "status": "measured" if native else "not-native-apple-arm64",
+        "extraction_benchmark": benchmark, "artifacts": record["artifacts"],
+        "dependencies": record["dependencies"],
+    }
+
+
+def protocol_preflight_scope() -> str:
+    return (
+        "Validates extraction and permits the Train-only experiment. It is not the official"
+        " architecture and can never pass the official feasibility gate."
+    )
+
+
+def build_evidence(
+    protocol_path: Path,
+    record: Mapping[str, Any],
+    embedding: Any,
+    train_input: Path,
+    train_outcomes: Path,
+    native_record: Optional[Mapping[str, Any]] = None,
+    verification: Optional[Mapping[str, Any]] = None,
+) -> Mapping[str, Any]:
+    """Rebuild Train-only evidence from a frozen measured embedding matrix."""
+
+    protocol = load_protocol(protocol_path)
+    if record["protocol_sha256"] != file_sha256(protocol_path):
+        raise ValueError("measurement record does not match the frozen protocol")
+    if record["train_input_sha256"] != file_sha256(train_input) or record["train_outcomes_sha256"] != file_sha256(train_outcomes):
+        raise ValueError("measurement record does not match the public Train inputs")
+    if not record["artifacts"]["passed"]:
+        raise ValueError("pinned artifact verification failed")
+    benchmark = record["benchmark"]
+    if not benchmark["byte_identical"] or benchmark["maximum_norm_error"] > 1e-5:
+        raise ValueError("measured extraction is not deterministic; the Train experiment stays closed")
+    if hashlib.sha256(np.ascontiguousarray(embedding).tobytes()).hexdigest() != benchmark["first_sha256"]:
+        raise ValueError("embedding matrix does not match the measured extraction hash")
     inputs, outcomes, policy = load_input(train_input), load_outcomes(train_outcomes), load_bundled_policy()
+    if len(inputs.episodes) != benchmark["rows"]:
+        raise ValueError("measured row count does not match the public Train split")
     _, scores, costs = trainer._training_tables(inputs, outcomes, policy, 16)
-    embedding, benchmark = measure_extraction(encoder_dir, inputs.episodes)
-    if not benchmark["constraint_passed"]: raise RuntimeError("measured extraction feasibility failed")
     evaluation = nested_train_evaluation(protocol, inputs, embedding, scores, costs, risk_validation.reconstruct_families("train", inputs))
     encoder = protocol["candidate_encoders"][0]
     registry = {"revision": encoder["revision"], "license": encoder["license"], "languages": encoder["languages"], "model_card": encoder["model_card"], "license_evidence": encoder["license_evidence"], "downloaded_model_card_sha256": PINNED_MODEL_CARD_SHA256, "query_prefix": events.QUERY_PREFIX, "pooling": "attention-mask mean pooling followed by L2 normalization"}
-    official_environment = benchmark["official_linux_arm64"]
-    native_apple_arm64 = benchmark["host"]["system"] == "Darwin" and benchmark["host"]["machine"] == "arm64"
-    official_feasibility = {
-        "required_environment": protocol["runtime"]["official_architecture"],
-        "evaluated": official_environment,
-        "passed": official_environment and benchmark["constraint_passed"],
-        "status": "measured" if official_environment else benchmark["official_path_status"],
+    return {
+        "evidence_type": EVIDENCE_TYPE,
+        "protocol_sha256": record["protocol_sha256"],
+        "train_input_sha256": record["train_input_sha256"],
+        "train_outcomes_sha256": record["train_outcomes_sha256"],
+        "registry_evidence": registry,
+        "artifacts": record["artifacts"],
+        "dependencies": record["dependencies"],
+        "native_apple_arm64_preflight": native_preflight_evidence(native_record),
+        "official_linux_arm64_feasibility": official_feasibility_evidence(protocol, record),
+        "train_embedding_source": {
+            "environment_label": benchmark["environment"]["label"],
+            "official_architecture_match": benchmark["environment"]["official_architecture_match"],
+            "first_pass_sha256": benchmark["first_sha256"],
+            "second_pass_sha256": benchmark["second_sha256"],
+            "byte_identical": benchmark["byte_identical"],
+            "rows": benchmark["rows"], "dimensions": benchmark["dimensions"],
+        },
+        "train_evaluation": evaluation,
+        "train_gate": train_gate(protocol, evaluation),
+        "verification": dict(verification) if verification else {},
     }
-    return {"evidence_type": EVIDENCE_TYPE, "protocol_sha256": file_sha256(protocol_path), "train_input_sha256": file_sha256(train_input), "train_outcomes_sha256": file_sha256(train_outcomes), "registry_evidence": registry, "artifacts": artifacts, "dependencies": dependency_evidence(), "native_apple_arm64_preflight": {"required_environment": "darwin/arm64", "evaluated": native_apple_arm64, "passed": native_apple_arm64 and benchmark["constraint_passed"], "extraction_benchmark": benchmark}, "official_linux_arm64_feasibility": official_feasibility, "train_evaluation": evaluation, "train_gate": train_gate(protocol, evaluation)}
+
+
+def _limitations(evidence: Mapping[str, Any]) -> Sequence[str]:
+    official = evidence["official_linux_arm64_feasibility"]
+    environment = official["extraction_benchmark"]["environment"] if "extraction_benchmark" in official else None
+    items = []
+    if official["evaluated"] and environment is not None:
+        items.append(
+            f"Official-architecture feasibility was measured inside the {environment['label']} container"
+            f" ({environment['system']}/{environment['machine']}, kernel {environment['release']}) with the frozen"
+            " limits enforced by cgroup v2. It matches the required architecture but is a local virtual machine,"
+            " not the operator's final contest device, so final resource headroom and tie-break latency remain the"
+            " operator's measurement."
+        )
+    else:
+        items.append(
+            f"Official {official['required_environment']} feasibility was not evaluated"
+            f" ({official['status']}); the gate stays fail-closed."
+        )
+    items.append(
+        "Native Apple arm64 preflight validates extraction only; the protocol never lets it pass the"
+        " official feasibility gate."
+    )
+    items.append("Nine public families provide limited family-level power.")
+    if not evidence["train_gate"]["passed"]:
+        items.append("The completed Train failure prevents Dev outcome loading and runtime integration.")
+    return items
 
 
 def build_report(protocol_path: Path, evidence_path: Path = DEFAULT_EVIDENCE) -> Mapping[str, Any]:
@@ -408,12 +693,13 @@ def build_report(protocol_path: Path, evidence_path: Path = DEFAULT_EVIDENCE) ->
         "report_type": REPORT_TYPE, "protocol": {"path": str(protocol_path.relative_to(ROOT)), "sha256": file_sha256(protocol_path), "frozen_before_candidate_dev_evaluation": True},
         "candidate_provenance": protocol["candidate_encoders"], "registry_evidence": evidence["registry_evidence"], "artifact_verification": evidence["artifacts"], "runtime_dependencies": evidence["dependencies"],
         "feasibility": {"passed": feasible, "encoder": protocol["candidate_encoders"][0]["name"], "native_apple_arm64_preflight": native_preflight, "official_linux_arm64": official_feasibility, "model_plus_required_runtime_bytes": installed_and_model, "compressed_oci_layer_bound_bytes": protocol["runtime"]["compressed_oci_layers_max_bytes"], "static_size_bound_passed": static_size_passed},
+        "train_embedding_source": evidence["train_embedding_source"],
         "train_protocol_execution": {"selection": "independent per step inside each outer fold", "outer": protocol["splits"]["outer"], "inner": protocol["splits"]["inner"], "candidate_feature_combinations": protocol["candidate_feature_combinations"], "fit_scope": "each inner/outer training portion only", "fold_local_objects": ["inverse-frequency weights", "scaling", "variance projection", "event heads", "conditional magnitude heads", "cost head and conservative residual multiplier", "retrieval/OOD thresholds", "calibration object", "hyperparameters"]},
         "train_evaluation": evidence["train_evaluation"],
-        "gates": {"feasibility": {"required_environment": official_feasibility["required_environment"], "evaluated": official_feasibility["evaluated"], "passed": feasible, "status": official_feasibility["status"]}, "train_adoption": evidence["train_gate"], "dev_loaded": False, "dev_champion": {"evaluated": False, "passed": False}, "calibration_conformal": {"evaluated": False, "passed": False}, "safety_5000_resamples": {"evaluated": False, "passed": False}, "official_container_benchmark": {"evaluated": False, "passed": False}},
+        "gates": {"feasibility": {"required_environment": official_feasibility["required_environment"], "evaluated": official_feasibility["evaluated"], "passed": feasible, "status": official_feasibility["status"], "final_contest_hardware": False}, "train_adoption": evidence["train_gate"], "dev_loaded": False, "dev_champion": {"evaluated": False, "passed": False}, "calibration_conformal": {"evaluated": False, "passed": False}, "safety_5000_resamples": {"evaluated": False, "passed": False}, "official_container_benchmark": {"evaluated": False, "passed": False, "scope": "submission-image benchmark for an adopted candidate; never opened because the Train adoption gate failed"}},
         "verification": evidence.get("verification", {}),
         "decision": {"selected_encoder": protocol["candidate_encoders"][0]["name"], "selected_candidates_by_step": {step: max(row["candidate_selection_counts"], key=lambda name: (row["candidate_selection_counts"][name], name)) for step, row in evidence["train_evaluation"].items()}, "candidate_adopted": False, "runtime_integration": False, "submission_default": "safe-margin", "reason": "Completed nested Train quality gate failed; Dev, safety, and official container gates remained closed."},
-        "limitations": ["Official linux/arm64 was unavailable after Docker, Podman, Colima, and Lima discovery; resource evidence is native Apple arm64 under frozen ONNX thread controls.", "Nine public families provide limited family-level power.", "The completed Train failure prevents Dev outcome loading and runtime integration."],
+        "limitations": list(_limitations(evidence)),
     }
 
 
@@ -427,14 +713,81 @@ def run(protocol_path: Path, report_path: Path, evidence_path: Path = DEFAULT_EV
     report = build_report(protocol_path, evidence_path); write_json_atomic(report_path, report); return report
 
 
+def _measurement_paths(directory: Path) -> Tuple[Path, Path]:
+    return directory / RECORD_FILE, directory / EMBEDDING_FILE
+
+
+def _extract(args: argparse.Namespace) -> None:
+    if args.encoder_dir is None:
+        raise ValueError("--extract requires --encoder-dir")
+    if args.measurement_dir is None:
+        raise ValueError("--extract requires --measurement-dir")
+    if args.provision:
+        provision_artifacts(load_protocol(args.protocol), args.encoder_dir)
+    embedding, record = extraction_record(args.protocol, args.encoder_dir, args.train_input, args.train_outcomes)
+    record_path, embedding_path = _measurement_paths(args.measurement_dir)
+    args.measurement_dir.mkdir(parents=True, exist_ok=True)
+    if not args.extraction_only:
+        np.save(embedding_path, embedding, allow_pickle=False)
+    write_json_atomic(record_path, record)
+    benchmark = record["benchmark"]
+    print(
+        f"extraction: label={benchmark['environment']['label']}"
+        f" first={benchmark['first_seconds']:.6f}s second={benchmark['second_seconds']:.6f}s"
+        f" identical={benchmark['byte_identical']} limits_enforced={benchmark['enforced_limits']['all_enforced']}"
+        f" constraint_passed={benchmark['constraint_passed']}"
+    )
+
+
+def _build_evidence(args: argparse.Namespace) -> None:
+    if args.measurement_dir is None:
+        raise ValueError("--build-evidence requires --measurement-dir")
+    record_path, embedding_path = _measurement_paths(args.measurement_dir)
+    record = load_record(record_path)
+    embedding = np.load(embedding_path, allow_pickle=False)
+    native = load_record(args.native_preflight) if args.native_preflight else None
+    verification = json.loads(args.verification.read_text()) if args.verification else None
+    write_json_atomic(args.evidence, build_evidence(
+        args.protocol, record, embedding, args.train_input, args.train_outcomes, native, verification
+    ))
+
+
 def main(argv: Optional[Sequence[str]] = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__); parser.add_argument("--protocol", type=Path, default=DEFAULT_PROTOCOL); parser.add_argument("--report", type=Path, default=DEFAULT_REPORT); parser.add_argument("--evidence", type=Path, default=DEFAULT_EVIDENCE); parser.add_argument("--measure", action="store_true"); parser.add_argument("--provision", action="store_true"); parser.add_argument("--encoder-dir", type=Path); parser.add_argument("--train-input", type=Path, default=DEFAULT_TRAIN_INPUT); parser.add_argument("--train-outcomes", type=Path, default=DEFAULT_TRAIN_OUTCOMES)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--protocol", type=Path, default=DEFAULT_PROTOCOL)
+    parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
+    parser.add_argument("--evidence", type=Path, default=DEFAULT_EVIDENCE)
+    parser.add_argument("--encoder-dir", type=Path)
+    parser.add_argument("--measurement-dir", type=Path)
+    parser.add_argument("--native-preflight", type=Path)
+    parser.add_argument("--verification", type=Path)
+    parser.add_argument("--provision", action="store_true", help="download and verify the pinned artifacts")
+    parser.add_argument("--provision-only", action="store_true", help="provision the pinned artifacts and stop")
+    parser.add_argument("--verify-only", action="store_true", help="verify the pinned artifacts offline and stop")
+    parser.add_argument("--extract", action="store_true", help="measure both full-split extraction passes")
+    parser.add_argument("--extraction-only", action="store_true", help="do not persist embeddings (preflight probe)")
+    parser.add_argument("--build-evidence", action="store_true", help="rebuild evidence from a measurement directory")
+    parser.add_argument("--train-input", type=Path, default=DEFAULT_TRAIN_INPUT)
+    parser.add_argument("--train-outcomes", type=Path, default=DEFAULT_TRAIN_OUTCOMES)
     args = parser.parse_args(argv)
     try:
-        if args.measure:
-            if args.encoder_dir is None: raise ValueError("--measure requires --encoder-dir")
-            if args.provision: provision_artifacts(load_protocol(args.protocol), args.encoder_dir)
-            write_json_atomic(args.evidence, run_measurement(args.protocol, args.encoder_dir, args.train_input, args.train_outcomes))
+        if args.provision_only or args.verify_only:
+            if args.encoder_dir is None:
+                raise ValueError("artifact provisioning and verification require --encoder-dir")
+            protocol = load_protocol(args.protocol)
+            result = (
+                verify_artifacts(protocol, args.encoder_dir) if args.verify_only
+                else provision_artifacts(protocol, args.encoder_dir)
+            )
+            if not result["passed"]:
+                raise ValueError("pinned artifact verification failed")
+            print(f"OK: artifacts={result['passed']} bytes={result['artifact_bytes']}")
+            return 0
+        if args.extract:
+            _extract(args)
+            return 0
+        if args.build_evidence:
+            _build_evidence(args)
         report = run(args.protocol, args.report, args.evidence)
     except (OSError, ValueError, RuntimeError, json.JSONDecodeError) as exc: print(f"error: {exc}", file=sys.stderr); return 2
     print(f"OK: adopted={report['decision']['candidate_adopted']} default={report['decision']['submission_default']} dev_loaded={report['gates']['dev_loaded']}"); return 0
