@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "challenge_id": "ossp-2026-llm-router-challenge",
+  "repository_url": "https://github.com/garibong-labs/ossp-2026-llm-router-challenge",
+  "commit_sha": "8c48ddb9a7a4974a6747494e91a4c4cfc7ee4c7e",
+  "image_digest": "ghcr.io/garibong-labs/ossp-2026-llm-router-challenge@sha256:985a010de6c8ac92f0bc0ba4250300e4a8a72c3f11b494c3291c4418d393b95f",
+  "primary_license": "Apache-2.0"
+}
