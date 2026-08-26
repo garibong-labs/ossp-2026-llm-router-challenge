@@ -622,11 +622,14 @@ intra-op 2/inter-op 1 thread를 사용합니다. 길이가 크게 다른 prompt�
 Apple arm64 측정은 각각 77.156104초와 74.250161초였고 출력은 byte-identical,
 최대 norm 오차 `1.192093e-7`, peak RSS 1,697,284,096 bytes, 최대 thread/PID 관측
 2/0이었습니다. Docker, Podman, Colima, Lima executable은 모두 없어 공식 Linux
-경로는 `unavailable-after-command-discovery`로 기록했습니다. 이는 native arm64
-제한 측정 통과와 공식 Linux infrastructure 부재를 구분한 것입니다.
+경로는 `unavailable-after-command-discovery`로 기록했습니다. native arm64
+preflight는 성공했지만 이는 Train-only 실험 실행 가능성만 확인한 것입니다.
+protocol-required official Linux/arm64 feasibility는 명시적으로 미측정이며,
+overall feasibility와 해당 gate는 실제 공식 환경 측정 전까지 fail-closed입니다.
 
-feasibility가 통과해 세 semantic 후보를 Train-only nested family-disjoint CV로
-완주했습니다. fold별로 class imbalance weight, scaling, 64차원 training-variance
+native preflight가 통과해 세 semantic 후보를 Train-only nested family-disjoint CV로
+완주했습니다. 이 Train 실행은 official feasibility 통과를 뜻하지 않습니다.
+fold별로 class imbalance weight, scaling, 64차원 training-variance
 projection, win/tie/loss event head, conditional win/loss magnitude, log-cost head,
 OOD threshold와 hyperparameter를 fit했습니다.
 

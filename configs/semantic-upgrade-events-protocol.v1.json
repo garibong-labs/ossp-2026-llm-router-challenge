@@ -153,7 +153,9 @@
     "failure_behavior": "fail closed, do not load Dev, preserve safe-margin",
     "merged_root_max_bytes": 2147483648,
     "memory_max_bytes": 2147483648,
+    "native_apple_arm64_preflight": "may validate extraction and permit the Train-only experiment, but cannot pass official feasibility",
     "official_architecture": "linux/arm64",
+    "official_feasibility_gate": "evaluated and passed only by a measurement on the official architecture; otherwise fail closed",
     "pid_thread_limit": 32,
     "seconds_per_tier": 90
   },

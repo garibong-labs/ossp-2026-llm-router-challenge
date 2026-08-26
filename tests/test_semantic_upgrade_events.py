@@ -59,12 +59,19 @@ class FrozenProtocolTest(unittest.TestCase):
         self.assertEqual(0.69, protocol["adoption_thresholds"]["dev_weighted_score_minimum"])
         self.assertEqual("fail closed, do not load Dev, preserve safe-margin", protocol["runtime"]["failure_behavior"])
 
-    def test_genuine_train_failure_does_not_load_dev(self):
+    def test_native_preflight_does_not_pass_official_feasibility(self):
         report = experiment.build_report(
             self.protocol_path,
             ROOT / "baselines/semantic-upgrade-events-evidence.v1.json",
         )
-        self.assertTrue(report["feasibility"]["passed"])
+        self.assertTrue(report["feasibility"]["native_apple_arm64_preflight"]["evaluated"])
+        self.assertTrue(report["feasibility"]["native_apple_arm64_preflight"]["passed"])
+        self.assertFalse(report["feasibility"]["official_linux_arm64"]["evaluated"])
+        self.assertFalse(report["feasibility"]["official_linux_arm64"]["passed"])
+        self.assertFalse(report["feasibility"]["passed"])
+        self.assertFalse(report["gates"]["feasibility"]["evaluated"])
+        self.assertFalse(report["gates"]["feasibility"]["passed"])
+        self.assertEqual("linux/arm64", report["gates"]["feasibility"]["required_environment"])
         self.assertFalse(report["gates"]["dev_loaded"])
         self.assertTrue(report["gates"]["train_adoption"]["evaluated"])
         self.assertFalse(report["gates"]["train_adoption"]["passed"])
@@ -231,13 +238,21 @@ class FrozenNegativeReportTest(unittest.TestCase):
         self.assertFalse(report["decision"]["candidate_adopted"])
         self.assertFalse(report["decision"]["runtime_integration"])
         self.assertEqual("safe-margin", report["decision"]["submission_default"])
+        self.assertFalse(report["feasibility"]["passed"])
+        self.assertFalse(report["gates"]["feasibility"]["evaluated"])
+        self.assertFalse(report["gates"]["feasibility"]["passed"])
         self.assertFalse(report["gates"]["dev_loaded"])
 
     def test_committed_evidence_is_a_completed_quality_failure(self):
         evidence = json.loads((ROOT / "baselines/semantic-upgrade-events-evidence.v1.json").read_text())
         self.assertTrue(evidence["artifacts"]["passed"])
-        self.assertTrue(evidence["extraction_benchmark"]["constraint_passed"])
-        self.assertTrue(evidence["extraction_benchmark"]["byte_identical"])
+        preflight = evidence["native_apple_arm64_preflight"]
+        self.assertTrue(preflight["evaluated"])
+        self.assertTrue(preflight["passed"])
+        self.assertTrue(preflight["extraction_benchmark"]["constraint_passed"])
+        self.assertTrue(preflight["extraction_benchmark"]["byte_identical"])
+        self.assertFalse(evidence["official_linux_arm64_feasibility"]["evaluated"])
+        self.assertFalse(evidence["official_linux_arm64_feasibility"]["passed"])
         self.assertFalse(evidence["train_gate"]["passed"])
         self.assertTrue(all(row["status"] == "completed" for row in evidence["train_evaluation"].values()))
 

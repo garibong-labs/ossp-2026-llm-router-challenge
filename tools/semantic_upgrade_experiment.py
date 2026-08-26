@@ -174,7 +174,7 @@ def measure_extraction(encoder_dir: Path, episodes: Sequence[Any]) -> Tuple[Any,
     return first, {
         "host": {"system": platform.system(), "machine": platform.machine(), "release": platform.release()},
         "official_linux_arm64": platform.system() == "Linux" and platform.machine() in ("arm64", "aarch64"),
-        "official_path_status": "measured" if platform.system() == "Linux" else "unavailable-after-command-discovery",
+        "official_path_status": "measured" if platform.system() == "Linux" and platform.machine() in ("arm64", "aarch64") else "unavailable-after-command-discovery",
         "container_vm_attempts": {name: shutil.which(name) for name in ("docker", "podman", "colima", "limactl")},
         "control": {"cpu_count": 2, "onnx_intra_op_threads": 2, "onnx_inter_op_threads": 1, "execution_mode": "sequential", "batch_size": 1, "runtime_network": False},
         "rows": len(episodes), "dimensions": int(first.shape[1]),
@@ -380,21 +380,37 @@ def run_measurement(protocol_path: Path, encoder_dir: Path, train_input: Path, t
     evaluation = nested_train_evaluation(protocol, inputs, embedding, scores, costs, risk_validation.reconstruct_families("train", inputs))
     encoder = protocol["candidate_encoders"][0]
     registry = {"revision": encoder["revision"], "license": encoder["license"], "languages": encoder["languages"], "model_card": encoder["model_card"], "license_evidence": encoder["license_evidence"], "downloaded_model_card_sha256": PINNED_MODEL_CARD_SHA256, "query_prefix": events.QUERY_PREFIX, "pooling": "attention-mask mean pooling followed by L2 normalization"}
-    return {"evidence_type": EVIDENCE_TYPE, "protocol_sha256": file_sha256(protocol_path), "train_input_sha256": file_sha256(train_input), "train_outcomes_sha256": file_sha256(train_outcomes), "registry_evidence": registry, "artifacts": artifacts, "dependencies": dependency_evidence(), "extraction_benchmark": benchmark, "train_evaluation": evaluation, "train_gate": train_gate(protocol, evaluation)}
+    official_environment = benchmark["official_linux_arm64"]
+    native_apple_arm64 = benchmark["host"]["system"] == "Darwin" and benchmark["host"]["machine"] == "arm64"
+    official_feasibility = {
+        "required_environment": protocol["runtime"]["official_architecture"],
+        "evaluated": official_environment,
+        "passed": official_environment and benchmark["constraint_passed"],
+        "status": "measured" if official_environment else benchmark["official_path_status"],
+    }
+    return {"evidence_type": EVIDENCE_TYPE, "protocol_sha256": file_sha256(protocol_path), "train_input_sha256": file_sha256(train_input), "train_outcomes_sha256": file_sha256(train_outcomes), "registry_evidence": registry, "artifacts": artifacts, "dependencies": dependency_evidence(), "native_apple_arm64_preflight": {"required_environment": "darwin/arm64", "evaluated": native_apple_arm64, "passed": native_apple_arm64 and benchmark["constraint_passed"], "extraction_benchmark": benchmark}, "official_linux_arm64_feasibility": official_feasibility, "train_evaluation": evaluation, "train_gate": train_gate(protocol, evaluation)}
 
 
 def build_report(protocol_path: Path, evidence_path: Path = DEFAULT_EVIDENCE) -> Mapping[str, Any]:
     protocol = load_protocol(protocol_path); evidence = json.loads(evidence_path.read_text())
     if evidence.get("evidence_type") != EVIDENCE_TYPE or evidence.get("protocol_sha256") != file_sha256(protocol_path): raise ValueError("evidence does not match protocol")
-    feasible = evidence["artifacts"]["passed"] and evidence["extraction_benchmark"]["constraint_passed"]
+    native_preflight = evidence["native_apple_arm64_preflight"]
+    official_feasibility = evidence["official_linux_arm64_feasibility"]
     installed_and_model = evidence["artifacts"]["artifact_bytes"] + evidence["dependencies"]["required_installed_bytes"]
+    static_size_passed = installed_and_model < protocol["runtime"]["compressed_oci_layers_max_bytes"]
+    feasible = (
+        evidence["artifacts"]["passed"]
+        and official_feasibility["evaluated"]
+        and official_feasibility["passed"]
+        and static_size_passed
+    )
     return {
         "report_type": REPORT_TYPE, "protocol": {"path": str(protocol_path.relative_to(ROOT)), "sha256": file_sha256(protocol_path), "frozen_before_candidate_dev_evaluation": True},
         "candidate_provenance": protocol["candidate_encoders"], "registry_evidence": evidence["registry_evidence"], "artifact_verification": evidence["artifacts"], "runtime_dependencies": evidence["dependencies"],
-        "feasibility": {"passed": feasible, "encoder": protocol["candidate_encoders"][0]["name"], "extraction_benchmark": evidence["extraction_benchmark"], "official_linux_arm64_infrastructure": evidence["extraction_benchmark"]["official_path_status"], "model_plus_required_runtime_bytes": installed_and_model, "compressed_oci_layer_bound_bytes": protocol["runtime"]["compressed_oci_layers_max_bytes"], "static_size_bound_passed": installed_and_model < protocol["runtime"]["compressed_oci_layers_max_bytes"]},
+        "feasibility": {"passed": feasible, "encoder": protocol["candidate_encoders"][0]["name"], "native_apple_arm64_preflight": native_preflight, "official_linux_arm64": official_feasibility, "model_plus_required_runtime_bytes": installed_and_model, "compressed_oci_layer_bound_bytes": protocol["runtime"]["compressed_oci_layers_max_bytes"], "static_size_bound_passed": static_size_passed},
         "train_protocol_execution": {"selection": "independent per step inside each outer fold", "outer": protocol["splits"]["outer"], "inner": protocol["splits"]["inner"], "candidate_feature_combinations": protocol["candidate_feature_combinations"], "fit_scope": "each inner/outer training portion only", "fold_local_objects": ["inverse-frequency weights", "scaling", "variance projection", "event heads", "conditional magnitude heads", "cost head and conservative residual multiplier", "retrieval/OOD thresholds", "calibration object", "hyperparameters"]},
         "train_evaluation": evidence["train_evaluation"],
-        "gates": {"feasibility": {"evaluated": True, "passed": feasible}, "train_adoption": evidence["train_gate"], "dev_loaded": False, "dev_champion": {"evaluated": False, "passed": False}, "calibration_conformal": {"evaluated": False, "passed": False}, "safety_5000_resamples": {"evaluated": False, "passed": False}, "official_container_benchmark": {"evaluated": False, "passed": False}},
+        "gates": {"feasibility": {"required_environment": official_feasibility["required_environment"], "evaluated": official_feasibility["evaluated"], "passed": feasible, "status": official_feasibility["status"]}, "train_adoption": evidence["train_gate"], "dev_loaded": False, "dev_champion": {"evaluated": False, "passed": False}, "calibration_conformal": {"evaluated": False, "passed": False}, "safety_5000_resamples": {"evaluated": False, "passed": False}, "official_container_benchmark": {"evaluated": False, "passed": False}},
         "verification": evidence.get("verification", {}),
         "decision": {"selected_encoder": protocol["candidate_encoders"][0]["name"], "selected_candidates_by_step": {step: max(row["candidate_selection_counts"], key=lambda name: (row["candidate_selection_counts"][name], name)) for step, row in evidence["train_evaluation"].items()}, "candidate_adopted": False, "runtime_integration": False, "submission_default": "safe-margin", "reason": "Completed nested Train quality gate failed; Dev, safety, and official container gates remained closed."},
         "limitations": ["Official linux/arm64 was unavailable after Docker, Podman, Colima, and Lima discovery; resource evidence is native Apple arm64 under frozen ONNX thread controls.", "Nine public families provide limited family-level power.", "The completed Train failure prevents Dev outcome loading and runtime integration."],

@@ -13,8 +13,8 @@
     "revision": "5697a65b0a002a92fe8c4fc9d495303ffff9c7d2"
   },
   "verification": {
-    "compileall_python_files": {
-      "checked": 62,
+    "compile_changed_python_files": {
+      "checked": 2,
       "passed": true
     },
     "focused_semantic_suite": {
@@ -117,7 +117,9 @@
     "required_installed_bytes": 157676879
   },
   "evidence_type": "ossp-semantic-upgrade-events-evidence-v1",
-  "extraction_benchmark": {
+  "native_apple_arm64_preflight": {
+    "evaluated": true,
+    "extraction_benchmark": {
     "byte_identical": true,
     "child_pids_after": 0,
     "child_pids_before": 0,
@@ -160,9 +162,18 @@
     "second_seconds": 74.2501610419713,
     "threads_after_first": 2,
     "threads_after_second": 2,
-    "threads_before": 1
+      "threads_before": 1
+    },
+    "passed": true,
+    "required_environment": "darwin/arm64"
   },
-  "protocol_sha256": "2afa5332889e5dc0349cc6f1d3f987ce8377c54f349a90b074eaf630f52e6d11",
+  "official_linux_arm64_feasibility": {
+    "evaluated": false,
+    "passed": false,
+    "required_environment": "linux/arm64",
+    "status": "unavailable-after-command-discovery"
+  },
+  "protocol_sha256": "97f05b2907bada9993667330bf4a1886a5d926f18ad3193df28f855e7da8035e",
   "train_evaluation": {
     "ax31->axk1-think": {
       "candidate_selection_counts": {
