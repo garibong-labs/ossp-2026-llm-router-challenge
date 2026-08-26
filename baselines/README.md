@@ -591,3 +591,178 @@ Fast `0.027273 / 0.051936`, Balanced `0.050000 / 0.351032`; ax31→think 상관
 [`representation-audit-report.v1.json`](representation-audit-report.v1.json)에
 있습니다. 기존 v2의 안전 결과(78/78 통과)와 Dev `0.658182`, safe-margin Dev
 `0.673182`는 그대로이며 제출 기본값도 safe-margin입니다.
+
+## Semantic upgrade-event experiment v1
+
+[`../configs/semantic-upgrade-events-protocol.v1.json`](../configs/semantic-upgrade-events-protocol.v1.json)은
+새 후보의 Dev outcome을 읽기 전에 genuine multilingual encoder registry, artifact
+hash, 세 갈래 win/tie/loss target, step별 nested family CV, OOD abstention, matched
+spend, 채택 기준과 fail-closed 동작을 고정합니다. 기존 `C-semantic-proxy`는
+word/character n-gram hash이며 genuine pretrained embedding baseline이 아닙니다.
+
+고정 registry의 유일한 후보는 MIT 라이선스
+`intfloat/multilingual-e5-small@5697a65b0a002a92fe8c4fc9d495303ffff9c7d2`입니다.
+필요한 architecture-neutral ONNX와 tokenizer 6개 파일은 총 492,421,554 bytes이고
+모두 immutable URL, 크기, SHA-256으로 고정했습니다. 공개된 더 작은 quantized
+ONNX는 AVX512 VNNI 전용이라 공식 `linux/arm64` 후보에서 제외했습니다.
+
+고정 revision의 registry 파일 6개는 Git이 무시하는 로컬 경로
+`.local-data/semantic-encoder/`에만 내려받아 크기와 SHA-256을 모두 확인합니다.
+weight는 commit하지 않고 제출 이미지에도 넣지 않습니다. Python 3.11.15 격리
+환경에는
+[`semantic-upgrade-events-requirements.txt`](../configs/semantic-upgrade-events-requirements.txt)의
+`numpy 2.0.2`, `onnxruntime 1.22.1`, `tokenizers 0.21.4`, `psutil 7.0.0`만 extraction
+요구 사항으로 고정했습니다. 네트워크는
+artifact provisioning과 이미지 빌드 단계에서만 쓰고 evaluation runtime에는
+필요하지 않습니다.
+
+설치 파일 합계는 wheel이 플랫폼별로 다르므로 환경마다 달라집니다. 근거 파일에
+기록된 값은 공식 `linux/arm64` 측정 환경이 `98,073,668 bytes`
+(`dependencies.required_installed_bytes`), 별도로 기록한 native Apple arm64
+preflight 환경이 `176,724,066 bytes`
+(`native_apple_arm64_preflight.dependencies.required_installed_bytes`)입니다. 두
+값은 서로 다른 환경의 관측이므로 합치거나 대체해 쓰지 않습니다. 위 4개 직접
+요구 사항은 version-pinned이지만, 실제로 해결된 transitive 환경 전체는 근거
+파일의 `dependencies.resolved_environment`에 이름과 version으로 기록만 되어
+있을 뿐 hash-lock되어 있지는 않습니다. 따라서 향후 재빌드에서 transitive
+의존성까지 동일하게 재현된다고 주장하지 않습니다.
+
+모든 prompt/message content field는 tokenization 전에 각각 32,768자로 자르고,
+모델 카드가 feature embedding에 요구한 `query: ` prefix를 붙입니다. 512 token
+상한, attention-mask mean pooling, L2 normalization, ONNX sequential execution,
+intra-op 2/inter-op 1 thread를 사용합니다. 길이가 크게 다른 prompt의 padding
+비용을 피하려고 batch size 1을 동결했습니다.
+
+### 측정 환경 세 가지를 구분합니다
+
+| 환경 | 무엇을 증명하나 | 공식 feasibility gate |
+| --- | --- | --- |
+| native Apple arm64 preflight (`darwin/arm64`) | 추출이 동작하고 Train-only 실험을 열어도 되는지 | protocol상 절대 통과시키지 않음 |
+| 로컬 Colima `linux/arm64` 컨테이너 | 공식 **아키텍처**에서 동결 한도 안에 들어가는지 | 통과 가능 — 이번에 측정 |
+| 운영자 최종 대회 장비 | 최종 자원 여유와 동점 레이턴시 | 운영자만 측정 |
+
+로컬 Colima VM은 공식 아키텍처(`linux/arm64`)와 같고 커널이 같은 cgroup v2
+한도를 실제로 강제하지만, QEMU 기반 가상 머신이며 운영자의 최종 대회 장비가
+아닙니다. 이 저장소는 어디에서도 로컬 Colima VM을 최종 대회 장비라고 주장하지
+않습니다. 운영자 측 장비와 절차는
+[`../docs/APPLE_SILICON_MEASUREMENT.md`](../docs/APPLE_SILICON_MEASUREMENT.md)에
+있습니다.
+
+### 공식 아키텍처 `linux/arm64` 측정 결과
+
+전용 실험 이미지
+[`../container/semantic-measurement.Dockerfile`](../container/semantic-measurement.Dockerfile)로
+`linux/arm64` 이미지를 만듭니다. base는
+`python:3.11.15-slim-bookworm@sha256:d29f48a31a8b408ed19272ca1e7b10ebae13b240a27e862d3d4217c528e2e0c3`,
+빌드한 image id는
+`sha256:7615fd87c6c99af1344b52d000ec6fbe5965c5e11dbf3c5ed0bcd0a68ddf976a`입니다.
+이미지는 동결 artifact 6개와 pinned extraction 의존성만 담고, 빌드 마지막
+단계에서 6개 파일의 크기와 SHA-256을 다시 확인합니다. 이 이미지는 제출
+이미지([`../container/Dockerfile`](../container/Dockerfile))와 baseline 런타임
+벤치마크 이미지([`../container/measurement.Dockerfile`](../container/measurement.Dockerfile))
+어느 쪽도 바꾸지 않으며 제출 경로에 들어가지 않습니다.
+
+측정 실행은 CPU 2개, 메모리 2 GiB, 추가 스왑 없음, 프로세스·스레드 32개,
+네트워크 없음, 읽기 전용 루트입니다. 컨테이너 안에서 커널이 알려 준 값
+(cgroup v2, kernel `6.8.0-117-generic`, Docker Engine 29.5.2, Colima 0.10.3,
+Apple M2 / macOS 26.3 호스트):
+
+| 관측 | 값 | 동결 한도 |
+| --- | ---: | ---: |
+| 1,760행 1차 추출 | 83.352049초 | 90초 |
+| 1,760행 2차 추출 | 84.702307초 | 90초 |
+| cgroup `memory.peak` | 1,221,636,096 bytes | 2,147,483,648 bytes |
+| 프로세스 peak RSS | 1,252,179,968 bytes | 2,147,483,648 bytes |
+| cgroup `pids.peak` / 최대 thread+PID 관측 | 7 / 7 | 32 |
+| cgroup `cpu.max` | `200000 100000` (2 core) | 2 core |
+| cgroup `memory.swap.max` | `0` | 추가 스왑 없음 |
+| network interface | `lo` 하나 | 없음 |
+
+두 pass의 출력은 byte-identical이고 두 SHA-256이 모두
+`ad094b73df60cba480d148d5246a491f1925355f8bf29c40510b019ceae74726`, 최대 norm
+오차는 `1.192093e-7`이었습니다. 따라서 protocol이 요구한 공식 아키텍처
+feasibility gate는 이번에 처음으로 **측정되어 통과**했습니다. 이는 아키텍처
+측정이며 운영자 최종 장비의 여유나 동점 레이턴시를 대신하지 않습니다.
+
+같은 두 pass를 native Apple arm64(M2, macOS 26.3, 컨테이너 없음)에서도
+preflight로 돌려 76.122452초와 75.757317초, byte-identical을 확인했습니다. 이
+preflight는 cgroup 한도를 강제하지 않으므로 protocol 정의상 공식 gate를 열지
+않으며, 근거 파일에도 `qualifies_official_feasibility=false`로 남습니다.
+
+### Train-only 결과
+
+Train-only nested family-disjoint CV는 위 `linux/arm64` embedding 행렬로
+완주했습니다. fold별로 class imbalance weight, scaling, 64차원
+training-variance projection, win/tie/loss event head, conditional win/loss
+magnitude, log-cost head, OOD threshold와 hyperparameter를 fit했습니다.
+
+| 승격 | OOF 상관 | 양의 family | Fast 이득 / 비용 | Balanced 이득 / 비용 | Premium 이득 / 비용 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| light→ax31 | -0.011546 | 3/9 | 0.011506 / 0.098058 | 0.021449 / 0.374902 | — |
+| ax31→think | 0.071249 | 5/9 | — | — | -0.000284 / 0.870160 |
+
+첫 승격은 상관, 양의 family, Balanced matched-spend 기준을 실패했고, 둘째는 양의
+family와 Premium matched-spend 기준을 실패했습니다. family gain floor는 각각
+`0.000000`, `-0.004292`로 통과했습니다. 따라서 이는 setup이나 infrastructure
+실패가 아니라 완료된 Train quality-gate 실패입니다. 인프라가 아니라 품질이
+문제라는 점은 이번 측정으로 더 분명해졌습니다. 공식 아키텍처 feasibility는
+통과했는데도 동결한 Train 채택 기준 9개 중 5개가 실패했고, native 측정과
+`linux/arm64` 측정의 matched-spend 값이 같은 자리까지 일치했습니다(OOF 상관만
+float kernel 차이로 `1e-8` 자리에서 달라집니다).
+
+그러므로 Dev outcome은 읽지 않았고 calibration/conformal 후속 경로,
+5,000-resample safety, 채택 후보를 대상으로 하는 제출 이미지 benchmark gate는
+열지 않았습니다. `candidate_adopted=false`, 기본 제출은 safe-margin
+그대로입니다. 전체 outer selection, inner objective, OOD coverage와 관측값은
+[`semantic-upgrade-events-evidence.v1.json`](semantic-upgrade-events-evidence.v1.json),
+결정 보고서는 [`semantic-upgrade-events-report.v1.json`](semantic-upgrade-events-report.v1.json)에
+있습니다.
+
+### 재현 절차
+
+보고서만 다시 만들 때는 인자가 필요 없습니다.
+
+```console
+PYTHONPATH=src:baselines:tools python3.11 tools/semantic_upgrade_experiment.py
+```
+
+측정부터 다시 할 때는 네 단계입니다. 네트워크는 1단계와 2단계에만 쓰고,
+3단계 측정 실행에는 쓰지 않습니다.
+
+```console
+# 1) 동결 artifact를 무시 경로에 받아 크기와 SHA-256을 확인합니다.
+PYTHONPATH=src:baselines:tools python3.11 tools/semantic_upgrade_experiment.py \
+  --provision-only --encoder-dir .local-data/semantic-encoder
+
+# 2) 실험 전용 linux/arm64 측정 이미지를 만듭니다.
+#    Docker 29의 buildx는 로컬 load 시 --provenance=false가 필요합니다.
+docker buildx build --platform linux/arm64 --provenance=false --load \
+  --file container/semantic-measurement.Dockerfile \
+  --tag ossp-semantic-measurement:v1 .
+
+# 3) 동결 한도 안에서 1,760행 추출을 두 번 수행합니다.
+docker volume create ossp-semantic-out
+docker run --rm --user 0:0 --entrypoint chown -v ossp-semantic-out:/out \
+  ossp-semantic-measurement:v1 -R 65532:65532 /out
+docker run --rm --platform linux/arm64 \
+  --cpus 2 --memory 2g --memory-swap 2g --pids-limit 32 \
+  --network none --read-only --tmpfs /tmp:rw,noexec,nosuid,nodev,size=64m \
+  --security-opt no-new-privileges --user 65532:65532 \
+  -v ossp-semantic-out:/out \
+  -e OSSP_SEMANTIC_ENVIRONMENT_LABEL=local-colima-qemu-linux-arm64 \
+  -e OSSP_SEMANTIC_IMAGE_REFERENCE=ossp-semantic-measurement:v1 \
+  ossp-semantic-measurement:v1 \
+  --extract --encoder-dir /opt/encoder --measurement-dir /out
+
+# 4) 회수한 embedding 행렬에서 근거와 보고서를 다시 만듭니다.
+PYTHONPATH=src:baselines:tools python3.11 tools/semantic_upgrade_experiment.py \
+  --build-evidence --measurement-dir "$MEASUREMENT_DIR" \
+  --native-preflight "$PREFLIGHT_DIR/extraction-measurement.json"
+```
+
+`OSSP_SEMANTIC_ENVIRONMENT_DESCRIPTION`, `OSSP_SEMANTIC_IMAGE_ID`,
+`OSSP_SEMANTIC_BASE_IMAGE_DIGEST`, `OSSP_SEMANTIC_DOCKERFILE_SHA256`을 함께
+넘기면 그 값이 그대로 근거 파일의 환경 증거가 됩니다. native preflight는 같은
+도구를 컨테이너 없이 `--extract --extraction-only`로 실행해 만듭니다. 4단계는
+컨테이너가 남긴 `train-embeddings.npy`의 SHA-256이 측정 기록과 다르면 거부하며,
+같은 입력에서 두 번 실행하면 byte-identical 산출물을 만듭니다.

@@ -1,0 +1,181 @@
+{
+  "adoption_thresholds": {
+    "dev_weighted_score_minimum": 0.69,
+    "headroom_tolerance": 0.005,
+    "minimum_held_out_family_selected_gain": -0.005,
+    "oof_correlation_each_step": 0.02,
+    "positive_held_out_family_correlations_each_step": 6,
+    "resamples": 5000,
+    "selected_gain_margin_over_current_a": 0.002
+  },
+  "candidate_encoders": [
+    {
+      "architecture": "12-layer BERT/XLM-R tokenizer, 384-dimensional mean-pooled embedding",
+      "artifacts": [
+        {
+          "path": "onnx/config.json",
+          "sha256": "bbb7c1333fc4b3e27fbc9cd5d2070aabcc1d4dfb99917c3633e772f97545a6b6",
+          "size_bytes": 653
+        },
+        {
+          "path": "onnx/model.onnx",
+          "sha256": "ca456c06b3a9505ddfd9131408916dd79290368331e7d76bb621f1cba6bc8665",
+          "size_bytes": 470268510
+        },
+        {
+          "path": "onnx/sentencepiece.bpe.model",
+          "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+          "size_bytes": 5069051
+        },
+        {
+          "path": "onnx/special_tokens_map.json",
+          "sha256": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+          "size_bytes": 167
+        },
+        {
+          "path": "onnx/tokenizer.json",
+          "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+          "size_bytes": 17082730
+        },
+        {
+          "path": "onnx/tokenizer_config.json",
+          "sha256": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b",
+          "size_bytes": 443
+        }
+      ],
+      "build_time_download": {
+        "network_at_evaluation_runtime": false,
+        "url_template": "https://huggingface.co/intfloat/multilingual-e5-small/resolve/5697a65b0a002a92fe8c4fc9d495303ffff9c7d2/{artifact_path}"
+      },
+      "excluded_artifact": {
+        "path": "onnx/model_qint8_avx512_vnni.onnx",
+        "reason": "The published quantized graph targets AVX512 VNNI and is not an arm64 runtime artifact."
+      },
+      "languages": [
+        "English",
+        "Korean"
+      ],
+      "license": "MIT",
+      "license_evidence": "https://huggingface.co/intfloat/multilingual-e5-small/blob/5697a65b0a002a92fe8c4fc9d495303ffff9c7d2/README.md",
+      "model_card": "https://huggingface.co/intfloat/multilingual-e5-small/tree/5697a65b0a002a92fe8c4fc9d495303ffff9c7d2",
+      "name": "intfloat/multilingual-e5-small",
+      "revision": "5697a65b0a002a92fe8c4fc9d495303ffff9c7d2"
+    }
+  ],
+  "candidate_feature_combinations": [
+    "semantic",
+    "semantic+expanded-structural-b",
+    "semantic+expanded-structural-b+ood-retrieval-confidence"
+  ],
+  "class_imbalance": {
+    "method": "inverse-frequency sample weights normalized to mean one",
+    "fit_scope": "each outer-fold training portion only"
+  },
+  "expected_utility": "P(win) * mean(positive signed gain | win) - P(loss) * mean(abs(signed gain) | loss)",
+  "forbidden_runtime_fields": [
+    "episode_id",
+    "source",
+    "family",
+    "row_position",
+    "split",
+    "outcomes"
+  ],
+  "hyperparameter_grid": {
+    "classifier_l2": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "committee_confidence_minimum": [
+      0.5,
+      0.6
+    ],
+    "local_label_agreement_minimum": [
+      0.6,
+      0.75
+    ],
+    "magnitude_ridge_l2": [
+      1.0,
+      10.0,
+      100.0
+    ],
+    "nearest_neighbors": [
+      3,
+      5
+    ],
+    "support_similarity_quantile": [
+      0.01,
+      0.05
+    ]
+  },
+  "input_bound": {
+    "characters_per_prompt_or_message_content_field": 32768,
+    "truncate_before_all_candidate_feature_extraction": true
+  },
+  "labels": {
+    "loss": "upgraded model score is lower",
+    "tie": "scores are equal",
+    "win": "upgraded model score is higher"
+  },
+  "matched_spend": {
+    "ranking": "descending positive expected signed utility divided by conservative predicted incremental cost",
+    "spend_goals_over_all_light": {
+      "balanced": 1.397907,
+      "fast": 1.098738,
+      "premium": 2.58128
+    },
+    "step_tiers": {
+      "ax31->axk1-think": [
+        "premium"
+      ],
+      "ax31-light->ax31": [
+        "fast",
+        "balanced"
+      ]
+    }
+  },
+  "ood_abstention": {
+    "action": "abstain from the additional upgrade if any check fails",
+    "checks": [
+      "nearest-neighbor cosine similarity at or above the selected training-only quantile",
+      "nearest-neighbor event-label agreement at or above the selected threshold",
+      "maximum calibrated event probability at or above the selected confidence threshold",
+      "model-committee upgrade agreement at or above the selected threshold"
+    ],
+    "fit_scope": "outer-fold training portion only; hyperparameters selected by inner family-disjoint CV"
+  },
+  "protocol_id": "ossp-semantic-upgrade-events-protocol-v1",
+  "representation_selection": "independent per upgrade step using Train-only nested group CV",
+  "runtime": {
+    "compressed_oci_layers_max_bytes": 1073741824,
+    "cpu_count": 2,
+    "evaluation_network": false,
+    "failure_behavior": "fail closed, do not load Dev, preserve safe-margin",
+    "merged_root_max_bytes": 2147483648,
+    "memory_max_bytes": 2147483648,
+    "native_apple_arm64_preflight": "may validate extraction and permit the Train-only experiment, but cannot pass official feasibility",
+    "official_architecture": "linux/arm64",
+    "official_feasibility_gate": "evaluated and passed only by a measurement on the official architecture; otherwise fail closed",
+    "pid_thread_limit": 32,
+    "seconds_per_tier": 90
+  },
+  "splits": {
+    "inner": "leave-one-reconstructed-source/task-family-out within each outer training portion",
+    "outer": "leave-one of the nine reconstructed source/task families out",
+    "outer_families": [
+      "aime",
+      "babilong",
+      "belebele-ko",
+      "cruxeval",
+      "deepmind-mathematics",
+      "gsm8k",
+      "hrmcr",
+      "ruletaker",
+      "truthfulqa"
+    ]
+  },
+  "steps": [
+    "ax31-light->ax31",
+    "ax31->axk1-think"
+  ]
+}

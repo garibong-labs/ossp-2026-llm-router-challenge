@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: Copyright 2026 SK TELECOM CO., LTD.
+# SPDX-License-Identifier: Apache-2.0
+#
+# 실험 전용 측정 이미지의 build context만 좁힙니다. 제출 이미지는 상위
+# ../.dockerignore를 계속 사용하므로 이 파일은 제출 경로에 영향이 없습니다.
+
+.git
+.github
+__pycache__
+**/__pycache__
+*.py[cod]
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.venv
+build
+dist
+docs
+tests
+data/dev
+data/sources
+data/toy
+data/train/inputs-base.json
+data/materialized/dev
+
+# 모델 weight는 아래 한 경로에서만 들어갑니다.
+.local-data/*
+!.local-data/semantic-encoder
+.local-data/semantic-encoder/*
+!.local-data/semantic-encoder/onnx
