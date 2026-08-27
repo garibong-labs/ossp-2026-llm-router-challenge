@@ -37,9 +37,12 @@
     "has_role_transition",
     "log_parenthesis_count",
     "log_bracket_count",
-    "log_quote_count"
+    "log_quote_count",
+    "safe_margin_predicted_think_minus_ax31_gain",
+    "safe_margin_predicted_think_minus_ax31_conservative_cost_increment",
+    "safe_margin_predicted_think_gain_per_step_load_efficiency_bucket"
   ],
-  "feature_version": "B-expanded-structural-v1",
+  "feature_version": "B-expanded-structural-plus-safe-margin-v1",
   "heads": [],
   "minimum_negative_votes": null,
   "policy_id": "ossp-2026-prompt-router-v1",

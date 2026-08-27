@@ -22,7 +22,6 @@ for entry in (ROOT / "src", ROOT / "tools", ROOT / "baselines"):
 
 import numpy as np  # noqa: E402
 
-import representation_features  # noqa: E402
 import risk_validation  # noqa: E402
 import safe_margin  # noqa: E402
 import safe_margin_think_loss_veto_runtime as runtime  # noqa: E402
@@ -86,9 +85,9 @@ def head_feature_indices(head: int) -> Tuple[int, ...]:
         raise ValueError("head must be in [0, 8]")
     return tuple(
         index
-        for index in range(len(representation_features.EXPANDED_STRUCTURAL_FEATURE_NAMES))
+        for index in range(runtime.STRUCTURAL_FEATURE_COUNT)
         if index % 9 != head
-    )
+    ) + tuple(range(runtime.STRUCTURAL_FEATURE_COUNT, len(runtime.FEATURE_NAMES)))
 
 
 def fit_ridge(matrix: Any, targets: Any) -> Tuple[Any, Any, float, Any]:
@@ -309,7 +308,7 @@ def rejected_artifact(protocol_hash: str, policy: Any, train_hash: Optional[str]
         "protocol_sha256": protocol_hash,
         "base_commit": BASE_COMMIT,
         "feature_version": runtime.FEATURE_VERSION,
-        "feature_names": list(representation_features.EXPANDED_STRUCTURAL_FEATURE_NAMES),
+        "feature_names": list(runtime.FEATURE_NAMES),
         "heads": [],
         "minimum_negative_votes": None,
         "policy_id": policy.policy_id,
@@ -346,10 +345,7 @@ def run(args: Any) -> Tuple[Mapping[str, Any], Mapping[str, Any]]:
     safe_artifact = safe_margin.load_artifact(safe_margin.DEFAULT_ARTIFACT_PATH)
     predictions = safe_margin.predict_batch(inputs.episodes, safe_artifact, policy)
     keys = runtime.content_group_keys(predictions)
-    matrix = np.asarray([
-        representation_features.expanded_structural_vector(episode)
-        for episode in inputs.episodes
-    ], dtype=np.float64)
+    matrix = np.asarray(runtime.feature_vectors(inputs, predictions), dtype=np.float64)
     outcome_index = {(item.episode_id, item.model_id): item for item in outcomes.outcomes}
     targets = np.asarray([
         float(outcome_index[(episode.episode_id, MODEL_IDS[2])].score)
@@ -423,6 +419,19 @@ def run(args: Any) -> Tuple[Mapping[str, Any], Mapping[str, Any]]:
         "protocol_integrity": True,
         "train_input_available": True,
         "nine_family_evaluation": True,
+        "feature_contract": {
+            "structural_features": runtime.STRUCTURAL_FEATURE_COUNT,
+            "fixed_runtime_additions": len(runtime.RUNTIME_FEATURE_NAMES),
+            "total_vector_features": len(runtime.FEATURE_NAMES),
+            "features_per_head": len(head_feature_indices(0)),
+            "runtime_additions_in_every_head": all(
+                head_feature_indices(head)[-len(runtime.RUNTIME_FEATURE_NAMES):]
+                == tuple(range(
+                    runtime.STRUCTURAL_FEATURE_COUNT, len(runtime.FEATURE_NAMES)
+                ))
+                for head in range(9)
+            ),
+        },
         "nested_family_honesty": honesty,
         "fast_identical": True,
         "balanced_identical": True,

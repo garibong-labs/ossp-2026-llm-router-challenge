@@ -37,9 +37,19 @@ import safe_margin  # noqa: E402
 
 
 ARTIFACT_TYPE = "safe-margin-think-loss-veto-v1"
-FEATURE_VERSION = "B-expanded-structural-v1"
+FEATURE_VERSION = "B-expanded-structural-plus-safe-margin-v1"
 PROTOCOL_SHA256 = "651445bf7ec35d6779a08025c613879bcc606ec539428f95119c1b8d43a1131c"
 BASE_COMMIT = "3fbdfe84f7a7ccee247d3cc0536d11ada6a21ec9"
+STRUCTURAL_FEATURE_NAMES = tuple(
+    representation_features.EXPANDED_STRUCTURAL_FEATURE_NAMES
+)
+RUNTIME_FEATURE_NAMES = (
+    "safe_margin_predicted_think_minus_ax31_gain",
+    "safe_margin_predicted_think_minus_ax31_conservative_cost_increment",
+    "safe_margin_predicted_think_gain_per_step_load_efficiency_bucket",
+)
+FEATURE_NAMES = STRUCTURAL_FEATURE_NAMES + RUNTIME_FEATURE_NAMES
+STRUCTURAL_FEATURE_COUNT = len(STRUCTURAL_FEATURE_NAMES)
 DEFAULT_ARTIFACT_PATH = (
     Path(__file__).resolve().parents[1]
     / "experiments/safe-margin-think-loss-veto/artifact.v1.json"
@@ -111,7 +121,7 @@ def parse_artifact(value: Any) -> VetoArtifact:
     }
     if set(value) != required:
         raise ProtocolError("veto artifact fields do not match the frozen schema")
-    names = list(representation_features.EXPANDED_STRUCTURAL_FEATURE_NAMES)
+    names = list(FEATURE_NAMES)
     if (
         value["artifact_type"] != ARTIFACT_TYPE
         or value["schema_version"] != 1
@@ -135,7 +145,10 @@ def parse_artifact(value: Any) -> VetoArtifact:
         }:
             raise ProtocolError("head fields do not match the frozen schema")
         indices = raw["feature_indices"]
-        expected = [index for index in range(len(names)) if index % 9 != head_index]
+        expected = [
+            index for index in range(STRUCTURAL_FEATURE_COUNT)
+            if index % 9 != head_index
+        ] + list(range(STRUCTURAL_FEATURE_COUNT, len(FEATURE_NAMES)))
         if raw["head"] != head_index or indices != expected:
             raise ProtocolError("head feature partition is not frozen modulo-9 partition")
         length = len(indices)
@@ -182,6 +195,36 @@ def content_group_keys(
     return tuple(result)
 
 
+def feature_vectors(
+    inputs: InputBatch,
+    predictions: Sequence[safe_margin.EpisodePrediction],
+) -> Tuple[Tuple[float, ...], ...]:
+    """Build frozen representation B plus the three safe-margin additions."""
+
+    if len(inputs.episodes) != len(predictions):
+        raise ValueError("episode and safe-margin prediction counts differ")
+    if not predictions:
+        return ()
+    mean_light = math.fsum(
+        item.costs[MODEL_IDS[0]] for item in predictions
+    ) / len(predictions)
+    vectors = []
+    for episode, prediction in zip(inputs.episodes, predictions):
+        gain = prediction.scores[MODEL_IDS[2]] - prediction.scores[MODEL_IDS[1]]
+        increment = prediction.costs[MODEL_IDS[2]] - prediction.costs[MODEL_IDS[1]]
+        step_load = increment / mean_light
+        efficiency = gain / step_load if increment > 0 else 0.0
+        additions = (
+            float(gain),
+            float(increment),
+            float(safe_margin._efficiency_bucket(efficiency)),
+        )
+        vectors.append(tuple(
+            representation_features.expanded_structural_vector(episode)
+        ) + additions)
+    return tuple(vectors)
+
+
 def apply_veto(
     inputs: InputBatch,
     baseline: safe_margin.SafeMarginPlan,
@@ -190,10 +233,7 @@ def apply_veto(
 ) -> VetoPlan:
     if baseline.submission.tier != "premium":
         return VetoPlan(baseline.submission, baseline, True, 0, 0, 0)
-    vectors = tuple(
-        representation_features.expanded_structural_vector(episode)
-        for episode in inputs.episodes
-    )
+    vectors = feature_vectors(inputs, predictions)
     keys = content_group_keys(predictions)
     groups: Dict[Tuple[int, ...], list[int]] = {}
     selected = [decision.model_id for decision in baseline.submission.decisions]

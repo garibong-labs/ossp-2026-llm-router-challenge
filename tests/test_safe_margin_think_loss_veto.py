@@ -23,7 +23,17 @@ for entry in (ROOT / "src", ROOT / "baselines", ROOT / "tools"):
 import risk_validation
 import safe_margin
 import safe_margin_think_loss_veto_runtime as runtime
-from ossp_router.protocol import MODEL_IDS, Decision, Episode, InputBatch, Submission, load_bundled_policy
+import representation_features
+from ossp_router.protocol import (
+    MODEL_IDS,
+    Decision,
+    Episode,
+    InputBatch,
+    ProtocolError,
+    Submission,
+    load_bundled_policy,
+    policy_sha256,
+)
 
 
 def _load_tool():
@@ -70,6 +80,29 @@ def _fixture(models=(MODEL_IDS[2], MODEL_IDS[2], MODEL_IDS[1])):
 
 
 class ConsensusAndRoutingTest(unittest.TestCase):
+    def test_training_and_runtime_share_all_three_safe_margin_additions(self):
+        inputs, _baseline, predictions = _fixture()
+        vectors = runtime.feature_vectors(inputs, predictions)
+        structural_count = len(
+            representation_features.EXPANDED_STRUCTURAL_FEATURE_NAMES
+        )
+        self.assertEqual(36, structural_count)
+        self.assertEqual(39, len(vectors[0]))
+        self.assertAlmostEqual(0.1, vectors[0][structural_count])
+        self.assertEqual((1.0, -4.0), vectors[0][structural_count + 1:])
+        training_matrix = np.asarray(
+            runtime.feature_vectors(inputs, predictions), dtype=np.float64
+        )
+        self.assertEqual(tuple(vectors[0]), tuple(training_matrix[0]))
+        for head in range(9):
+            indices = tool.head_feature_indices(head)
+            self.assertEqual(35, len(indices))
+            self.assertEqual((36, 37, 38), indices[-3:])
+            self.assertEqual(
+                tuple(index for index in range(36) if index % 9 != head),
+                indices[:-3],
+            )
+
     def test_exact_consensus_thresholds_and_negative_bound_semantics(self):
         inputs, baseline, predictions = _fixture()
         seven = runtime.apply_veto(inputs, baseline, predictions, _artifact(7, 7))
@@ -89,12 +122,18 @@ class ConsensusAndRoutingTest(unittest.TestCase):
         self.assertEqual(1, plan.groups_vetoed)
         self.assertEqual(2, plan.episodes_vetoed)
 
-    def test_non_premium_is_byte_for_byte_unchanged(self):
+    def test_fast_and_balanced_are_byte_for_byte_unchanged(self):
         inputs, baseline, predictions = _fixture()
-        balanced_submission = Submission(1, "challenge", "policy", "synthetic", "balanced", baseline.submission.decisions)
-        balanced = safe_margin.SafeMarginPlan(balanced_submission, 1.5, 1.6, {}, ())
-        plan = runtime.apply_veto(inputs, balanced, predictions, _artifact(9, 9))
-        self.assertEqual(balanced.submission, plan.submission)
+        for tier in ("fast", "balanced"):
+            submission = Submission(
+                1, "challenge", "policy", "synthetic", tier,
+                baseline.submission.decisions,
+            )
+            unchanged = safe_margin.SafeMarginPlan(submission, 1.5, 1.6, {}, ())
+            plan = runtime.apply_veto(
+                inputs, unchanged, predictions, _artifact(9, 9)
+            )
+            self.assertEqual(unchanged.submission, plan.submission)
 
     def test_post_processing_cannot_refill_budget_or_upgrade(self):
         inputs, baseline, predictions = _fixture()
@@ -108,7 +147,7 @@ class HonestyTest(unittest.TestCase):
     def test_nested_predictions_are_family_and_group_disjoint(self):
         families = tuple(family for family in risk_validation.FAMILY_LABELS for _ in range(2))
         rows = len(families)
-        matrix = np.arange(rows * 36, dtype=float).reshape(rows, 36) / 100.0
+        matrix = np.arange(rows * 39, dtype=float).reshape(rows, 39) / 100.0
         targets = np.linspace(-0.2, 0.2, rows)
         keys = tuple((index,) for index in range(rows))
         heads, audit = tool.fit_outer_heads(matrix, targets, keys, families, families[0])
@@ -120,7 +159,7 @@ class HonestyTest(unittest.TestCase):
 
     def test_cross_boundary_group_is_purged_from_fit(self):
         families = tuple(family for family in risk_validation.FAMILY_LABELS for _ in range(2))
-        matrix = np.arange(len(families) * 36, dtype=float).reshape(len(families), 36)
+        matrix = np.arange(len(families) * 39, dtype=float).reshape(len(families), 39)
         targets = np.zeros(len(families))
         keys = [(index,) for index in range(len(families))]
         keys[0] = keys[2]
@@ -130,6 +169,39 @@ class HonestyTest(unittest.TestCase):
 
 
 class ArtifactAndReportTest(unittest.TestCase):
+    def test_artifact_identity_requires_fixed_additions_in_every_head(self):
+        policy = load_bundled_policy()
+        heads = []
+        for head_index in range(9):
+            indices = list(tool.head_feature_indices(head_index))
+            heads.append({
+                "head": head_index,
+                "feature_indices": indices,
+                "mean": [0.0] * len(indices),
+                "scale": [1.0] * len(indices),
+                "intercept": 0.0,
+                "coefficients": [0.0] * len(indices),
+                "upper_residual": 0.0,
+            })
+        artifact = {
+            "artifact_type": runtime.ARTIFACT_TYPE,
+            "schema_version": 1,
+            "protocol_sha256": runtime.PROTOCOL_SHA256,
+            "base_commit": runtime.BASE_COMMIT,
+            "feature_version": runtime.FEATURE_VERSION,
+            "feature_names": list(runtime.FEATURE_NAMES),
+            "heads": heads,
+            "minimum_negative_votes": 7,
+            "policy_id": policy.policy_id,
+            "policy_sha256": policy_sha256(policy),
+            "training_data_sha256": "0" * 64,
+        }
+        parsed = runtime.parse_artifact(artifact)
+        self.assertTrue(all(len(head.feature_indices) == 35 for head in parsed.heads))
+        artifact["feature_names"] = artifact["feature_names"][:-1]
+        with self.assertRaises(ProtocolError):
+            runtime.parse_artifact(artifact)
+
     def test_missing_and_corrupt_artifacts_fail_closed(self):
         policy = load_bundled_policy()
         safe_artifact = safe_margin.load_artifact(safe_margin.DEFAULT_ARTIFACT_PATH)
