@@ -6,9 +6,7 @@
 from __future__ import annotations
 
 import hashlib
-import importlib.util
 import inspect
-import dataclasses
 import pathlib
 import sys
 import tempfile
@@ -181,27 +179,96 @@ class TierCompositionTest(unittest.TestCase):
     def setUpClass(cls):
         cls.policy = load_bundled_policy()
 
-    def test_premium_matches_frozen_sibling_x3_exactly(self):
-        sibling = ROOT.parent / "ossp-router-safe-margin-efficiency-bucket-x3/baselines/safe_margin.py"
-        spec = importlib.util.spec_from_file_location("frozen_efficiency_safe_margin", sibling)
-        assert spec is not None and spec.loader is not None
-        module = importlib.util.module_from_spec(spec)
-        sys.modules[spec.name] = module
-        spec.loader.exec_module(module)
-        predictions = tuple(
-            _prediction(value, (index,))
-            for index, value in enumerate((0.45, 0.60, 0.75, 0.90, 1.20))
+    @staticmethod
+    def _premium_prediction(
+        think_efficiency, signature, *, ax_gain=0.1, ax_cost=1.27,
+        think_cost=3.0, think_gain=None,
+    ):
+        ax_score = 0.2 + ax_gain
+        if think_gain is None:
+            think_gain = think_efficiency * (think_cost - ax_cost)
+        return safe_margin.EpisodePrediction(
+            scores={LIGHT: 0.2, AX31: ax_score, THINK: ax_score + think_gain},
+            costs={LIGHT: 1.0, AX31: ax_cost, THINK: think_cost},
+            signature=signature,
         )
-        expected = module.plan_selection(
-            predictions, self.policy, "premium", efficiency_buckets_per_octave=3
+
+    def test_premium_x3_exact_contract_is_distinct_from_x1(self):
+        # The first two episodes share a signature and an x1 octave, but x3
+        # separates their efficiencies. With room for four Think promotions,
+        # this must admit the 0.8 singleton instead of the 0.55 group mate.
+        predictions = tuple(
+            self._premium_prediction(efficiency, signature)
+            for efficiency, signature in (
+                (0.95, (0,)), (0.55, (0,)), (1.50, (2,)),
+                (1.20, (3,)), (0.80, (1,)), (0.70, (4,)),
+            )
         )
         actual = runner.premium_x3_plan(predictions, self.policy)
-        self.assertEqual(expected[0], actual.selected)
-        self.assertEqual(expected[1], actual.predicted_ratio)
-        self.assertEqual(
-            [dataclasses.asdict(item) for item in expected[2]],
-            [dataclasses.asdict(item) for item in actual.stages],
+        x1_selected, x1_ratio, x1_stages = safe_margin.plan_selection(
+            predictions, self.policy, "premium"
         )
+
+        self.assertEqual(
+            (THINK, AX31, THINK, THINK, THINK, AX31), actual.selected
+        )
+        self.assertEqual(
+            (THINK, THINK, THINK, THINK, AX31, AX31), x1_selected
+        )
+        self.assertNotEqual(x1_selected, actual.selected)
+        self.assertAlmostEqual(2.4233333333333333, actual.predicted_ratio)
+        self.assertEqual(x1_ratio, actual.predicted_ratio)
+        self.assertFalse(actual.failed_closed)
+        self.assertEqual(
+            (
+                (f"{LIGHT}->{AX31}", 6, 6, 6, 5, 5),
+                (f"{AX31}->{THINK}", 6, 6, 4, 6, 4),
+            ),
+            tuple(
+                (stage.step, stage.considered, stage.eligible, stage.promoted,
+                 stage.groups_considered, stage.groups_promoted)
+                for stage in actual.stages
+            ),
+        )
+        self.assertEqual(5, x1_stages[1].groups_considered)
+        self.assertEqual(3, x1_stages[1].groups_promoted)
+        self.assertLessEqual(
+            actual.predicted_ratio,
+            min(
+                safe_margin.TIER_PLAN_CONFIGS["premium"].target_ratio,
+                float(self.policy.tiers["premium"].budget_multiplier),
+            ),
+        )
+
+    def test_premium_x3_preserves_both_stage_eligibility_guards(self):
+        predictions = (
+            self._premium_prediction(0.9, (0,)),
+            self._premium_prediction(0.9, (1,), ax_gain=0.001),
+            self._premium_prediction(0.9, (2,), ax_cost=1.0),
+            self._premium_prediction(0.9, (3,), ax_cost=41.0),
+            self._premium_prediction(0.9, (4,), ax_cost=14.0),
+            self._premium_prediction(0.0, (5,), think_gain=0.019),
+            self._premium_prediction(0.0, (6,), think_cost=1.2, think_gain=0.1),
+            self._premium_prediction(0.0, (7,), think_cost=61.0, think_gain=1.0),
+            self._premium_prediction(0.0, (8,), think_cost=22.0, think_gain=1.0),
+        )
+        plan = runner.premium_x3_plan(predictions, self.policy)
+
+        self.assertEqual(
+            (THINK, LIGHT, LIGHT, LIGHT, LIGHT, AX31, AX31, AX31, AX31),
+            plan.selected,
+        )
+        self.assertEqual((9, 5, 5), (
+            plan.stages[0].considered,
+            plan.stages[0].eligible,
+            plan.stages[0].promoted,
+        ))
+        self.assertEqual((5, 1, 1), (
+            plan.stages[1].considered,
+            plan.stages[1].eligible,
+            plan.stages[1].promoted,
+        ))
+        self.assertAlmostEqual(12.08 / 9.0, plan.predicted_ratio)
 
     def test_balanced_uses_exact_x1_and_malformed_premium_fails_closed(self):
         inputs = parse_input({
