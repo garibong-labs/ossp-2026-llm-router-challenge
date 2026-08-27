@@ -1,0 +1,70 @@
+{
+  "artifact": {
+    "feature_contract": "B-expanded-structural prompt/message role-content only",
+    "origin": "PR #4 safe-margin-residual-consensus-public.v1.json",
+    "origin_artifact_sha256": "6eb4094e2e5eef0644ecfaf9b2c0d05d7d0732ff150da4249eae3bcd8ea1024b",
+    "origin_protocol_sha256": "cd78edcf7f36aa06a97fd930e88e27bd3f80188677a06907a7e0aeb433c64dc1",
+    "path": "experiments/safe-margin-fast-double-consensus/residual-consensus.v1.json",
+    "sha256": "cf33622f9c6d31b21a44fe65530c562b4d8519e797029b8ddd69508ea2e3b964",
+    "residual_clip": [-0.1, 0.1]
+  },
+  "base": {
+    "branch": "exp/safe-margin-fast-family-spread",
+    "commit": "3fbdfe84f7a7ccee247d3cc0536d11ada6a21ec9"
+  },
+  "candidate": {
+    "efficiency_buckets_per_octave": 3,
+    "group_residual_rank": "arithmetic mean of finite frozen clipped residual predictions",
+    "scope": "fast light->ax31 only",
+    "selection": "start from exact x1; deterministic disjoint equal-cardinality swaps only when incoming x3 bucket and residual rank are both strictly greater and incoming predicted incremental load is no greater",
+    "tie_order": "stable content-derived group signatures order competing eligible pairs only; a tie in either ranking signal retains x1",
+    "tuning_sweep": false
+  },
+  "default_runtime": {
+    "changed": false,
+    "efficiency_buckets_per_octave": 1
+  },
+  "dev_gate": {
+    "balanced_premium_exact_x1": true,
+    "candidate_fast_predicted_spend_lte_x1": true,
+    "fast_model_counts_exact_x1": true,
+    "public_dev_loads": 1,
+    "weighted_score_exclusive_min": 0.673182
+  },
+  "experiment_id": "safe-margin-fast-double-consensus-v1",
+  "forbidden_runtime_inputs": [
+    "benchmark_family",
+    "outcomes",
+    "train_data",
+    "dev_data",
+    "episode_id",
+    "split",
+    "row_position"
+  ],
+  "hypothesis": "Requiring x3 efficiency and frozen residual consensus to agree can spread realized positive Fast gains across at least four Train families without changing x1 counts or increasing predicted spend.",
+  "no_sweep_rule": "Evaluate this candidate once; no threshold, bucket-count, head, model, allowlist, family rule, or exception sweep.",
+  "safety_gate": {
+    "family_holdout_breaches_required": 0,
+    "resamples": 5000,
+    "seed": 20260825,
+    "tail_statistics": ["p99", "max"],
+    "tolerance": 0.0,
+    "whole_split_breaches_required": 0
+  },
+  "train_gate": {
+    "balanced_premium_exact_x1": true,
+    "benchmark_families": [
+      "aime", "babilong", "belebele-ko", "cruxeval",
+      "deepmind-mathematics", "gsm8k", "hrmcr", "ruletaker", "truthfulqa"
+    ],
+    "candidate_fast_predicted_spend_lte_x1": true,
+    "deterministic_repeated_output": true,
+    "fast_model_counts_exact_x1": true,
+    "fast_quality_delta_exclusive_min": 0.0,
+    "nonnegative_families_min": 9,
+    "positive_families_min": 4,
+    "weighted_score_delta_exclusive_min": 0.0,
+    "worst_family_delta_min": 0.0
+  },
+  "version": 1
+}
