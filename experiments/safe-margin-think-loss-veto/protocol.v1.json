@@ -1,0 +1,169 @@
+{
+  "base": {
+    "branch": "exp/safe-margin-think-loss-veto",
+    "commit": "3fbdfe84f7a7ccee247d3cc0536d11ada6a21ec9",
+    "upstream": "feat/risk-calibrated-router-v2"
+  },
+  "candidates": [
+    {
+      "id": "votes-7-of-9",
+      "minimum_negative_votes": 7
+    },
+    {
+      "id": "votes-8-of-9",
+      "minimum_negative_votes": 8
+    },
+    {
+      "id": "votes-9-of-9",
+      "minimum_negative_votes": 9
+    }
+  ],
+  "commands": {
+    "evaluate": "PYTHONPATH=src python3 tools/safe_margin_think_loss_veto.py --train-input data/materialized/train/inputs.json --train-outcomes data/train/outcomes.json --dev-input data/materialized/dev/inputs.json --dev-outcomes data/dev/outcomes.json --artifact experiments/safe-margin-think-loss-veto/artifact.v1.json --report experiments/safe-margin-think-loss-veto/report.v1.json",
+    "focused_tests": "PYTHONPATH=src python3 -m unittest tests.test_safe_margin_think_loss_veto",
+    "full_tests": "PYTHONPATH=src python3 -m unittest discover -s tests",
+    "materialize_inputs": "python3 tools/materialize_public_data.py --output data/materialized",
+    "reproduce": "PYTHONPATH=src python3 tools/safe_margin_think_loss_veto.py --train-input data/materialized/train/inputs.json --train-outcomes data/train/outcomes.json --dev-input data/materialized/dev/inputs.json --dev-outcomes data/dev/outcomes.json --artifact build/safe-margin-think-loss-veto/artifact.v1.json --report build/safe-margin-think-loss-veto/report.v1.json"
+  },
+  "decision_space": {
+    "allowed_transition": "Premium axk1-think to ax31 downgrade for an entire existing safe-margin content group",
+    "baseline": "safe-margin",
+    "budget_refill_or_reallocation": false,
+    "fast_and_balanced_identical": true,
+    "non_think_premium_identical": true,
+    "other_transitions": false,
+    "submission_default_until_all_gates_pass": "safe-margin"
+  },
+  "dev_gate": {
+    "access_condition": "at least one candidate passes every Train gate",
+    "adoption_inequality": "candidate final_score > 0.673182",
+    "alternate_candidate_evaluations": 0,
+    "evaluation_count_if_opened": 1,
+    "practical_target_not_a_gate": 0.6735,
+    "retries": 0
+  },
+  "feature_protocol": {
+    "bound_per_prompt_or_message_field_characters": 32768,
+    "feature_count": 36,
+    "feature_names_source": "baselines/representation_features.py:EXPANDED_STRUCTURAL_FEATURE_NAMES",
+    "representation": "B-expanded-structural",
+    "runtime_additions": [
+      "safe-margin predicted axk1-think minus ax31 gain",
+      "safe-margin predicted axk1-think minus ax31 conservative cost",
+      "safe-margin predicted axk1-think gain-per-step-load efficiency bucket"
+    ],
+    "runtime_forbidden": [
+      "semantic encoders",
+      "embeddings",
+      "episode_id",
+      "row position",
+      "split identity",
+      "outcomes",
+      "source labels",
+      "task-family labels"
+    ]
+  },
+  "fitting_and_bound": {
+    "bound_definition": "For each head and content group, upper = mean(linear prediction) + q90 of nested group-mean residuals (actual group-mean think-minus-ax31 gain minus predicted group-mean gain). A negative vote is upper < 0.0.",
+    "calibration_quantile": {
+      "method": "deterministic nearest-rank higher empirical quantile",
+      "probability": 0.9,
+      "rank": "min(n-1, ceil(0.90*n)-1) after ascending sort"
+    },
+    "head_count": 9,
+    "head_definitions": "Head h in [0,8] uses every representation-B feature whose zero-based index modulo 9 is not h.",
+    "linear_model": "standardized ridge regression with an unpenalized target-mean intercept",
+    "minimum_fit_rows": 1,
+    "regularization": {
+      "alpha": 1000.0,
+      "selection": "fixed before outcomes; no sweep"
+    },
+    "standardization": "fit-row population mean and population standard deviation; scales <= 1e-12 are replaced by 1.0",
+    "target": "actual per-episode axk1-think score minus ax31 score",
+    "tie_handling": "upper == 0 is not a vote; exactly the candidate minimum vote count is sufficient"
+  },
+  "grouping_and_honesty": {
+    "content_group_key": "the existing safe-margin think-stage key: (efficiency_bucket, content_signature), computed by the unchanged safe-margin helpers",
+    "evaluation": "For each of the nine outer source/task families, run safe-margin on the complete Train batch, evaluate only that family's complete content groups, and create its veto decisions only from models and calibration residuals that exclude the outer family.",
+    "family_labels_source": "tools/risk_validation.py:reconstruct_families and FAMILY_LABELS",
+    "inner_calibration": "Within an outer fold, predict each of the other eight families from a ridge fit on the remaining seven families. Aggregate residuals by complete content group. Each inner fit purges every fitting row whose content-group key occurs in its calibration family.",
+    "outer_fit": "Fit each head on all rows from the other eight families after purging every fitting row whose content-group key occurs in the outer evaluation family.",
+    "overlap_fail_closed": "A group key spanning an evaluation/calibration boundary is evaluation-side only and is purged from fitting. A group key spanning two calibration families remains separate family-owned calibration observations and never enters either family's inner fit.",
+    "required_assertions": [
+      "all nine declared families are present",
+      "outer fit and evaluation families are disjoint",
+      "inner fit and calibration families are disjoint",
+      "no content-group key crosses fitting/calibration/evaluation boundaries after purge",
+      "every prediction used in a held-out family metric excludes that family",
+      "every veto is atomic over its complete safe-margin think content group"
+    ]
+  },
+  "report_schema": {
+    "artifact_fields": [
+      "artifact_type",
+      "schema_version",
+      "protocol_sha256",
+      "base_commit",
+      "feature_version",
+      "feature_names",
+      "heads",
+      "minimum_negative_votes",
+      "policy_id",
+      "policy_sha256",
+      "training_data_sha256"
+    ],
+    "report_fields": [
+      "report_type",
+      "schema_version",
+      "protocol_sha256",
+      "base_commit",
+      "data_sha256",
+      "family_counts",
+      "candidate_train_metrics",
+      "selection",
+      "dev",
+      "safety",
+      "runtime_checks",
+      "decision",
+      "submission_default",
+      "reproduction"
+    ],
+    "serialization": "UTF-8 JSON, ensure_ascii=false, indent=2, keys sorted, allow_nan=false, one trailing newline; paths are repository-relative"
+  },
+  "runtime_artifact": {
+    "corrupt_missing_or_mismatched": "fail closed to an unchanged safe-margin submission",
+    "dependencies": [
+      "Python standard library",
+      "existing ossp_router and baseline modules"
+    ],
+    "full_train_calibration": "Each head receives nested leave-one-family-out group residuals: the calibration family is excluded from its fit and overlapping group keys are purged. The shipped head coefficients are then fit on all Train rows.",
+    "full_train_overlap_note": "Dev inputs are checked for content-group overlap with Train inputs before Dev outcomes are opened; any overlap fails closed without Dev outcome access.",
+    "threshold": "the selected Train candidate threshold, or null when no candidate passes"
+  },
+  "safety_gate": {
+    "access_condition": "the single Dev evaluation passes",
+    "method": "repository risk-validation deterministic 5000-resample prompt-composition method, paired with unchanged safe-margin selections",
+    "required": [
+      "zero tier-cap breaches for Fast, Balanced, and Premium",
+      "candidate realized cost-ratio p99 <= unchanged safe-margin realized cost-ratio p99 for every tier",
+      "candidate realized cost-ratio max <= unchanged safe-margin realized cost-ratio max for every tier"
+    ],
+    "resamples": 5000,
+    "seed": 20260825,
+    "tolerance": 0.0
+  },
+  "selection_rule": "Among candidates passing every Train gate, select the greatest weighted-score improvement; ties at exact stored precision select the larger minimum vote count (9 before 8 before 7). Select at most one.",
+  "train_gate": {
+    "actual_vetoed_gain": "row-weighted mean actual axk1-think-minus-ax31 score over all vetoed episodes is strictly < 0.0",
+    "deterministic_repeated_output": true,
+    "minimum_positive_families": 4,
+    "minimum_positive_or_unchanged_families": 8,
+    "minimum_weighted_score_improvement": 0.00025,
+    "stdlib_runtime": true,
+    "whole_content_group_handling": true,
+    "worst_family_delta_minimum": -0.001,
+    "zero_delta_definition": "exact Decimal score equality after repository scoring arithmetic",
+    "all_conditions_mandatory": true
+  },
+  "version": 1
+}
