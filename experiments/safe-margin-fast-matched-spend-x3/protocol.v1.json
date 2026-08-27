@@ -1,0 +1,61 @@
+{
+  "base": {
+    "branch": "exp/safe-margin-fast-matched-spend-x3",
+    "commit": "3fbdfe84f7a7ccee247d3cc0536d11ada6a21ec9"
+  },
+  "candidate": {
+    "efficiency_buckets_per_octave": 3,
+    "scope": "fast light->ax31 only",
+    "selection": "deterministic equal-cardinality matched swaps from the frozen x1 selection, accepting only x3-rank improvements with non-increasing predicted incremental step load",
+    "tie_order": "incoming ascending x3 rank; outgoing descending x3 rank; then ascending content signature; uncertain pairs retain x1",
+    "tuning_sweep": false
+  },
+  "default_runtime": {
+    "changed": false,
+    "efficiency_buckets_per_octave": 1
+  },
+  "experiment_id": "safe-margin-fast-matched-spend-x3-v1",
+  "hypothesis": "Within the existing x1 Fast eligibility and safety envelope, three efficiency buckets per octave can identify equal-size, no-more-expensive group swaps that improve realized Fast quality while preserving every x1 model count and all non-Fast decisions.",
+  "no_sweep_rule": "Evaluate this x3 candidate once. Do not evaluate another bucket count, threshold, model, feature, head, allowlist, family rule, or Dev-derived exception.",
+  "safety_gate": {
+    "family_holdout_breaches_required": 0,
+    "resamples": 5000,
+    "seed": 20260825,
+    "tail_statistics": [
+      "p99",
+      "max"
+    ],
+    "tolerance": 0.0,
+    "whole_split_breaches_required": 0
+  },
+  "train_gate": {
+    "balanced_premium_exact_x1": true,
+    "benchmark_families": [
+      "aime",
+      "babilong",
+      "belebele-ko",
+      "cruxeval",
+      "deepmind-mathematics",
+      "gsm8k",
+      "hrmcr",
+      "ruletaker",
+      "truthfulqa"
+    ],
+    "candidate_fast_predicted_spend_lte_x1": true,
+    "deterministic_repeated_output": true,
+    "fast_model_counts_exact_x1": true,
+    "fast_quality_delta_exclusive_min": 0.0,
+    "nonnegative_families_min": 9,
+    "positive_families_min": 4,
+    "weighted_score_delta_exclusive_min": 0.0,
+    "worst_family_delta_min": 0.0
+  },
+  "dev_gate": {
+    "balanced_premium_exact_x1": true,
+    "candidate_fast_predicted_spend_lte_x1": true,
+    "fast_model_counts_exact_x1": true,
+    "public_dev_accesses": 1,
+    "weighted_score_exclusive_min": 0.673182
+  },
+  "version": 1
+}
