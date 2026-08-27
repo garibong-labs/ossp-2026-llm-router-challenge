@@ -591,3 +591,31 @@ Fast `0.027273 / 0.051936`, Balanced `0.050000 / 0.351032`; ax31→think 상관
 [`representation-audit-report.v1.json`](representation-audit-report.v1.json)에
 있습니다. 기존 v2의 안전 결과(78/78 통과)와 Dev `0.658182`, safe-margin Dev
 `0.673182`는 그대로이며 제출 기본값도 safe-margin입니다.
+
+## safe-margin efficiency bucket x3 동결 실험
+
+일곱 번째 라우터 실험은 기존 safe-margin의 예측 이득·비용, budget 및
+concentration guard, 결정적 순서와 content-group 원자성을 그대로 두고 효율
+구간만 옥타브당 `1`개에서 `3`개로 세분화했습니다. 후보는 x3 하나뿐이며 다른
+bucket 수를 sweep하거나 조정하지 않았습니다. 제출 컨테이너와 production
+기본 호출은 계속 x1 safe-margin을 사용합니다.
+
+고정 계약은
+[`../experiments/safe-margin-efficiency-bucket-x3/protocol.v1.json`](../experiments/safe-margin-efficiency-bucket-x3/protocol.v1.json),
+결과는
+[`../experiments/safe-margin-efficiency-bucket-x3/report.v1.json`](../experiments/safe-margin-efficiency-bucket-x3/report.v1.json)에 있습니다.
+Train 1,760문항에서 기준 `0.672982954545`, x3 `0.673522727273`, 가중 delta
+`+0.000539772728`이었고 양수 family `4/9`, 비음수 family `9/9`, 최악 family
+delta `0.00`으로 Train gate를 통과했습니다. 그 뒤 한 번만 연 Public Dev에서
+기준 `0.673181818182`, x3 `0.672500000000`으로 엄격한 `> 0.673182` gate를
+실패했습니다. 따라서 5,000회 safety gate는 열지 않았고 후보는 채택 자격이
+없으며 기본값은 safe-margin으로 유지됩니다.
+
+```console
+PYTHONPATH=src python3 tools/run_safe_margin_efficiency_bucket_x3.py
+PYTHONPATH=src python3 tools/run_safe_margin_efficiency_bucket_x3.py --reemit-existing
+```
+
+첫 명령은 Train→조건부 Dev→조건부 safety 순서를 강제합니다. one-shot Dev를
+다시 읽지 않고 결정적 직렬화를 확인하려면 두 번째 명령으로 기존 terminal
+report를 재생성합니다.

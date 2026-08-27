@@ -1,0 +1,61 @@
+{
+  "base": {
+    "commit": "3fbdfe84f7a7ccee247d3cc0536d11ada6a21ec9"
+  },
+  "candidate": {
+    "efficiency_buckets_per_octave": 3,
+    "other_bucket_counts_evaluated": 0,
+    "reuses_safe_margin_budget_guards": true,
+    "reuses_safe_margin_concentration_guards": true,
+    "reuses_safe_margin_gain_and_cost_predictions": true,
+    "reuses_safe_margin_group_atomic_allocation": true,
+    "reuses_safe_margin_tie_ordering": true
+  },
+  "default_runtime": {
+    "efficiency_buckets_per_octave": 1,
+    "policy": "safe-margin",
+    "switch_default_in_this_experiment": false
+  },
+  "dev_gate": {
+    "access_only_after_train_passes": true,
+    "candidate_weighted_score_strictly_greater_than": 0.673182,
+    "evaluation_count_if_opened": 1
+  },
+  "experiment_id": "safe-margin-efficiency-bucket-x3-v1",
+  "report": {
+    "allow_nan": false,
+    "encoding": "UTF-8",
+    "indent": 2,
+    "keys_sorted": true,
+    "trailing_newline": true
+  },
+  "safety_gate": {
+    "access_only_after_dev_passes": true,
+    "candidate_max_no_worse_than_safe_margin_each_tier": true,
+    "candidate_p99_no_worse_than_safe_margin_each_tier": true,
+    "family_holdout_budget_breaches": 0,
+    "hard_cap_breaches_per_tier": 0,
+    "resamples": 5000,
+    "seed": 20260825,
+    "tolerance": 0.0,
+    "whole_split_budget_breaches": 0
+  },
+  "train_gate": {
+    "benchmark_families": [
+      "aime",
+      "babilong",
+      "belebele-ko",
+      "cruxeval",
+      "deepmind-mathematics",
+      "gsm8k",
+      "hrmcr",
+      "ruletaker",
+      "truthfulqa"
+    ],
+    "minimum_nonnegative_families": 9,
+    "minimum_positive_families": 4,
+    "weighted_score_delta_strictly_greater_than": 0.0,
+    "worst_family_delta_minimum": -0.0005
+  },
+  "version": 1
+}

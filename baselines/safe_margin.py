@@ -283,13 +283,22 @@ def content_signature(raw_features: Sequence[float]) -> Tuple[int, ...]:
     )
 
 
-def _efficiency_bucket(efficiency: float) -> int:
+def _efficiency_bucket(
+    efficiency: float,
+    buckets_per_octave: int = EFFICIENCY_BUCKETS_PER_OCTAVE,
+) -> int:
     """Return a deterministic log-spaced bucket for a gain-per-cost value."""
 
+    if (
+        isinstance(buckets_per_octave, bool)
+        or not isinstance(buckets_per_octave, int)
+        or buckets_per_octave < 1
+    ):
+        raise ValueError("옥타브당 효율 bucket 수는 양의 정수여야 합니다.")
     if not math.isfinite(efficiency) or efficiency <= MIN_EFFICIENCY:
         return -(1 << 30)
     return int(
-        math.floor(math.log2(efficiency) * EFFICIENCY_BUCKETS_PER_OCTAVE)
+        math.floor(math.log2(efficiency) * buckets_per_octave)
     )
 
 
@@ -375,6 +384,7 @@ def _run_stage(
     min_gain: float,
     max_step_ratio: float,
     max_step_load: float,
+    efficiency_buckets_per_octave: int,
 ) -> Tuple[float, StageReport]:
     """Promote whole content-derived groups while the budget allows it."""
 
@@ -405,7 +415,9 @@ def _run_stage(
             continue
         eligible += 1
         efficiency = gain / step_load
-        key = (_efficiency_bucket(efficiency),) + prediction.signature
+        key = (
+            _efficiency_bucket(efficiency, efficiency_buckets_per_octave),
+        ) + prediction.signature
         groups.setdefault(key, []).append(index)
 
     promoted = 0
@@ -444,6 +456,8 @@ def plan_selection(
     policy: RoutingPolicy,
     tier: str,
     config: Optional[TierPlanConfig] = None,
+    *,
+    efficiency_buckets_per_octave: int = EFFICIENCY_BUCKETS_PER_OCTAVE,
 ) -> Tuple[Tuple[str, ...], float, Tuple[StageReport, ...]]:
     """Return one model per episode plus the predicted cost ratio and audit."""
 
@@ -451,6 +465,9 @@ def plan_selection(
         raise ProtocolError(f"알 수 없는 tier: {tier}")
     if not predictions:
         raise ValueError("예측 배열은 비어 있을 수 없습니다.")
+    # Validate before any allocation. The production/container path omits this
+    # argument and therefore remains exactly the frozen one-bucket policy.
+    _efficiency_bucket(1.0, efficiency_buckets_per_octave)
     plan_config = TIER_PLAN_CONFIGS[tier] if config is None else config
     light_id, ax31_id, think_id = MODEL_IDS
 
@@ -482,6 +499,7 @@ def plan_selection(
         min_gain=plan_config.ax31_min_gain,
         max_step_ratio=plan_config.ax31_max_step_ratio,
         max_step_load=plan_config.ax31_max_step_load,
+        efficiency_buckets_per_octave=efficiency_buckets_per_octave,
     )
     stages.append(ax31_stage)
 
@@ -503,6 +521,7 @@ def plan_selection(
             min_gain=plan_config.think_min_gain,
             max_step_ratio=plan_config.think_max_step_ratio,
             max_step_load=plan_config.think_max_step_load,
+            efficiency_buckets_per_octave=efficiency_buckets_per_octave,
         )
         stages.append(think_stage)
 
@@ -521,6 +540,8 @@ def make_safe_margin_submission(
     artifact: HashRegexArtifact,
     tier: str,
     config: Optional[TierPlanConfig] = None,
+    *,
+    efficiency_buckets_per_octave: int = EFFICIENCY_BUCKETS_PER_OCTAVE,
 ) -> SafeMarginPlan:
     """Create one complete v1 submission for a single tier."""
 
@@ -533,7 +554,13 @@ def make_safe_margin_submission(
     if artifact.policy_digest != policy_sha256(policy):
         raise ProtocolError("artifact와 현재 정책의 SHA-256이 다릅니다.")
     predictions = predict_batch(inputs.episodes, artifact, policy)
-    selected, ratio, stages = plan_selection(predictions, policy, tier, config)
+    selected, ratio, stages = plan_selection(
+        predictions,
+        policy,
+        tier,
+        config,
+        efficiency_buckets_per_octave=efficiency_buckets_per_octave,
+    )
     submission = Submission(
         schema_version=inputs.schema_version,
         challenge_id=inputs.challenge_id,
