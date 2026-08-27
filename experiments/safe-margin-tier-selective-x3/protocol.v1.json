@@ -1,0 +1,87 @@
+{
+  "base": {
+    "branch": "exp/safe-margin-tier-selective-x3",
+    "commit": "3fbdfe84f7a7ccee247d3cc0536d11ada6a21ec9"
+  },
+  "candidate": {
+    "balanced": "exact safe-margin x1 decisions",
+    "efficiency_buckets_per_octave": 3,
+    "fast": "exact group-atomic matched-spend x3 ordering from the frozen sibling",
+    "premium": "exact full efficiency-bucket x3 policy from the frozen sibling",
+    "runtime_inputs": [
+      "existing safe-margin predictions",
+      "prompt-derived deterministic content signatures"
+    ],
+    "scope": "Fast matched-spend x3; Balanced x1; Premium full efficiency-bucket x3",
+    "tuning_sweep": false
+  },
+  "default_runtime": {
+    "changed": false,
+    "efficiency_buckets_per_octave": 1,
+    "policy": "safe-margin"
+  },
+  "dev_gate": {
+    "all_tier_budgets_pass": true,
+    "balanced_exact_x1": true,
+    "deterministic_output": true,
+    "fast_count_spend_invariants": true,
+    "premium_x3_guards": true,
+    "public_dev_accesses": 1,
+    "weighted_score_exclusive_min": 0.673182
+  },
+  "experiment_id": "safe-margin-tier-selective-x3-v1",
+  "frozen_train_expectation": {
+    "baseline_score": 0.672982954545,
+    "candidate_score": 0.673295454545,
+    "fast_matched_swaps": 9,
+    "nonnegative_families": 9,
+    "positive_family_names": [
+      "cruxeval",
+      "gsm8k"
+    ],
+    "positive_families": 2,
+    "premium_changed_decisions": 29,
+    "weighted_delta": 0.0003125,
+    "worst_family_delta": 0
+  },
+  "no_sweep_rule": "Evaluate this tier composition once; never inspect Dev to tune or select.",
+  "production_sha256": {
+    "baselines/safe_margin.py": "49ffb62abd0cefc04e248a012074f823a725ad86afad963aaf6d1261004b8402",
+    "container/Dockerfile": "6bd19361881a4fc6d1269fe72964db22fd8ad46b2465f11f5243a19b6e1f6010",
+    "container/entrypoint.py": "04ccd502db35717c6a1b342d84f516916285f4a9061032a9bd727bbb5488527b",
+    "src/ossp_router/orchestrator.py": "1f318c45d22fca6ebed941de20800d94072142e08bad8c5c0c3b13ef1093ac1b",
+    "src/ossp_router/public_runtime.py": "8f2fc7c1dbe8c0ab3e2e94d1fc3fe5ef71af2a87d6f631173d534ae434a116b0",
+    "src/ossp_router/runtime.py": "9ae2238a9fb79b88af9d52866d5bc97c057e4d7c6093f838f2596be9b9aa9d00"
+  },
+  "safety_gate": {
+    "resamples": 5000,
+    "seed": 20260825,
+    "tolerance": 0.0
+  },
+  "train_gate": {
+    "all_tier_budgets_pass": true,
+    "balanced_exact_x1": true,
+    "benchmark_families": [
+      "aime",
+      "babilong",
+      "belebele-ko",
+      "cruxeval",
+      "deepmind-mathematics",
+      "gsm8k",
+      "hrmcr",
+      "ruletaker",
+      "truthfulqa"
+    ],
+    "candidate_fast_predicted_spend_lte_x1": true,
+    "deterministic_repeated_output": true,
+    "exact_frozen_expectation": true,
+    "fast_model_counts_exact_x1": true,
+    "fast_quality_delta_exclusive_min": 0.0,
+    "nonnegative_families_min": 9,
+    "positive_families_min": 2,
+    "premium_x3_guards": true,
+    "weighted_score_delta_exclusive_min": 0.0,
+    "worst_family_delta_min": 0.0
+  },
+  "version": 1
+}
