@@ -1,0 +1,5598 @@
+{
+  "base_commit": "3fbdfe84f7a7ccee247d3cc0536d11ada6a21ec9",
+  "candidate_train_metrics": {
+    "votes-7-of-9": {
+      "actual_mean_vetoed_think_minus_ax31_gain": 0.0,
+      "baseline_final_score": 0.672982954545,
+      "candidate_final_score": 0.672982954545,
+      "evaluated": true,
+      "family_deltas": {
+        "aime": 0.0,
+        "babilong": 0.0,
+        "belebele-ko": 0.0,
+        "cruxeval": 0.0,
+        "deepmind-mathematics": 0.0,
+        "gsm8k": 0.0,
+        "hrmcr": 0.0,
+        "ruletaker": 0.0,
+        "truthfulqa": 0.0
+      },
+      "gate_passed": false,
+      "gates": {
+        "actual_mean_vetoed_gain_negative": false,
+        "deterministic_repeated_output": true,
+        "positive_families": false,
+        "positive_or_unchanged_families": true,
+        "stdlib_runtime": true,
+        "weighted_score_improvement": false,
+        "whole_content_groups": true,
+        "worst_family_delta": true
+      },
+      "positive_families": 0,
+      "positive_or_unchanged_families": 9,
+      "threshold": 7,
+      "vetoed_content_groups": 0,
+      "vetoed_episodes": 0,
+      "vote_histogram": {
+        "0": 70,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "weighted_score_improvement": 0.0,
+      "worst_family_delta": 0.0
+    },
+    "votes-8-of-9": {
+      "actual_mean_vetoed_think_minus_ax31_gain": 0.0,
+      "baseline_final_score": 0.672982954545,
+      "candidate_final_score": 0.672982954545,
+      "evaluated": true,
+      "family_deltas": {
+        "aime": 0.0,
+        "babilong": 0.0,
+        "belebele-ko": 0.0,
+        "cruxeval": 0.0,
+        "deepmind-mathematics": 0.0,
+        "gsm8k": 0.0,
+        "hrmcr": 0.0,
+        "ruletaker": 0.0,
+        "truthfulqa": 0.0
+      },
+      "gate_passed": false,
+      "gates": {
+        "actual_mean_vetoed_gain_negative": false,
+        "deterministic_repeated_output": true,
+        "positive_families": false,
+        "positive_or_unchanged_families": true,
+        "stdlib_runtime": true,
+        "weighted_score_improvement": false,
+        "whole_content_groups": true,
+        "worst_family_delta": true
+      },
+      "positive_families": 0,
+      "positive_or_unchanged_families": 9,
+      "threshold": 8,
+      "vetoed_content_groups": 0,
+      "vetoed_episodes": 0,
+      "vote_histogram": {
+        "0": 70,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "weighted_score_improvement": 0.0,
+      "worst_family_delta": 0.0
+    },
+    "votes-9-of-9": {
+      "actual_mean_vetoed_think_minus_ax31_gain": 0.0,
+      "baseline_final_score": 0.672982954545,
+      "candidate_final_score": 0.672982954545,
+      "evaluated": true,
+      "family_deltas": {
+        "aime": 0.0,
+        "babilong": 0.0,
+        "belebele-ko": 0.0,
+        "cruxeval": 0.0,
+        "deepmind-mathematics": 0.0,
+        "gsm8k": 0.0,
+        "hrmcr": 0.0,
+        "ruletaker": 0.0,
+        "truthfulqa": 0.0
+      },
+      "gate_passed": false,
+      "gates": {
+        "actual_mean_vetoed_gain_negative": false,
+        "deterministic_repeated_output": true,
+        "positive_families": false,
+        "positive_or_unchanged_families": true,
+        "stdlib_runtime": true,
+        "weighted_score_improvement": false,
+        "whole_content_groups": true,
+        "worst_family_delta": true
+      },
+      "positive_families": 0,
+      "positive_or_unchanged_families": 9,
+      "threshold": 9,
+      "vetoed_content_groups": 0,
+      "vetoed_episodes": 0,
+      "vote_histogram": {
+        "0": 70,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "weighted_score_improvement": 0.0,
+      "worst_family_delta": 0.0
+    }
+  },
+  "data_sha256": {
+    "dev_input_sha256": "5920f9ea9e3da147aa546659054feb08afb7e11a0e4db6967b293ff79b759abc",
+    "dev_outcomes_sha256": null,
+    "train_input_sha256": "029a0fb1f70432a05b837a1291d86d42278bb202d808a6a12911b0dae8628ac4",
+    "train_outcomes_sha256": "97a5a787086b3e1d9fa9c7945518543540e527ea248df4a4760de581b612a4ba"
+  },
+  "decision": "rejected: no candidate passed every Train gate",
+  "dev": {
+    "accessed": false,
+    "evaluation_count": 0,
+    "passed": false
+  },
+  "family_counts": {
+    "aime": 24,
+    "babilong": 160,
+    "belebele-ko": 322,
+    "cruxeval": 241,
+    "deepmind-mathematics": 303,
+    "gsm8k": 233,
+    "hrmcr": 40,
+    "ruletaker": 271,
+    "truthfulqa": 166
+  },
+  "protocol_sha256": "651445bf7ec35d6779a08025c613879bcc606ec539428f95119c1b8d43a1131c",
+  "report_type": "safe-margin-think-loss-veto-report-v1",
+  "reproduction": {
+    "byte_for_byte_checked": true,
+    "command": "PYTHONPATH=src python3 tools/safe_margin_think_loss_veto.py --train-input data/materialized/train/inputs.json --train-outcomes data/train/outcomes.json --dev-input data/materialized/dev/inputs.json --dev-outcomes data/dev/outcomes.json --artifact build/safe-margin-think-loss-veto/artifact.v1.json --report build/safe-margin-think-loss-veto/report.v1.json"
+  },
+  "runtime_checks": {
+    "balanced_identical": true,
+    "fast_identical": true,
+    "nested_family_honesty": {
+      "aime": {
+        "heads": [
+          {
+            "calibration_group_residuals": 483,
+            "fit_rows": 1736,
+            "head": 0,
+            "inner": [
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5998153814544346
+          },
+          {
+            "calibration_group_residuals": 483,
+            "fit_rows": 1736,
+            "head": 1,
+            "inner": [
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6117052745921894
+          },
+          {
+            "calibration_group_residuals": 483,
+            "fit_rows": 1736,
+            "head": 2,
+            "inner": [
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5848592490070799
+          },
+          {
+            "calibration_group_residuals": 483,
+            "fit_rows": 1736,
+            "head": 3,
+            "inner": [
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6802597439665587
+          },
+          {
+            "calibration_group_residuals": 483,
+            "fit_rows": 1736,
+            "head": 4,
+            "inner": [
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6011064842214038
+          },
+          {
+            "calibration_group_residuals": 483,
+            "fit_rows": 1736,
+            "head": 5,
+            "inner": [
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6104904058510767
+          },
+          {
+            "calibration_group_residuals": 483,
+            "fit_rows": 1736,
+            "head": 6,
+            "inner": [
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.642589810675796
+          },
+          {
+            "calibration_group_residuals": 483,
+            "fit_rows": 1736,
+            "head": 7,
+            "inner": [
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6169136568662105
+          },
+          {
+            "calibration_group_residuals": 483,
+            "fit_rows": 1736,
+            "head": 8,
+            "inner": [
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6235530377146187
+          }
+        ],
+        "outer_family": "aime",
+        "overlap_keys_purged": 0
+      },
+      "babilong": {
+        "heads": [
+          {
+            "calibration_group_residuals": 353,
+            "fit_rows": 1600,
+            "head": 0,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7688413623678088
+          },
+          {
+            "calibration_group_residuals": 353,
+            "fit_rows": 1600,
+            "head": 1,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7608853985904389
+          },
+          {
+            "calibration_group_residuals": 353,
+            "fit_rows": 1600,
+            "head": 2,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7725032862856389
+          },
+          {
+            "calibration_group_residuals": 353,
+            "fit_rows": 1600,
+            "head": 3,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.769307119509356
+          },
+          {
+            "calibration_group_residuals": 353,
+            "fit_rows": 1600,
+            "head": 4,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7709937243740701
+          },
+          {
+            "calibration_group_residuals": 353,
+            "fit_rows": 1600,
+            "head": 5,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7651525730568836
+          },
+          {
+            "calibration_group_residuals": 353,
+            "fit_rows": 1600,
+            "head": 6,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7846516535851213
+          },
+          {
+            "calibration_group_residuals": 353,
+            "fit_rows": 1600,
+            "head": 7,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7485251702111764
+          },
+          {
+            "calibration_group_residuals": 353,
+            "fit_rows": 1600,
+            "head": 8,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1576,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7650909439937166
+          }
+        ],
+        "outer_family": "babilong",
+        "overlap_keys_purged": 0
+      },
+      "belebele-ko": {
+        "heads": [
+          {
+            "calibration_group_residuals": 439,
+            "fit_rows": 1438,
+            "head": 0,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6240274047135369
+          },
+          {
+            "calibration_group_residuals": 439,
+            "fit_rows": 1438,
+            "head": 1,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6307689889340846
+          },
+          {
+            "calibration_group_residuals": 439,
+            "fit_rows": 1438,
+            "head": 2,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.622731483389226
+          },
+          {
+            "calibration_group_residuals": 439,
+            "fit_rows": 1438,
+            "head": 3,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6893796410564585
+          },
+          {
+            "calibration_group_residuals": 439,
+            "fit_rows": 1438,
+            "head": 4,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6254172388448083
+          },
+          {
+            "calibration_group_residuals": 439,
+            "fit_rows": 1438,
+            "head": 5,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6646592050539201
+          },
+          {
+            "calibration_group_residuals": 439,
+            "fit_rows": 1438,
+            "head": 6,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6393397035858336
+          },
+          {
+            "calibration_group_residuals": 439,
+            "fit_rows": 1438,
+            "head": 7,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.635242272994303
+          },
+          {
+            "calibration_group_residuals": 439,
+            "fit_rows": 1438,
+            "head": 8,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1414,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1278,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6604819104507933
+          }
+        ],
+        "outer_family": "belebele-ko",
+        "overlap_keys_purged": 0
+      },
+      "cruxeval": {
+        "heads": [
+          {
+            "calibration_group_residuals": 445,
+            "fit_rows": 1519,
+            "head": 0,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7084881985840029
+          },
+          {
+            "calibration_group_residuals": 445,
+            "fit_rows": 1519,
+            "head": 1,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7158117931593413
+          },
+          {
+            "calibration_group_residuals": 445,
+            "fit_rows": 1519,
+            "head": 2,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7051845038919037
+          },
+          {
+            "calibration_group_residuals": 445,
+            "fit_rows": 1519,
+            "head": 3,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7450879213926163
+          },
+          {
+            "calibration_group_residuals": 445,
+            "fit_rows": 1519,
+            "head": 4,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7175267749238784
+          },
+          {
+            "calibration_group_residuals": 445,
+            "fit_rows": 1519,
+            "head": 5,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7162506369172181
+          },
+          {
+            "calibration_group_residuals": 445,
+            "fit_rows": 1519,
+            "head": 6,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7671020786631508
+          },
+          {
+            "calibration_group_residuals": 445,
+            "fit_rows": 1519,
+            "head": 7,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6812804116583259
+          },
+          {
+            "calibration_group_residuals": 445,
+            "fit_rows": 1519,
+            "head": 8,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1495,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1359,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1197,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7385539359527173
+          }
+        ],
+        "outer_family": "cruxeval",
+        "overlap_keys_purged": 0
+      },
+      "deepmind-mathematics": {
+        "heads": [
+          {
+            "calibration_group_residuals": 341,
+            "fit_rows": 1457,
+            "head": 0,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.4766674736664642
+          },
+          {
+            "calibration_group_residuals": 341,
+            "fit_rows": 1457,
+            "head": 1,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.46482554465379156
+          },
+          {
+            "calibration_group_residuals": 341,
+            "fit_rows": 1457,
+            "head": 2,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.464048737070166
+          },
+          {
+            "calibration_group_residuals": 341,
+            "fit_rows": 1457,
+            "head": 3,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.4605543703828725
+          },
+          {
+            "calibration_group_residuals": 341,
+            "fit_rows": 1457,
+            "head": 4,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.45528209395030206
+          },
+          {
+            "calibration_group_residuals": 341,
+            "fit_rows": 1457,
+            "head": 5,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.45960341779105146
+          },
+          {
+            "calibration_group_residuals": 341,
+            "fit_rows": 1457,
+            "head": 6,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5498317353524396
+          },
+          {
+            "calibration_group_residuals": 341,
+            "fit_rows": 1457,
+            "head": 7,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.45995913600950844
+          },
+          {
+            "calibration_group_residuals": 341,
+            "fit_rows": 1457,
+            "head": 8,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1433,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1297,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1135,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1216,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.4649823130076367
+          }
+        ],
+        "outer_family": "deepmind-mathematics",
+        "overlap_keys_purged": 0
+      },
+      "gsm8k": {
+        "heads": [
+          {
+            "calibration_group_residuals": 463,
+            "fit_rows": 1527,
+            "head": 0,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5767742990951399
+          },
+          {
+            "calibration_group_residuals": 463,
+            "fit_rows": 1527,
+            "head": 1,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5694290980242548
+          },
+          {
+            "calibration_group_residuals": 463,
+            "fit_rows": 1527,
+            "head": 2,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5777112506000655
+          },
+          {
+            "calibration_group_residuals": 463,
+            "fit_rows": 1527,
+            "head": 3,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6448177176219801
+          },
+          {
+            "calibration_group_residuals": 463,
+            "fit_rows": 1527,
+            "head": 4,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5866031685865608
+          },
+          {
+            "calibration_group_residuals": 463,
+            "fit_rows": 1527,
+            "head": 5,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5644880790525872
+          },
+          {
+            "calibration_group_residuals": 463,
+            "fit_rows": 1527,
+            "head": 6,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5826830956715088
+          },
+          {
+            "calibration_group_residuals": 463,
+            "fit_rows": 1527,
+            "head": 7,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5877175375172639
+          },
+          {
+            "calibration_group_residuals": 463,
+            "fit_rows": 1527,
+            "head": 8,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1503,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1367,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1205,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1286,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1224,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5811803921660201
+          }
+        ],
+        "outer_family": "gsm8k",
+        "overlap_keys_purged": 0
+      },
+      "hrmcr": {
+        "heads": [
+          {
+            "calibration_group_residuals": 481,
+            "fit_rows": 1720,
+            "head": 0,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5920434577492324
+          },
+          {
+            "calibration_group_residuals": 481,
+            "fit_rows": 1720,
+            "head": 1,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5993375963356765
+          },
+          {
+            "calibration_group_residuals": 481,
+            "fit_rows": 1720,
+            "head": 2,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5661374853399876
+          },
+          {
+            "calibration_group_residuals": 481,
+            "fit_rows": 1720,
+            "head": 3,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6697038644611534
+          },
+          {
+            "calibration_group_residuals": 481,
+            "fit_rows": 1720,
+            "head": 4,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.5980057130598698
+          },
+          {
+            "calibration_group_residuals": 481,
+            "fit_rows": 1720,
+            "head": 5,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6088743048784002
+          },
+          {
+            "calibration_group_residuals": 481,
+            "fit_rows": 1720,
+            "head": 6,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6172405038141209
+          },
+          {
+            "calibration_group_residuals": 481,
+            "fit_rows": 1720,
+            "head": 7,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6094902510539653
+          },
+          {
+            "calibration_group_residuals": 481,
+            "fit_rows": 1720,
+            "head": 8,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1696,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1560,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1398,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1479,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1417,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1487,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6228363021590342
+          }
+        ],
+        "outer_family": "hrmcr",
+        "overlap_keys_purged": 0
+      },
+      "ruletaker": {
+        "heads": [
+          {
+            "calibration_group_residuals": 459,
+            "fit_rows": 1489,
+            "head": 0,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6659915583050061
+          },
+          {
+            "calibration_group_residuals": 459,
+            "fit_rows": 1489,
+            "head": 1,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6365310356833533
+          },
+          {
+            "calibration_group_residuals": 459,
+            "fit_rows": 1489,
+            "head": 2,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6325432614924958
+          },
+          {
+            "calibration_group_residuals": 459,
+            "fit_rows": 1489,
+            "head": 3,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6905684007958091
+          },
+          {
+            "calibration_group_residuals": 459,
+            "fit_rows": 1489,
+            "head": 4,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6519747161876533
+          },
+          {
+            "calibration_group_residuals": 459,
+            "fit_rows": 1489,
+            "head": 5,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.67013800686004
+          },
+          {
+            "calibration_group_residuals": 459,
+            "fit_rows": 1489,
+            "head": 6,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.7102540995398543
+          },
+          {
+            "calibration_group_residuals": 459,
+            "fit_rows": 1489,
+            "head": 7,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6762994984102388
+          },
+          {
+            "calibration_group_residuals": 459,
+            "fit_rows": 1489,
+            "head": 8,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1465,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1329,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1167,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1248,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1186,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1256,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1449,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "truthfulqa",
+                "calibration_rows": 18,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6771892584756405
+          }
+        ],
+        "outer_family": "ruletaker",
+        "overlap_keys_purged": 0
+      },
+      "truthfulqa": {
+        "heads": [
+          {
+            "calibration_group_residuals": 480,
+            "fit_rows": 1594,
+            "head": 0,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6553666798680803
+          },
+          {
+            "calibration_group_residuals": 480,
+            "fit_rows": 1594,
+            "head": 1,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.652183395671149
+          },
+          {
+            "calibration_group_residuals": 480,
+            "fit_rows": 1594,
+            "head": 2,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6364136292997212
+          },
+          {
+            "calibration_group_residuals": 480,
+            "fit_rows": 1594,
+            "head": 3,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6828109516734964
+          },
+          {
+            "calibration_group_residuals": 480,
+            "fit_rows": 1594,
+            "head": 4,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6485849952719509
+          },
+          {
+            "calibration_group_residuals": 480,
+            "fit_rows": 1594,
+            "head": 5,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6582802966165405
+          },
+          {
+            "calibration_group_residuals": 480,
+            "fit_rows": 1594,
+            "head": 6,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6941479799562148
+          },
+          {
+            "calibration_group_residuals": 480,
+            "fit_rows": 1594,
+            "head": 7,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6716164617078684
+          },
+          {
+            "calibration_group_residuals": 480,
+            "fit_rows": 1594,
+            "head": 8,
+            "inner": [
+              {
+                "calibration_family": "aime",
+                "calibration_rows": 11,
+                "family_disjoint": true,
+                "fit_rows": 1570,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "babilong",
+                "calibration_rows": 160,
+                "family_disjoint": true,
+                "fit_rows": 1434,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "belebele-ko",
+                "calibration_rows": 322,
+                "family_disjoint": true,
+                "fit_rows": 1272,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "cruxeval",
+                "calibration_rows": 173,
+                "family_disjoint": true,
+                "fit_rows": 1353,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "deepmind-mathematics",
+                "calibration_rows": 291,
+                "family_disjoint": true,
+                "fit_rows": 1291,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "gsm8k",
+                "calibration_rows": 43,
+                "family_disjoint": true,
+                "fit_rows": 1361,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "hrmcr",
+                "calibration_rows": 40,
+                "family_disjoint": true,
+                "fit_rows": 1554,
+                "group_disjoint": true
+              },
+              {
+                "calibration_family": "ruletaker",
+                "calibration_rows": 155,
+                "family_disjoint": true,
+                "fit_rows": 1323,
+                "group_disjoint": true
+              }
+            ],
+            "outer_family_excluded": true,
+            "outer_groups_purged": true,
+            "upper_residual": 0.6377829507134052
+          }
+        ],
+        "outer_family": "truthfulqa",
+        "overlap_keys_purged": 0
+      }
+    },
+    "nine_family_evaluation": true,
+    "no_budget_refill": true,
+    "non_think_premium_identical": true,
+    "protocol_integrity": true,
+    "train_input_available": true
+  },
+  "safety": {
+    "accessed": false,
+    "evaluation_count": 0,
+    "passed": false,
+    "resamples": 0
+  },
+  "schema_version": 1,
+  "selection": {
+    "rule": "max delta, then 9/9 > 8/9 > 7/9",
+    "selected_candidate": null
+  },
+  "submission_default": "safe-margin"
+}
