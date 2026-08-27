@@ -1,0 +1,95 @@
+{
+  "adoption": {
+    "default_on_failure": "safe-margin",
+    "dev_minimum_exclusive": 0.673182,
+    "dev_one_shot": true,
+    "dev_practical_target": 0.674,
+    "run_dev_only_after_train_gate": true,
+    "run_safety_only_after_dev_gate": true
+  },
+  "artifact": {
+    "coefficient_encoding": "decimal-json-number",
+    "feature_count": 36,
+    "feature_name_source": "baselines.representation_features.EXPANDED_STRUCTURAL_FEATURE_NAMES",
+    "representation": "B-expanded-structural",
+    "runtime_dependencies": "python-stdlib-only"
+  },
+  "candidate": {
+    "correction_strengths": [
+      0.25,
+      0.5,
+      1.0
+    ],
+    "eligible_pool": "exact-safe-margin-ax31-light-to-ax31-eligibility",
+    "exchange_budget": "same-batch-safe-margin-selected-conservative-increment",
+    "exchange_tiers": [
+      "fast",
+      "balanced"
+    ],
+    "grouping": "exact-safe-margin-content-signature",
+    "premium_behavior": "exact-safe-margin-identity",
+    "priority": "safe-margin-predicted-gain-plus-strength-times-clipped-B-residual-over-safe-margin-step-load",
+    "residual_clip": [
+      -0.1,
+      0.1
+    ],
+    "think_behavior": "exact-safe-margin-identity",
+    "tie_break": "lower-strength-then-content-signature",
+    "training_target": "realized-ax31-minus-light-gain-minus-safe-margin-predicted-gain"
+  },
+  "evaluation": {
+    "family_labels": [
+      "aime",
+      "babilong",
+      "belebele-ko",
+      "cruxeval",
+      "deepmind-mathematics",
+      "gsm8k",
+      "hrmcr",
+      "ruletaker",
+      "truthfulqa"
+    ],
+    "family_reconstruction": "tools.risk_validation.reconstruct_families",
+    "final_artifact_fit": "all-public-train-after-global-LOFO-strength-selection",
+    "global_strength_selection": "maximum-full-Train-LOFO-weighted-improvement-then-lower-strength",
+    "inner_selection": "maximum-inner-LOFO-fast-balanced-weighted-improvement-then-lower-strength",
+    "nested_method": "outer-leave-one-family-out-with-inner-leave-one-family-out-strength-selection",
+    "ridge_alpha": 1000.0,
+    "selection_source": "public-train-only",
+    "tier_weights": {
+      "balanced": 0.3,
+      "fast": 0.4,
+      "premium": 0.3
+    }
+  },
+  "forbidden_runtime_inputs": [
+    "source",
+    "family",
+    "episode_id",
+    "split",
+    "row_position",
+    "outcomes",
+    "benchmark_labels"
+  ],
+  "input_bounds": {
+    "characters_per_prompt_or_message_field": 32768,
+    "feature_extraction_scope": "prompt-or-messages-role-content-only"
+  },
+  "protocol_id": "safe-margin-residual-consensus-v1",
+  "protocol_version": 1,
+  "safety_gate": {
+    "family_holdout_and_preservation_checks": "existing-risk-validation-contract",
+    "hard_cap_breaches_per_tier": 0,
+    "p99_and_max_tolerance_over_safe_margin": 0.005,
+    "resamples": 5000,
+    "seed": 20260825
+  },
+  "train_gate": {
+    "determinism_required": true,
+    "matched_spend_required_per_exchange_tier": true,
+    "minimum_positive_held_out_families": 6,
+    "minimum_weighted_improvement": 0.001,
+    "runtime_and_input_bound_checks_required": true,
+    "worst_held_out_family_improvement": -0.005
+  }
+}

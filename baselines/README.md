@@ -591,3 +591,32 @@ Fast `0.027273 / 0.051936`, Balanced `0.050000 / 0.351032`; ax31→think 상관
 [`representation-audit-report.v1.json`](representation-audit-report.v1.json)에
 있습니다. 기존 v2의 안전 결과(78/78 통과)와 Dev `0.658182`, safe-margin Dev
 `0.673182`는 그대로이며 제출 기본값도 safe-margin입니다.
+
+## safe-margin residual consensus v1
+
+[`../configs/safe-margin-residual-consensus-protocol.v1.json`](../configs/safe-margin-residual-consensus-protocol.v1.json)을
+새 실측 전에 고정하고 SHA-256
+`cd78edcf7f36aa06a97fd930e88e27bd3f80188677a06907a7e0aeb433c64dc1`로
+계약을 잠갔습니다. 가설은 표현 감사의 B(36개 bounded stdlib 구조 특징)가
+safe-margin의 예측 이득 잔차를 보조하면, 기존 Fast/Balanced
+`ax31-light -> ax31` 적격 그룹의 순서만 바꾸어 같은 보수적 예측 지출에서 작은
+품질 개선을 얻을 수 있다는 것입니다. 강도는 사전 선언한 `0.25`, `0.50`,
+`1.00` 세 개뿐이며, 9개 재구성 family의 outer LOFO 안에서 inner LOFO로
+선택했습니다. Premium과 think 단계, 적격 guard, 비용 floor, tail/concentration
+guard, content grouping과 예산 목표는 safe-margin 그대로입니다.
+
+Train 1,760문항의 중첩 평가 결과, matched-spend 가중 개선은
+`+0.000568182`로 기준 `+0.001000`에 못 미쳤고 양의 held-out family도 `5/9`로
+기준 `6/9`에 못 미쳤습니다. 최악 family는 `-0.000625`로 하한 `-0.005000`을
+통과했습니다. Fast/Balanced matched conservative spend, 32,768자 field bound,
+결정성, stdlib-only runtime, Premium/think 동일성 검사는 모두 통과했습니다.
+전체 Train LOFO가 고른 강도는 `0.25`였지만 가중 개선은 `-0.000028409`였으므로
+artifact는 부정 실험의 재현 자료일 뿐 채택 대상이 아닙니다.
+
+Train gate 실패로 공개 Dev outcome은 열지 않았고, 단 한 번의 Dev 점수 gate와
+5,000회 안전 검사는 실행하지 않았습니다. 상세 근거는
+[`safe-margin-residual-consensus-report.v1.json`](safe-margin-residual-consensus-report.v1.json),
+실험 구현은 [`safe_margin_residual_consensus.py`](safe_margin_residual_consensus.py),
+Train-first 재생성은
+[`../tools/run_safe_margin_residual_consensus.py`](../tools/run_safe_margin_residual_consensus.py)에
+있습니다. 결론은 비채택이며 제출 기본값은 safe-margin입니다.

@@ -84,12 +84,12 @@ def _bounded_episode(episode: Episode) -> Episode:
 
     if episode.prompt is not None:
         return Episode(
-            episode.episode_id,
+            "",
             prompt=episode.prompt[:MAX_FIELD_CHARACTERS],
         )
     assert episode.messages is not None
     return Episode(
-        episode.episode_id,
+        "",
         messages=tuple(
             Message(message.role, message.content[:MAX_FIELD_CHARACTERS])
             for message in episode.messages
